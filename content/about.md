@@ -5,6 +5,8 @@ description = "Archipelag.io builds sovereign compute infrastructure rooted in S
 
 # About Archipelag.io
 
+**Archipelag.io** (pronounced *archipelago*) is the brand and domain for our sovereign compute platform. The name evokes an archipelago — a network of independent islands working together — which is exactly how our distributed compute fabric operates.
+
 ## Our Mission
 
 We're building compute infrastructure that respects data sovereignty. Every organization should be able to run AI workloads with full control over where their data is processed, who processes it, and how it's handled.
@@ -77,4 +79,4 @@ We're a small team of distributed systems engineers with backgrounds in cloud in
 
 ---
 
-*Ready to run sovereign compute? [Join the waitlist](/#waitlist) or [apply to become a provider](/earn).*
+*Ready to run sovereign compute? [Get started](https://app.archipelag.io/auth/register) or [apply to become a provider](/earn).*

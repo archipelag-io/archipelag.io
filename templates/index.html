@@ -43,43 +43,11 @@
 {% endblock head_meta %}
 
 {% block head_extra %}
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD: Page-specific structured data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@graph": [
-            {
-                "@type": "Organization",
-                "@id": "{{ config.base_url }}/#organization",
-                "name": "Archipelag.io",
-                "alternateName": "Archipelag",
-                "url": "{{ config.base_url }}",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{ config.base_url }}/img/archipelagio-brandmark.png",
-                    "width": 512,
-                    "height": 512
-                },
-                "sameAs": [
-                    "https://github.com/archipelag-io",
-                    "https://twitter.com/archipelagio"
-                ],
-                "contactPoint": {
-                    "@type": "ContactPoint",
-                    "email": "hello@archipelag.io",
-                    "contactType": "customer support"
-                }
-            },
-            {
-                "@type": "WebSite",
-                "@id": "{{ config.base_url }}/#website",
-                "url": "{{ config.base_url }}",
-                "name": "Archipelag.io",
-                "description": "{{ config.description }}",
-                "publisher": {
-                    "@id": "{{ config.base_url }}/#organization"
-                }
-            },
             {
                 "@type": "WebPage",
                 "@id": "{{ config.base_url }}/#webpage",
@@ -116,7 +84,7 @@
                         "name": "What is Archipelag.io?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Archipelag.io is a decentralized AI compute network. Users run AI workloads on community-operated hosts nearby, getting lower latency and fair pricing. Hosts earn money by contributing idle GPU compute. All workloads are sandboxed and verified."
+                            "text": "Archipelag.io (pronounced 'archipelago') is a decentralized AI compute network. The name evokes an archipelago — independent islands working together. Users run AI workloads on community-operated hosts nearby, getting lower latency and fair pricing. Hosts earn money by contributing idle GPU compute. All workloads are sandboxed and verified."
                         }
                     },
                     {

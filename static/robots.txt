@@ -1,13 +1,81 @@
+# ============================================
+# Archipelag.io — robots.txt
+# https://archipelag.io
+# ============================================
+
+# Default: allow all well-behaved crawlers
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://www.archipelag.io/sitemap.xml
-
-# Crawl delay for politeness
 Crawl-delay: 1
 
-# Disallow any admin or private paths (future-proofing)
+# Sitemap
+Sitemap: https://archipelag.io/sitemap.xml
+
+# Disallow admin, API, and internal paths
 Disallow: /admin/
 Disallow: /api/
 Disallow: /.well-known/
+Disallow: /subscribe/
+
+# ============================================
+# AI / LLM crawlers — welcome
+# ============================================
+# We provide llms.txt for structured context.
+# See: https://archipelag.io/llms.txt
+
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+Crawl-delay: 5
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# ============================================
+# Aggressive scrapers — throttle
+# ============================================
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /

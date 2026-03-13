@@ -40,10 +40,83 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <!-- Feed & AI discoverability -->
+    <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ config.base_url }}/atom.xml">
+    <link rel="alternate" type="text/plain" title="LLM Context" href="{{ config.base_url }}/llms.txt">
+    <link rel="author" href="{{ config.base_url }}/about/">
+    <link rel="help" href="https://docs.archipelag.io">
+
     <!-- Styles -->
     <link rel="stylesheet" href="/main.css">
 
     {% block head_extra %}{% endblock head_extra %}
+
+    {% block head_jsonld %}
+    <!-- Global JSON-LD: Organization + WebSite (every page) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "{{ config.base_url }}/#organization",
+                "name": "Archipelag.io",
+                "alternateName": ["Archipelag", "Archipelago"],
+                "url": "{{ config.base_url }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "@id": "{{ config.base_url }}/#logo",
+                    "url": "{{ config.base_url }}/img/archipelagio-brandmark.png",
+                    "contentUrl": "{{ config.base_url }}/img/archipelagio-brandmark.png",
+                    "width": 512,
+                    "height": 512,
+                    "caption": "Archipelag.io"
+                },
+                "image": "{{ config.base_url }}/og-image.png",
+                "description": "{{ config.description }}",
+                "slogan": "Compute, closer to you.",
+                "knowsAbout": ["AI Inference", "Distributed Computing", "GPU Computing", "Data Sovereignty", "GDPR Compliance", "Edge Computing", "LLM Hosting"],
+                "sameAs": [
+                    "https://github.com/archipelag-io",
+                    "https://twitter.com/archipelagio"
+                ],
+                "contactPoint": [
+                    {
+                        "@type": "ContactPoint",
+                        "email": "hello@archipelag.io",
+                        "contactType": "customer support",
+                        "availableLanguage": "English"
+                    },
+                    {
+                        "@type": "ContactPoint",
+                        "email": "support@archipelag.io",
+                        "contactType": "technical support",
+                        "availableLanguage": "English"
+                    },
+                    {
+                        "@type": "ContactPoint",
+                        "email": "partners@archipelag.io",
+                        "contactType": "sales",
+                        "availableLanguage": "English"
+                    }
+                ],
+                "areaServed": ["EU", "CH", "Global"]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "{{ config.base_url }}/#website",
+                "url": "{{ config.base_url }}",
+                "name": "Archipelag.io",
+                "description": "{{ config.description }}",
+                "publisher": {
+                    "@id": "{{ config.base_url }}/#organization"
+                },
+                "inLanguage": "en-US"
+            }
+        ]
+    }
+    </script>
+    {% endblock head_jsonld %}
 
     <!-- Dark-first: only add light class if explicitly selected -->
     <script>

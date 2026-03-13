@@ -12,8 +12,13 @@
         "url": "{{ config.base_url }}{{ current_path }}",
         "name": "{{ page.title }}",
         "description": "{{ page.description | default(value=config.description) }}",
+        {% if page.date %}"dateModified": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
+        "inLanguage": "en-US",
         "isPartOf": {
             "@id": "{{ config.base_url }}/#website"
+        },
+        "about": {
+            "@id": "{{ config.base_url }}/#organization"
         },
         "breadcrumb": {
             "@type": "BreadcrumbList",

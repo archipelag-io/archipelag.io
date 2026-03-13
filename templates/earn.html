@@ -57,11 +57,140 @@
                         {
                             "@type": "ListItem",
                             "position": 2,
-                            "name": "Host",
+                            "name": "Earn with GPU",
                             "item": "{{ config.base_url }}/earn/"
                         }
                     ]
                 }
+            },
+            {
+                "@type": "Service",
+                "@id": "{{ config.base_url }}/earn/#service",
+                "name": "Archipelag.io GPU Hosting",
+                "description": "Contribute your GPU compute power to the Archipelag.io decentralized AI network and earn income.",
+                "provider": {
+                    "@id": "{{ config.base_url }}/#organization"
+                },
+                "serviceType": "GPU Compute Hosting",
+                "areaServed": "Global",
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "GPU Hosting Tiers",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "name": "RTX 4090 Hosting",
+                            "description": "Earn up to $0.25/min with NVIDIA RTX 4090. Estimated $200–$400/month.",
+                            "priceCurrency": "USD"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "RTX 4080 Hosting",
+                            "description": "Earn up to $0.18/min with NVIDIA RTX 4080. Estimated $140–$280/month.",
+                            "priceCurrency": "USD"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "RTX 3080 Hosting",
+                            "description": "Earn up to $0.12/min with NVIDIA RTX 3080. Estimated $80–$150/month.",
+                            "priceCurrency": "USD"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "RTX 3070 Hosting",
+                            "description": "Earn up to $0.08/min with NVIDIA RTX 3070. Estimated $50–$100/month.",
+                            "priceCurrency": "USD"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "RTX 3060 Hosting",
+                            "description": "Earn up to $0.06/min with NVIDIA RTX 3060. Estimated $40–$80/month.",
+                            "priceCurrency": "USD"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "HowTo",
+                "name": "How to earn money hosting AI workloads",
+                "description": "Start earning income with your GPU by joining the Archipelag.io decentralized compute network.",
+                "totalTime": "PT15M",
+                "tool": [
+                    "NVIDIA RTX 3060 or better GPU",
+                    "100 Mbps+ internet connection",
+                    "Docker installed"
+                ],
+                "step": [
+                    {
+                        "@type": "HowToStep",
+                        "position": 1,
+                        "name": "Download the node agent",
+                        "text": "Get the node agent for Windows, Mac, or Linux from the Archipelag.io website."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "position": 2,
+                        "name": "Install and verify",
+                        "text": "Run the installer, connect your account, and complete identity verification."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "position": 3,
+                        "name": "Configure availability",
+                        "text": "Set your availability schedule and resource limits."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "position": 4,
+                        "name": "Start earning",
+                        "text": "Jobs arrive automatically. Earnings accrue in real-time with monthly payouts via Stripe."
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "How much can I earn with my GPU?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Earnings depend on your GPU, availability, and network demand. An RTX 4090 can earn $200–$400/month with 8 hours/day availability. An RTX 3060 can earn $40–$80/month. Verified hosts with high karma scores earn premium rates."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Is it safe to run workloads on my machine?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. Hosts only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do payouts work?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Payouts are processed monthly on the 1st via Stripe. The minimum payout balance is $25. You can receive funds via direct deposit or your Stripe account."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the Karma system?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Karma is a reputation score (50–100) that reflects your reliability as a host. It increases with successful jobs and decreases for failures or timeouts. Higher karma means job priority and a rate bonus."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What hardware do I need?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You need an NVIDIA RTX 3060 or better GPU with 8GB+ VRAM, a 100 Mbps+ internet connection, and Docker installed. Supported platforms: Windows 10/11, macOS 12+, or Linux. AMD GPU support is coming soon."
+                        }
+                    }
+                ]
             }
         ]
     }

@@ -1,0 +1,171 @@
+# Archipelag.io — Full Context for LLMs
+
+> Compute, closer to you.
+
+Archipelag.io (pronounced "archipelago") is a decentralized AI compute network that routes workloads to nearby independently-operated hosts. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form). The name evokes an archipelago — a network of independent islands working together. Users submit AI inference jobs, community hosts execute them on their GPUs, and a coordinator orchestrates everything. Think: edge compute network where anyone can contribute GPU/CPU resources and earn credits.
+
+## Core Value Proposition
+
+**For AI Users:**
+- Run AI workloads (LLM chat, image generation) on distributed community hardware
+- Lower latency by routing to nearby hosts (measured RTT, not just geography)
+- Jurisdiction-aware routing for compliance (EU-only, Switzerland, custom policies)
+- OpenAI-compatible API — drop-in replacement for existing applications
+- Credit-based pricing with no subscriptions or commitments
+
+**For GPU Hosts:**
+- Monetize idle GPU hardware (gaming PCs, workstations)
+- Earnings: $40–$400/month depending on GPU model and availability
+- All workloads are network-approved, cryptographically signed containers
+- Sandboxed execution — no access to host files, network, or processes
+- Karma reputation system rewards reliable hosts with more jobs and better rates
+
+## Architecture
+
+```
+User (browser/API) → Coordinator (Elixir/Phoenix) → NATS JetStream → Node Agent (Rust) → Workload Container → NATS → Coordinator → User
+```
+
+- **Coordinator**: Elixir/Phoenix control plane handling placement, dispatch, billing, health monitoring
+- **Message Fabric**: NATS with JetStream for reliable job dispatch and streaming output
+- **Node Agent**: Rust-based host agent running on contributor machines
+- **Workloads**: Signed Docker containers and WASM modules
+
+## Products & Features
+
+### LLM Chat
+- Models: Mistral 7B, Llama family
+- Streaming token-by-token responses via WebSocket
+- Multi-turn conversations with context
+- Pricing: 0.0001 credits/token
+
+### Image Generation
+- Models: Stable Diffusion XL, FLUX
+- Batch generation support
+- Pricing: 0.01 credits/image
+
+### Developer Tools
+- REST API (OpenAI-compatible)
+- Python SDK
+- JavaScript/React SDK
+- Streaming support
+- Jurisdiction routing controls
+
+### Security & Compliance
+- Container signing with cosign
+- Seccomp profiles per sandbox tier
+- Registry allowlist enforcement
+- KYC verification via Stripe Identity
+- FADP (Switzerland), GDPR (EU), EU AI Act compliance
+- Audit trails for Team and Enterprise tiers
+
+## Pricing
+
+### Credit Packages
+| Plan | Price | Credits | Features |
+|------|-------|---------|----------|
+| Starter | $10 | 100 | Tier 1 verified nodes, standard routing, all models, API access |
+| Team | $45 | 500 + 10% bonus | Tier 2 GDPR nodes, EU/CH jurisdiction routing, audit trails |
+| Enterprise | Custom | Custom | Tier 3 dedicated pools, SLA, SOC 2, dedicated support |
+
+### Usage Rates
+- LLM Chat: 0.0001 credits/token
+- Image Generation: 0.01 credits/image
+
+## GPU Host Earnings
+
+| GPU | Rate | Est. Monthly (8h/day) |
+|-----|------|-----------------------|
+| RTX 4090 | up to $0.25/min | $200–$400 |
+| RTX 4080 | up to $0.18/min | $140–$280 |
+| RTX 3080 | up to $0.12/min | $80–$150 |
+| RTX 3070 | up to $0.08/min | $50–$100 |
+| RTX 3060 | up to $0.06/min | $40–$80 |
+
+Monthly payouts via Stripe, $25 minimum balance.
+
+## Karma Reputation System
+
+- Score range: 50 (start) to 100 (maximum)
+- Increases: successful job completions
+- Decreases: failures, timeouts
+- Benefits: higher karma = job priority + rate bonus
+
+## Host Requirements
+
+- **GPU**: NVIDIA RTX 3060 or better, 8GB+ VRAM (AMD support planned)
+- **Network**: 100 Mbps+ internet connection
+- **Platform**: Windows 10/11, macOS 12+, or Linux
+- **Software**: Docker required
+
+## Company
+
+- Swiss and European roots — built for data sovereignty
+- Compliant with FADP (Switzerland), GDPR (EU), EU AI Act
+- Open source: https://github.com/archipelag-io
+- Technology: Elixir/Phoenix, Rust/Tokio, NATS, PostgreSQL
+
+## Frequently Asked Questions
+
+### What is Archipelag.io?
+Archipelag.io is a decentralized AI compute network. Users run AI workloads on community-operated hosts nearby, getting lower latency and fair pricing. Hosts earn money by contributing idle GPU compute. All workloads are sandboxed and verified.
+
+### How does it work?
+Users submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby community hosts with the right hardware. Responses stream back in real time. Hosts earn credits for every job completed.
+
+### Is it safe to host?
+Yes. Hosts only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced.
+
+### Does my data stay local?
+Yes. Jobs route to nearby hosts by default, keeping data regional. Teams with compliance requirements can set explicit jurisdiction policies (e.g., EU-only, Switzerland) to guarantee data residency.
+
+### How much can I earn with my GPU?
+Earnings depend on GPU model, availability, and network demand. An RTX 4090 can earn $200–$400/month with 8 hours/day availability. Verified hosts with high karma scores earn premium rates.
+
+### How do payouts work?
+Payouts are processed monthly on the 1st via Stripe. Minimum payout balance is $25. You can receive funds via direct deposit or your Stripe account.
+
+### What is the Karma system?
+Karma is a reputation score (50–100) that reflects your reliability. It increases with successful jobs and decreases for failures or timeouts. Higher karma = job priority + rate bonus.
+
+### Is Archipelag.io GDPR compliant?
+Yes. Team and Enterprise plans include GDPR-compliant nodes with EU/CH jurisdiction routing and audit trails. Enterprise plans offer SOC 2 reporting and custom jurisdiction configurations.
+
+### Do credits expire?
+Credits do not expire. They remain in your account until used.
+
+### Is KYC required?
+Basic usage is available without KYC. For higher-tier features and compliance needs, identity verification via Stripe Identity is required.
+
+## Contact
+
+- General: hello@archipelag.io
+- Technical Support: support@archipelag.io
+- Enterprise & Partnerships: partners@archipelag.io
+
+## Links
+
+- Website: https://archipelag.io
+- App: https://app.archipelag.io
+- Documentation: https://docs.archipelag.io
+- API Reference: https://docs.archipelag.io/api
+- SDKs: https://docs.archipelag.io/sdks
+- Developer Portal: https://app.archipelag.io/developer
+- Playground: https://app.archipelag.io/playground
+- Marketplace: https://app.archipelag.io/marketplace
+- GitHub: https://github.com/archipelag-io
+- Twitter/X: https://twitter.com/archipelagio
+
+## Sitemap
+
+- [Home](https://archipelag.io/) — Landing page with product overview, network stats, and features
+- [Use AI](https://archipelag.io/use/) — Capabilities, API docs, and getting started for AI users
+- [Earn](https://archipelag.io/earn/) — GPU hosting information, earnings table, Karma system, security
+- [Pricing](https://archipelag.io/pricing/) — Credit packages, compliance tiers, enterprise details, FAQ
+- [About](https://archipelag.io/about/) — Mission, Swiss/EU heritage, technology overview
+- [Blog](https://archipelag.io/blog/) — Company updates and technical articles
+- [Contact](https://archipelag.io/contact/) — Support channels, enterprise inquiries, partnerships
+- [Privacy Policy](https://archipelag.io/privacy/) — Data handling and privacy practices
+- [Terms of Service](https://archipelag.io/terms/) — Usage terms and conditions
+- [Security](https://archipelag.io/security/) — Security model, sandboxing, and container signing
+- [Trust & Safety](https://archipelag.io/trust-safety/) — Identity verification and safety policies
