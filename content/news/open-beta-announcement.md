@@ -65,7 +65,7 @@ Honestly, we don't know exactly what will happen, and that's why we're doing thi
 
 We want to find out if the routing works well enough, if requests actually land on nearby hosts or if they bounce around. We want to see where the onboarding loses people, which error messages are confusing, which features nobody uses. We want to know if the karma system (where hosts build reputation through reliable service) actually incentivizes good behavior or just creates busywork.
 
-We want to hear from you. If something is broken, [open an issue](https://github.com/archipelag-io/archipelag-io/issues). If something is confusing, [email us](mailto:hey@archipelag.io). If you have an idea for something we should build, tell us.
+We want to hear from you. If something is broken, [open an issue](https://github.com/archipelag-io). If something is confusing, [email us](mailto:hey@archipelag.io). If you have an idea for something we should build, tell us.
 
 ## Getting started
 

@@ -101,7 +101,7 @@ If you discover a security issue, please report it to:
 
 **Email**: [hey@archipelag.io](mailto:hey@archipelag.io)
 
-**PGP Key**: Available at [archipelag.io/.well-known/security.txt](/.well-known/security.txt)
+**PGP Key**: A `security.txt` file with our PGP key is planned and will be available at `/.well-known/security.txt`
 
 ### What to Include
 
@@ -154,7 +154,7 @@ Out of scope:
 
 We publish security advisories for significant issues at:
 
-- **Status Page**: [status.archipelag.io](https://status.archipelag.io)
+- **Status Page**: status.archipelag.io (coming soon)
 - **Email Notifications**: Security alerts sent to registered users
 - **GitHub**: Security advisories in our public repositories
 

@@ -44,8 +44,8 @@ twitter = "@archipelagio"
 
 # App URLs
 app_base_url = "https://app.archipelag.io"
-use_ai_url = "https://app.archipelag.io/use"
-earn_url = "https://app.archipelag.io/earn"
+# use_ai_url and earn_url removed — these app routes don't exist;
+# use /use and /earn website pages instead
 
 # Color scheme (for potential theme switching)
 default_theme = "light"

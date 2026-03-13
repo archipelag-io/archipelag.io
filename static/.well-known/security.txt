@@ -1,0 +1,9 @@
+# Archipelag.io Security Policy
+# https://securitytxt.org/
+
+Contact: mailto:hey@archipelag.io
+Contact: https://github.com/archipelag-io/website/security/advisories
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://archipelag.io/.well-known/security.txt
+Policy: https://archipelag.io/security/

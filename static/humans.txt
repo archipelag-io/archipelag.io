@@ -1,0 +1,13 @@
+/* TEAM */
+Name: Archipelag.io
+Contact: hey@archipelag.io
+Twitter: @archipelagio
+GitHub: https://github.com/archipelag-io
+Location: Switzerland / EU
+
+/* SITE */
+Last update: 2026-03-13
+Language: English
+Standards: HTML5, CSS3, ES6
+Software: Zola (static site generator)
+Components: Elixir/Phoenix (app), Rust/Tokio (agent), NATS (messaging)

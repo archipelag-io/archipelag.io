@@ -8,13 +8,12 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# Sitemap
+# Sitemap & discovery
 Sitemap: https://archipelag.io/sitemap.xml
 
 # Disallow admin, API, and internal paths
 Disallow: /admin/
 Disallow: /api/
-Disallow: /.well-known/
 Disallow: /subscribe/
 
 # ============================================
@@ -22,6 +21,7 @@ Disallow: /subscribe/
 # ============================================
 # We provide llms.txt for structured context.
 # See: https://archipelag.io/llms.txt
+# Full context: https://archipelag.io/llms-full.txt
 
 User-agent: GPTBot
 Allow: /
@@ -65,8 +65,18 @@ Allow: /
 User-agent: Meta-ExternalFetcher
 Allow: /
 
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: YouBot
+Allow: /
+
 # ============================================
-# Aggressive scrapers — throttle
+# Aggressive scrapers — throttle or block
 # ============================================
 User-agent: SemrushBot
 Crawl-delay: 10
