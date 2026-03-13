@@ -1,76 +1,60 @@
 +++
-title = "Introducing Archipelag.io: Compute, Closer to You"
-description = "Today we're launching Archipelag.io, a distributed compute network that brings AI inference to community hardware. Here's why we built it and what's next."
+title = "Introducing Archipelag.io"
+description = "We built a distributed compute network that routes AI workloads to nearby hardware instead of distant data centers. Here's the story of why, and what it actually does."
 date = 2025-01-26
 
 [extra]
 category = "Blog"
 +++
 
-Today, we're opening the doors to Archipelag.io—a new kind of compute infrastructure built on a simple idea: **the best compute is the compute closest to you**.
+This started with a question that kept nagging at us: why are we sending AI requests halfway across a continent when there's a perfectly good GPU two blocks away?
 
-## The Problem We're Solving
+Not a hypothetical GPU. A real one. Sitting inside a gaming PC in someone's apartment, drawing 15 watts at idle, waiting for its owner to get home from work so it can render some frames in a first-person shooter. Or inside a video editor's workstation that finished a render at 2pm and won't touch the GPU again until tomorrow morning. Or inside one of the thousands of machines people built during the Ethereum mining era, now gathering dust in closets and garages because proof-of-stake made them obsolete overnight.
 
-Cloud computing changed everything. But somewhere along the way, we accepted a trade-off that doesn't make sense anymore: sending our data to distant data centers, waiting for responses, and paying premium prices for the privilege.
+We kept coming back to this picture: enormous amounts of capable hardware, already purchased, already powered on, already connected to fast internet, doing nothing. And on the other side, people paying cloud providers to rent equivalent hardware in a data center that might be three time zones away, accepting the latency and the markup because that's how things work.
 
-For AI workloads, this is especially painful. You're streaming tokens from a GPU that might be thousands of miles away, paying for bandwidth and latency you don't need, while powerful GPUs sit idle in homes and offices everywhere.
+We decided to see if we could connect those two sides.
 
-We asked ourselves: what if those idle GPUs could work for you?
+## What Archipelag.io actually is
 
-## How Archipelag.io Works
+The short version: you send us an AI workload (a chat message, an image prompt, an API call), and we route it to a nearby machine that can handle it. That machine runs the job, streams the result back to you, and the person who owns it earns money for the work.
 
-Archipelag.io is a two-sided marketplace connecting people who need compute with people who have it:
+The longer version involves a coordinator service that tracks which hosts are online, what hardware they have, how reliable they've been, and where they are relative to you. When a job comes in, the coordinator picks the best available host based on all of that, dispatches the job over NATS (a messaging system built for exactly this kind of thing), and the host's agent picks it up, runs it in a sandboxed container, and streams output back through the coordinator to your browser or API client.
 
-**For AI users:** Submit inference requests—LLM chat, image generation—and get results streamed from the nearest available host. Lower latency, fair pricing, no cloud provider markup.
+Hosts build up a reputation score we call karma. Complete jobs reliably, respond quickly, stay online when you say you will, and your karma goes up. Higher karma means you get offered better jobs and can charge higher rates. Flake out or produce bad results, and the system routes around you. It's a simple mechanism, but it aligns incentives in a way that matters when you're trusting strangers' hardware with real workloads.
 
-**For compute hosts:** Install our lightweight agent, set your availability, and earn money from your idle GPU. RTX 4090 owners can earn up to $400/month with just 8 hours of daily availability.
+## What you can do with it today
 
-The magic is in the middle: our coordinator handles placement, dispatch, and billing. It finds the best host for each job based on proximity, capability, and reliability. Hosts build karma through successful completions, unlocking priority jobs and better rates.
+We're launching with AI inference, because that's where the mismatch between supply and demand is most obvious.
 
-## What We're Launching With
+You can chat with Mistral 7B and Llama models, with responses streaming token by token from a host near you. You can generate images with Stable Diffusion XL. If you're a developer, there's an OpenAI-compatible API, so if your code already talks to OpenAI, pointing it at Archipelag.io is a configuration change, not a rewrite.
 
-Today's launch includes:
+On the hosting side, we have a node agent that runs on Windows, macOS, and Linux. Install it, point it at your API key, tell it when you're available, and it handles the rest: pulling the right container images, managing GPU memory, streaming results, reporting health back to the coordinator. You don't need to understand how inference works. You just need a decent GPU (RTX 3060 or better) and an internet connection.
 
-- **LLM Chat** with Mistral 7B and Llama models, streaming responses in real-time
-- **Image Generation** with Stable Diffusion XL and FLUX (coming soon)
-- **Node Agent** for Windows, macOS, and Linux hosts
-- **OpenAI-compatible API** for developers who want to integrate
+We chose to start with inference because it's a contained problem with clear value on both sides. But the architecture underneath doesn't know or care that it's running language models. It dispatches jobs to containers. Those containers could do rendering, transcoding, scientific simulation, whatever. We'll get there.
 
-We're starting with AI inference because it's where the pain is sharpest. But the architecture is workload-agnostic—rendering, transcoding, batch processing, and more are on the roadmap.
+## Why we think this matters
 
-## Why Now?
+There's a practical argument and a structural one.
 
-Three trends are converging:
+The practical argument: latency. When someone in Berlin asks a chatbot a question and the response comes from a GPU in Frankfurt instead of Virginia, the difference is noticeable. Not just in raw milliseconds, but in the feel of the interaction. Streaming tokens from 30ms away feels like a conversation. Streaming them from 200ms away feels like waiting.
 
-1. **GPU proliferation**: There are more powerful GPUs in consumer hands than ever before. Gaming PCs, creative workstations, and retired mining rigs represent massive untapped compute capacity.
+The structural argument: concentration. Right now, a small number of companies control most of the world's GPU cloud capacity. That's fine when things are working, but it means pricing is opaque, capacity crunches hit everyone at once, and if you're not a large enterprise with a negotiated contract, you're paying retail for a commodity. Meanwhile, NVIDIA ships over 30 million discrete GPUs a year into the consumer market alone. The compute exists. It's just not connected to the people who need it.
 
-2. **AI at the edge**: As AI becomes embedded in everything, the centralized cloud model is hitting limits. Latency matters. Privacy matters. Resilience matters.
+We're not trying to replace cloud providers. Data centers are good at sustained, high-throughput workloads, and that's not going away. What we're building is the other layer: the local, distributed, community-operated compute that handles the long tail of requests where proximity matters more than raw scale. A freelancer in Lisbon shouldn't have to send their inference requests to us-east-1. A student in Nairobi shouldn't be priced out of experimenting with AI because the nearest cloud region is in South Africa.
 
-3. **Community infrastructure**: People are increasingly willing to participate in decentralized networks—whether that's sharing storage, bandwidth, or compute.
+## What comes next
 
-We believe the next era of computing won't be built in hyperscale data centers alone. It'll be built on a fabric of community-contributed resources, coordinated by software that makes them feel like a single, reliable system.
+Over the coming months, we're adding more models, expanding into more regions, and shipping SDKs for Python and JavaScript so developers can build on top of this without thinking about the infrastructure underneath. We're also working on a mobile agent, because modern phones have serious compute capabilities and there's no reason they shouldn't participate in the network too.
 
-## What's Next
+The harder work is in the economics and the trust model. How do you price compute fairly when every host has different hardware, different electricity costs, different availability patterns? How do you build enough trust that people are willing to send real workloads to strangers' machines? We have initial answers to both of these, but they're hypotheses, not conclusions. We need real usage to test them.
 
-This is just the beginning. Over the coming months, we're focused on:
+## Try it
 
-- **More models**: Expanding our supported LLMs and adding vision models
-- **Geographic expansion**: Building out host coverage in more regions
-- **Developer tools**: SDKs for Python and JavaScript, webhook integrations
-- **Mobile agent**: Bringing hosting to iOS and Android devices
+If you want to use AI on the network: [sign up](https://app.archipelag.io), get 10 free credits, and send a message. It'll be served from someone's GPU, probably closer to you than you'd expect.
 
-We're also working on the economics—refining the karma system, optimizing job routing, and ensuring hosts are fairly compensated for their contributions.
+If you want to host: [grab the node agent](https://github.com/archipelag-io/node-agent/releases), set your schedule, and see what happens. Your machine works while you don't.
 
-## Get Involved
+If you want to follow along or contribute: everything is on [GitHub](https://github.com/archipelag-io). If something breaks or confuses you, [tell us](mailto:hello@archipelag.io).
 
-There are two ways to join us:
-
-**Use AI**: [Create an account](https://app.archipelag.io) and get 10 free credits to try the service. Use the web UI or integrate via API.
-
-**Become a host**: [Download the agent](https://github.com/archipelag-io/node-agent/releases) and start earning from your idle hardware. You'll need an NVIDIA RTX 3060 or better and a decent internet connection.
-
-We're building this in public. Follow our progress on [GitHub](https://github.com/archipelag-io), reach out at [hello@archipelag.io](mailto:hello@archipelag.io), or just reply to this post.
-
-The future of compute is distributed. Let's build it together.
-
-—The Archipelag.io Team
+This is a small team at the start of something that only works if people show up and participate. We're grateful you're here.
