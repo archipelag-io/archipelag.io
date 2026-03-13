@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}Earn | {{ config.title }}{% endblock title %}
+{% block title %}Contribute Compute | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="Turn your idle GPU into income. Earn money by contributing compute power to the Archipelag.io network. RTX 4090 hosts can earn up to $400/month.">
+    <meta name="description" content="Run the node agent on your GPU machine and earn credits for AI inference jobs. Market-based pricing, sandboxed execution, identity-verified hosts. Open beta.">
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="GPU income, passive income, RTX 4090, compute hosting, earn money, distributed computing, AI hosting, community compute">
+    <meta name="keywords" content="GPU hosting, compute hosting, earn with GPU, distributed computing, AI hosting, community compute, node agent, passive income GPU">
     <link rel="canonical" href="{{ config.base_url }}/earn/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/earn/">
-    <meta property="og:title" content="Earn with Your GPU | {{ config.title }}">
-    <meta property="og:description" content="Turn your idle GPU into income. Earn money by contributing compute power to the Archipelag.io network.">
+    <meta property="og:title" content="Contribute Compute &amp; Earn | {{ config.title }}">
+    <meta property="og:description" content="Run the node agent on your GPU and earn credits for completed AI inference jobs. Set your own price.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Archipelag.io - Earn with your GPU">
+    <meta property="og:image:alt" content="Archipelag.io - Contribute Compute">
     <meta property="og:site_name" content="{{ config.title }}">
     <meta property="og:locale" content="en_US">
 
@@ -24,10 +24,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
-    <meta name="twitter:title" content="Earn with Your GPU | {{ config.title }}">
-    <meta name="twitter:description" content="Turn your idle GPU into income. RTX 4090 hosts can earn up to $400/month.">
+    <meta name="twitter:title" content="Contribute Compute &amp; Earn | {{ config.title }}">
+    <meta name="twitter:description" content="Run the node agent on your GPU and earn credits for completed inference jobs. Open beta.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
-    <meta name="twitter:image:alt" content="Archipelag.io - Earn with your GPU">
+    <meta name="twitter:image:alt" content="Archipelag.io - Contribute Compute">
 {% endblock head_meta %}
 
 {% block head_extra %}
@@ -40,8 +40,8 @@
                 "@type": "WebPage",
                 "@id": "{{ config.base_url }}/earn/",
                 "url": "{{ config.base_url }}/earn/",
-                "name": "Earn with Your GPU",
-                "description": "Turn your idle GPU into income. Earn money by contributing compute power to the Archipelag.io network.",
+                "name": "Contribute Compute and Earn",
+                "description": "Run the node agent on your GPU machine and earn credits for AI inference jobs on the Archipelag.io network.",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
@@ -57,93 +57,46 @@
                         {
                             "@type": "ListItem",
                             "position": 2,
-                            "name": "Earn with GPU",
+                            "name": "Contribute Compute",
                             "item": "{{ config.base_url }}/earn/"
                         }
                     ]
                 }
             },
             {
-                "@type": "Service",
-                "@id": "{{ config.base_url }}/earn/#service",
-                "name": "Archipelag.io GPU Hosting",
-                "description": "Contribute your GPU compute power to the Archipelag.io decentralized AI network and earn income.",
-                "provider": {
-                    "@id": "{{ config.base_url }}/#organization"
-                },
-                "serviceType": "GPU Compute Hosting",
-                "areaServed": "Global",
-                "hasOfferCatalog": {
-                    "@type": "OfferCatalog",
-                    "name": "GPU Hosting Tiers",
-                    "itemListElement": [
-                        {
-                            "@type": "Offer",
-                            "name": "RTX 4090 Hosting",
-                            "description": "Earn up to $0.25/min with NVIDIA RTX 4090. Estimated $200–$400/month.",
-                            "priceCurrency": "USD"
-                        },
-                        {
-                            "@type": "Offer",
-                            "name": "RTX 4080 Hosting",
-                            "description": "Earn up to $0.18/min with NVIDIA RTX 4080. Estimated $140–$280/month.",
-                            "priceCurrency": "USD"
-                        },
-                        {
-                            "@type": "Offer",
-                            "name": "RTX 3080 Hosting",
-                            "description": "Earn up to $0.12/min with NVIDIA RTX 3080. Estimated $80–$150/month.",
-                            "priceCurrency": "USD"
-                        },
-                        {
-                            "@type": "Offer",
-                            "name": "RTX 3070 Hosting",
-                            "description": "Earn up to $0.08/min with NVIDIA RTX 3070. Estimated $50–$100/month.",
-                            "priceCurrency": "USD"
-                        },
-                        {
-                            "@type": "Offer",
-                            "name": "RTX 3060 Hosting",
-                            "description": "Earn up to $0.06/min with NVIDIA RTX 3060. Estimated $40–$80/month.",
-                            "priceCurrency": "USD"
-                        }
-                    ]
-                }
-            },
-            {
                 "@type": "HowTo",
-                "name": "How to earn money hosting AI workloads",
-                "description": "Start earning income with your GPU by joining the Archipelag.io decentralized compute network.",
+                "name": "How to host AI workloads on Archipelag.io",
+                "description": "Start earning by contributing your GPU compute to the Archipelag.io network.",
                 "totalTime": "PT15M",
                 "tool": [
-                    "NVIDIA RTX 3060 or better GPU",
-                    "100 Mbps+ internet connection",
+                    "NVIDIA GPU with 8GB+ VRAM",
+                    "Stable internet connection",
                     "Docker installed"
                 ],
                 "step": [
                     {
                         "@type": "HowToStep",
                         "position": 1,
-                        "name": "Download the node agent",
-                        "text": "Get the node agent for Windows, Mac, or Linux from the Archipelag.io website."
+                        "name": "Install the node agent",
+                        "text": "Download the Rust-based node agent binary for Linux, Mac, or Windows."
                     },
                     {
                         "@type": "HowToStep",
                         "position": 2,
-                        "name": "Install and verify",
-                        "text": "Run the installer, connect your account, and complete identity verification."
+                        "name": "Verify your identity",
+                        "text": "Complete identity verification via Stripe. This is required before you can receive jobs."
                     },
                     {
                         "@type": "HowToStep",
                         "position": 3,
-                        "name": "Configure availability",
-                        "text": "Set your availability schedule and resource limits."
+                        "name": "Set your price and schedule",
+                        "text": "Configure your asking price per workload type and your availability hours."
                     },
                     {
                         "@type": "HowToStep",
                         "position": 4,
-                        "name": "Start earning",
-                        "text": "Jobs arrive automatically. Earnings accrue in real-time with monthly payouts via Stripe."
+                        "name": "Start receiving jobs",
+                        "text": "The coordinator matches you with nearby users. You earn credits at your asking price for each completed job."
                     }
                 ]
             },
@@ -152,10 +105,10 @@
                 "mainEntity": [
                     {
                         "@type": "Question",
-                        "name": "How much can I earn with my GPU?",
+                        "name": "How much can I earn?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Earnings depend on your GPU, availability, and network demand. An RTX 4090 can earn $200–$400/month with 8 hours/day availability. An RTX 3060 can earn $40–$80/month. Verified hosts with high karma scores earn premium rates."
+                            "text": "Earnings depend on your GPU, your asking price, your availability, and network demand. During the beta, demand is growing — early hosts build karma scores that give them priority as the network scales."
                         }
                     },
                     {
@@ -163,7 +116,7 @@
                         "name": "Is it safe to run workloads on my machine?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Hosts only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced."
+                            "text": "Yes. Hosts only run network-approved, cosign-signed container images under seccomp security profiles. Containers have no access to your filesystem, network, or other processes. Resource limits are enforced by the node agent."
                         }
                     },
                     {
@@ -171,15 +124,7 @@
                         "name": "How do payouts work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Payouts are processed monthly on the 1st via Stripe. The minimum payout balance is $25. You can receive funds via direct deposit or your Stripe account."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What is the Karma system?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Karma is a reputation score (50–100) that reflects your reliability as a host. It increases with successful jobs and decreases for failures or timeouts. Higher karma means job priority and a rate bonus."
+                            "text": "Earnings accrue as credits. Payouts are processed via Stripe, which supports direct deposit in 40+ countries."
                         }
                     },
                     {
@@ -187,7 +132,7 @@
                         "name": "What hardware do I need?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "You need an NVIDIA RTX 3060 or better GPU with 8GB+ VRAM, a 100 Mbps+ internet connection, and Docker installed. Supported platforms: Windows 10/11, macOS 12+, or Linux. AMD GPU support is coming soon."
+                            "text": "An NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended), a stable internet connection, and Docker. The node agent runs on Linux, macOS, and Windows."
                         }
                     }
                 ]
@@ -204,237 +149,327 @@
             <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
             <div class="container" style="position:relative;z-index:1;">
                 <div class="hero-glass">
-                    <span class="section-eyebrow">For Compute Hosts</span>
-                    <h1 id="hero-title" class="hero-title">Turn idle hardware into income</h1>
+                    <span class="section-eyebrow">For GPU Owners</span>
+                    <h1 id="hero-title" class="hero-title">Your hardware, your price</h1>
                     <p class="hero-subtitle">
-                        Your gaming PC or workstation can earn money while you sleep.
-                        Join the network and get paid for compute you're not using.
+                        Run the node agent on any machine with a GPU. Set your own asking price.
+                        The coordinator matches you with nearby users who need compute.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Start Hosting</a>
-                        <a href="#earnings" class="btn btn-secondary btn-lg">See earnings</a>
+                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Join the beta</a>
+                        <a href="#how-it-works" class="btn btn-secondary btn-lg">How it works</a>
                     </div>
                 </div>
             </div>
         </section>
         </div>
 
-        <!-- Earnings -->
-        <section id="earnings" class="section section-alt" aria-labelledby="earnings-title">
+        <!-- How it works -->
+        <section id="how-it-works" class="section section-alt-flat" aria-labelledby="how-it-works-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Potential Earnings</span>
-                    <h2 id="earnings-title" class="section-title">What you could earn</h2>
-                    <p class="section-subtitle">Earnings depend on hardware, availability, and network demand. Verified hosts earn premium rates.</p>
+                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; The Flow</span>
+                    <h2 id="how-it-works-title" class="section-title">From idle GPU to earning credits</h2>
                 </div>
 
-                <div class="card max-w-2xl mx-auto">
-                    <div class="table-wrapper">
-                        <table class="table" aria-label="GPU earnings potential">
-                            <thead>
-                                <tr>
-                                    <th scope="col">GPU</th>
-                                    <th scope="col">Rate</th>
-                                    <th scope="col">Est. Monthly*</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>RTX 4090</td>
-                                    <td>up to $0.25/min</td>
-                                    <td>$200&ndash;400</td>
-                                </tr>
-                                <tr>
-                                    <td>RTX 4080</td>
-                                    <td>up to $0.18/min</td>
-                                    <td>$140&ndash;280</td>
-                                </tr>
-                                <tr>
-                                    <td>RTX 3080</td>
-                                    <td>up to $0.12/min</td>
-                                    <td>$80&ndash;150</td>
-                                </tr>
-                                <tr>
-                                    <td>RTX 3070</td>
-                                    <td>up to $0.08/min</td>
-                                    <td>$50&ndash;100</td>
-                                </tr>
-                                <tr>
-                                    <td>RTX 3060</td>
-                                    <td>up to $0.06/min</td>
-                                    <td>$40&ndash;80</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card">
+                            <div class="host-diagram">
+                                <div class="host-diagram-step">
+                                    <div class="host-diagram-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                            <line x1="8" y1="21" x2="16" y2="21"/>
+                                            <line x1="12" y1="17" x2="12" y2="21"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="host-diagram-label">Node agent starts</span>
+                                        <span class="host-diagram-detail">Registers with coordinator, reports GPU capabilities</span>
+                                    </div>
+                                </div>
+                                <div class="host-diagram-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="host-diagram-step">
+                                    <div class="host-diagram-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="host-diagram-label">Heartbeats &amp; health checks</span>
+                                        <span class="host-diagram-detail">Coordinator tracks your latency, uptime, and availability</span>
+                                    </div>
+                                </div>
+                                <div class="host-diagram-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="host-diagram-step">
+                                    <div class="host-diagram-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="host-diagram-label">Job dispatched via NATS</span>
+                                        <span class="host-diagram-detail">Signed container image pulled from registry</span>
+                                    </div>
+                                </div>
+                                <div class="host-diagram-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="host-diagram-step">
+                                    <div class="host-diagram-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                            <rect x="9" y="9" width="6" height="6"/>
+                                            <path d="M4 9h5M15 9h5M4 15h5M15 15h5M9 4v5M9 15v5M15 4v5M15 15v5" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="host-diagram-label">Workload executes in sandbox</span>
+                                        <span class="host-diagram-detail">Seccomp profile applied, output streamed back</span>
+                                    </div>
+                                </div>
+                                <div class="host-diagram-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="host-diagram-step">
+                                    <div class="host-diagram-icon host-diagram-icon-accent" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
+                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="host-diagram-label">Credits earned at clearing price</span>
+                                        <span class="host-diagram-detail">Karma score updated, payout balance grows</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="antigrid-card preview-content">
+                            <h3 class="preview-title">What happens on your machine</h3>
+                            <p class="preview-desc">
+                                The node agent is a lightweight Rust binary that manages everything.
+                                It connects to the coordinator via NATS, pulls signed container images when a job arrives,
+                                runs them under strict sandboxing, and streams the output back.
+                            </p>
+                            <p class="preview-desc">
+                                You control when your machine is available and what you charge.
+                                The coordinator only sends jobs that match your GPU capabilities and asking price.
+                            </p>
+                        </div>
                     </div>
-                    <p class="text-sm text-tertiary mt-4">*Estimates based on 8 hours/day availability with typical network demand. Actual earnings vary.</p>
                 </div>
             </div>
         </section>
 
-        <!-- How it works -->
-        <section class="section" aria-labelledby="how-it-works-title">
+        <!-- Pricing mechanism -->
+        <section class="section" aria-labelledby="pricing-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Getting Started</span>
-                    <h2 id="how-it-works-title" class="section-title">How it works</h2>
+                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Earnings</span>
+                    <h2 id="pricing-title" class="section-title">You set the price</h2>
+                    <p class="section-subtitle">No fixed rate tables. The compute exchange matches supply and demand.</p>
                 </div>
 
-                <ol class="grid grid-4 gap-6" role="list" aria-label="Getting started steps">
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">1</span>
-                        <h3 class="step-title">Download</h3>
-                        <p class="step-desc">Get the node agent for Windows, Mac, or Linux.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">2</span>
-                        <h3 class="step-title">Install &amp; verify</h3>
-                        <p class="step-desc">Run the installer, connect your account, and complete ID verification.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">3</span>
-                        <h3 class="step-title">Configure</h3>
-                        <p class="step-desc">Set your availability schedule and resource limits.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">4</span>
-                        <h3 class="step-title">Earn</h3>
-                        <p class="step-desc">Jobs arrive automatically. Earnings accrue in real-time.</p>
-                    </li>
-                </ol>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Asking price</h3>
+                            <p class="principle-desc">Set your rate per workload type. The coordinator only sends you jobs at or above your price. Adjust anytime.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Market clearing</h3>
+                            <p class="principle-desc">The exchange snapshots rates every 5 minutes. More hosts in your region lowers the clearing price; more demand raises it.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Early mover advantage</h3>
+                            <p class="principle-desc">The beta has growing demand and few hosts. Early hosts build high karma scores, which means job priority and better rates as the network scales.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Karma System -->
-        <section class="section section-alt" aria-labelledby="karma-title">
+        <section class="section section-alt-flat" aria-labelledby="karma-title">
             <div class="container">
-                <div class="split">
-                    <div class="preview-content">
-                        <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Reputation</span>
-                        <h2 id="karma-title" class="preview-title">The Karma system</h2>
-                        <p class="preview-desc">
-                            Your karma score reflects your reliability as a host. Higher karma means more jobs and better rates.
-                        </p>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card preview-content">
+                            <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Reputation</span>
+                            <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
+                            <p class="preview-desc">
+                                Every host has a karma score visible to the coordinator and the network.
+                                It's calculated from your job success rate, response latency, and uptime consistency.
+                            </p>
 
-                        <ul class="preview-list" aria-label="Karma system features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Starts at 50, maxes at 100</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Increases with successful jobs</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Decreases for failures or timeouts</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Higher karma = job priority + rate bonus</span>
-                            </li>
-                        </ul>
+                            <ul class="preview-list" aria-label="Karma system details">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Starts at 50, maxes at 100</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Goes up with completed jobs, down with failures or timeouts</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Higher karma = priority in job placement</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Coordinator factors karma into host selection alongside latency</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card flex items-center justify-center">
+                            <figure class="w-full text-center" style="padding: var(--space-8);">
+                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example karma score">85</div>
+                                <figcaption>
+                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Karma Score</div>
+                                    <p class="text-sm text-secondary">
+                                        142 completed jobs<br>
+                                        99.3% success rate &middot; 38ms avg. latency
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="flex items-center justify-center p-8">
-                        <figure class="card w-full p-8 text-center">
-                            <div class="font-brand text-6xl font-light text-accent mb-4" aria-label="Example karma score">85</div>
-                            <figcaption>
-                                <div class="text-lg font-medium mb-2">Karma Score</div>
-                                <p class="text-sm text-secondary">
-                                    Based on 142 successful jobs<br>
-                                    99.3% success rate
-                                </p>
-                            </figcaption>
-                        </figure>
+        <!-- Security -->
+        <section class="section" aria-labelledby="security-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Security</span>
+                    <h2 id="security-title" class="section-title">Your machine stays safe</h2>
+                    <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
+                </div>
+
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card">
+                            <ul class="preview-list" aria-label="Security layers" style="margin-bottom:0;">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Signed images only</strong> &mdash; workload containers are cosign-verified before execution</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Registry allowlist</strong> &mdash; images can only be pulled from approved registries</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Seccomp profiles</strong> &mdash; syscall filtering matched to workload sandbox tier</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>No filesystem access</strong> &mdash; containers are isolated from your host filesystem</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Resource limits</strong> &mdash; CPU, memory, and GPU time are capped per job</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Network-approved only</strong> &mdash; no user-submitted containers in v1</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card preview-content">
+                            <h3 class="preview-title">Defense in depth</h3>
+                            <p class="preview-desc">
+                                The security model assumes mutual distrust. Users don't trust hosts with their data.
+                                Hosts don't trust the code they run. The coordinator is the authority on what's allowed.
+                            </p>
+                            <p class="preview-desc">
+                                In v1, the network only runs workloads that we've reviewed, signed, and published.
+                                There is no path for arbitrary user code to reach your machine.
+                            </p>
+                            <a href="/security" class="btn btn-secondary" style="margin-top:var(--space-4);">Read the security model</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Requirements -->
-        <section class="section" aria-labelledby="requirements-title">
+        <section class="section section-alt-flat" aria-labelledby="requirements-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Requirements</span>
+                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Requirements</span>
                     <h2 id="requirements-title" class="section-title">What you need</h2>
                 </div>
 
-                <div class="grid grid-3 gap-6">
-                    <article class="card feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                <path d="M8 21h8m-4-4v4" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">GPU</h3>
-                        <p class="feature-desc">NVIDIA RTX 3060 or better with 8GB+ VRAM. AMD support coming soon.</p>
-                    </article>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <article class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                    <rect x="9" y="9" width="6" height="6"/>
+                                    <path d="M4 9h5M15 9h5M4 15h5M15 15h5M9 4v5M9 15v5M15 4v5M15 15v5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">GPU</h3>
+                            <p class="principle-desc">NVIDIA GPU with 8GB+ VRAM. RTX 3060 or better recommended. More VRAM lets you run larger models at higher rates.</p>
+                        </article>
 
-                    <article class="card feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Network</h3>
-                        <p class="feature-desc">100 Mbps+ internet connection. Lower latency is better.</p>
-                    </article>
+                        <article class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Network</h3>
+                            <p class="principle-desc">Stable internet connection. Lower latency means you're preferred for nearby users. The coordinator measures RTT directly.</p>
+                        </article>
 
-                    <article class="card feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="4" y="4" width="16" height="16" rx="2"/>
-                                <rect x="9" y="9" width="6" height="6"/>
-                                <path d="M4 9h5M15 9h5M4 15h5M15 15h5M9 4v5M9 15v5M15 4v5M15 15v5" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Platform</h3>
-                        <p class="feature-desc">Windows 10/11, macOS 12+, or Linux. Docker required.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security -->
-        <section class="section section-alt" aria-labelledby="security-title">
-            <div class="container">
-                <div class="split">
-                    <div class="flex items-center justify-center p-8">
-                        <figure class="icon" style="width: 200px; height: 200px;" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </figure>
-                    </div>
-
-                    <div class="preview-content">
-                        <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Security</span>
-                        <h2 id="security-title" class="preview-title">Your machine is protected</h2>
-                        <p class="preview-desc">
-                            We take security seriously. Hosts never run arbitrary user code.
-                        </p>
-
-                        <ul class="preview-list" aria-label="Security features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Sandboxed Docker containers</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Only network-approved, signed workloads</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>No access to your files or network</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Resource limits strictly enforced</span>
-                            </li>
-                        </ul>
+                        <article class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Platform</h3>
+                            <p class="principle-desc">Linux, macOS, or Windows. Docker required for container workloads. The node agent is a single Rust binary&mdash;no runtime dependencies.</p>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -448,30 +483,33 @@
                     <h2 id="payouts-title" class="section-title">Getting paid</h2>
                 </div>
 
-                <div class="grid grid-3 gap-6 max-w-3xl mx-auto">
-                    <article class="card text-center p-6">
-                        <div class="font-brand text-3xl mb-2">Monthly</div>
-                        <p class="text-sm text-secondary">Payouts processed on the 1st of each month</p>
-                    </article>
-                    <article class="card text-center p-6">
-                        <div class="font-brand text-3xl mb-2">$25 min</div>
-                        <p class="text-sm text-secondary">Minimum balance required for payout</p>
-                    </article>
-                    <article class="card text-center p-6">
-                        <div class="font-brand text-3xl mb-2">Stripe</div>
-                        <p class="text-sm text-secondary">Direct deposit or Stripe account</p>
-                    </article>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card" style="text-align:center;">
+                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Stripe</div>
+                            <p class="text-sm text-secondary">Payouts processed via Stripe Connect. Direct deposit in 40+ countries.</p>
+                        </div>
+                        <div class="antigrid-card" style="text-align:center;">
+                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Credits</div>
+                            <p class="text-sm text-secondary">Earnings accrue as credits. During beta, credits are pegged at $0.01 each.</p>
+                        </div>
+                        <div class="antigrid-card" style="text-align:center;">
+                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Transparent</div>
+                            <p class="text-sm text-secondary">Every job shows exactly what you earned, the clearing price, and your running balance.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA -->
-        <section class="section section-alt cta-section" aria-labelledby="cta-title">
+        <section class="section section-alt-flat cta-section" aria-labelledby="cta-title">
             <div class="container text-center">
-                <h2 id="cta-title" class="cta-title">Ready to start earning?</h2>
-                <p class="cta-subtitle">Register and start earning with your GPU today.</p>
+                <h2 id="cta-title" class="cta-title">The beta needs hosts</h2>
+                <p class="cta-subtitle">Early hosts build karma and reputation before the network scales. Join now.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Start Hosting</a>
+                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Join the beta</a>
+                    <a href="mailto:partners@archipelag.io" class="btn btn-secondary btn-lg">Talk to us</a>
                 </div>
             </div>
         </section>

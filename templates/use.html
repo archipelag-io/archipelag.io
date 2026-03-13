@@ -3,16 +3,16 @@
 {% block title %}Use AI | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="Access powerful AI models running on distributed community hardware. LLM chat with Mistral and Llama, image generation with Stable Diffusion and FLUX.">
+    <meta name="description" content="Run AI inference on distributed community hardware. OpenAI-compatible API, streaming responses, jurisdiction routing. Open beta with free credits.">
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="AI inference, LLM API, language models, image generation, Mistral, Llama, Stable Diffusion, FLUX, distributed computing, community hosting">
+    <meta name="keywords" content="AI inference, LLM API, language models, image generation, OpenAI compatible, distributed computing, community hosting, data residency">
     <link rel="canonical" href="{{ config.base_url }}/use/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/use/">
-    <meta property="og:title" content="Use AI - Distributed Inference | {{ config.title }}">
-    <meta property="og:description" content="Access powerful AI models running on distributed community hardware.">
+    <meta property="og:title" content="Use AI on Community Hardware | {{ config.title }}">
+    <meta property="og:description" content="OpenAI-compatible API running on distributed community GPUs. Streaming responses, jurisdiction routing, free beta credits.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -24,8 +24,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
-    <meta name="twitter:title" content="Use AI - Distributed Inference | {{ config.title }}">
-    <meta name="twitter:description" content="Access powerful AI models running on distributed community hardware. LLM chat and image generation.">
+    <meta name="twitter:title" content="Use AI on Community Hardware | {{ config.title }}">
+    <meta name="twitter:description" content="OpenAI-compatible API running on distributed community GPUs. Free beta credits to get started.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io - Distributed AI Inference">
 {% endblock head_meta %}
@@ -40,8 +40,8 @@
                 "@type": "WebPage",
                 "@id": "{{ config.base_url }}/use/",
                 "url": "{{ config.base_url }}/use/",
-                "name": "Use AI - Distributed Inference",
-                "description": "Access powerful AI models running on distributed community hardware.",
+                "name": "Use AI on Community Hardware",
+                "description": "Run AI inference on distributed community hardware with an OpenAI-compatible API.",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
@@ -57,7 +57,7 @@
                         {
                             "@type": "ListItem",
                             "position": 2,
-                            "name": "Platform",
+                            "name": "Use AI",
                             "item": "{{ config.base_url }}/use/"
                         }
                     ]
@@ -69,12 +69,36 @@
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web",
                 "featureList": [
-                    "LLM Chat with Mistral 7B and Llama models",
-                    "Image Generation with Stable Diffusion XL and FLUX",
-                    "OpenAI-compatible REST API",
-                    "Real-time streaming responses",
+                    "OpenAI-compatible /v1/chat/completions endpoint",
+                    "Real-time streaming over WebSocket and SSE",
                     "Python and JavaScript SDKs",
-                    "Optional jurisdiction routing for compliance"
+                    "Jurisdiction routing for data residency compliance",
+                    "Market-based pricing with no fixed tiers"
+                ]
+            },
+            {
+                "@type": "HowTo",
+                "name": "How to use AI on Archipelag.io",
+                "description": "Get started with distributed AI inference in three steps.",
+                "step": [
+                    {
+                        "@type": "HowToStep",
+                        "position": 1,
+                        "name": "Create an account",
+                        "text": "Sign up with email or GitHub. You get free beta credits immediately."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "position": 2,
+                        "name": "Submit a job",
+                        "text": "Use the web UI, call the OpenAI-compatible API, or use our Python/JS SDKs."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "position": 3,
+                        "name": "Get streaming results",
+                        "text": "Responses stream token-by-token from the nearest available community host."
+                    }
                 ]
             }
         ]
@@ -89,249 +113,263 @@
             <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
             <div class="container" style="position:relative;z-index:1;">
                 <div class="hero-glass">
-                    <span class="section-eyebrow">For AI Users</span>
-                    <h1 id="hero-title" class="hero-title">AI inference, closer to you</h1>
+                    <span class="section-eyebrow">For Developers &amp; AI Users</span>
+                    <h1 id="hero-title" class="hero-title">Drop-in API, distributed backend</h1>
                     <p class="hero-subtitle">
-                        Access powerful language models and image generators running on community hardware.
-                        Fast responses, fair pricing, no cloud provider markup.
+                        OpenAI-compatible inference running on community GPUs.
+                        Switch your base URL and your code runs on a decentralized network instead of a single cloud.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Try It Out</a>
-                        <a href="#capabilities" class="btn btn-secondary btn-lg">See capabilities</a>
+                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Get free beta credits</a>
+                        <a href="#api" class="btn btn-secondary btn-lg">See the API</a>
                     </div>
                 </div>
             </div>
         </section>
         </div>
 
-        <!-- Capabilities -->
-        <section id="capabilities" class="section section-alt" aria-labelledby="capabilities-title">
+        <!-- What's available -->
+        <section id="capabilities" class="section section-alt-flat" aria-labelledby="capabilities-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Capabilities</span>
-                    <h2 id="capabilities-title" class="section-title">What you can do</h2>
+                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Workloads</span>
+                    <h2 id="capabilities-title" class="section-title">What you can run today</h2>
+                    <p class="section-subtitle">The network currently supports these workload types. More are being added during beta.</p>
                 </div>
 
-                <div class="grid grid-2 gap-8">
-                    <article class="card p-8" itemscope itemtype="https://schema.org/Service">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="icon icon-xl text-accent" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <article class="antigrid-card" itemscope itemtype="https://schema.org/Service">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="icon icon-xl text-accent" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-brand text-xl mb-2" itemprop="name">LLM Chat</h3>
+                                    <p class="text-secondary" itemprop="description">Conversational AI via community GPUs</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-brand text-xl mb-2" itemprop="name">LLM Chat</h3>
-                                <p class="text-secondary" itemprop="description">Conversational AI for any task</p>
+                            <ul class="preview-list" aria-label="LLM Chat features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Mistral 7B, Llama, and more open models</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Token-by-token streaming responses</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Multi-turn conversation history</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Market-based pricing &mdash; varies by model and demand</span>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="antigrid-card" itemscope itemtype="https://schema.org/Service">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="icon icon-xl text-accent" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                                        <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-brand text-xl mb-2" itemprop="name">Image Generation</h3>
+                                    <p class="text-secondary" itemprop="description">Text-to-image on community hardware</p>
+                                </div>
                             </div>
-                        </div>
-                        <ul class="preview-list" aria-label="LLM Chat features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Mistral 7B, Llama 2/3, and more</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Real-time streaming responses</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Multi-turn conversations</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>~0.0001 credits/token</span>
-                            </li>
-                        </ul>
-                    </article>
-
-                    <article class="card p-8" itemscope itemtype="https://schema.org/Service">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="icon icon-xl text-accent" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                                    <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-brand text-xl mb-2" itemprop="name">Image Generation</h3>
-                                <p class="text-secondary" itemprop="description">Create images from text prompts</p>
-                            </div>
-                        </div>
-                        <ul class="preview-list" aria-label="Image Generation features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Stable Diffusion XL, FLUX</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Multiple resolutions up to 1024px</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Batch generation support</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>~0.01 credits/image</span>
-                            </li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- How it works -->
-        <section class="section" aria-labelledby="how-it-works-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Getting Started</span>
-                    <h2 id="how-it-works-title" class="section-title">How it works</h2>
-                </div>
-
-                <ol class="grid grid-4 gap-6" role="list" aria-label="Getting started steps">
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">1</span>
-                        <h3 class="step-title">Create account</h3>
-                        <p class="step-desc">Sign up with email or GitHub in seconds.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">2</span>
-                        <h3 class="step-title">Add credits</h3>
-                        <p class="step-desc">Purchase credit packages starting at $10.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">3</span>
-                        <h3 class="step-title">Submit request</h3>
-                        <p class="step-desc">Use the web UI or call our API.</p>
-                    </li>
-                    <li class="step-card flex-col items-center text-center">
-                        <span class="step-number mb-4" aria-hidden="true">4</span>
-                        <h3 class="step-title">Get results</h3>
-                        <p class="step-desc">Responses stream from the nearest host.</p>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Developer section -->
-        <section class="section section-alt" aria-labelledby="developer-title">
-            <div class="container">
-                <div class="split">
-                    <div class="preview-content">
-                        <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; For Developers</span>
-                        <h2 id="developer-title" class="preview-title">Simple REST API</h2>
-                        <p class="preview-desc">
-                            Integrate Archipelag.io into your applications with our OpenAI-compatible API.
-                            Python and JavaScript SDKs available. Optional jurisdiction routing for teams with compliance needs.
-                        </p>
-
-                        <ul class="preview-list" aria-label="API features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>OpenAI-compatible endpoints</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Streaming support</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Python &amp; JavaScript SDKs</span>
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Optional policy parameter for data residency</span>
-                            </li>
-                        </ul>
+                            <ul class="preview-list" aria-label="Image Generation features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Stable Diffusion XL, FLUX</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Up to 1024px resolution</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Batch generation support</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Per-image pricing set by the compute exchange</span>
+                                </li>
+                            </ul>
+                        </article>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="flex flex-col gap-4 p-8">
-                        <figure class="code-block">
-                            <figcaption class="sr-only">Python SDK example</figcaption>
-                            <pre><code># Python SDK
-from archipelag import Client
+        <!-- API section -->
+        <section id="api" class="section" aria-labelledby="api-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Integration</span>
+                    <h2 id="api-title" class="section-title">OpenAI-compatible API</h2>
+                    <p class="section-subtitle">If your code works with OpenAI, it works with Archipelag. Change the base URL and you're done.</p>
+                </div>
 
-client = Client(api_key="your-key")
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card">
+                            <figure class="code-block w-full" role="figure" aria-label="Python streaming example">
+                                <pre><code><span class="code-comment"># Python &mdash; streaming chat</span>
+<span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
 
-response = client.chat.create(
-    model="mistral-7b",
-    messages=[
-        {"role": "user", "content": "Hello!"}
-    ]
+client = OpenAI(
+    base_url=<span class="code-string">"https://app.archipelag.io/api/v1"</span>,
+    api_key=<span class="code-string">"your-key"</span>
 )
-print(response.content)</code></pre>
-                        </figure>
 
-                        <figure class="code-block">
-                            <figcaption class="sr-only">JavaScript SDK example</figcaption>
-                            <pre><code>// JavaScript SDK
-import { Archipelag } from 'archipelag';
+stream = client.chat.completions.create(
+    model=<span class="code-string">"mistral-7b"</span>,
+    messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: <span class="code-string">"Hello!"</span>}],
+    stream=<span class="code-keyword">True</span>
+)
 
-const client = new Archipelag('your-key');
+<span class="code-keyword">for</span> chunk <span class="code-keyword">in</span> stream:
+    print(chunk.choices[0].delta.content, end=<span class="code-string">""</span>)</code></pre>
+                            </figure>
+                        </div>
 
-const response = await client.chat.create({
-  model: 'mistral-7b',
-  messages: [
-    { role: 'user', content: 'Hello!' }
-  ]
+                        <div class="antigrid-card">
+                            <figure class="code-block w-full" role="figure" aria-label="JavaScript streaming example">
+                                <pre><code><span class="code-comment">// JavaScript &mdash; streaming chat</span>
+<span class="code-keyword">import</span> OpenAI <span class="code-keyword">from</span> <span class="code-string">'openai'</span>;
+
+<span class="code-keyword">const</span> client = <span class="code-keyword">new</span> OpenAI({
+  baseURL: <span class="code-string">'https://app.archipelag.io/api/v1'</span>,
+  apiKey: <span class="code-string">'your-key'</span>
 });
-console.log(response.content);</code></pre>
-                        </figure>
+
+<span class="code-keyword">const</span> stream = <span class="code-keyword">await</span> client.chat.completions.create({
+  model: <span class="code-string">'mistral-7b'</span>,
+  messages: [{ role: <span class="code-string">'user'</span>, content: <span class="code-string">'Hello!'</span> }],
+  stream: <span class="code-keyword">true</span>
+});
+
+<span class="code-keyword">for await</span> (<span class="code-keyword">const</span> chunk <span class="code-keyword">of</span> stream) {
+  process.stdout.write(chunk.choices[0]?.delta?.content ?? <span class="code-string">''</span>);
+}</code></pre>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="antigrid-wrapper mt-8">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card tech-card">
+                            <span class="tech-label">Endpoint</span>
+                            <span class="tech-name" style="font-size: var(--text-base);">/v1/chat/completions</span>
+                            <p class="tech-desc">Standard OpenAI chat completions format. Supports streaming, temperature, max_tokens, and all common parameters.</p>
+                        </div>
+                        <div class="antigrid-card tech-card">
+                            <span class="tech-label">Authentication</span>
+                            <span class="tech-name" style="font-size: var(--text-base);">API Key or Session</span>
+                            <p class="tech-desc">Bearer token via API key (read/write scopes) or session cookie for the web UI. Keys are managed in your dashboard.</p>
+                        </div>
+                        <div class="antigrid-card tech-card">
+                            <span class="tech-label">Data residency</span>
+                            <span class="tech-name" style="font-size: var(--text-base);">Jurisdiction routing</span>
+                            <p class="tech-desc">Optional policy parameter restricts job placement to hosts in specific regions (EU, Switzerland, custom). For teams with compliance requirements.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Pricing snippet -->
-        <section class="section" aria-labelledby="pricing-title">
+        <!-- How pricing works -->
+        <section class="section section-alt-flat" aria-labelledby="pricing-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Pricing</span>
-                    <h2 id="pricing-title" class="section-title">Pay only for what you use</h2>
-                    <p class="section-subtitle">No subscriptions or commitments. Credits never expire.</p>
+                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Pricing</span>
+                    <h2 id="pricing-title" class="section-title">Market-based, not fixed tiers</h2>
+                    <p class="section-subtitle">Prices are set by supply and demand on the compute exchange, not by us.</p>
                 </div>
 
-                <div class="card max-w-2xl mx-auto">
-                    <div class="table-wrapper">
-                        <table class="table" aria-label="Usage rates">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Workload</th>
-                                    <th scope="col">Rate</th>
-                                    <th scope="col">Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>LLM Chat (7B models)</td>
-                                    <td>~0.0001 credits/token</td>
-                                    <td>1M tokens = 100 credits</td>
-                                </tr>
-                                <tr>
-                                    <td>Image Generation</td>
-                                    <td>~0.01 credits/image</td>
-                                    <td>1,000 images = 10 credits</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Live rates</h3>
+                            <p class="principle-desc">The compute exchange shows current clearing prices for each workload type. Check the <a href="https://app.archipelag.io/exchange" style="color:var(--accent)">exchange</a> for live rates.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Credits, not subscriptions</h3>
+                            <p class="principle-desc">Buy credits when you need them. No monthly fee, no commitment. During beta, every new account gets free credits to start.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18M9 21V9" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Transparent billing</h3>
+                            <p class="principle-desc">Every job shows its clearing price before execution. You see exactly what you'll pay and which host will run it.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="text-center mt-8">
-                    <a href="/pricing" class="btn btn-secondary">View full pricing</a>
+        <!-- Getting started -->
+        <section class="section" aria-labelledby="getting-started-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Getting Started</span>
+                    <h2 id="getting-started-title" class="section-title">Three steps to your first inference</h2>
+                </div>
+
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card" style="text-align:center;">
+                            <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">1</span>
+                            <h3 class="font-brand text-lg mb-2">Create an account</h3>
+                            <p class="text-sm text-secondary">Email or GitHub. You get free beta credits immediately&mdash;no credit card needed.</p>
+                        </div>
+                        <div class="antigrid-card" style="text-align:center;">
+                            <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">2</span>
+                            <h3 class="font-brand text-lg mb-2">Call the API</h3>
+                            <p class="text-sm text-secondary">Use the web chat UI, point your OpenAI client at our base URL, or use the Python/JS SDK.</p>
+                        </div>
+                        <div class="antigrid-card" style="text-align:center;">
+                            <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">3</span>
+                            <h3 class="font-brand text-lg mb-2">Get results</h3>
+                            <p class="text-sm text-secondary">The coordinator finds the nearest host. Responses stream back token-by-token in real time.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA -->
-        <section class="section section-alt cta-section" aria-labelledby="cta-title">
+        <section class="section section-alt-flat cta-section" aria-labelledby="cta-title">
             <div class="container text-center">
-                <h2 id="cta-title" class="cta-title">Ready to start?</h2>
-                <p class="cta-subtitle">Start using AI inference on community hardware today.</p>
+                <h2 id="cta-title" class="cta-title">The beta is live</h2>
+                <p class="cta-subtitle">Create an account and run your first inference job. Free credits, no credit card.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Try It Out</a>
+                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Create account</a>
+                    <a href="https://docs.archipelag.io" class="btn btn-secondary btn-lg">Read the docs</a>
                 </div>
             </div>
         </section>
