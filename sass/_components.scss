@@ -5,6 +5,52 @@
 // Kept: anti-grid, gradient text, stagger, hover-lift, bg patterns
 // ============================================
 
+// Beta banner
+.beta-banner {
+  background: var(--accent);
+  color: #0a0a0a;
+  text-align: center;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-family: var(--font-brand);
+
+  .beta-badge {
+    display: inline-block;
+    font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #0a0a0a;
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    margin-right: var(--space-2);
+    vertical-align: middle;
+  }
+
+  .beta-banner-text {
+    margin: 0;
+    line-height: 1.5;
+
+    a {
+      color: #0a0a0a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+      margin-left: var(--space-2);
+      &:hover { text-decoration-thickness: 2px; }
+    }
+  }
+}
+
+html.light .beta-banner {
+  background: var(--accent);
+  color: #0a0a0a;
+
+  a { color: #0a0a0a; }
+}
+
 // Buttons
 .btn {
   display: inline-flex;
