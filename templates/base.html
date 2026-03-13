@@ -90,7 +90,21 @@
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
                     </button>
-                    <a href="/#waitlist" class="btn btn-primary btn-sm md:block sm:hidden">Join Waitlist</a>
+                    <div class="nav-dropdown md:block sm:hidden">
+                        <div class="nav-dropdown-trigger">
+                            <a href="https://app.archipelag.io/auth/register" class="btn btn-primary btn-sm">Try out</a>
+                            <button class="nav-dropdown-chevron" aria-label="More options" aria-expanded="false">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="nav-dropdown-menu">
+                            <a href="https://app.archipelag.io/auth/login" class="nav-dropdown-item">Log in</a>
+                            <a href="https://app.archipelag.io/auth/register" class="nav-dropdown-item">Register</a>
+                            <a href="/docs" class="nav-dropdown-item">Documentation</a>
+                        </div>
+                    </div>
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                         <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -113,7 +127,7 @@
                 <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
                 {% endfor %}
             </nav>
-            <a href="/#waitlist" class="btn btn-primary w-full">Join Waitlist</a>
+            <a href="https://app.archipelag.io/auth/login" class="btn btn-primary w-full">Log In</a>
         </div>
     </header>
 

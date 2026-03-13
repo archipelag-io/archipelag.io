@@ -37,9 +37,25 @@
 
 html.light .btn-primary {
   color: #ffffff;
-  background: var(--accent);
-  border-color: var(--accent);
-  &:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+  background: var(--text);
+  border-color: var(--text);
+  &:hover { background: var(--text-secondary); border-color: var(--text-secondary); }
+}
+
+.btn-tropical {
+  color: #0a0a0a;
+  font-weight: 700;
+  border: none;
+  background-color: var(--accent-yellow-light);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 90% 25%, var(--accent-pink-light) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 120% at 75% 90%, var(--accent-pink-light) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 90% at 15% 50%, var(--accent-yellow-light) 0%, transparent 70%);
+  filter: saturate(0.55) brightness(1.15);
+  transition: filter 0.3s ease, transform var(--transition-fast);
+  &:hover {
+    filter: saturate(0.4) brightness(1.25);
+  }
 }
 
 .btn-secondary {
@@ -63,6 +79,8 @@ html.light .btn-primary {
 .btn-sm {
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-xs);
+  height: 36px;
+  box-sizing: border-box;
 }
 
 .btn-icon {

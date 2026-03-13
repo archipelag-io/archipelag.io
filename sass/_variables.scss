@@ -83,11 +83,19 @@
   --border: #1f1f1f;
   --border-subtle: #151515;
 
-  // Accent — teal, used sparingly
-  --accent: #2dd4bf;
-  --accent-light: #5eead4;
-  --accent-muted: rgba(45, 212, 191, 0.15);
-  --accent-dark: #14b8a6;
+  // Accent — electric teal
+  --accent: #00ffdd;
+  --accent-light: #55ffe8;
+  --accent-muted: rgba(0, 255, 221, 0.15);
+  --accent-dark: #00dbbe;
+
+  // Tropical triad — neon
+  --accent-yellow: #fff033;
+  --accent-yellow-light: #fff77a;
+  --accent-yellow-muted: rgba(255, 240, 51, 0.15);
+  --accent-pink: #ff5cb8;
+  --accent-pink-light: #ff8ed0;
+  --accent-pink-muted: rgba(255, 92, 184, 0.15);
 
   // Professional palette
   --coral: #f59e0b;
@@ -180,10 +188,17 @@ html.light {
   --text-tertiary: #a3a3a3;
   --border: #e5e5e5;
   --border-subtle: #f0f0f0;
-  --accent: #0d9488;
-  --accent-light: #14b8a6;
-  --accent-dark: #0f766e;
-  --accent-muted: rgba(13, 148, 136, 0.15);
+  --accent: #00c9b0;
+  --accent-light: #00e5c8;
+  --accent-dark: #00a896;
+  --accent-muted: rgba(0, 201, 176, 0.15);
+
+  --accent-yellow: #ffee33;
+  --accent-yellow-light: #fff577;
+  --accent-yellow-muted: rgba(255, 238, 51, 0.12);
+  --accent-pink: #ff55b0;
+  --accent-pink-light: #ff88cc;
+  --accent-pink-muted: rgba(255, 85, 176, 0.15);
   --lagoon: #{$aui-lagoon-600};
   --coral: #{$aui-coral-600};
 
