@@ -9,19 +9,33 @@ category = "Blog"
 
 There's a GPU in your computer that spends most of its life doing nothing.
 
-Maybe it's a gaming rig that sits idle while you're at work. Maybe it's a workstation that renders video for two hours a day and sleeps the other twenty-two. Maybe it's a machine you built during the mining craze that's been gathering dust since ETH went proof-of-stake.
+Maybe it's a gaming rig that sits idle while you're at work, a machine that cost you the better part of a paycheck and now runs Steam updates and screensavers for twenty hours a day. Maybe it's a workstation that renders video for two hours and sleeps the other twenty-two. Maybe it's a machine you built during the mining craze that's been collecting dust since ETH went proof-of-stake. Maybe it's the M3 MacBook on your kitchen table. Or the iPhone in your pocket, with a neural engine that Apple spent billions designing, currently dedicated to scrolling Instagram.
+
+All of these devices can do meaningful compute work. Not just the beefy rigs, even a phone can run a small language model, handle a classification task, or contribute to a distributed inference job. The compute is already there, paid for, powered on, doing nothing useful.
 
 Meanwhile, someone across town is paying a cloud provider to rent a GPU in a data center three time zones away, waiting 200ms for each token of a chatbot response, and wondering why AI feels so sluggish.
 
-This is the problem we set out to fix.
+We looked at this situation and thought: this is fixable.
 
-## Taking from the rich, giving to the rest
+## The compute is already here
 
-The way compute works today is that a handful of companies own the GPUs, and everyone else rents time on them. Prices go up, capacity gets scarce, and if you're not a Fortune 500 company with a cloud contract, you're at the back of the queue.
+The way AI infrastructure works today is that a handful of companies own the GPUs, and everyone else rents time on them. Prices go up, capacity gets scarce, and if you're not a Fortune 500 company with a cloud contract, you're at the back of the queue. Meanwhile, NVIDIA can't manufacture chips fast enough, export controls are tightening, and every quarter the gap between who needs compute and who can get it grows wider.
 
-We thought there might be a different way. What if the people who need compute could get it from the people who already have it, just sitting around? What if your neighbor's gaming PC could serve your LLM requests with lower latency than any data center, because it's literally down the street?
+But here's the thing that gets lost in all the hand-wringing about chip shortages: there is an enormous amount of compute sitting in people's homes right now, doing absolutely nothing. The gaming GPU market alone ships over 30 million discrete cards a year. Add laptops with capable integrated graphics, workstations, retired mining hardware, phones with neural engines, tablets with ML accelerators. The aggregate compute power in ordinary people's hands dwarfs what any single cloud provider operates. It's just fragmented, unconnected, and idle.
 
-That's Archipelag.io. A network where regular people contribute their idle CPUs and GPUs, and regular people use them. The compute is already out there, scattered across millions of homes and offices. We just built the plumbing to connect it.
+We thought there might be a different way. What if the people who need compute could get it from the people who already have it? What if your neighbor's RTX 4070 could serve your LLM requests with lower latency than any data center, because it's literally down the street? What if a network of regular people's machines, from a teenager's gaming PC in Munich to a photographer's Mac Studio in Lisbon, could collectively form something more resilient and more accessible than any centralized cloud?
+
+That's Archipelag.io. A distributed compute network where you contribute what you have and use what you need. The hardware exists. The bandwidth exists. The people exist. We built the coordination layer to connect it all.
+
+## Why this matters beyond convenience
+
+We're building this because we think the current trajectory of AI infrastructure is fragile and exclusionary, and we'd rather not wait to find out how that plays out.
+
+When three companies control the majority of GPU cloud capacity, that's a single point of failure for an increasingly critical technology. When a startup in São Paulo pays the same rate as a hedge fund in Manhattan but gets worse latency because the nearest data center is in Virginia, that's not a market working well. When a solo developer can't afford to experiment with AI because inference costs eat their entire budget, that's talent and ideas we never get to see.
+
+We believe AI compute should work more like the internet itself: decentralized, regional, and owned by the people who participate in it. Not because centralization is evil, but because resilient systems need diverse infrastructure. A network of ten thousand independent hosts spread across real neighborhoods is harder to take down, harder to price-gouge, and closer to the people who actually use it than any single data center campus.
+
+This is partially idealistic, yes. But it's also practical. Hardware scarcity is not a hypothetical scenario for next decade, it's already here. Lead times for high-end GPUs stretch months. Cloud spot instance prices spike unpredictably. Every new foundation model release triggers another wave of demand that supply can't absorb. The people who already own capable hardware are sitting on an asset that could generate passive income while making AI more accessible for everyone around them. That's not utopian thinking, that's just a better allocation of resources that already exist.
 
 ## So, open beta
 
@@ -37,11 +51,13 @@ Here's what that means in practice:
 
 ## What you can actually do
 
-You can chat with LLMs (Mistral 7B, Llama), generate images with Stable Diffusion XL, or hit our OpenAI-compatible API with your existing code. There are Python and JavaScript SDKs if you want to build on top of it.
+**Use AI.** Chat with LLMs (Mistral 7B, Llama), generate images with Stable Diffusion XL, or hit our OpenAI-compatible API with your existing code. There are Python and JavaScript SDKs if you want to build on top of it. The web UI has a playground for trying models and a marketplace for browsing what's available.
 
-If you've got a decent GPU (RTX 3060 or better), you can install the node agent on Windows, macOS, or Linux and start hosting. Your machine picks up inference jobs from people nearby, runs them, streams the results back. You earn virtual credits for now, real money later.
+**Host with a GPU.** If you've got a decent graphics card (RTX 3060 or better), install the node agent on Windows, macOS, or Linux. Your machine picks up inference jobs from people nearby, runs them, streams the results back. You set your own availability, your machine works when you're not using it, and you earn credits. Think of it as your gaming rig picking up a side job while you sleep.
 
-The web UI has a playground for trying models and a marketplace for browsing what's available.
+**Host with a phone.** If you have a recent iPhone or an M-series Mac, you can run smaller models directly on-device. It won't replace a 4090 for heavy inference, but it can handle lightweight tasks, and it lets you see how the network works without dedicating a full machine. We're building this to scale from phones to server racks, because a truly distributed network needs every tier of hardware.
+
+The compute exchange sets prices through supply and demand, so even modest hardware can find work at a price point that makes sense. During the beta, all credits are virtual, but the economics are real: you'll see what your hardware is worth on the network.
 
 ## What we're hoping to learn
 
@@ -61,8 +77,12 @@ We want to hear from you. If something is broken, [open an issue](https://github
 
 ## What happens next
 
-After the beta, we plan to turn on real payments, add more models, launch mobile agents for phones and tablets, and grow the network into more regions. The specifics depend on what we learn over the next three months.
+After the beta, we plan to turn on real payments, add more models, and grow the network into more regions. The specifics depend on what we learn over the next three months.
+
+The longer arc is this: we want to build a compute network that's as decentralized and resilient as the internet was supposed to be. One where a freelance developer in Kraków can spin up an AI feature without a cloud contract. Where a student in Lagos can access the same models as a researcher at Stanford, served from hardware in their own city. Where the person hosting earns enough to cover their electricity bill and then some, turning idle hardware into a genuine income stream.
+
+We're not pretending this is easy. Distributed systems are hard, incentive design is hard, getting strangers to trust a network with their hardware and their workloads is hard. But the alternative, a future where all AI compute funnels through three or four corporate clouds, is not a future we want to build toward.
 
 We'll keep posting updates here and on [GitHub](https://github.com/archipelag-io). This is a small team building something that only works if people show up and use it. So thank you for showing up.
 
-Let's see what happens.
+Let's see what we can build together.
