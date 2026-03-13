@@ -36,8 +36,6 @@ design_partner_email = "partners@archipelag.io"
 nav_items = [
     { name = "Use AI", url = "/use" },
     { name = "Earn", url = "/earn" },
-    { name = "Pricing", url = "/pricing" },
-    { name = "News", url = "/news" },
 ]
 
 # Social links

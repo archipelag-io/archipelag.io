@@ -144,6 +144,30 @@
                     {% for item in config.extra.nav_items %}
                     <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
                     {% endfor %}
+                    <div class="nav-menu-dropdown">
+                        <button class="nav-menu-trigger" aria-expanded="false">
+                            Community
+                            <svg class="nav-menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="nav-menu-panel">
+                            <span class="nav-menu-item nav-menu-item-tbd">Marketplace <span class="nav-tbd">tbd</span></span>
+                            <span class="nav-menu-item nav-menu-item-tbd">Matchmaking <span class="nav-tbd">tbd</span></span>
+                            <a href="/use" class="nav-menu-item">Use AI</a>
+                            <a href="/earn" class="nav-menu-item">Earn</a>
+                        </div>
+                    </div>
+                    <div class="nav-menu-dropdown">
+                        <button class="nav-menu-trigger" aria-expanded="false">
+                            Learn
+                            <svg class="nav-menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="nav-menu-panel">
+                            <a href="https://docs.archipelag.io" class="nav-menu-item">Documentation</a>
+                            <span class="nav-menu-item nav-menu-item-tbd">API Specs <span class="nav-tbd">tbd</span></span>
+                            <span class="nav-menu-item nav-menu-item-tbd">SDK <span class="nav-tbd">tbd</span></span>
+                        </div>
+                    </div>
+                    <a href="/news" class="nav-link{% if current_path %}{% if current_path is starting_with('/news') %} active{% endif %}{% endif %}">News</a>
                 </nav>
 
                 <div class="header-actions">
@@ -165,7 +189,7 @@
                     </button>
                     <div class="nav-dropdown md:block sm:hidden">
                         <div class="nav-dropdown-trigger">
-                            <a href="https://app.archipelag.io/auth/register" class="btn btn-primary btn-sm">Try out</a>
+                            <a href="https://app.archipelag.io/auth/login" class="btn btn-primary btn-sm">Try out</a>
                             <button class="nav-dropdown-chevron" aria-label="More options" aria-expanded="false">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -196,6 +220,11 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
             <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+                <span class="mobile-nav-heading">Learn</span>
+                <a href="https://docs.archipelag.io" class="nav-link">Documentation</a>
+                <span class="mobile-nav-heading">Community</span>
+                <a href="/use" class="nav-link{% if current_path %}{% if current_path is starting_with('/use') %} active{% endif %}{% endif %}">Use AI</a>
+                <a href="/earn" class="nav-link{% if current_path %}{% if current_path is starting_with('/earn') %} active{% endif %}{% endif %}">Earn</a>
                 {% for item in config.extra.nav_items %}
                 <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
                 {% endfor %}
@@ -221,74 +250,68 @@
     <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
         <div class="container">
-            <!-- Main footer layout: brand left, columns right -->
-            <div class="footer-main">
-                <!-- Brand column -->
-                <div class="footer-brand-col">
-                    <a href="/" class="footer-logo" aria-label="Archipelag.io - Home">
-                        <picture>
-                            <source srcset="/img/archipelagio-brandmark.avif" type="image/avif">
-                            <img src="/img/archipelagio-brandmark.png" alt="" width="32" height="32" loading="lazy">
-                        </picture>
-                    </a>
-                    <div class="footer-brand-text">
-                        <span class="footer-wordmark">archipelag<span class="dot">.</span>io</span>
-                        <span class="footer-tagline">Compute, closer to you.</span>
-                    </div>
-                </div>
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="/" class="footer-logo" aria-label="Archipelag.io - Home">
+                    <picture>
+                        <source srcset="/img/archipelagio-brandmark.avif" type="image/avif">
+                        <img src="/img/archipelagio-brandmark.png" alt="" width="40" height="40" loading="lazy">
+                    </picture>
+                    <span class="footer-wordmark">archipelag<span class="dot">.</span>io</span>
+                </a>
+                <p class="footer-tagline">Compute, closer to you.</p>
+            </div>
 
-                <!-- Link columns -->
-                <div class="footer-grid">
-                    <nav class="footer-column" aria-label="Product links">
-                        <h4 class="footer-heading">Product</h4>
-                        <ul class="footer-links">
-                            <li><a href="/use">Use AI</a></li>
-                            <li><a href="/earn">Earn with GPU</a></li>
-                            <li><a href="/pricing">Pricing</a></li>
-                            <li><a href="https://app.archipelag.io/playground">Playground</a></li>
-                            <li><a href="https://app.archipelag.io/marketplace">Marketplace</a></li>
-                        </ul>
-                    </nav>
+            <!-- Link columns -->
+            <div class="footer-grid">
+                <nav class="footer-column" aria-label="Product links">
+                    <h4 class="footer-heading">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/use">Use AI</a></li>
+                        <li><a href="/earn">Earn with GPU</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="https://app.archipelag.io/playground" class="external">Playground</a></li>
+                        <li><a href="https://app.archipelag.io/marketplace" class="external">Marketplace</a></li>
+                    </ul>
+                </nav>
 
-                    <nav class="footer-column" aria-label="Developer links">
-                        <h4 class="footer-heading">Developers</h4>
-                        <ul class="footer-links">
-                            <li><a href="https://docs.archipelag.io">Documentation</a></li>
-                            <li><a href="https://docs.archipelag.io/api">API Reference</a></li>
-                            <li><a href="https://docs.archipelag.io/sdks">SDKs</a></li>
-                            <li><a href="https://app.archipelag.io/developer">Developer Portal</a></li>
-                            <li><a href="https://github.com/archipelag-io" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        </ul>
-                    </nav>
+                <nav class="footer-column" aria-label="Developer links">
+                    <h4 class="footer-heading">Developers</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://docs.archipelag.io" class="external">Documentation</a></li>
+                        <li><a href="https://docs.archipelag.io/api" class="external">API Reference</a></li>
+                        <li><a href="https://docs.archipelag.io/sdks" class="external">SDKs</a></li>
+                        <li><a href="https://app.archipelag.io/developer" class="external">Developer Portal</a></li>
+                        <li><a href="https://github.com/archipelag-io" target="_blank" rel="noopener noreferrer" class="external">GitHub</a></li>
+                    </ul>
+                </nav>
 
-                    <nav class="footer-column" aria-label="News links">
-                        <h4 class="footer-heading">News</h4>
-                        <ul class="footer-links">
-                            <li><a href="/news">Blog</a></li>
-                            <li><a href="/news">Devlog</a></li>
-                            <li><a href="/news">Contributors</a></li>
-                        </ul>
-                    </nav>
+                <nav class="footer-column" aria-label="News links">
+                    <h4 class="footer-heading">News</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/blog">Devlog</a></li>
+                    </ul>
+                </nav>
 
-                    <nav class="footer-column" aria-label="Company links">
-                        <h4 class="footer-heading">Company</h4>
-                        <ul class="footer-links">
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                            <li><a href="mailto:partners@archipelag.io">Design Partners</a></li>
-                        </ul>
-                    </nav>
+                <nav class="footer-column" aria-label="Company links">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="mailto:partners@archipelag.io" class="external">Design Partners</a></li>
+                    </ul>
+                </nav>
 
-                    <nav class="footer-column" aria-label="Legal links">
-                        <h4 class="footer-heading">Legal</h4>
-                        <ul class="footer-links">
-                            <li><a href="/privacy">Privacy Policy</a></li>
-                            <li><a href="/terms">Terms of Service</a></li>
-                            <li><a href="/security">Security</a></li>
-                            <li><a href="/trust-safety">Trust &amp; Safety</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                <nav class="footer-column" aria-label="Legal links">
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/security">Security</a></li>
+                        <li><a href="/trust-safety">Trust &amp; Safety</a></li>
+                    </ul>
+                </nav>
             </div>
 
             <!-- Bottom bar -->
