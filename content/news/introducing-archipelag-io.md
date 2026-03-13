@@ -55,6 +55,6 @@ If you want to use AI on the network: [sign up](https://app.archipelag.io), get 
 
 If you want to host: [grab the node agent](https://github.com/archipelag-io/node-agent/releases), set your schedule, and see what happens. Your machine works while you don't.
 
-If you want to follow along or contribute: everything is on [GitHub](https://github.com/archipelag-io). If something breaks or confuses you, [tell us](mailto:hello@archipelag.io).
+If you want to follow along or contribute: everything is on [GitHub](https://github.com/archipelag-io). If something breaks or confuses you, [tell us](mailto:hey@archipelag.io).
 
 This is a small team at the start of something that only works if people show up and participate. We're grateful you're here.

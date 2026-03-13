@@ -45,7 +45,7 @@ Identity verification serves several purposes:
 If your verification is rejected, you can:
 
 1. **Try again** — Submit a new verification with a different document or better photo quality
-2. **Contact support** — Email [support@archipelag.io](mailto:support@archipelag.io) if you believe the rejection was in error
+2. **Contact support** — Email [hey@archipelag.io](mailto:hey@archipelag.io) if you believe the rejection was in error
 3. **Request manual review** — In exceptional circumstances, our team can review your case manually
 
 ## Account Bans
@@ -57,8 +57,8 @@ Accounts may be suspended for violations of our [Terms of Service](/terms), incl
 - Fraudulent activity or identity misrepresentation
 - Abuse of compute resources
 
-Banned users may appeal by contacting [support@archipelag.io](mailto:support@archipelag.io).
+Banned users may appeal by contacting [hey@archipelag.io](mailto:hey@archipelag.io).
 
 ## Reporting
 
-To report trust or safety concerns, contact [security@archipelag.io](mailto:security@archipelag.io).
+To report trust or safety concerns, contact [hey@archipelag.io](mailto:hey@archipelag.io).

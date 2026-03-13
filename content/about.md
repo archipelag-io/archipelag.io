@@ -72,10 +72,7 @@ We're a small team of distributed systems engineers with backgrounds in cloud in
 
 ## Contact
 
-- **General**: [hello@archipelag.io](mailto:hello@archipelag.io)
-- **Design partners**: [partners@archipelag.io](mailto:partners@archipelag.io)
-- **Host applications**: [hosts@archipelag.io](mailto:hosts@archipelag.io)
-- **Security reports**: [security@archipelag.io](mailto:security@archipelag.io)
+- **General**: [hey@archipelag.io](mailto:hey@archipelag.io)
 
 ---
 

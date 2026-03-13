@@ -99,7 +99,7 @@ We welcome responsible disclosure of security vulnerabilities.
 
 If you discover a security issue, please report it to:
 
-**Email**: [security@archipelag.io](mailto:security@archipelag.io)
+**Email**: [hey@archipelag.io](mailto:hey@archipelag.io)
 
 **PGP Key**: Available at [archipelag.io/.well-known/security.txt](/.well-known/security.txt)
 
@@ -162,8 +162,8 @@ We publish security advisories for significant issues at:
 
 For security questions or concerns:
 
-- **Security Team**: [security@archipelag.io](mailto:security@archipelag.io)
-- **General Support**: [support@archipelag.io](mailto:support@archipelag.io)
+- **Security Team**: [hey@archipelag.io](mailto:hey@archipelag.io)
+- **General Support**: [hey@archipelag.io](mailto:hey@archipelag.io)
 
 ---
 

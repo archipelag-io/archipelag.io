@@ -30,7 +30,7 @@ To use most features, you must create an account. You agree to:
 - Accept responsibility for all activities under your account
 
 ### 3.2 Account Security
-You are responsible for maintaining the confidentiality of your account credentials. Notify us immediately at [security@archipelag.io](mailto:security@archipelag.io) if you suspect unauthorized access.
+You are responsible for maintaining the confidentiality of your account credentials. Notify us immediately at [hey@archipelag.io](mailto:hey@archipelag.io) if you suspect unauthorized access.
 
 ### 3.3 Account Termination
 We may suspend or terminate your account if you violate these Terms, engage in fraudulent activity, or for any other reason at our discretion with reasonable notice.
@@ -99,7 +99,7 @@ As a host, you agree to:
 ### 6.3 Refunds
 - Refunds for unused credits may be requested within 30 days of purchase
 - Partially used credit packages are not eligible for refunds
-- Contact [support@archipelag.io](mailto:support@archipelag.io) for refund requests
+- Contact [hey@archipelag.io](mailto:hey@archipelag.io) for refund requests
 
 ## 7. Intellectual Property
 
@@ -148,7 +148,7 @@ You agree to indemnify and hold harmless Archipelag.io, its officers, directors,
 ## 12. Dispute Resolution
 
 ### 12.1 Informal Resolution
-Before filing any formal dispute, you agree to contact us at [legal@archipelag.io](mailto:legal@archipelag.io) and attempt to resolve the dispute informally for at least 30 days.
+Before filing any formal dispute, you agree to contact us at [hey@archipelag.io](mailto:hey@archipelag.io) and attempt to resolve the dispute informally for at least 30 days.
 
 ### 12.2 Governing Law
 These Terms are governed by the laws of the Netherlands, without regard to conflict of law principles.
@@ -181,8 +181,8 @@ We are not liable for delays or failures caused by circumstances beyond our reas
 
 For questions about these Terms, contact us at:
 
-- **Email**: [legal@archipelag.io](mailto:legal@archipelag.io)
-- **General inquiries**: [hello@archipelag.io](mailto:hello@archipelag.io)
+- **Email**: [hey@archipelag.io](mailto:hey@archipelag.io)
+- **General inquiries**: [hey@archipelag.io](mailto:hey@archipelag.io)
 
 ---
 

@@ -91,7 +91,7 @@ Depending on your location, you may have the following rights:
 - **Objection**: Object to certain processing of your information
 - **Restriction**: Request restriction of processing in certain circumstances
 
-To exercise these rights, contact us at [privacy@archipelag.io](mailto:privacy@archipelag.io).
+To exercise these rights, contact us at [hey@archipelag.io](mailto:hey@archipelag.io).
 
 ## International Data Transfers
 
@@ -109,7 +109,7 @@ We may update this Privacy Policy from time to time. We will notify you of mater
 
 If you have questions about this Privacy Policy or our privacy practices, contact us at:
 
-- **Email**: [privacy@archipelag.io](mailto:privacy@archipelag.io)
+- **Email**: [hey@archipelag.io](mailto:hey@archipelag.io)
 - **Address**: Archipelag.io, Amsterdam, Netherlands
 
 For data protection inquiries in the EU, you may also contact your local data protection authority.
