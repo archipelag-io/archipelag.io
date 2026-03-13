@@ -84,20 +84,25 @@
 
 {% block content %}
         <!-- Hero -->
-        <section class="hero-section" aria-labelledby="hero-title">
-            <div class="container">
-                <span class="section-eyebrow">For AI Users</span>
-                <h1 id="hero-title" class="hero-title">AI inference, closer to you</h1>
-                <p class="hero-subtitle">
-                    Access powerful language models and image generators running on community hardware.
-                    Fast responses, fair pricing, no cloud provider markup.
-                </p>
-                <div class="hero-cta">
-                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Try It Out</a>
-                    <a href="#capabilities" class="btn btn-secondary btn-lg">See capabilities</a>
+        <div class="hero-wrapper" id="hero-wrapper">
+        <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
+            <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+            <div class="container" style="position:relative;z-index:1;">
+                <div class="hero-glass">
+                    <span class="section-eyebrow">For AI Users</span>
+                    <h1 id="hero-title" class="hero-title">AI inference, closer to you</h1>
+                    <p class="hero-subtitle">
+                        Access powerful language models and image generators running on community hardware.
+                        Fast responses, fair pricing, no cloud provider markup.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Try It Out</a>
+                        <a href="#capabilities" class="btn btn-secondary btn-lg">See capabilities</a>
+                    </div>
                 </div>
             </div>
         </section>
+        </div>
 
         <!-- Capabilities -->
         <section id="capabilities" class="section section-alt" aria-labelledby="capabilities-title">
@@ -331,3 +336,7 @@ console.log(response.content);</code></pre>
             </div>
         </section>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="/js/hero.js" defer></script>
+{% endblock scripts %}

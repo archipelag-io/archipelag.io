@@ -37,7 +37,7 @@ nav_items = [
     { name = "Use AI", url = "/use" },
     { name = "Earn", url = "/earn" },
     { name = "Pricing", url = "/pricing" },
-    { name = "About", url = "/about" },
+    { name = "News", url = "/news" },
 ]
 
 # Social links

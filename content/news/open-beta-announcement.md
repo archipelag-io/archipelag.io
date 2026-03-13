@@ -2,6 +2,9 @@
 title = "Archipelag.io Enters Open Beta"
 description = "We're opening Archipelag.io to everyone for three months. Come use AI, lend your GPU, and help us figure out what works."
 date = 2026-03-13
+
+[extra]
+category = "Blog"
 +++
 
 There's a GPU in your computer that spends most of its life doing nothing.

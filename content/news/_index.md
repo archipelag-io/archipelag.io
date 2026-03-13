@@ -1,7 +1,7 @@
 +++
-title = "Blog"
+title = "News"
 description = "Updates, insights, and stories from the Archipelag.io team."
-template = "blog.html"
+template = "news.html"
 page_template = "blog-post.html"
 sort_by = "date"
 +++

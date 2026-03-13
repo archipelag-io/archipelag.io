@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}News | {{ config.title }}{% endblock title %}
+
+{% block head_meta %}
+    <meta name="description" content="News, updates, and stories from the Archipelag.io team. Blog posts, devlog entries, and community contributor spotlights.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Archipelag.io news, distributed computing, AI news, edge computing, LLM updates, devlog, contributors">
+    <link rel="canonical" href="{{ config.base_url }}/news/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ config.base_url }}/news/">
+    <meta property="og:title" content="News | {{ config.title }}">
+    <meta property="og:description" content="News, updates, and stories from the Archipelag.io team.">
+    <meta property="og:image" content="{{ config.base_url }}/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Archipelag.io News">
+    <meta property="og:site_name" content="{{ config.title }}">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{{ config.extra.twitter }}">
+    <meta name="twitter:creator" content="{{ config.extra.twitter }}">
+    <meta name="twitter:title" content="News | {{ config.title }}">
+    <meta name="twitter:description" content="News, updates, and stories from the Archipelag.io team.">
+    <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
+    <meta name="twitter:image:alt" content="Archipelag.io News">
+{% endblock head_meta %}
+
+{% block head_extra %}
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/atom+xml" title="Archipelag.io News" href="{{ config.base_url }}/atom.xml">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Blog",
+                "@id": "{{ config.base_url }}/news/",
+                "url": "{{ config.base_url }}/news/",
+                "name": "Archipelag.io News",
+                "description": "News, updates, and stories from the Archipelag.io team",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Archipelag.io",
+                    "url": "{{ config.base_url }}"
+                },
+                "isPartOf": {
+                    "@id": "{{ config.base_url }}/#website"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ config.base_url }}/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "News",
+                        "item": "{{ config.base_url }}/news/"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        .news-categories {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .news-category-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: transparent;
+            color: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        html.light .news-category-btn {
+            border-color: rgba(0,0,0,0.15);
+        }
+        .news-category-btn:hover,
+        .news-category-btn.active {
+            background: var(--accent, #0d9488);
+            border-color: var(--accent, #0d9488);
+            color: #fff;
+        }
+        .blog-card[data-category] { display: none; }
+        .blog-card[data-category].visible { display: block; }
+    </style>
+{% endblock head_extra %}
+
+{% block content %}
+        <!-- Hero -->
+        <div class="hero-wrapper" id="hero-wrapper">
+        <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
+            <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+            <div class="container" style="position:relative;z-index:1;">
+                <div class="hero-glass">
+                    <h1 id="hero-title" class="hero-title">News</h1>
+                    <p class="hero-subtitle">
+                        Updates, insights, and stories from the Archipelag.io team.
+                    </p>
+                    <div class="news-categories" role="tablist" aria-label="Content categories">
+                        <button class="news-category-btn active" role="tab" aria-selected="true" data-filter="all">All</button>
+                        <button class="news-category-btn" role="tab" aria-selected="false" data-filter="Blog">Blog</button>
+                        <button class="news-category-btn" role="tab" aria-selected="false" data-filter="Devlog">Devlog</button>
+                        <button class="news-category-btn" role="tab" aria-selected="false" data-filter="Contributors">Contributors</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Posts -->
+        <section class="section" aria-labelledby="posts-title">
+            <div class="container">
+                <h2 id="posts-title" class="sr-only">News posts</h2>
+                <div class="blog-list" id="news-list">
+                    {% if section.pages %}
+                        {% for page in section.pages %}
+                        <article class="blog-card card visible" data-category="{{ page.extra.category | default(value='Blog') }}" itemscope itemtype="https://schema.org/BlogPosting">
+                            <a href="{{ page.permalink }}">
+                                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.25rem;">
+                                    <time class="blog-date" datetime="{{ page.date }}" itemprop="datePublished">
+                                        {{ page.date | date(format="%B %d, %Y") }}
+                                    </time>
+                                    <span class="badge badge-sm" style="font-size:0.7rem;opacity:0.7;">{{ page.extra.category | default(value="Blog") }}</span>
+                                </div>
+                                <h3 class="blog-card-title" itemprop="headline">{{ page.title }}</h3>
+                                {% if page.description %}
+                                <p class="blog-card-desc" itemprop="description">{{ page.description }}</p>
+                                {% endif %}
+                                <span class="blog-read-more">Read more &rarr;</span>
+                            </a>
+                            <meta itemprop="author" content="{{ config.extra.author }}">
+                        </article>
+                        {% endfor %}
+                    {% else %}
+                        <div class="blog-card card blog-empty visible" data-category="all">
+                            <div class="icon icon-xl" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="blog-card-title">Coming soon</h3>
+                            <p class="blog-card-desc">We're working on our first posts. Check back soon!</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="/js/hero.js" defer></script>
+    <script>
+    (function() {
+        const buttons = document.querySelectorAll('.news-category-btn');
+        const cards = document.querySelectorAll('.blog-card[data-category]');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.remove('visible');
+                    }
+                });
+            });
+        });
+    })();
+    </script>
+{% endblock scripts %}

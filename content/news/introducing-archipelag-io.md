@@ -2,6 +2,9 @@
 title = "Introducing Archipelag.io: Compute, Closer to You"
 description = "Today we're launching Archipelag.io, a distributed compute network that brings AI inference to community hardware. Here's why we built it and what's next."
 date = 2025-01-26
+
+[extra]
+category = "Blog"
 +++
 
 Today, we're opening the doors to Archipelag.io—a new kind of compute infrastructure built on a simple idea: **the best compute is the compute closest to you**.

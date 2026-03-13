@@ -143,15 +143,20 @@
 
 {% block content %}
         <!-- Hero -->
-        <section class="hero-section" aria-labelledby="hero-title">
-            <div class="container">
-                <h1 id="hero-title" class="hero-title">Simple, transparent pricing</h1>
-                <p class="hero-subtitle">
-                    No subscriptions. Buy credits, use AI. That's it.
-                    Credits never expire.
-                </p>
+        <div class="hero-wrapper" id="hero-wrapper">
+        <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
+            <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+            <div class="container" style="position:relative;z-index:1;">
+                <div class="hero-glass">
+                    <h1 id="hero-title" class="hero-title">Simple, transparent pricing</h1>
+                    <p class="hero-subtitle">
+                        No subscriptions. Buy credits, use AI. That's it.
+                        Credits never expire.
+                    </p>
+                </div>
             </div>
         </section>
+        </div>
 
         <!-- Credit Packages -->
         <section class="section pricing-section" aria-labelledby="packages-title">
@@ -408,3 +413,7 @@
             </div>
         </section>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="/js/hero.js" defer></script>
+{% endblock scripts %}
