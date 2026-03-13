@@ -7,8 +7,8 @@
 
 // Beta banner
 .beta-banner {
-  background: var(--accent);
-  color: #0a0a0a;
+  background: #00ffdd !important;
+  color: #0a0a0a !important;
   text-align: center;
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-sm);
@@ -45,8 +45,8 @@
 }
 
 html.light .beta-banner {
-  background: var(--accent);
-  color: #0a0a0a;
+  background: #00c9b0 !important;
+  color: #0a0a0a !important;
 
   a { color: #0a0a0a; }
 }
