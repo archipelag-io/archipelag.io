@@ -316,7 +316,7 @@
                                 </li>
                             </ol>
 
-                            <a href="/use" class="btn btn-primary">Start using AI</a>
+                            <a href="/use" class="btn btn-tropical">Start using AI</a>
                         </article>
 
                         <!-- For Hosts -->
@@ -348,7 +348,7 @@
                                 </li>
                             </ol>
 
-                            <a href="/earn" class="btn btn-primary">Start hosting</a>
+                            <a href="/earn" class="btn btn-tropical">Start hosting</a>
                         </article>
                     </div>
                 </div>
@@ -474,7 +474,7 @@
                                 </li>
                             </ul>
 
-                            <a href="/use" class="btn btn-primary">Start using AI</a>
+                            <a href="/use" class="btn btn-tropical">Start using AI</a>
                         </div>
 
                         <div class="antigrid-card flex items-center justify-center">
@@ -572,41 +572,29 @@ print(response.content)</code></pre>
                                 </li>
                             </ul>
 
-                            <a href="/earn" class="btn btn-primary">Start hosting</a>
+                            <a href="/earn" class="btn btn-tropical">Start hosting</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 7: Waitlist + Design Partner -->
-        <section id="waitlist" class="section section-alt-flat" aria-labelledby="waitlist-title">
+        <!-- SECTION 7: Get Started + Design Partner -->
+        <section id="get-started" class="section section-alt-flat" aria-labelledby="getstarted-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Early Access</span>
-                    <h2 id="waitlist-title" class="section-title">A new kind of infrastructure is forming</h2>
-                    <p class="section-subtitle">Join the waitlist for early access, or apply to become a design partner.</p>
+                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Get Started</span>
+                    <h2 id="getstarted-title" class="section-title">A new kind of infrastructure is forming</h2>
+                    <p class="section-subtitle">Create an account and start using distributed AI, or apply to become a design partner.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card" style="text-align: center;">
-                            <h3 class="font-brand text-2xl mb-4">Join the Waitlist</h3>
-                            <p class="text-secondary mb-6">Be the first to know when the network goes live.</p>
-
-                            <form class="waitlist-form" id="waitlist-form" action="https://buttondown.email/api/emails/embed-subscribe/raskell" method="post" target="_blank">
-                                <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
-                                <button type="submit">Join waitlist</button>
-                            </form>
-
-                            <div class="subscribe-success" id="waitlist-success" style="display: none;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; color: var(--accent); display: inline;">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span>You're on the list.</span>
-                            </div>
-
-                            <p class="text-sm text-tertiary mt-4">No spam. Unsubscribe anytime.</p>
+                            <h3 class="font-brand text-2xl mb-4">Try It Out</h3>
+                            <p class="text-secondary mb-6">Create an account and start using AI on community hardware.</p>
+                            <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Create Account</a>
+                            <p class="text-sm text-tertiary mt-4">Free credits to get started. No credit card required.</p>
                         </div>
 
                         <div class="antigrid-card design-partner-card">
@@ -644,19 +632,6 @@ print(response.content)</code></pre>
           window.addEventListener('scroll', update, { passive: true });
           update();
         })();
-    </script>
-    <script>
-        // Waitlist form
-        const waitlistForm = document.getElementById('waitlist-form');
-        const waitlistSuccess = document.getElementById('waitlist-success');
-        if (waitlistForm) {
-            waitlistForm.addEventListener('submit', () => {
-                setTimeout(() => {
-                    waitlistForm.style.display = 'none';
-                    waitlistSuccess.style.display = 'block';
-                }, 100);
-            });
-        }
     </script>
     <script>
     (function() {

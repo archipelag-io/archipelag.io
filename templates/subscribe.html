@@ -72,36 +72,16 @@
 
             <!-- Hero -->
             <div class="hero">
-                <h1 class="hero-title">Sovereign compute is coming.</h1>
+                <h1 class="hero-title">Sovereign compute is here.</h1>
                 <p class="hero-subtitle">
                     AI infrastructure with jurisdiction routing, verified nodes, and full data residency control. Built for teams that can't compromise on compliance.
                 </p>
             </div>
 
-            <!-- Subscribe -->
+            <!-- CTA -->
             <div class="subscribe">
-                <label class="subscribe-label">Join the waitlist</label>
-
-                <form class="subscribe-form" id="subscribe-form" action="https://buttondown.email/api/emails/embed-subscribe/raskell" method="post" target="_blank">
-                    <input
-                        type="email"
-                        name="email"
-                        class="subscribe-input"
-                        placeholder="you@company.com"
-                        required
-                        aria-label="Email address"
-                    >
-                    <button type="submit" class="subscribe-button">Join the waitlist</button>
-                </form>
-
-                <div class="subscribe-success" id="subscribe-success">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span>You're on the list.</span>
-                </div>
-
-                <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+                <a href="https://app.archipelag.io/auth/register" class="subscribe-button" style="display: inline-block; text-decoration: none; text-align: center;">Create Account</a>
+                <p class="subscribe-note">Free credits to get started. No credit card required.</p>
             </div>
         </main>
 
@@ -126,15 +106,6 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
 
-        // Subscribe form
-        const form = document.getElementById('subscribe-form');
-        const success = document.getElementById('subscribe-success');
-        form.addEventListener('submit', () => {
-            setTimeout(() => {
-                form.style.display = 'none';
-                success.classList.add('show');
-            }, 100);
-        });
     </script>
 </body>
 </html>
