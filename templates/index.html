@@ -204,7 +204,8 @@
 
 {% block content %}
         <!-- SECTION 1: Hero -->
-        <section class="hero-section" aria-labelledby="hero-title">
+        <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
+            <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
             <div class="container">
                 <span class="section-eyebrow-numbered"><span class="number">01</span></span>
 
@@ -631,5 +632,290 @@ print(response.content)</code></pre>
                 }, 100);
             });
         }
+    </script>
+    <script>
+    (function() {
+      const canvas = document.getElementById('archipelago-map');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      // Detect theme: dark by default, light if html.light
+      function isDark() { return !document.documentElement.classList.contains('light'); }
+      function getColors() {
+        const dark = isDark();
+        return {
+          wire: dark ? '13,148,136' : '13,148,136',
+          bg: dark ? '#0a0a0a' : '#ffffff',
+        };
+      }
+
+      const TILE = 32;
+      const TX = TILE, TY = TILE * 0.5, TILE_H = 14, R = 4;
+
+      function toScreen(gx, gy, ox, oy) {
+        return { x: (gx - gy) * TX + ox, y: (gx + gy) * TY + oy };
+      }
+
+      const COLS = 22, ROWS = 14;
+      const map = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
+
+      const clusters = [
+        [[3,2,1],[3,3,2],[4,2,1],[4,3,1],[4,4,3],[5,3,1],[5,4,1],[5,2,2],[6,3,4]],
+        [[2,14,1],[2,15,2],[3,14,1],[3,15,3],[3,16,1],[4,15,4]],
+        [[9,9,2],[9,10,1],[10,9,1],[10,10,3]],
+        [[1,8,2]],
+        [[8,2,1],[8,3,3],[9,2,2],[10,2,1],[10,3,4]],
+        [[6,18,2]],
+        [[11,16,1],[11,17,3]],
+        [[5,11,4]],
+        [[1,4,3],[2,4,2]],
+        [[11,7,2],[12,8,1],[12,9,4]],
+        [[7,13,1]],
+        [[0,19,2],[1,19,1]],
+      ];
+      clusters.forEach(cl => {
+        cl.forEach(([r, c, t]) => { if (r < ROWS && c < COLS) map[r][c] = t; });
+      });
+
+      const tileOffsets = Array.from({ length: ROWS }, () =>
+        Array.from({ length: COLS }, () => ({ dx: 0, dy: 0 }))
+      );
+
+      let slideAnim = null, lastSlideTime = 0;
+      const SLIDE_INTERVAL = 3000, SLIDE_DURATION = 800;
+
+      function mulberry32(a) {
+        return function() {
+          a |= 0; a = a + 0x6D2B79F5 | 0;
+          var t = Math.imul(a ^ a >>> 15, 1 | a);
+          t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+          return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        }
+      }
+      const rng = mulberry32(77);
+
+      function pickSlide(now) {
+        if (slideAnim || now - lastSlideTime < SLIDE_INTERVAL) return;
+        const candidates = [];
+        for (let r = 0; r < ROWS; r++)
+          for (let c = 0; c < COLS; c++) {
+            if (map[r][c] === 0) continue;
+            [[0,1],[0,-1],[1,0],[-1,0]].forEach(([dr, dc]) => {
+              const nr = r + dr, nc = c + dc;
+              if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && map[nr][nc] === 0)
+                candidates.push({ r, c, dr, dc });
+            });
+          }
+        if (!candidates.length) return;
+        const pick = candidates[Math.floor(rng() * candidates.length)];
+        slideAnim = { ...pick, progress: 0, startTime: now };
+        lastSlideTime = now;
+      }
+
+      function updateSlide(now) {
+        if (!slideAnim) return;
+        const elapsed = now - slideAnim.startTime;
+        slideAnim.progress = Math.min(1, elapsed / SLIDE_DURATION);
+        const t = slideAnim.progress;
+        const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        const { r, c, dr, dc } = slideAnim;
+        tileOffsets[r][c] = { dx: dc * eased, dy: dr * eased };
+        if (slideAnim.progress >= 1) {
+          tileOffsets[r][c] = { dx: 0, dy: 0 };
+          map[r + dr][c + dc] = map[r][c];
+          map[r][c] = 0;
+          slideAnim = null;
+        }
+      }
+
+      function drawRoundedIsoDiamond(cx, cy, w, h, r) {
+        const top = { x: cx, y: cy - h }, right = { x: cx + w, y: cy };
+        const bottom = { x: cx, y: cy + h }, left = { x: cx - w, y: cy };
+        ctx.beginPath();
+        ctx.moveTo(top.x + r*0.7, top.y + r*0.35);
+        ctx.lineTo(right.x - r*0.7, right.y - r*0.35);
+        ctx.quadraticCurveTo(right.x, right.y, right.x - r*0.7, right.y + r*0.35);
+        ctx.lineTo(bottom.x + r*0.7, bottom.y - r*0.35);
+        ctx.quadraticCurveTo(bottom.x, bottom.y, bottom.x - r*0.7, bottom.y - r*0.35);
+        ctx.lineTo(left.x + r*0.7, left.y + r*0.35);
+        ctx.quadraticCurveTo(left.x, left.y, left.x + r*0.7, left.y - r*0.35);
+        ctx.lineTo(top.x - r*0.7, top.y + r*0.35);
+        ctx.quadraticCurveTo(top.x, top.y, top.x + r*0.7, top.y + r*0.35);
+        ctx.closePath();
+      }
+
+      function drawCuboidSides(cx, cy, color, alpha, bg) {
+        const w = TX - 2, h = TY - 1, d = TILE_H;
+        ctx.beginPath();
+        ctx.moveTo(cx - w, cy); ctx.lineTo(cx, cy + h);
+        ctx.lineTo(cx, cy + h + d); ctx.lineTo(cx - w, cy + d);
+        ctx.closePath();
+        ctx.fillStyle = bg; ctx.fill();
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.3})`;
+        ctx.lineWidth = 0.8; ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx + w, cy); ctx.lineTo(cx, cy + h);
+        ctx.lineTo(cx, cy + h + d); ctx.lineTo(cx + w, cy + d);
+        ctx.closePath();
+        ctx.fillStyle = bg; ctx.fill();
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.25})`;
+        ctx.lineWidth = 0.8; ctx.stroke();
+      }
+
+      function drawCuboidTop(cx, cy, color, alpha, bg) {
+        const w = TX - 2, h = TY - 1;
+        drawRoundedIsoDiamond(cx, cy, w, h, R);
+        ctx.fillStyle = bg; ctx.fill();
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.4})`;
+        ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      function drawPalmTree(cx, cy, color, alpha) {
+        const base = cy - 2;
+        ctx.beginPath(); ctx.moveTo(cx, base);
+        ctx.lineTo(cx - 1, base - 18); ctx.lineTo(cx + 1, base - 18); ctx.closePath();
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.3})`;
+        ctx.lineWidth = 1.2; ctx.stroke();
+        const top = base - 18;
+        [[-12,-4],[-9,-8],[0,-10],[9,-8],[12,-4],[-10,2],[10,2]].forEach(([fx,fy]) => {
+          ctx.beginPath(); ctx.moveTo(cx, top);
+          ctx.quadraticCurveTo(cx + fx*0.5, top + fy*0.3, cx + fx, top + fy);
+          ctx.strokeStyle = `rgba(${color}, ${alpha * 0.25})`;
+          ctx.lineWidth = 0.8; ctx.stroke();
+        });
+      }
+
+      function drawMountain(cx, cy, color, alpha) {
+        const base = cy - 1;
+        ctx.beginPath();
+        ctx.moveTo(cx-10, base); ctx.lineTo(cx-2, base-20);
+        ctx.lineTo(cx+2, base-18); ctx.lineTo(cx+10, base);
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.3})`;
+        ctx.lineWidth = 1; ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx+4, base); ctx.lineTo(cx+9, base-12); ctx.lineTo(cx+14, base);
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.2})`;
+        ctx.lineWidth = 0.8; ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx-3, base-16); ctx.lineTo(cx+3, base-14);
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.15})`;
+        ctx.lineWidth = 0.6; ctx.stroke();
+      }
+
+      function drawComputeNode(cx, cy, color, alpha, time) {
+        const base = cy - 2;
+        ctx.strokeStyle = `rgba(${color}, ${alpha * 0.35})`;
+        ctx.lineWidth = 0.8;
+        ctx.strokeRect(cx-5, base-10, 10, 6);
+        ctx.strokeRect(cx-5, base-5, 10, 6);
+        const blink = (Math.sin(time * 4 + cx) + 1) / 2;
+        ctx.beginPath(); ctx.arc(cx+3, base-7, 1, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${color}, ${alpha * blink * 0.5})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(cx+3, base-2, 1, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${color}, ${alpha * (1-blink) * 0.5})`; ctx.fill();
+      }
+
+      const WATER_LEVEL = 0.35;
+
+      function drawWater(w, h, time, color, ox, floorOy) {
+        const waterSurfaceBase = floorOy - TILE_H * WATER_LEVEL;
+        const pad = Math.ceil(Math.max(w, h) / TILE) + 5;
+        const gridMin = -pad;
+        const gridMax = Math.max(ROWS, COLS) + pad;
+
+        ctx.strokeStyle = `rgba(${color}, 0.12)`;
+        ctx.lineWidth = 0.5;
+        for (let r = gridMin; r <= gridMax; r++) {
+          ctx.beginPath();
+          const steps = 200;
+          for (let i = 0; i <= steps; i++) {
+            const c = gridMin + (gridMax - gridMin) * (i / steps);
+            const base = toScreen(r, c, ox, waterSurfaceBase);
+            const wave = Math.sin(c*2.5 + time*2.0 + r*1.8)*1.2
+                       + Math.sin(c*4.0 + time*3.0 + r*0.9)*0.5;
+            if (i === 0) ctx.moveTo(base.x, base.y + wave);
+            else ctx.lineTo(base.x, base.y + wave);
+          }
+          ctx.stroke();
+        }
+        for (let c = gridMin; c <= gridMax; c++) {
+          ctx.beginPath();
+          const steps = 200;
+          for (let i = 0; i <= steps; i++) {
+            const r = gridMin + (gridMax - gridMin) * (i / steps);
+            const base = toScreen(r, c, ox, waterSurfaceBase);
+            const wave = Math.sin(r*2.5 + time*1.8 + c*1.5)*1.2
+                       + Math.sin(r*4.2 + time*2.8 + c*1.1)*0.5;
+            if (i === 0) ctx.moveTo(base.x, base.y + wave);
+            else ctx.lineTo(base.x, base.y + wave);
+          }
+          ctx.stroke();
+        }
+      }
+
+      let startTime = performance.now();
+
+      function draw() {
+        const now = performance.now();
+        const time = (now - startTime) / 1000;
+        const w = canvas.width / dpr;
+        const h = canvas.height / dpr;
+        ctx.clearRect(0, 0, w, h);
+
+        const colors = getColors();
+        const teal = colors.wire;
+        const bg = colors.bg;
+        const ox = w / 2 - (COLS * 0.25) * TX;
+        const oy = h * 0.18;
+        const floorOy = oy + (TY - 1) + TILE_H;
+
+        pickSlide(now);
+        updateSlide(now);
+
+        // Pass 1: cuboid sides
+        for (let r = 0; r < ROWS; r++)
+          for (let c = 0; c < COLS; c++) {
+            if (map[r][c] === 0) continue;
+            const off = tileOffsets[r][c];
+            const pos = toScreen(c + off.dx, r + off.dy, ox, oy);
+            drawCuboidSides(pos.x, pos.y, teal, 1, bg);
+          }
+
+        // Water surface
+        drawWater(w, h, time, teal, ox, floorOy);
+
+        // Pass 2: cuboid tops + decorations
+        for (let r = 0; r < ROWS; r++)
+          for (let c = 0; c < COLS; c++) {
+            if (map[r][c] === 0) continue;
+            const off = tileOffsets[r][c];
+            const pos = toScreen(c + off.dx, r + off.dy, ox, oy);
+            drawCuboidTop(pos.x, pos.y, teal, 1, bg);
+            if (map[r][c] === 2) drawPalmTree(pos.x, pos.y, teal, 1);
+            if (map[r][c] === 3) drawMountain(pos.x, pos.y, teal, 1);
+            if (map[r][c] === 4) drawComputeNode(pos.x, pos.y, teal, 1, time);
+          }
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      // Re-adapt when theme toggles
+      const obs = new MutationObserver(resize);
+      obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      requestAnimationFrame(draw);
+    })();
     </script>
 {% endblock scripts %}
