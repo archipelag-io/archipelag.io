@@ -4,8 +4,9 @@
 
 {% block head_meta %}
     <meta name="description" content="Run the node agent on your GPU machine and earn credits for AI inference jobs. Market-based pricing, sandboxed execution, identity-verified hosts. Open beta.">
-    <meta name="robots" content="index, follow">
-    <meta name="keywords" content="GPU hosting, compute hosting, earn with GPU, distributed computing, AI hosting, community compute, node agent, passive income GPU">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="keywords" content="GPU hosting, compute hosting, earn with GPU, distributed computing, AI hosting, community compute, node agent, passive income GPU, GPU marketplace, rent GPU">
     <link rel="canonical" href="{{ config.base_url }}/earn/">
 
     <!-- Open Graph -->
@@ -45,6 +46,15 @@
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
+                "mainEntityOfPage": {
+                    "@id": "{{ config.base_url }}/earn/"
+                },
+                "speakable": {
+                    "@type": "SpeakableSpecification",
+                    "cssSelector": ["#hero-title", ".hero-subtitle", "#pricing-title", "#security-title"]
+                },
+                "datePublished": "2024-01-01",
+                "dateModified": "2026-03-13",
                 "breadcrumb": {
                     "@type": "BreadcrumbList",
                     "itemListElement": [
@@ -156,7 +166,7 @@
                         The coordinator matches you with nearby users who need compute.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Join the beta</a>
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join the beta</a>
                         <a href="#how-it-works" class="btn btn-secondary btn-lg">How it works</a>
                     </div>
                 </div>
@@ -508,7 +518,7 @@
                 <h2 id="cta-title" class="cta-title">The beta needs hosts</h2>
                 <p class="cta-subtitle">Early hosts build karma and reputation before the network scales. Join now.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Join the beta</a>
+                    <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join the beta</a>
                     <a href="mailto:hey@archipelag.io" class="btn btn-secondary btn-lg">Talk to us</a>
                 </div>
             </div>

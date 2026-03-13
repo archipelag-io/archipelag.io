@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="{{ config.extra.author }}">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
     <title>{% block title %}{% if page.title %}{{ page.title }} | {{ config.title }}{% else %}{{ config.title }}{% endif %}{% endblock title %}</title>
 
     {% block head_meta %}
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
     <link rel="canonical" href="{{ config.base_url }}{% if current_path %}{{ current_path }}{% else %}/{% endif %}">
 
     <!-- Open Graph -->
@@ -88,7 +90,17 @@
                         "availableLanguage": "English"
                     }
                 ],
-                "areaServed": ["EU", "CH", "Global"]
+                "areaServed": ["EU", "CH", "Global"],
+                "foundingDate": "2024",
+                "numberOfEmployees": {
+                    "@type": "QuantitativeValue",
+                    "value": "1-10"
+                },
+                "potentialAction": {
+                    "@type": "UseAction",
+                    "target": "https://app.archipelag.io/auth/login",
+                    "name": "Sign up for Archipelag.io"
+                }
             },
             {
                 "@type": "WebSite",
@@ -99,7 +111,11 @@
                 "publisher": {
                     "@id": "{{ config.base_url }}/#organization"
                 },
-                "inLanguage": "en-US"
+                "inLanguage": "en-US",
+                "potentialAction": {
+                    "@type": "ReadAction",
+                    "target": "{{ config.base_url }}"
+                }
             }
         ]
     }
@@ -151,7 +167,7 @@
                         </button>
                         <div class="nav-menu-panel">
                             <a href="https://docs.archipelag.io" class="nav-menu-item">Documentation</a>
-                            <span class="nav-menu-item nav-menu-item-tbd">API Specs <span class="nav-tbd">tbd</span></span>
+                            <a href="https://app.archipelag.io/api/v1/docs" class="nav-menu-item">API Specs</a>
                             <span class="nav-menu-item nav-menu-item-tbd">SDK <span class="nav-tbd">tbd</span></span>
                         </div>
                     </div>
@@ -186,7 +202,7 @@
                         </div>
                         <div class="nav-dropdown-menu">
                             <a href="https://app.archipelag.io/auth/login" class="nav-dropdown-item">Log in</a>
-                            <a href="https://app.archipelag.io/auth/register" class="nav-dropdown-item">Register</a>
+                            <a href="https://app.archipelag.io/auth/login" class="nav-dropdown-item">Register</a>
                             <a href="/docs" class="nav-dropdown-item">Documentation</a>
                         </div>
                     </div>
@@ -277,8 +293,8 @@
                 <nav class="footer-column" aria-label="News links">
                     <h4 class="footer-heading">News</h4>
                     <ul class="footer-links">
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/blog">Devlog</a></li>
+                        <li><a href="/news">Blog</a></li>
+                        <li><a href="/news">Devlog</a></li>
                     </ul>
                 </nav>
 

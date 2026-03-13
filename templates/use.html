@@ -4,8 +4,9 @@
 
 {% block head_meta %}
     <meta name="description" content="Run AI inference on distributed community hardware. OpenAI-compatible API, streaming responses, jurisdiction routing. Open beta with free credits.">
-    <meta name="robots" content="index, follow">
-    <meta name="keywords" content="AI inference, LLM API, language models, image generation, OpenAI compatible, distributed computing, community hosting, data residency">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="keywords" content="AI inference, LLM API, language models, image generation, OpenAI compatible, distributed computing, community hosting, data residency, GPU cloud alternative, edge AI">
     <link rel="canonical" href="{{ config.base_url }}/use/">
 
     <!-- Open Graph -->
@@ -45,6 +46,15 @@
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
+                "mainEntityOfPage": {
+                    "@id": "{{ config.base_url }}/use/"
+                },
+                "speakable": {
+                    "@type": "SpeakableSpecification",
+                    "cssSelector": ["#hero-title", ".hero-subtitle", "#capabilities-title", "#api-title"]
+                },
+                "datePublished": "2024-01-01",
+                "dateModified": "2026-03-13",
                 "breadcrumb": {
                     "@type": "BreadcrumbList",
                     "itemListElement": [
@@ -67,19 +77,32 @@
                 "@type": "SoftwareApplication",
                 "name": "Archipelag.io AI API",
                 "applicationCategory": "DeveloperApplication",
+                "applicationSubCategory": "AI Inference API",
                 "operatingSystem": "Web",
+                "url": "https://app.archipelag.io/api/v1/docs",
+                "provider": {
+                    "@id": "{{ config.base_url }}/#organization"
+                },
                 "featureList": [
                     "OpenAI-compatible /v1/chat/completions endpoint",
                     "Real-time streaming over WebSocket and SSE",
                     "Python and JavaScript SDKs",
                     "Jurisdiction routing for data residency compliance",
-                    "Market-based pricing with no fixed tiers"
-                ]
+                    "Market-based pricing with no fixed tiers",
+                    "Mistral 7B, Llama, Stable Diffusion XL, FLUX models"
+                ],
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                    "description": "Free beta credits for new accounts"
+                }
             },
             {
                 "@type": "HowTo",
                 "name": "How to use AI on Archipelag.io",
                 "description": "Get started with distributed AI inference in three steps.",
+                "totalTime": "PT5M",
                 "step": [
                     {
                         "@type": "HowToStep",
@@ -98,6 +121,43 @@
                         "position": 3,
                         "name": "Get streaming results",
                         "text": "Responses stream token-by-token from the nearest available community host."
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Is the Archipelag.io API compatible with OpenAI?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. Archipelag.io exposes a /v1/chat/completions endpoint that is fully compatible with the OpenAI client libraries. You can use the official Python or JavaScript OpenAI SDKs — just change the base_url to https://app.archipelag.io/api/v1."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What AI models are available?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The network currently supports Mistral 7B, Llama, and other open-weight language models for chat, plus Stable Diffusion XL and FLUX for image generation. More models are added during the beta as hosts contribute diverse hardware."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How much does it cost?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Pricing is market-based — hosts set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does my data stay in my region?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "By default, jobs route to nearby hosts for lower latency. For compliance, you can set explicit jurisdiction policies (EU-only, Switzerland, or custom) so your data never leaves a specific region."
+                        }
                     }
                 ]
             }
@@ -120,7 +180,7 @@
                         Switch your base URL and your code runs on a decentralized network instead of a single cloud.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Get free beta credits</a>
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Get free beta credits</a>
                         <a href="#api" class="btn btn-secondary btn-lg">See the API</a>
                     </div>
                 </div>
@@ -368,7 +428,7 @@ stream = client.chat.completions.create(
                 <h2 id="cta-title" class="cta-title">The beta is live</h2>
                 <p class="cta-subtitle">Create an account and run your first inference job. Free credits, no credit card.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Create account</a>
+                    <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create account</a>
                     <a href="https://docs.archipelag.io" class="btn btn-secondary btn-lg">Read the docs</a>
                 </div>
             </div>

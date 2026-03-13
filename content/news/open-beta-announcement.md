@@ -69,7 +69,7 @@ We want to hear from you. If something is broken, [open an issue](https://github
 
 ## Getting started
 
-**Want to use AI?** [Sign up](https://app.archipelag.io/auth/register), open the chat, and start talking to a model. It's running on someone's GPU, probably not very far from where you're sitting.
+**Want to use AI?** [Sign up](https://app.archipelag.io/auth/login), open the chat, and start talking to a model. It's running on someone's GPU, probably not very far from where you're sitting.
 
 **Want to host?** [Grab the node agent](https://github.com/archipelag-io/node-agent/releases), point it at your API key, and set when you're available. Jobs will start arriving.
 

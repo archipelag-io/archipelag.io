@@ -60,20 +60,55 @@
                 "about": {
                     "@id": "{{ config.base_url }}/#organization"
                 },
+                "mainEntityOfPage": {
+                    "@id": "{{ config.base_url }}/#webpage"
+                },
                 "primaryImageOfPage": {
                     "@type": "ImageObject",
                     "url": "{{ config.base_url }}/og-image.png"
-                }
+                },
+                "speakable": {
+                    "@type": "SpeakableSpecification",
+                    "cssSelector": ["#hero-title", ".hero-subtitle", ".principle-title", ".principle-desc"]
+                },
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "{{ config.base_url }}/"
+                        }
+                    ]
+                },
+                "datePublished": "2024-01-01",
+                "dateModified": "2026-03-13"
             },
             {
                 "@type": "SoftwareApplication",
                 "name": "Archipelag.io",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web, Windows, macOS, Linux",
+                "applicationSubCategory": "AI Inference Platform",
+                "description": "Decentralized AI compute network with an OpenAI-compatible API. Run LLM and image generation workloads on community hardware.",
+                "url": "{{ config.base_url }}",
+                "provider": {
+                    "@id": "{{ config.base_url }}/#organization"
+                },
+                "featureList": [
+                    "OpenAI-compatible /v1/chat/completions endpoint",
+                    "Proximity-based job routing",
+                    "Market-based compute pricing",
+                    "Real-time token streaming",
+                    "Jurisdiction routing for data residency",
+                    "Karma-based host reputation system"
+                ],
                 "offers": {
                     "@type": "Offer",
                     "price": "0",
-                    "priceCurrency": "USD"
+                    "priceCurrency": "USD",
+                    "description": "Free beta credits for new accounts"
                 }
             },
             {
@@ -212,7 +247,7 @@
                         Lower latency, fair pricing, and your data stays local.
                     </p>
                     <div class="hero-cta" role="group" aria-label="Get started options">
-                        <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Try It Out</a>
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Try It Out</a>
                         <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
                     </div>
                 </div>
@@ -221,10 +256,11 @@
         </div>
 
         <!-- SECTION 2: Core Principles -->
-        <section class="section-sm" aria-label="Core principles">
+        <section class="section-sm" aria-labelledby="principles-title">
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; The Idea</span>
+                    <h2 id="principles-title" class="sr-only">Core principles</h2>
                 </div>
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
@@ -458,7 +494,7 @@
                                 </li>
                             </ul>
 
-                            <a href="/use" class="btn btn-tropical">View API docs</a>
+                            <a href="https://app.archipelag.io/api/v1/docs" class="btn btn-tropical">View API docs</a>
                         </div>
 
                         <div class="antigrid-card flex items-center justify-center">
@@ -630,7 +666,7 @@ stream = client.chat.completions.create(
                         <div class="antigrid-card cta-card">
                             <h3 class="font-brand text-2xl mb-4">Try it out</h3>
                             <p class="text-secondary mb-6">Create an account and run your first inference job on community hardware. Free beta credits, no credit card.</p>
-                            <a href="https://app.archipelag.io/auth/register" class="btn btn-tropical btn-lg">Create account</a>
+                            <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create account</a>
                         </div>
 
                         <div class="antigrid-card cta-card">

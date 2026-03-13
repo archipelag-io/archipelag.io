@@ -76,4 +76,4 @@ We're a small team of distributed systems engineers with backgrounds in cloud in
 
 ---
 
-*Ready to run sovereign compute? [Get started](https://app.archipelag.io/auth/register) or [apply to become a provider](/earn).*
+*Ready to run sovereign compute? [Get started](https://app.archipelag.io/auth/login) or [apply to become a provider](/earn).*
