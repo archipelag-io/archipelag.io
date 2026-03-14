@@ -3,6 +3,210 @@
 // Sidebar filters + list layout (HF-style)
 // ============================================
 
+// ============================================
+// "WHAT'S A CARGO?" — expandable info panel
+// ============================================
+
+.cargo-whatis-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-4);
+  padding: var(--space-1) 0;
+  font-family: var(--font-brand);
+  font-size: var(--text-sm);
+  font-weight: 450;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+
+  &:hover { color: var(--accent); }
+
+  svg:first-child { opacity: 0.5; }
+}
+
+.cargo-whatis-chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  [aria-expanded="true"] & {
+    transform: rotate(180deg);
+  }
+}
+
+.cargo-whatis-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cargo-whatis-inner {
+  margin-top: var(--space-5);
+  padding: var(--space-6) var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%),
+    var(--surface-1);
+  backdrop-filter: blur(8px);
+
+  @media (max-width: 640px) {
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
+html.light .cargo-whatis-inner {
+  background:
+    linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, rgba(16, 185, 129, 0.04) 100%),
+    #fff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.cargo-whatis-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.cargo-whatis-text {
+  p {
+    font-family: var(--font-subline);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .cargo-whatis-lead {
+    font-size: var(--text-base);
+    color: var(--text);
+    margin-bottom: var(--space-3);
+
+    strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+// Flow diagram
+.cargo-whatis-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.cargo-whatis-flow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cargo-whatis-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  min-width: 72px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+  svg { color: var(--text-tertiary); }
+
+  span {
+    font-family: var(--font-brand);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+}
+
+.node-consumer svg { color: var(--text-secondary); }
+.node-cargo {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+  svg { color: var(--accent); }
+  span { color: var(--accent); font-weight: 600; }
+}
+.node-island svg { color: var(--text-secondary); }
+
+html.light .node-cargo {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.06);
+}
+
+.cargo-whatis-arrow {
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+}
+
+// Format pills under diagram
+.cargo-whatis-formats {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cargo-whatis-fmt {
+  font-family: var(--font-brand);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.fmt-onnx { background: rgba(0, 92, 237, 0.1); color: #4d94f3; }
+.fmt-containers { background: rgba(13, 183, 237, 0.1); color: #3dc3ed; }
+.fmt-wasm { background: rgba(101, 79, 240, 0.1); color: #8a7af4; }
+.fmt-gguf { background: rgba(16, 185, 129, 0.1); color: #34d399; }
+
+html.light {
+  .fmt-onnx { background: rgba(0, 92, 237, 0.06); color: #005CED; }
+  .fmt-containers { background: rgba(13, 183, 237, 0.06); color: #0993bf; }
+  .fmt-wasm { background: rgba(101, 79, 240, 0.06); color: #654FF0; }
+  .fmt-gguf { background: rgba(16, 185, 129, 0.06); color: #059669; }
+}
+
+.cargo-whatis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-5);
+  font-family: var(--font-brand);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap var(--transition-fast);
+
+  &:hover {
+    gap: 8px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
 // Page layout — sidebar + main
 .cargo-layout {
   display: grid;
