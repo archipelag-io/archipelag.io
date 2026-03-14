@@ -484,6 +484,7 @@ html.light .header-logo img { filter: none; }
 .nav-link {
   font-family: var(--font-brand);
   font-size: var(--text-base);
+  font-weight: 700;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--transition-base);
@@ -501,6 +502,7 @@ html.light .header-logo img { filter: none; }
   gap: 0.25rem;
   font-family: var(--font-brand);
   font-size: var(--text-base);
+  font-weight: 700;
   color: var(--text-secondary);
   background: none;
   border: none;
