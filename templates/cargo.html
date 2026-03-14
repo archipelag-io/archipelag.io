@@ -46,742 +46,724 @@
 
 {% block content %}
 
-<!-- Hero -->
-<section class="section-sm">
+<!-- Header -->
+<section class="section-sm" style="padding-bottom: var(--space-8);">
     <div class="container">
-        <div class="section-header">
-            <span class="section-eyebrow">Cargo Registry</span>
-            <h1 class="section-title" style="font-size: var(--text-5xl); font-weight: 300; letter-spacing: -0.03em;">
-                Browse available cargos
-            </h1>
-            <p style="font-family: var(--font-subline); font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.6; max-width: 640px; margin: var(--space-4) auto 0;">
-                <span id="cargo-count">86</span> executable units across 6 runtime formats &mdash; AI models, containers, and WebAssembly modules ready to run on Islands.
-            </p>
-        </div>
+        <span class="section-eyebrow">Cargo Registry</span>
+        <h1 style="font-family: var(--font-brand); font-size: var(--text-4xl); font-weight: 300; letter-spacing: -0.03em; margin-top: var(--space-2);">
+            Browse available cargos
+        </h1>
     </div>
 </section>
 
-<!-- Search + Filters -->
-<section style="padding: 0 0 var(--space-8);">
-    <div class="container">
-
-        <!-- Search bar -->
-        <div class="cargo-search-wrapper">
-            <svg class="cargo-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="cargo-search" class="cargo-search-input" placeholder="Search cargos... ( / )" autocomplete="off" spellcheck="false">
-        </div>
-
-        <!-- Format filters -->
-        <div class="cargo-filters">
-            <div class="cargo-filter-group">
-                <span class="cargo-filter-label">Format</span>
-                <div class="cargo-filter-buttons">
-                    <button class="cargo-filter-btn active" data-filter-format="all">All</button>
-                    <button class="cargo-filter-btn" data-filter-format="onnx"><span class="cargo-filter-dot dot-onnx"></span>ONNX <span class="cargo-filter-count">23</span></button>
-                    <button class="cargo-filter-btn" data-filter-format="containers"><span class="cargo-filter-dot dot-containers"></span>Containers <span class="cargo-filter-count">38</span></button>
-                    <button class="cargo-filter-btn" data-filter-format="wasm"><span class="cargo-filter-dot dot-wasm"></span>WASM <span class="cargo-filter-count">22</span></button>
-                    <button class="cargo-filter-btn" data-filter-format="gguf"><span class="cargo-filter-dot dot-gguf"></span>GGUF <span class="cargo-filter-count">1</span></button>
-                    <button class="cargo-filter-btn" data-filter-format="diffusers"><span class="cargo-filter-dot dot-diffusers"></span>Diffusers <span class="cargo-filter-count">2</span></button>
-                </div>
-            </div>
-            <div class="cargo-filter-group">
-                <span class="cargo-filter-label">Category</span>
-                <div class="cargo-filter-buttons">
-                    <button class="cargo-filter-btn active" data-filter-category="all">All</button>
-                    <button class="cargo-filter-btn" data-filter-category="nlp">NLP</button>
-                    <button class="cargo-filter-btn" data-filter-category="vision">Vision</button>
-                    <button class="cargo-filter-btn" data-filter-category="audio">Audio</button>
-                    <button class="cargo-filter-btn" data-filter-category="generative">Generative</button>
-                    <button class="cargo-filter-btn" data-filter-category="media">Media</button>
-                    <button class="cargo-filter-btn" data-filter-category="document">Document</button>
-                    <button class="cargo-filter-btn" data-filter-category="image">Image</button>
-                    <button class="cargo-filter-btn" data-filter-category="utility">Utility</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Cargo Grid -->
+<!-- Sidebar + List -->
 <section style="padding: 0 0 var(--space-32);">
     <div class="container">
-        <div class="cargo-grid" id="cargo-grid">
+        <div class="cargo-layout">
 
-            {# ===== GGUF ===== #}
-            <div class="cargo-card" data-format="gguf" data-category="generative" data-search="llm chat mistral 7b language model text generation gguf llama">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-gguf">GGUF</span>
-                    <span class="cargo-gpu-badge">GPU optional</span>
+            <!-- Sidebar -->
+            <aside class="cargo-sidebar">
+                <div class="cargo-sidebar-section">
+                    <div class="cargo-sidebar-heading">Format</div>
+                    <div class="cargo-sidebar-options">
+                        <button class="cargo-sidebar-btn active" data-filter-format="all">All<span class="cargo-sidebar-count">86</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="onnx"><span class="cargo-sidebar-dot dot-onnx"></span>ONNX<span class="cargo-sidebar-count">23</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="containers"><span class="cargo-sidebar-dot dot-containers"></span>Containers<span class="cargo-sidebar-count">38</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="wasm"><span class="cargo-sidebar-dot dot-wasm"></span>WASM<span class="cargo-sidebar-count">22</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="gguf"><span class="cargo-sidebar-dot dot-gguf"></span>GGUF<span class="cargo-sidebar-count">1</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="diffusers"><span class="cargo-sidebar-dot dot-diffusers"></span>Diffusers<span class="cargo-sidebar-count">2</span></button>
+                    </div>
                 </div>
-                <h3 class="cargo-card-title">LLM Chat</h3>
-                <p class="cargo-card-desc">Large language model chat inference using llama.cpp</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item" title="Source model">Mistral 7B Instruct</span>
-                    <span class="cargo-meta-item" title="Quantization">Q4_K_M &middot; 4.4 GB</span>
+                <div class="cargo-sidebar-section">
+                    <div class="cargo-sidebar-heading">Category</div>
+                    <div class="cargo-sidebar-options">
+                        <button class="cargo-sidebar-btn active" data-filter-category="all">All</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="nlp">NLP</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="vision">Vision</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="audio">Audio</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="generative">Generative</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="media">Media</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="document">Document</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="image">Image</button>
+                        <button class="cargo-sidebar-btn" data-filter-category="utility">Utility</button>
+                    </div>
                 </div>
-            </div>
+            </aside>
 
-            {# ===== DIFFUSERS ===== #}
-            <div class="cargo-card" data-format="diffusers" data-category="generative" data-search="stable diffusion image generation text to image sdxl sd15 diffusers">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-diffusers">Diffusers</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
+            <!-- Main -->
+            <main class="cargo-main">
+
+                <div class="cargo-search-wrapper">
+                    <svg class="cargo-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="cargo-search" class="cargo-search-input" placeholder="Search cargos... ( / )" autocomplete="off" spellcheck="false">
                 </div>
-                <h3 class="cargo-card-title">Stable Diffusion</h3>
-                <p class="cargo-card-desc">Text-to-image generation using Stable Diffusion 1.5 and SDXL</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">SD 1.5 &middot; SDXL</span>
-                    <span class="cargo-meta-item">8 GB VRAM</span>
+
+                <div class="cargo-toolbar">
+                    <div class="cargo-result-count"><strong id="cargo-count">86</strong> cargos</div>
                 </div>
-            </div>
 
-            <div class="cargo-card" data-format="diffusers" data-category="generative" data-search="music gen audio generation text to music facebook meta diffusers">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-diffusers">Diffusers</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
+                <div class="cargo-list" id="cargo-grid">
+
+                    <!-- GGUF -->
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-search="llm chat mistral 7b language model text generation gguf llama">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">LLM Chat</div>
+                            <div class="cargo-row-desc">Large language model chat inference using llama.cpp</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Mistral 7B Instruct</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4.4 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Diffusers -->
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-search="stable diffusion image generation text to image sdxl sd15 diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Stable Diffusion</div>
+                            <div class="cargo-row-desc">Text-to-image generation using Stable Diffusion 1.5 and SDXL</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">SD 1.5 · SDXL</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-search="music gen audio generation text to music facebook meta diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Music Gen</div>
+                            <div class="cargo-row-desc">Text-to-music generation using Meta MusicGen</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">facebook/musicgen-small</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ONNX — NLP -->
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="sentiment analysis text classification positive negative distilbert onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Sentiment Analysis</div>
+                            <div class="cargo-row-desc">Classifies text sentiment as positive or negative using DistilBERT</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">distilbert-base-uncased-finetuned-sst-2-english</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="summarize summarization text bart cnn dailymail onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Text Summarization</div>
+                            <div class="cargo-row-desc">Summarizes long text using BART-large fine-tuned on CNN/DailyMail</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">facebook/bart-large-cnn</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="translate translation language marian helsinki opus onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Translation</div>
+                            <div class="cargo-row-desc">Translates text between 100+ language pairs using MarianMT</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Helsinki-NLP/opus-mt</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="ner named entity recognition person organization location bert onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Named Entity Recognition</div>
+                            <div class="cargo-row-desc">Identifies persons, organizations, and locations in text</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">dbmdz/bert-large-cased-finetuned-conll03-english</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="question answering qa extract answer context distilbert squad onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Question Answering</div>
+                            <div class="cargo-row-desc">Extracts answers from context passages using DistilBERT</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">distilbert-base-cased-distilled-squad</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="fill mask bert masked language model predict token onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Fill Mask</div>
+                            <div class="cargo-row-desc">Predicts masked tokens in text using BERT</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">bert-base-uncased</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="classify classification zero shot bart mnli onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Zero-Shot Classification</div>
+                            <div class="cargo-row-desc">Classifies text into arbitrary categories using BART</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">facebook/bart-large-mnli</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="grammar correction text t5 vennify onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Grammar Correction</div>
+                            <div class="cargo-row-desc">Corrects grammar in text using a fine-tuned T5 model</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">vennify/t5-base-grammar-correction</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="paraphrase text rewrite t5 onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Text Paraphrasing</div>
+                            <div class="cargo-row-desc">Generates paraphrased versions of input text using T5</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Vamsi/T5_Paraphrase_Paws</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="toxicity detection moderation content safety bert onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Toxicity Detection</div>
+                            <div class="cargo-row-desc">Detects toxic content in text using a fine-tuned BERT classifier</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">unitary/toxic-bert</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="keyword extract keyphrase keybert embeddings onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Keyword Extraction</div>
+                            <div class="cargo-row-desc">Extracts keywords and keyphrases from text using KeyBERT</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">sentence-transformers/all-MiniLM-L6-v2</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-search="embeddings text vector sentence transformers feature extraction onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Text Embeddings</div>
+                            <div class="cargo-row-desc">Generates text embeddings using sentence-transformers</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">all-MiniLM-L6-v2 · 384 dims</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="generative" data-search="code complete code generation python codegen salesforce onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Code Completion</div>
+                            <div class="cargo-row-desc">Generates code completions using CodeGen for Python</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Salesforce/codegen-350M-mono</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ONNX — Vision -->
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="detect object detection bounding box yolo ultralytics onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Object Detection</div>
+                            <div class="cargo-row-desc">Detects objects in images with bounding boxes using YOLOv8</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">ultralytics/yolov8n</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="segment image segmentation instance yolo onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Image Segmentation</div>
+                            <div class="cargo-row-desc">Performs instance segmentation on images using YOLOv8-seg</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">ultralytics/yolov8n-seg</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="caption image captioning description blip salesforce onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Image Captioning</div>
+                            <div class="cargo-row-desc">Generates natural language descriptions of images using BLIP</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Salesforce/blip-image-captioning-base</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="depth estimation monocular dpt midas intel onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Depth Estimation</div>
+                            <div class="cargo-row-desc">Estimates depth maps from single images using DPT-Hybrid</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Intel/dpt-hybrid-midas</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="face detection embedding recognition mtcnn facenet inception onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Face Detection</div>
+                            <div class="cargo-row-desc">Detects faces and generates facial embeddings using MTCNN + FaceNet</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">InceptionResnetV1-vggface2</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="remove background bg transparent png u2net rembg onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Background Removal</div>
+                            <div class="cargo-row-desc">Removes background from images, returns transparent PNG</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">U2-Net (rembg)</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="style transfer neural artistic painting onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Style Transfer</div>
+                            <div class="cargo-row-desc">Applies artistic style transfer to images</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">fast_neural_style</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-search="upscale super resolution enhance esrgan onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Image Upscaling</div>
+                            <div class="cargo-row-desc">Upscales images 2x or 4x using Real-ESRGAN</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">RealESRGAN_x4plus</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ONNX — Audio -->
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-search="whisper speech to text transcription asr openai faster onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Speech-to-Text (Whisper)</div>
+                            <div class="cargo-row-desc">Transcribes and translates audio with word-level timestamps</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">openai/whisper-base</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-search="tts text to speech voice synthesis coqui tacotron onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Text-to-Speech</div>
+                            <div class="cargo-row-desc">Converts text to speech audio using Coqui TTS</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">tacotron2-DDC</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Containers — Media -->
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="video transcode format conversion ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Video Transcode</div>
+                            <div class="cargo-row-desc">Video transcoding and format conversion</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="video compress compression ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Video Compress</div>
+                            <div class="cargo-row-desc">Video compression and transcoding</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="video clip extract trim cut ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Video Clip</div>
+                            <div class="cargo-row-desc">Extract a time range from a video</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="video thumbnail frame extract preview ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Video Thumbnail</div>
+                            <div class="cargo-row-desc">Extract thumbnails from video</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="video subtitle caption srt whisper ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Video Subtitle</div>
+                            <div class="cargo-row-desc">Video subtitling using Whisper</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="gif make create animation image video container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">GIF Maker</div>
+                            <div class="cargo-row-desc">GIF creation from images or video</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="media" data-search="screenshot capture web page url headless chrome container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Screenshot</div>
+                            <div class="cargo-row-desc">Capture screenshots from URLs using headless Chrome</div>
+                        </div>
+                    </div>
+
+                    <!-- Containers — Audio -->
+                    <div class="cargo-row" data-format="containers" data-category="audio" data-search="audio convert format mp3 wav flac ffmpeg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Audio Convert</div>
+                            <div class="cargo-row-desc">Audio format conversion using ffmpeg</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="audio" data-search="audio merge concatenate combine join container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Audio Merge</div>
+                            <div class="cargo-row-desc">Merge and concatenate audio files</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="audio" data-search="audio split segment silence boundary container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Audio Split</div>
+                            <div class="cargo-row-desc">Split audio into segments at silence boundaries</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="audio" data-search="noise remove denoise clean audio noisereduce container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Noise Remove</div>
+                            <div class="cargo-row-desc">Audio noise removal using noisereduce</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="audio" data-search="normalize audio volume loudness ffmpeg loudnorm container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Normalize Audio</div>
+                            <div class="cargo-row-desc">Normalize audio volume levels</div>
+                        </div>
+                    </div>
+
+                    <!-- Containers — Document -->
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="ocr optical character recognition image text easyocr container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">OCR</div>
+                            <div class="cargo-row-desc">Optical character recognition for image-to-text</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="pdf extract text content pypdf2 container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">PDF Extract</div>
+                            <div class="cargo-row-desc">PDF text and content extraction</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="pdf merge split combine pypdf2 container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">PDF Merge</div>
+                            <div class="cargo-row-desc">PDF merging and splitting</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="pdf sign watermark signature stamp container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">PDF Sign</div>
+                            <div class="cargo-row-desc">Add text watermark or signature to PDF pages</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="html to pdf convert render weasyprint container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">HTML to PDF</div>
+                            <div class="cargo-row-desc">Convert HTML to PDF using WeasyPrint</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="markdown to pdf convert render styled container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Markdown to PDF</div>
+                            <div class="cargo-row-desc">Convert Markdown to styled PDF</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="docx extract word document text python-docx container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">DOCX Extract</div>
+                            <div class="cargo-row-desc">Extract text and images from Word documents</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="xlsx parse excel spreadsheet json openpyxl container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Excel Parse</div>
+                            <div class="cargo-row-desc">Parse Excel spreadsheets to JSON</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="document" data-search="batch template processing data csv json image container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Batch Template</div>
+                            <div class="cargo-row-desc">Generic data processing template for batch jobs</div>
+                        </div>
+                    </div>
+
+                    <!-- Containers — Image -->
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="resize image thumbnail scale pillow container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Resize</div>
+                            <div class="cargo-row-desc">Image resizing and thumbnail generation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="compress image quality optimization pillow container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Compress Image</div>
+                            <div class="cargo-row-desc">Image compression with quality control</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="convert image format png jpg webp avif pillow container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Convert Image</div>
+                            <div class="cargo-row-desc">Image format conversion</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="crop smart saliency edge detection auto container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Smart Crop</div>
+                            <div class="cargo-row-desc">Smart crop using edge-based saliency detection</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="blur face privacy anonymize detection container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Blur Face</div>
+                            <div class="cargo-row-desc">Blur faces in images for privacy</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="watermark text image overlay brand container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Watermark</div>
+                            <div class="cargo-row-desc">Add text or image watermarks</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="colorize grayscale color restore container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Colorize</div>
+                            <div class="cargo-row-desc">Colorize grayscale images</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="image diff compare difference highlight visual container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Image Diff</div>
+                            <div class="cargo-row-desc">Compare two images and highlight differences</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="image metadata exif extract modify piexif container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Image Metadata</div>
+                            <div class="cargo-row-desc">Extract and manipulate image EXIF metadata</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="svg optimize svgo scour minify container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">SVG Optimize</div>
+                            <div class="cargo-row-desc">SVG optimization and minification</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="svg to png convert render rasterize cairosvg container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">SVG to PNG</div>
+                            <div class="cargo-row-desc">Convert SVG to PNG using CairoSVG</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="image" data-search="barcode generate read qr code container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Barcode</div>
+                            <div class="cargo-row-desc">Generate and read barcodes</div>
+                        </div>
+                    </div>
+
+                    <!-- Containers — Utility -->
+                    <div class="cargo-row" data-format="containers" data-category="utility" data-search="format code prettier black isort autopep8 linter container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Format Code</div>
+                            <div class="cargo-row-desc">Code formatting for multiple languages</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="utility" data-search="json to types typescript python type definition container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">JSON to Types</div>
+                            <div class="cargo-row-desc">Generate TypeScript or Python types from JSON</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="utility" data-search="language detect identification lingua container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Language Detect</div>
+                            <div class="cargo-row-desc">Language detection using lingua</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="utility" data-search="llm chat mock test fake simulated container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">LLM Chat (Mock)</div>
+                            <div class="cargo-row-desc">Mock LLM chat for testing</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="containers" data-category="utility" data-search="sd mock stable diffusion test fake simulated container">
+                        <div class="cargo-row-icon icon-containers">OCI</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Stable Diffusion (Mock)</div>
+                            <div class="cargo-row-desc">Mock image generation for testing</div>
+                        </div>
+                    </div>
+
+                    <!-- WASM -->
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="hash sha256 md5 blake3 crypto checksum wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Hash</div>
+                            <div class="cargo-row-desc">SHA-256, MD5, and Blake3 hash computation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="json processing jq query transform filter wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">JSON</div>
+                            <div class="cargo-row-desc">JSON processing with jq-like operations</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="csv parse process filter transform tabular wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">CSV</div>
+                            <div class="cargo-row-desc">CSV processing with JSON conversion and filtering</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="base64 encode decode binary text wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Base64</div>
+                            <div class="cargo-row-desc">Base64 encode and decode operations</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="compress decompress gzip flate deflate wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Compress</div>
+                            <div class="cargo-row-desc">Gzip compression and decompression</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="regex match extract test pattern wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Regex</div>
+                            <div class="cargo-row-desc">Regex testing and extraction</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="markdown html convert render github flavored gfm wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Markdown</div>
+                            <div class="cargo-row-desc">Markdown to HTML conversion (GFM)</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="markdown toc table of contents heading outline wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Markdown TOC</div>
+                            <div class="cargo-row-desc">Generate table of contents from Markdown</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="uuid generate v4 v7 unique identifier wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">UUID</div>
+                            <div class="cargo-row-desc">UUID generation (v4, v7)</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="qrcode generate image text url wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">QR Code</div>
+                            <div class="cargo-row-desc">QR code generation from text or URLs</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="jwt decode inspect token json web token wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">JWT</div>
+                            <div class="cargo-row-desc">JWT decode and inspect</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="sanitize html xss clean safe ammonia wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Sanitize</div>
+                            <div class="cargo-row-desc">HTML sanitization for XSS protection</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="yaml json convert parse serialize wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">YAML</div>
+                            <div class="cargo-row-desc">YAML to JSON conversion</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="toml json convert parse config wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">TOML</div>
+                            <div class="cargo-row-desc">TOML to JSON conversion</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="url parse query host path manipulate wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">URL</div>
+                            <div class="cargo-row-desc">URL parsing and manipulation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="slug url friendly string kebab case wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Slug</div>
+                            <div class="cargo-row-desc">URL slug generation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="semver semantic version parse compare range wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Semver</div>
+                            <div class="cargo-row-desc">Semantic version parsing and comparison</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="diff text compare patch change wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Diff</div>
+                            <div class="cargo-row-desc">Text diff generation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="highlight syntax code color html wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Highlight</div>
+                            <div class="cargo-row-desc">Syntax highlighting with HTML output</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="minify html css javascript compress reduce size wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Minify</div>
+                            <div class="cargo-row-desc">HTML, CSS, and JS minification</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="cron expression parse next run schedule wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Cron</div>
+                            <div class="cargo-row-desc">Cron expression parsing and next-run calculation</div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="wasm" data-category="utility" data-search="echo test passthrough debug identity wasm">
+                        <div class="cargo-row-icon icon-wasm">WASM</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Echo</div>
+                            <div class="cargo-row-desc">Test cargo that echoes JSON input</div>
+                        </div>
+                    </div>
+
                 </div>
-                <h3 class="cargo-card-title">Music Gen</h3>
-                <p class="cargo-card-desc">Text-to-music generation using Meta MusicGen</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">facebook/musicgen-small</span>
-                    <span class="cargo-meta-item">4 GB VRAM</span>
+
+                <!-- Empty state -->
+                <div id="cargo-empty" class="cargo-empty" style="display: none;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    <p>No cargos match your filters.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="document.querySelector('[data-filter-format=all]').click(); document.querySelector('[data-filter-category=all]').click(); document.getElementById('cargo-search').value=''; document.getElementById('cargo-search').dispatchEvent(new Event('input'));">Clear filters</button>
                 </div>
-            </div>
 
-            {# ===== ONNX — NLP ===== #}
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="sentiment analysis text classification positive negative distilbert onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Sentiment Analysis</h3>
-                <p class="cargo-card-desc">Classifies text sentiment as positive or negative using DistilBERT</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">distilbert-base-uncased-finetuned-sst-2-english</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="summarize summarization text bart cnn dailymail onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Text Summarization</h3>
-                <p class="cargo-card-desc">Summarizes long text using BART-large fine-tuned on CNN/DailyMail</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">facebook/bart-large-cnn</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="translate translation language marian helsinki opus onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Translation</h3>
-                <p class="cargo-card-desc">Translates text between 100+ language pairs using MarianMT</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">Helsinki-NLP/opus-mt</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="ner named entity recognition person organization location bert onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Named Entity Recognition</h3>
-                <p class="cargo-card-desc">Identifies persons, organizations, and locations in text</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">dbmdz/bert-large-cased-finetuned-conll03-english</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="question answering qa extract answer context distilbert squad onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Question Answering</h3>
-                <p class="cargo-card-desc">Extracts answers from context passages using DistilBERT</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">distilbert-base-cased-distilled-squad</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="fill mask bert masked language model predict token onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Fill Mask</h3>
-                <p class="cargo-card-desc">Predicts masked tokens in text using BERT</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">bert-base-uncased</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="classify classification zero shot bart mnli onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Zero-Shot Classification</h3>
-                <p class="cargo-card-desc">Classifies text into arbitrary categories using BART</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">facebook/bart-large-mnli</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="grammar correction text t5 vennify onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Grammar Correction</h3>
-                <p class="cargo-card-desc">Corrects grammar in text using a fine-tuned T5 model</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">vennify/t5-base-grammar-correction</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="paraphrase text rewrite t5 onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Text Paraphrasing</h3>
-                <p class="cargo-card-desc">Generates paraphrased versions of input text using T5</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">Vamsi/T5_Paraphrase_Paws</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="toxicity detection moderation content safety bert onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Toxicity Detection</h3>
-                <p class="cargo-card-desc">Detects toxic content in text using a fine-tuned BERT classifier</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">unitary/toxic-bert</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="keyword extract keyphrase keybert embeddings onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Keyword Extraction</h3>
-                <p class="cargo-card-desc">Extracts keywords and keyphrases from text using KeyBERT</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">sentence-transformers/all-MiniLM-L6-v2</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="nlp" data-search="embeddings text vector sentence transformers feature extraction onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Text Embeddings</h3>
-                <p class="cargo-card-desc">Generates text embeddings using sentence-transformers</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">all-MiniLM-L6-v2 &middot; 384 dims</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="generative" data-search="code complete code generation python codegen salesforce onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Code Completion</h3>
-                <p class="cargo-card-desc">Generates code completions using CodeGen for Python</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">Salesforce/codegen-350M-mono</span>
-                </div>
-            </div>
-
-            {# ===== ONNX — Vision ===== #}
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="detect object detection bounding box yolo ultralytics onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Object Detection</h3>
-                <p class="cargo-card-desc">Detects objects in images with bounding boxes using YOLOv8</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">ultralytics/yolov8n</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="segment image segmentation instance yolo onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Image Segmentation</h3>
-                <p class="cargo-card-desc">Performs instance segmentation on images using YOLOv8-seg</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">ultralytics/yolov8n-seg</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="caption image captioning description blip salesforce onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Image Captioning</h3>
-                <p class="cargo-card-desc">Generates natural language descriptions of images using BLIP</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">Salesforce/blip-image-captioning-base</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="depth estimation monocular dpt midas intel onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Depth Estimation</h3>
-                <p class="cargo-card-desc">Estimates depth maps from single images using DPT-Hybrid</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">Intel/dpt-hybrid-midas</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="face detection embedding recognition mtcnn facenet inception onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
-                </div>
-                <h3 class="cargo-card-title">Face Detection</h3>
-                <p class="cargo-card-desc">Detects faces and generates facial embeddings using MTCNN + FaceNet</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">InceptionResnetV1-vggface2</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="remove background bg transparent png u2net rembg onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                </div>
-                <h3 class="cargo-card-title">Background Removal</h3>
-                <p class="cargo-card-desc">Removes background from images, returns transparent PNG</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">U2-Net (rembg)</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="style transfer neural artistic painting onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
-                </div>
-                <h3 class="cargo-card-title">Style Transfer</h3>
-                <p class="cargo-card-desc">Applies artistic style transfer to images</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">fast_neural_style (candy, mosaic, udnie)</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="vision" data-search="upscale super resolution enhance esrgan onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
-                </div>
-                <h3 class="cargo-card-title">Image Upscaling</h3>
-                <p class="cargo-card-desc">Upscales images 2x or 4x using Real-ESRGAN</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">RealESRGAN_x4plus</span>
-                </div>
-            </div>
-
-            {# ===== ONNX — Audio ===== #}
-            <div class="cargo-card" data-format="onnx" data-category="audio" data-search="whisper speech to text transcription asr openai faster onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
-                </div>
-                <h3 class="cargo-card-title">Speech-to-Text (Whisper)</h3>
-                <p class="cargo-card-desc">Transcribes and translates audio with word-level timestamps</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">openai/whisper-base (faster-whisper)</span>
-                </div>
-            </div>
-
-            <div class="cargo-card" data-format="onnx" data-category="audio" data-search="tts text to speech voice synthesis coqui tacotron onnx">
-                <div class="cargo-card-header">
-                    <span class="cargo-format-badge badge-onnx">ONNX</span>
-                    <span class="cargo-gpu-badge gpu-required">GPU required</span>
-                </div>
-                <h3 class="cargo-card-title">Text-to-Speech</h3>
-                <p class="cargo-card-desc">Converts text to speech audio using Coqui TTS</p>
-                <div class="cargo-card-meta">
-                    <span class="cargo-meta-item">tacotron2-DDC (en/ljspeech)</span>
-                </div>
-            </div>
-
-            {# ===== CONTAINERS — Media ===== #}
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="video transcode format conversion ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Video Transcode</h3>
-                <p class="cargo-card-desc">Video transcoding and format conversion</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="video compress compression ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Video Compress</h3>
-                <p class="cargo-card-desc">Video compression and transcoding</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="video clip extract trim cut ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Video Clip</h3>
-                <p class="cargo-card-desc">Extract a time range from a video</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="video thumbnail frame extract preview ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Video Thumbnail</h3>
-                <p class="cargo-card-desc">Extract thumbnails from video</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="video subtitle caption srt whisper ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Video Subtitle</h3>
-                <p class="cargo-card-desc">Video subtitling using Whisper</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="gif make create animation image video container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">GIF Maker</h3>
-                <p class="cargo-card-desc">GIF creation from images or video</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="media" data-search="screenshot capture web page url headless chrome container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Screenshot</h3>
-                <p class="cargo-card-desc">Capture screenshots from URLs using headless Chrome</p>
-            </div>
-
-            {# ===== CONTAINERS — Audio ===== #}
-            <div class="cargo-card" data-format="containers" data-category="audio" data-search="audio convert format mp3 wav flac ffmpeg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Audio Convert</h3>
-                <p class="cargo-card-desc">Audio format conversion using ffmpeg</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="audio" data-search="audio merge concatenate combine join container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Audio Merge</h3>
-                <p class="cargo-card-desc">Merge and concatenate audio files</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="audio" data-search="audio split segment silence boundary container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Audio Split</h3>
-                <p class="cargo-card-desc">Split audio into segments at silence boundaries</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="audio" data-search="noise remove denoise clean audio noisereduce container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Noise Remove</h3>
-                <p class="cargo-card-desc">Audio noise removal using noisereduce</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="audio" data-search="normalize audio volume loudness ffmpeg loudnorm container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Normalize Audio</h3>
-                <p class="cargo-card-desc">Normalize audio volume levels</p>
-            </div>
-
-            {# ===== CONTAINERS — Document ===== #}
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="ocr optical character recognition image text easyocr container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">OCR</h3>
-                <p class="cargo-card-desc">Optical character recognition for image-to-text</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="pdf extract text content pypdf2 container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">PDF Extract</h3>
-                <p class="cargo-card-desc">PDF text and content extraction</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="pdf merge split combine pypdf2 container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">PDF Merge</h3>
-                <p class="cargo-card-desc">PDF merging and splitting</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="pdf sign watermark signature stamp container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">PDF Sign</h3>
-                <p class="cargo-card-desc">Add text watermark or signature to PDF pages</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="html to pdf convert render weasyprint container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">HTML to PDF</h3>
-                <p class="cargo-card-desc">Convert HTML to PDF using WeasyPrint</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="markdown to pdf convert render styled container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Markdown to PDF</h3>
-                <p class="cargo-card-desc">Convert Markdown to styled PDF</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="docx extract word document text python-docx container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">DOCX Extract</h3>
-                <p class="cargo-card-desc">Extract text and images from Word documents</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="xlsx parse excel spreadsheet json openpyxl container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Excel Parse</h3>
-                <p class="cargo-card-desc">Parse Excel spreadsheets to JSON</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="document" data-search="batch template processing data csv json image container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Batch Template</h3>
-                <p class="cargo-card-desc">Generic data processing template for batch jobs</p>
-            </div>
-
-            {# ===== CONTAINERS — Image ===== #}
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="resize image thumbnail scale pillow container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Resize</h3>
-                <p class="cargo-card-desc">Image resizing and thumbnail generation</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="compress image quality optimization pillow container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Compress Image</h3>
-                <p class="cargo-card-desc">Image compression with quality control</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="convert image format png jpg webp avif pillow container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Convert Image</h3>
-                <p class="cargo-card-desc">Image format conversion</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="crop smart saliency edge detection auto container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Smart Crop</h3>
-                <p class="cargo-card-desc">Smart crop using edge-based saliency detection</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="blur face privacy anonymize detection container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Blur Face</h3>
-                <p class="cargo-card-desc">Blur faces in images for privacy</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="watermark text image overlay brand container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Watermark</h3>
-                <p class="cargo-card-desc">Add text or image watermarks</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="colorize grayscale color restore container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Colorize</h3>
-                <p class="cargo-card-desc">Colorize grayscale images</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="image diff compare difference highlight visual container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Image Diff</h3>
-                <p class="cargo-card-desc">Compare two images and highlight differences</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="image metadata exif extract modify piexif container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Image Metadata</h3>
-                <p class="cargo-card-desc">Extract and manipulate image EXIF metadata</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="svg optimize svgo scour minify container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">SVG Optimize</h3>
-                <p class="cargo-card-desc">SVG optimization and minification</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="svg to png convert render rasterize cairosvg container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">SVG to PNG</h3>
-                <p class="cargo-card-desc">Convert SVG to PNG using CairoSVG</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="image" data-search="barcode generate read qr code container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Barcode</h3>
-                <p class="cargo-card-desc">Generate and read barcodes</p>
-            </div>
-
-            {# ===== CONTAINERS — Utility ===== #}
-            <div class="cargo-card" data-format="containers" data-category="utility" data-search="format code prettier black isort autopep8 linter container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Format Code</h3>
-                <p class="cargo-card-desc">Code formatting for multiple languages</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="utility" data-search="json to types typescript python type definition container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">JSON to Types</h3>
-                <p class="cargo-card-desc">Generate TypeScript or Python types from JSON</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="utility" data-search="language detect identification lingua container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Language Detect</h3>
-                <p class="cargo-card-desc">Language detection using lingua</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="utility" data-search="llm chat mock test fake simulated container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">LLM Chat (Mock)</h3>
-                <p class="cargo-card-desc">Mock LLM chat for testing</p>
-            </div>
-
-            <div class="cargo-card" data-format="containers" data-category="utility" data-search="sd mock stable diffusion test fake simulated container">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-containers">Container</span></div>
-                <h3 class="cargo-card-title">Stable Diffusion (Mock)</h3>
-                <p class="cargo-card-desc">Mock image generation for testing</p>
-            </div>
-
-            {# ===== WASM ===== #}
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="hash sha256 md5 blake3 crypto checksum wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Hash</h3>
-                <p class="cargo-card-desc">SHA-256, MD5, and Blake3 hash computation</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="json processing jq query transform filter wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">JSON</h3>
-                <p class="cargo-card-desc">JSON processing with jq-like operations</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="csv parse process filter transform tabular wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">CSV</h3>
-                <p class="cargo-card-desc">CSV processing with JSON conversion and filtering</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="base64 encode decode binary text wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Base64</h3>
-                <p class="cargo-card-desc">Base64 encode and decode operations</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="compress decompress gzip flate deflate wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Compress</h3>
-                <p class="cargo-card-desc">Gzip compression and decompression</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="regex match extract test pattern wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Regex</h3>
-                <p class="cargo-card-desc">Regex testing and extraction</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="markdown html convert render github flavored gfm wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Markdown</h3>
-                <p class="cargo-card-desc">Markdown to HTML conversion (GFM)</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="markdown toc table of contents heading outline wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Markdown TOC</h3>
-                <p class="cargo-card-desc">Generate table of contents from Markdown</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="uuid generate v4 v7 unique identifier wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">UUID</h3>
-                <p class="cargo-card-desc">UUID generation (v4, v7)</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="qrcode generate image text url wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">QR Code</h3>
-                <p class="cargo-card-desc">QR code generation from text or URLs</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="jwt decode inspect token json web token wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">JWT</h3>
-                <p class="cargo-card-desc">JWT decode and inspect</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="sanitize html xss clean safe ammonia wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Sanitize</h3>
-                <p class="cargo-card-desc">HTML sanitization for XSS protection</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="yaml json convert parse serialize wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">YAML</h3>
-                <p class="cargo-card-desc">YAML to JSON conversion</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="toml json convert parse config wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">TOML</h3>
-                <p class="cargo-card-desc">TOML to JSON conversion</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="url parse query host path manipulate wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">URL</h3>
-                <p class="cargo-card-desc">URL parsing and manipulation</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="slug url friendly string kebab case wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Slug</h3>
-                <p class="cargo-card-desc">URL slug generation</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="semver semantic version parse compare range wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Semver</h3>
-                <p class="cargo-card-desc">Semantic version parsing and comparison</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="diff text compare patch change wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Diff</h3>
-                <p class="cargo-card-desc">Text diff generation</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="highlight syntax code color html wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Highlight</h3>
-                <p class="cargo-card-desc">Syntax highlighting with HTML output</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="minify html css javascript compress reduce size wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Minify</h3>
-                <p class="cargo-card-desc">HTML, CSS, and JS minification</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="cron expression parse next run schedule wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Cron</h3>
-                <p class="cargo-card-desc">Cron expression parsing and next-run calculation</p>
-            </div>
-
-            <div class="cargo-card" data-format="wasm" data-category="utility" data-search="echo test passthrough debug identity wasm">
-                <div class="cargo-card-header"><span class="cargo-format-badge badge-wasm">WASM</span></div>
-                <h3 class="cargo-card-title">Echo</h3>
-                <p class="cargo-card-desc">Test cargo that echoes JSON input</p>
-            </div>
-
-        </div>
-
-        <!-- Empty state -->
-        <div id="cargo-empty" class="cargo-empty" style="display: none;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            <p>No cargos match your filters.</p>
-            <button class="btn btn-secondary btn-sm" onclick="document.querySelector('[data-filter-format=all]').click(); document.querySelector('[data-filter-category=all]').click(); document.getElementById('cargo-search').value=''; document.getElementById('cargo-search').dispatchEvent(new Event('input'));">Clear filters</button>
+            </main>
         </div>
     </div>
 </section>

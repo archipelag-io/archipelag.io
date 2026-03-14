@@ -2,54 +2,54 @@
 (function () {
   'use strict';
 
-  const searchInput = document.getElementById('cargo-search');
-  const formatBtns = document.querySelectorAll('[data-filter-format]');
-  const categoryBtns = document.querySelectorAll('[data-filter-category]');
-  const cards = document.querySelectorAll('.cargo-card');
-  const countEl = document.getElementById('cargo-count');
-  const grid = document.getElementById('cargo-grid');
-  const emptyState = document.getElementById('cargo-empty');
+  var searchInput = document.getElementById('cargo-search');
+  var formatBtns = document.querySelectorAll('[data-filter-format]');
+  var categoryBtns = document.querySelectorAll('[data-filter-category]');
+  var rows = document.querySelectorAll('.cargo-row');
+  var countEl = document.getElementById('cargo-count');
+  var list = document.getElementById('cargo-grid');
+  var emptyState = document.getElementById('cargo-empty');
 
-  let activeFormat = 'all';
-  let activeCategory = 'all';
-  let searchQuery = '';
+  var activeFormat = 'all';
+  var activeCategory = 'all';
+  var searchQuery = '';
 
   function normalize(str) {
     return str.toLowerCase().replace(/[^a-z0-9]/g, ' ');
   }
 
-  function filterCards() {
-    let visible = 0;
+  function filterRows() {
+    var visible = 0;
 
-    cards.forEach(function (card) {
-      const format = card.dataset.format;
-      const category = card.dataset.category;
-      const searchable = normalize(card.dataset.search || '');
-      const query = normalize(searchQuery);
+    rows.forEach(function (row) {
+      var format = row.dataset.format;
+      var category = row.dataset.category;
+      var searchable = normalize(row.dataset.search || '');
+      var query = normalize(searchQuery);
 
-      const matchesFormat = activeFormat === 'all' || format === activeFormat;
-      const matchesCategory = activeCategory === 'all' || category === activeCategory;
-      const matchesSearch = !query || query.split(' ').every(function (term) {
-        return searchable.indexOf(term) !== -1;
+      var matchesFormat = activeFormat === 'all' || format === activeFormat;
+      var matchesCategory = activeCategory === 'all' || category === activeCategory;
+      var matchesSearch = !query || query.split(' ').every(function (term) {
+        return term === '' || searchable.indexOf(term) !== -1;
       });
 
       if (matchesFormat && matchesCategory && matchesSearch) {
-        card.style.display = '';
+        row.style.display = '';
         visible++;
       } else {
-        card.style.display = 'none';
+        row.style.display = 'none';
       }
     });
 
     countEl.textContent = visible;
     emptyState.style.display = visible === 0 ? '' : 'none';
-    grid.style.display = visible === 0 ? 'none' : '';
+    list.style.display = visible === 0 ? 'none' : '';
   }
 
   // Search
   searchInput.addEventListener('input', function () {
     searchQuery = this.value;
-    filterCards();
+    filterRows();
   });
 
   // Format filter buttons
@@ -58,7 +58,7 @@
       activeFormat = this.dataset.filterFormat;
       formatBtns.forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
-      filterCards();
+      filterRows();
     });
   });
 
@@ -68,7 +68,7 @@
       activeCategory = this.dataset.filterCategory;
       categoryBtns.forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
-      filterCards();
+      filterRows();
     });
   });
 
@@ -82,7 +82,7 @@
       searchInput.value = '';
       searchQuery = '';
       searchInput.blur();
-      filterCards();
+      filterRows();
     }
   });
 })();
