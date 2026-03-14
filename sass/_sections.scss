@@ -155,7 +155,7 @@
     border-radius: inherit;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    animation: heat-shimmer 4s ease-in-out infinite;
+    animation: heat-shimmer 14s ease-in-out infinite;
     z-index: -1;
   }
 
@@ -172,19 +172,19 @@
     transform: scaleY(1) translateY(0);
   }
   25% {
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    transform: scaleY(1.005) translateY(-0.5px);
+    backdrop-filter: blur(2.8px);
+    -webkit-backdrop-filter: blur(2.8px);
+    transform: scaleY(1.002) translateY(-0.3px);
   }
   50% {
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    transform: scaleY(0.998) translateY(0.5px);
+    backdrop-filter: blur(1.2px);
+    -webkit-backdrop-filter: blur(1.2px);
+    transform: scaleY(0.998) translateY(0.3px);
   }
   75% {
-    backdrop-filter: blur(2.5px);
-    -webkit-backdrop-filter: blur(2.5px);
-    transform: scaleY(1.003) translateY(-0.3px);
+    backdrop-filter: blur(2.4px);
+    -webkit-backdrop-filter: blur(2.4px);
+    transform: scaleY(1.002) translateY(-0.2px);
   }
 }
 

@@ -32,6 +32,7 @@
     canvas.style.width = rect.width + 'px';
     canvas.style.height = rect.height + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    rebuildGrid(rect.width, rect.height);
   }
 
   // Detect theme: dark by default, light if html.light
@@ -51,84 +52,7 @@
     return { x: (gx - gy) * TX + ox, y: (gx + gy) * TY + oy };
   }
 
-  const COLS = 30, ROWS = 20;
-  const map = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
-
-  const clusters = [
-    // Large islands (5-9 tiles)
-    [[3,2,1],[3,3,2],[4,2,1],[4,3,1],[4,4,1],[5,3,2],[5,4,1],[5,2,1],[6,3,1]],
-    [[2,14,1],[2,15,2],[3,14,1],[3,15,1],[3,16,1],[4,15,1],[4,16,2]],
-    [[8,2,1],[8,3,1],[9,2,2],[10,2,1],[10,3,1],[9,3,1]],
-    [[14,20,1],[14,21,2],[15,20,1],[15,21,1],[15,22,1],[16,21,1],[16,22,2]],
-    [[1,22,1],[1,23,1],[2,22,2],[2,23,1],[2,24,1],[3,23,1]],
-    [[17,8,1],[17,9,2],[18,8,1],[18,9,1],[18,10,1],[19,9,1]],
-    // Medium islands (3-4 tiles)
-    [[9,9,2],[9,10,1],[10,9,1],[10,10,1]],
-    [[11,7,1],[12,7,1],[12,8,2]],
-    [[1,4,1],[2,4,2],[2,5,1]],
-    [[6,16,1],[6,17,1],[7,17,2]],
-    [[0,10,1],[1,10,1],[1,11,1]],
-    [[12,25,1],[13,25,2],[13,26,1]],
-    [[5,26,1],[6,26,1],[6,27,2]],
-    [[16,3,1],[16,4,2],[17,4,1]],
-    [[8,18,1],[8,19,1],[9,19,2]],
-    [[19,14,1],[19,15,1],[19,16,2]],
-    [[10,14,1],[10,15,2],[11,14,1]],
-    [[3,8,1],[3,9,2],[4,9,1]],
-    // Small islands (1-2 tiles)
-    [[1,8,2]],
-    [[6,18,1]],
-    [[11,16,1],[11,17,1]],
-    [[5,11,1]],
-    [[7,13,2]],
-    [[0,19,2],[1,19,1]],
-    [[13,4,1]],
-    [[4,20,2]],
-    [[12,13,1],[12,14,2]],
-    [[0,3,1]],
-    [[7,7,1]],
-    [[13,10,1]],
-    [[15,12,2]],
-    [[0,27,1]],
-    [[9,24,1]],
-    [[18,2,2]],
-    [[14,16,1]],
-    [[7,23,1]],
-    [[16,27,2]],
-    [[19,5,1]],
-    [[11,21,1]],
-    [[4,12,2]],
-    [[17,15,1]],
-    [[8,28,1]],
-    [[13,18,2]],
-    // Top-left area (low r, low c)
-    [[0,0,1],[0,1,2]],
-    [[1,1,1],[2,1,1],[2,2,2]],
-    [[5,0,1],[6,0,1]],
-    [[0,6,2]],
-    // Top-right area (low r, high c)
-    [[0,28,1],[0,29,2],[1,28,1]],
-    [[1,26,1],[2,26,1],[2,27,2]],
-    [[3,28,1],[4,28,2]],
-    [[0,24,1]],
-    [[5,28,1]],
-    [[3,26,2]],
-    // Rare hut/parasol
-    [[4,4,3]],
-    [[10,10,4]],
-    [[15,22,3]],
-  ];
-  clusters.forEach(cl => {
-    cl.forEach(([r, c, t]) => { if (r < ROWS && c < COLS) map[r][c] = t; });
-  });
-
-  const tileOffsets = Array.from({ length: ROWS }, () =>
-    Array.from({ length: COLS }, () => ({ dx: 0, dy: 0 }))
-  );
-
-  let slideAnim = null, lastSlideTime = 0;
-  const SLIDE_INTERVAL = 3000, SLIDE_DURATION = 800;
-
+  // Seeded PRNG (mulberry32)
   function mulberry32(a) {
     return function() {
       a |= 0; a = a + 0x6D2B79F5 | 0;
@@ -137,10 +61,79 @@
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     }
   }
+
+  // Dynamic grid — sized to fill the entire canvas
+  let COLS = 0, ROWS = 0, map = [], tileOffsets = [];
+
+  function generateMap(cols, rows) {
+    const m = Array.from({ length: rows }, () => new Array(cols).fill(0));
+    const gen = mulberry32(42);
+
+    // Pass 1: scatter cluster seeds (~2.5% density)
+    const seeds = [];
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++)
+        if (gen() < 0.025) seeds.push([r, c]);
+
+    // Pass 2: grow clusters from seeds via random walk
+    for (const [sr, sc] of seeds) {
+      const size = Math.floor(gen() * 6) + 2;
+      m[sr][sc] = 1;
+      let cr = sr, cc = sc;
+      for (let i = 1; i < size; i++) {
+        const dirs = [[0,1],[1,0],[0,-1],[-1,0],[1,1],[-1,1]];
+        const [dr, dc] = dirs[Math.floor(gen() * dirs.length)];
+        const nr = cr + dr, nc = cc + dc;
+        if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+          m[nr][nc] = 1;
+          cr = nr; cc = nc;
+        }
+      }
+    }
+
+    // Pass 3: sprinkle lone islands (~2%)
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++)
+        if (m[r][c] === 0 && gen() < 0.02) m[r][c] = 1;
+
+    // Pass 4: add decorations to ~15% of island tiles
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++)
+        if (m[r][c] === 1 && gen() < 0.15) {
+          const v = gen();
+          m[r][c] = v < 0.6 ? 2 : (v < 0.85 ? 3 : 4);
+        }
+
+    return m;
+  }
+
+  let slideAnims = [], lastSlideTime = 0;
+  const SLIDE_COUNT = 9;
+
+  function rebuildGrid(w, h) {
+    // Diamond must cover all 4 screen corners:
+    // COLS + ROWS >= w/TX + h/TY
+    const needed = Math.ceil(w / TX + h / TY) + 6;
+    const newCols = Math.max(Math.ceil(needed * 0.6), 30);
+    const newRows = Math.max(needed - newCols, 20);
+
+    if (newCols === COLS && newRows === ROWS) return;
+
+    COLS = newCols;
+    ROWS = newRows;
+    map = generateMap(COLS, ROWS);
+    tileOffsets = Array.from({ length: ROWS }, () =>
+      Array.from({ length: COLS }, () => ({ dx: 0, dy: 0 }))
+    );
+    slideAnims = [];
+  }
+  const SLIDE_INTERVAL = 3000, SLIDE_DURATION = 800;
+
   const rng = mulberry32(77);
 
   function pickSlide(now) {
-    if (slideAnim || now - lastSlideTime < SLIDE_INTERVAL) return;
+    if (slideAnims.length > 0 || now - lastSlideTime < SLIDE_INTERVAL) return;
+    // Collect all movable tiles
     const candidates = [];
     for (let r = 0; r < ROWS; r++)
       for (let c = 0; c < COLS; c++) {
@@ -152,24 +145,41 @@
         });
       }
     if (!candidates.length) return;
-    const pick = candidates[Math.floor(rng() * candidates.length)];
-    slideAnim = { ...pick, progress: 0, startTime: now };
+    // Pick multiple non-conflicting slides
+    const claimed = new Set();
+    for (let i = 0; i < SLIDE_COUNT && candidates.length > 0; i++) {
+      const idx = Math.floor(rng() * candidates.length);
+      const pick = candidates[idx];
+      const srcKey = pick.r + ',' + pick.c;
+      const dstKey = (pick.r + pick.dr) + ',' + (pick.c + pick.dc);
+      if (claimed.has(srcKey) || claimed.has(dstKey)) {
+        candidates.splice(idx, 1);
+        i--;
+        continue;
+      }
+      claimed.add(srcKey);
+      claimed.add(dstKey);
+      slideAnims.push({ ...pick, progress: 0, startTime: now });
+      candidates.splice(idx, 1);
+    }
     lastSlideTime = now;
   }
 
   function updateSlide(now) {
-    if (!slideAnim) return;
-    const elapsed = now - slideAnim.startTime;
-    slideAnim.progress = Math.min(1, elapsed / SLIDE_DURATION);
-    const t = slideAnim.progress;
-    const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-    const { r, c, dr, dc } = slideAnim;
-    tileOffsets[r][c] = { dx: dc * eased, dy: dr * eased };
-    if (slideAnim.progress >= 1) {
-      tileOffsets[r][c] = { dx: 0, dy: 0 };
-      map[r + dr][c + dc] = map[r][c];
-      map[r][c] = 0;
-      slideAnim = null;
+    for (let i = slideAnims.length - 1; i >= 0; i--) {
+      const anim = slideAnims[i];
+      const elapsed = now - anim.startTime;
+      anim.progress = Math.min(1, elapsed / SLIDE_DURATION);
+      const t = anim.progress;
+      const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const { r, c, dr, dc } = anim;
+      tileOffsets[r][c] = { dx: dc * eased, dy: dr * eased };
+      if (anim.progress >= 1) {
+        tileOffsets[r][c] = { dx: 0, dy: 0 };
+        map[r + dr][c + dc] = map[r][c];
+        map[r][c] = 0;
+        slideAnims.splice(i, 1);
+      }
     }
   }
 
@@ -316,6 +326,7 @@
         if (map[r][c] === 0) continue;
         const off = tileOffsets[r][c];
         const pos = toScreen(c + off.dx, r + off.dy, ox, oy);
+        if (pos.x < -TX * 2 || pos.x > w + TX * 2 || pos.y < -TY * 2 - TILE_H || pos.y > h + TY * 2 + TILE_H) continue;
         drawCuboidSides(pos.x, pos.y, teal, 1, bg);
       }
 
@@ -328,6 +339,7 @@
         if (map[r][c] === 0) continue;
         const off = tileOffsets[r][c];
         const pos = toScreen(c + off.dx, r + off.dy, ox, oy);
+        if (pos.x < -TX * 2 || pos.x > w + TX * 2 || pos.y < -TY * 2 - TILE_H || pos.y > h + TY * 2 + TILE_H) continue;
         drawCuboidTop(pos.x, pos.y, teal, 1, bg);
         if (map[r][c] === 2) drawPalmTree(pos.x, pos.y, teal, 1, bg);
         if (map[r][c] === 3) drawMountain(pos.x, pos.y, teal, 1, bg);
