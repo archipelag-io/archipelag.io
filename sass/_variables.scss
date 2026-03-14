@@ -42,6 +42,31 @@
   font-display: swap;
 }
 
+/* Sora - subline typeface (geometric grotesk) */
+@font-face {
+  font-family: 'Sora';
+  src: url('https://cdn.fontshare.com/wf/XR5REPALAPN54FEEIVU4Z7ZE3Z5TYAXV/ZVSCLT36TMKD3NSNAKQISILPVOHE4VFU/NTHDIHEFNRRDAFXF6EKGHNYZ4FA3VMWE.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url('https://cdn.fontshare.com/wf/SJWETCERZXVLDCL4K6NJGS3H7NAV5YTM/F5EBUUP2RO5CM2W74SL4R7M6IUX4GDPL/OAO3FLMO5KOXWLXSTUJGS4EGOYFMSDQ3.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url('https://cdn.fontshare.com/wf/GLVBSLTLGSCYENHQZEZZBTPERIGASIAQ/CT5J6DRJRGN4DH5H6MRQDPOBOI4XDORK/ECOUY4IVDS6VGQYSST232TDR3EZRRMCW.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* IBM Plex Mono - body typeface (technical/monospace feel) */
 @font-face {
   font-family: 'IBM Plex Mono';
@@ -109,6 +134,7 @@
   // Typography
   --font-body: 'IBM Plex Mono', 'Fira Mono', monospace;
   --font-brand: 'Satoshi', system-ui, sans-serif;
+  --font-subline: 'Sora', 'Satoshi', system-ui, sans-serif;
 
   // Scale
   --text-xs: #{$aui-text-xs};

@@ -175,7 +175,7 @@ html.light .section-ocean::before {
 }
 
 .section-subtitle {
-  font-family: var(--font-brand);
+  font-family: var(--font-subline);
   font-size: var(--text-lg);
   font-weight: 400;
   color: var(--text-secondary);
@@ -281,7 +281,7 @@ html.light .section-ocean::before {
 }
 
 .hero-subtitle {
-  font-family: var(--font-brand);
+  font-family: var(--font-subline);
   font-size: var(--text-lg);
   font-weight: 400;
   color: var(--text-tertiary);
@@ -357,6 +357,7 @@ html.light .section-ocean::before {
   }
 
   .split-desc {
+    font-family: var(--font-subline);
     font-size: var(--text-base);
     color: var(--text-secondary);
     margin-bottom: var(--space-6);
@@ -388,7 +389,7 @@ html.light .section-ocean::before {
 }
 
 .cta-subtitle {
-  font-family: var(--font-brand);
+  font-family: var(--font-subline);
   font-size: var(--text-base);
   font-weight: 400;
   color: var(--text-secondary);
@@ -424,7 +425,7 @@ html.light .section-ocean::before {
   }
 
   .preview-desc {
-    font-family: var(--font-brand);
+    font-family: var(--font-subline);
     font-size: var(--text-base);
     font-weight: 400;
     color: var(--text-secondary);
@@ -798,7 +799,7 @@ html.light .footer-logo img { filter: invert(1); }
 }
 
 .footer-tagline {
-  font-family: var(--font-brand);
+  font-family: var(--font-subline);
   font-size: var(--text-sm);
   font-weight: 400;
   color: #555;

@@ -186,6 +186,7 @@ html.light .btn-primary {
   }
 
   .feature-desc {
+    font-family: var(--font-subline);
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: 1.6;
@@ -500,7 +501,7 @@ html.light .btn-primary {
 
   .feature-icon { width: 48px; height: 48px; margin: 0 0 var(--space-5) 0; padding: var(--space-3); background: var(--surface-2); color: var(--accent); border-radius: var(--radius-md); svg { width: 100%; height: 100%; } }
   .feature-title { font-family: var(--font-brand); font-size: var(--text-xl); font-weight: 600; color: var(--text); margin-bottom: var(--space-3); }
-  .feature-desc { font-size: var(--text-base); color: var(--text-secondary); line-height: 1.7; }
+  .feature-desc { font-family: var(--font-subline); font-size: var(--text-base); color: var(--text-secondary); line-height: 1.7; }
 }
 
 .antigrid-stat {
@@ -778,6 +779,7 @@ html.light .btn-primary {
 }
 
 .blog-description {
+  font-family: var(--font-subline);
   font-size: var(--text-xl);
   color: var(--text-secondary);
   line-height: 1.5;
@@ -813,6 +815,7 @@ html.light .btn-primary {
 }
 
 .blog-card-desc {
+  font-family: var(--font-subline);
   font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: 1.6;
@@ -871,6 +874,7 @@ html.light .btn-primary {
   }
 
   .principle-desc {
+    font-family: var(--font-subline);
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: 1.7;
@@ -962,6 +966,7 @@ html.light .btn-primary {
   }
 
   .tech-desc {
+    font-family: var(--font-subline);
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: 1.7;

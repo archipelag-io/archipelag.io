@@ -37,6 +37,9 @@
   }
 }
 
+// Font utility classes
+.font-subline { font-family: var(--font-subline); }
+
 // Prose styling for content pages
 .prose {
   max-width: 65ch;
@@ -71,10 +74,19 @@
   ul, ol { padding-left: 1.5em; margin-bottom: 1.5em; }
   li { margin-bottom: 0.5em; }
 
+  // Lead paragraph — first paragraph in an article gets subline treatment
+  > p:first-child {
+    font-family: var(--font-subline);
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
   blockquote {
     border-left: 3px solid var(--accent);
     padding-left: 1em;
     margin: 1.5em 0;
+    font-family: var(--font-subline);
     font-style: italic;
     color: var(--text-secondary);
   }
