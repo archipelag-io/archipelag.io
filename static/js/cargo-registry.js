@@ -5,6 +5,7 @@
   var searchInput = document.getElementById('cargo-search');
   var formatBtns = document.querySelectorAll('[data-filter-format]');
   var categoryBtns = document.querySelectorAll('[data-filter-category]');
+  var maintainerBtns = document.querySelectorAll('[data-filter-maintainer]');
   var rows = document.querySelectorAll('.cargo-row');
   var countEl = document.getElementById('cargo-count');
   var list = document.getElementById('cargo-grid');
@@ -12,6 +13,7 @@
 
   var activeFormat = 'all';
   var activeCategory = 'all';
+  var activeMaintainer = 'all';
   var searchQuery = '';
 
   function normalize(str) {
@@ -24,16 +26,18 @@
     rows.forEach(function (row) {
       var format = row.dataset.format;
       var category = row.dataset.category;
+      var maintainer = row.dataset.maintainer;
       var searchable = normalize(row.dataset.search || '');
       var query = normalize(searchQuery);
 
       var matchesFormat = activeFormat === 'all' || format === activeFormat;
       var matchesCategory = activeCategory === 'all' || category === activeCategory;
+      var matchesMaintainer = activeMaintainer === 'all' || maintainer === activeMaintainer;
       var matchesSearch = !query || query.split(' ').every(function (term) {
         return term === '' || searchable.indexOf(term) !== -1;
       });
 
-      if (matchesFormat && matchesCategory && matchesSearch) {
+      if (matchesFormat && matchesCategory && matchesMaintainer && matchesSearch) {
         row.style.display = '';
         visible++;
       } else {
@@ -67,6 +71,16 @@
     btn.addEventListener('click', function () {
       activeCategory = this.dataset.filterCategory;
       categoryBtns.forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      filterRows();
+    });
+  });
+
+  // Maintainer filter buttons
+  maintainerBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      activeMaintainer = this.dataset.filterMaintainer;
+      maintainerBtns.forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
       filterRows();
     });
