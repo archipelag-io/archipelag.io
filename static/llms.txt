@@ -2,15 +2,15 @@
 
 > Compute, closer to you.
 
-Archipelag.io (pronounced "archipelago") is a decentralized AI compute network. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form), and the domain is archipelag.io. Users run AI workloads (LLM chat, image generation) on community-operated hosts nearby, getting lower latency, fair pricing, and full data residency control. Hosts earn credits by contributing idle GPU compute.
+Archipelag.io (pronounced "archipelago") is a decentralized AI compute network. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form), and the domain is archipelag.io. Consumers run AI workloads (LLM chat, image generation) on community-operated Islands nearby, getting lower latency, fair pricing, and full data residency control. Islands earn credits by contributing idle GPU compute.
 
 The platform is currently in open beta (until June 2026). All credits and earnings are virtual during beta.
 
 ## What Archipelag.io Does
 
-- Routes AI inference jobs to nearby independently-operated compute hosts
+- Routes AI inference jobs to nearby independently-operated Islands
 - Provides jurisdiction-aware routing for GDPR, FADP, and EU AI Act compliance
-- Enables GPU owners to earn credits from idle hardware via a compute exchange
+- Enables GPU owners to earn credits as Islands from idle hardware via a compute exchange
 - Offers OpenAI-compatible REST API with streaming support
 - Provides Python and JavaScript/React SDKs
 - All workloads run in sandboxed, signed containers — no arbitrary code execution
@@ -24,21 +24,21 @@ The platform is currently in open beta (until June 2026). All credits and earnin
 - Market-based pricing via the compute exchange — no fixed tiers or subscriptions
 - Free beta credits for new accounts, no credit card required
 
-## For GPU Hosts
+## For Islands
 
 - Earn credits by running AI workloads on your GPU
 - Set your own asking price — the compute exchange clears a market rate
-- Download the node agent for Windows, macOS, or Linux
+- Download the Island software for Windows, macOS, or Linux
 - All workloads are network-approved and cryptographically signed (cosign)
 - Sandboxed Docker containers with seccomp profiles — no access to files or network
-- Karma reputation system: higher score = more jobs + better rates
+- Karma reputation system: higher Island score = more jobs + better rates
 - Payouts via Stripe, available in 40+ countries
 
 ## Pricing
 
 Market-based pricing set by supply and demand on the compute exchange:
-- Hosts set asking prices per workload type
-- Users set bid preferences
+- Islands set asking prices per workload type
+- Consumers set bid preferences
 - The coordinator clears a market rate every 5 minutes
 - During beta, credits are pegged at $0.01 each
 - New accounts receive free beta credits to start
@@ -47,7 +47,7 @@ Market-based pricing set by supply and demand on the compute exchange:
 
 - Coordinator: Elixir/Phoenix, PostgreSQL
 - Message fabric: NATS with JetStream
-- Host agent: Rust, Tokio
+- Island software: Rust, Tokio
 - Workloads: signed Docker containers, WASM modules
 - Security: container signing (cosign), seccomp profiles, registry allowlist
 - Identity: KYC verification via Stripe Identity
@@ -71,7 +71,7 @@ Market-based pricing set by supply and demand on the compute exchange:
 
 - [Home](https://archipelag.io/): Landing page with product overview
 - [Use AI](https://archipelag.io/use/): Features and capabilities for AI users
-- [Earn](https://archipelag.io/earn/): Information for GPU hosts and earnings
+- [Earn](https://archipelag.io/earn/): Information for Islands and earnings
 - [News](https://archipelag.io/news/): Company updates and technical articles
 - [About](https://archipelag.io/about/): Mission, values, and Swiss/EU heritage
 - [Contact](https://archipelag.io/contact/): Support channels and partnerships

@@ -45,7 +45,7 @@ We're not trying to replace cloud providers. Data centers are good at sustained,
 
 ## What comes next
 
-Over the coming months, we're adding more models, expanding into more regions, and shipping SDKs for Python and JavaScript so developers can build on top of this without thinking about the infrastructure underneath. We're also working on a mobile agent, because modern phones have serious compute capabilities and there's no reason they shouldn't participate in the network too.
+Over the coming months, we're adding more models, expanding into more regions, and shipping SDKs for Python and JavaScript so developers can build on top of this without thinking about the infrastructure underneath. We're also working on a mobile Island, because modern phones have serious compute capabilities and there's no reason they shouldn't participate in the network too.
 
 The harder work is in the economics and the trust model. How do you price compute fairly when every Island has different hardware, different electricity costs, different availability patterns? How do you build enough trust that people are willing to send real workloads to strangers' machines? We have initial answers to both of these, but they're hypotheses, not conclusions. We need real usage to test them.
 

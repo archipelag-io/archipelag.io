@@ -2,37 +2,37 @@
 
 > Compute, closer to you.
 
-Archipelag.io (pronounced "archipelago") is a decentralized AI compute network that routes workloads to nearby independently-operated hosts. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form). The name evokes an archipelago — a network of independent islands working together. Users submit AI inference jobs, community hosts execute them on their GPUs, and a coordinator orchestrates everything. Think: edge compute network where anyone can contribute GPU/CPU resources and earn credits.
+Archipelag.io (pronounced "archipelago") is a decentralized AI compute network that routes workloads to nearby independently-operated Islands. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form). The name evokes an archipelago — a network of independent islands working together. Consumers submit AI inference jobs, community Islands execute them on their GPUs, and a coordinator orchestrates everything. Think: edge compute network where anyone can contribute GPU/CPU resources and earn credits.
 
 The platform is currently in open beta (until June 2026). All credits and earnings are virtual during the beta period.
 
 ## Core Value Proposition
 
-**For AI Users:**
+**For Consumers:**
 - Run AI workloads (LLM chat, image generation) on distributed community hardware
-- Lower latency by routing to nearby hosts (measured RTT, not just geography)
+- Lower latency by routing to nearby Islands (measured RTT, not just geography)
 - Jurisdiction-aware routing for compliance (EU-only, Switzerland, custom policies)
 - OpenAI-compatible API — drop-in replacement for existing applications
 - Market-based pricing via the compute exchange — no fixed tiers or subscriptions
 - Free beta credits for new accounts, no credit card required
 
-**For GPU Hosts:**
+**For Islands:**
 - Earn credits by contributing idle GPU hardware (gaming PCs, workstations)
 - Set your own asking price — the compute exchange clears a market rate
 - All workloads are network-approved, cryptographically signed containers
-- Sandboxed execution — no access to host files, network, or processes
-- Karma reputation system rewards reliable hosts with more jobs and better rates
+- Sandboxed execution — no access to Island files, network, or processes
+- Karma reputation system rewards reliable Islands with more jobs and better rates
 - Payouts via Stripe, available in 40+ countries
 
 ## Architecture
 
 ```
-User (browser/API) → Coordinator (Elixir/Phoenix) → NATS JetStream → Node Agent (Rust) → Workload Container → NATS → Coordinator → User
+Consumer (browser/API) → Coordinator (Elixir/Phoenix) → NATS JetStream → Island (Rust) → Workload Container → NATS → Coordinator → Consumer
 ```
 
 - **Coordinator**: Elixir/Phoenix control plane handling placement, dispatch, billing, health monitoring
 - **Message Fabric**: NATS with JetStream for reliable job dispatch and streaming output
-- **Node Agent**: Rust-based host agent running on contributor machines
+- **Island Software**: Rust-based agent running on contributor machines
 - **Workloads**: Signed Docker containers and WASM modules
 
 ## Products & Features
@@ -68,8 +68,8 @@ User (browser/API) → Coordinator (Elixir/Phoenix) → NATS JetStream → Node 
 
 ### Compute Exchange
 Prices are set by supply and demand, not by Archipelag.io:
-- Hosts set asking prices per workload type
-- Users set bid preferences
+- Islands set asking prices per workload type
+- Consumers set bid preferences
 - The coordinator clears a market rate every 5 minutes
 - Live rates visible at https://app.archipelag.io/exchange
 - During beta, credits are pegged at $0.01 each
@@ -78,7 +78,7 @@ Prices are set by supply and demand, not by Archipelag.io:
 ### How It Works
 - Credits, not subscriptions — buy when you need them, no monthly fee
 - Every job shows its clearing price before execution
-- You see exactly what you'll pay and which host will run it
+- You see exactly what you'll pay and which Island will run it
 
 ## Karma Reputation System
 
@@ -86,9 +86,9 @@ Prices are set by supply and demand, not by Archipelag.io:
 - Increases: successful job completions
 - Decreases: failures, timeouts
 - Benefits: higher karma = job priority in placement
-- Coordinator factors karma alongside latency for host selection
+- Coordinator factors karma alongside latency for Island selection
 
-## Host Requirements
+## Island Requirements
 
 - **GPU**: NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended)
 - **Network**: Stable internet connection (lower latency = preferred for nearby users)
@@ -106,34 +106,34 @@ Prices are set by supply and demand, not by Archipelag.io:
 ## Frequently Asked Questions
 
 ### What is Archipelag.io?
-Archipelag.io is a decentralized AI compute network. Users run AI workloads on community-operated hosts nearby, getting lower latency and fair pricing. Hosts earn credits by contributing idle GPU compute. All workloads are sandboxed and verified.
+Archipelag.io is a decentralized AI compute network. Consumers run AI workloads on community-operated Islands nearby, getting lower latency and fair pricing. Islands earn credits by contributing idle GPU compute. All workloads are sandboxed and verified.
 
 ### How does it work?
-Users submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby community hosts with the right hardware. Responses stream back in real time. Hosts earn credits for every job completed.
+Consumers submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby Islands with the right hardware. Responses stream back in real time. Islands earn credits for every job completed.
 
 ### Is the API compatible with OpenAI?
 Yes. Archipelag.io exposes a `/v1/chat/completions` endpoint that is fully compatible with the OpenAI client libraries. You can use the official Python or JavaScript OpenAI SDKs — just change the `base_url` to `https://app.archipelag.io/api/v1`.
 
 ### What AI models are available?
-The network currently supports Mistral 7B, Llama, and other open-weight language models for chat, plus Stable Diffusion XL and FLUX for image generation. More models are added during the beta as hosts contribute diverse hardware.
+The network currently supports Mistral 7B, Llama, and other open-weight language models for chat, plus Stable Diffusion XL and FLUX for image generation. More models are added during the beta as Islands contribute diverse hardware.
 
 ### How much does it cost?
-Pricing is market-based — hosts set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers.
+Pricing is market-based — Islands set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers.
 
-### Is it safe to host?
-Yes. Hosts only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced.
+### Is it safe to run an Island?
+Yes. Islands only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced.
 
 ### Does my data stay local?
-Yes. Jobs route to nearby hosts by default, keeping data regional. Teams with compliance requirements can set explicit jurisdiction policies (e.g., EU-only, Switzerland) to guarantee data residency.
+Yes. Jobs route to nearby Islands by default, keeping data regional. Teams with compliance requirements can set explicit jurisdiction policies (e.g., EU-only, Switzerland) to guarantee data residency.
 
 ### How much can I earn with my GPU?
-Earnings depend on your GPU, your asking price, your availability, and network demand. During the beta, demand is growing — early hosts build karma scores that give them priority as the network scales.
+Earnings depend on your GPU, your asking price, your availability, and network demand. During the beta, demand is growing — early Islands build karma scores that give them priority as the network scales.
 
 ### How do payouts work?
 Earnings accrue as credits. Payouts are processed via Stripe, which supports direct deposit in 40+ countries.
 
 ### What hardware do I need?
-An NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended), a stable internet connection, and Docker. The node agent runs on Linux, macOS, and Windows.
+An NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended), a stable internet connection, and Docker. The Island software runs on Linux, macOS, and Windows.
 
 ### What is the Karma system?
 Karma is a reputation score (50–100) that reflects your reliability. It increases with successful jobs and decreases for failures or timeouts. Higher karma means priority in job placement and better rates.
@@ -145,7 +145,7 @@ Yes. The platform supports jurisdiction-aware routing so your data stays in the 
 Credits do not expire. They remain in your account until used.
 
 ### Is KYC required?
-Basic usage is available without KYC. For hosting and higher spending limits, identity verification via Stripe Identity is required.
+Basic usage is available without KYC. For running an Island and higher spending limits, identity verification via Stripe Identity is required.
 
 ## Contact
 
@@ -167,7 +167,7 @@ Basic usage is available without KYC. For hosting and higher spending limits, id
 
 - [Home](https://archipelag.io/) — Landing page with product overview and features
 - [Use AI](https://archipelag.io/use/) — Capabilities, API integration, and getting started for AI users
-- [Earn](https://archipelag.io/earn/) — GPU hosting information, compute exchange, Karma system, security
+- [Earn](https://archipelag.io/earn/) — Island information, compute exchange, Karma system, security
 - [News](https://archipelag.io/news/) — Company updates and technical articles
 - [About](https://archipelag.io/about/) — Mission, Swiss/EU heritage, technology overview
 - [Contact](https://archipelag.io/contact/) — Support channels and partnerships

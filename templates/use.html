@@ -148,7 +148,7 @@
                         "name": "How much does it cost?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Pricing is market-based — hosts set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers."
+                            "text": "Pricing is market-based — Islands set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers."
                         }
                     },
                     {
@@ -156,7 +156,7 @@
                         "name": "Does my data stay in my region?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "By default, jobs route to nearby hosts for lower latency. For compliance, you can set explicit jurisdiction policies (EU-only, Switzerland, or custom) so your data never leaves a specific region."
+                            "text": "By default, jobs route to nearby Islands for lower latency. For compliance, you can set explicit jurisdiction policies (EU-only, Switzerland, or custom) so your data never leaves a specific region."
                         }
                     }
                 ]
@@ -340,7 +340,7 @@ stream = client.chat.completions.create(
                         <div class="antigrid-card tech-card">
                             <span class="tech-label">Data residency</span>
                             <span class="tech-name" style="font-size: var(--text-base);">Jurisdiction routing</span>
-                            <p class="tech-desc">Optional policy parameter restricts job placement to hosts in specific regions (EU, Switzerland, custom). For teams with compliance requirements.</p>
+                            <p class="tech-desc">Optional policy parameter restricts job placement to Islands in specific regions (EU, Switzerland, custom). For teams with compliance requirements.</p>
                         </div>
                     </div>
                 </div>
@@ -385,7 +385,7 @@ stream = client.chat.completions.create(
                                 </svg>
                             </div>
                             <h3 class="principle-title">Transparent billing</h3>
-                            <p class="principle-desc">Every job shows its clearing price before execution. You see exactly what you'll pay and which host will run it.</p>
+                            <p class="principle-desc">Every job shows its clearing price before execution. You see exactly what you'll pay and which Island will run it.</p>
                         </div>
                     </div>
                 </div>
@@ -415,7 +415,7 @@ stream = client.chat.completions.create(
                         <div class="antigrid-card" style="text-align:center;">
                             <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">3</span>
                             <h3 class="font-brand text-lg mb-2">Get results</h3>
-                            <p class="text-sm text-secondary">The coordinator finds the nearest host. Responses stream back token-by-token in real time.</p>
+                            <p class="text-sm text-secondary">The coordinator finds the nearest Island. Responses stream back token-by-token in real time.</p>
                         </div>
                     </div>
                 </div>
