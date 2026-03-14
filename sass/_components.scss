@@ -56,10 +56,10 @@ html.light .beta-banner {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start;
+  align-self: center;
   width: fit-content;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-5);
+  padding: var(--space-3) var(--space-6);
   font-family: var(--font-brand);
   font-size: var(--text-xs);
   font-weight: 500;
@@ -132,7 +132,7 @@ html.light .btn-primary {
 }
 
 .btn-lg {
-  padding: var(--space-3) var(--space-8);
+  padding: var(--space-4) var(--space-10);
   font-size: var(--text-sm);
 }
 
