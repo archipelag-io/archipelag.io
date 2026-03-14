@@ -109,12 +109,13 @@
                 <div class="cargo-sidebar-section">
                     <div class="cargo-sidebar-heading">Format</div>
                     <div class="cargo-sidebar-options">
-                        <button class="cargo-sidebar-btn active" data-filter-format="all">All<span class="cargo-sidebar-count">86</span></button>
-                        <button class="cargo-sidebar-btn" data-filter-format="onnx"><span class="cargo-sidebar-dot dot-onnx"></span>ONNX<span class="cargo-sidebar-count">23</span></button>
+                        <button class="cargo-sidebar-btn active" data-filter-format="all">All<span class="cargo-sidebar-count">133</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="onnx"><span class="cargo-sidebar-dot dot-onnx"></span>ONNX<span class="cargo-sidebar-count">45</span></button>
                         <button class="cargo-sidebar-btn" data-filter-format="containers"><span class="cargo-sidebar-dot dot-containers"></span>Containers<span class="cargo-sidebar-count">38</span></button>
                         <button class="cargo-sidebar-btn" data-filter-format="wasm"><span class="cargo-sidebar-dot dot-wasm"></span>WASM<span class="cargo-sidebar-count">22</span></button>
-                        <button class="cargo-sidebar-btn" data-filter-format="gguf"><span class="cargo-sidebar-dot dot-gguf"></span>GGUF<span class="cargo-sidebar-count">1</span></button>
-                        <button class="cargo-sidebar-btn" data-filter-format="diffusers"><span class="cargo-sidebar-dot dot-diffusers"></span>Diffusers<span class="cargo-sidebar-count">2</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="gguf"><span class="cargo-sidebar-dot dot-gguf"></span>GGUF<span class="cargo-sidebar-count">13</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="diffusers"><span class="cargo-sidebar-dot dot-diffusers"></span>Diffusers<span class="cargo-sidebar-count">12</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-format="coreml"><span class="cargo-sidebar-dot dot-coreml"></span>CoreML<span class="cargo-sidebar-count">3</span></button>
                     </div>
                 </div>
                 <div class="cargo-sidebar-section">
@@ -134,8 +135,8 @@
                 <div class="cargo-sidebar-section">
                     <div class="cargo-sidebar-heading">Maintainer</div>
                     <div class="cargo-sidebar-options">
-                        <button class="cargo-sidebar-btn active" data-filter-maintainer="all">All<span class="cargo-sidebar-count">86</span></button>
-                        <button class="cargo-sidebar-btn" data-filter-maintainer="official"><span class="cargo-sidebar-dot dot-official"></span>Official<span class="cargo-sidebar-count">86</span></button>
+                        <button class="cargo-sidebar-btn active" data-filter-maintainer="all">All<span class="cargo-sidebar-count">133</span></button>
+                        <button class="cargo-sidebar-btn" data-filter-maintainer="official"><span class="cargo-sidebar-dot dot-official"></span>Official<span class="cargo-sidebar-count">133</span></button>
                         <button class="cargo-sidebar-btn" data-filter-maintainer="certified"><span class="cargo-sidebar-dot dot-certified"></span>Certified<span class="cargo-sidebar-count">0</span></button>
                         <button class="cargo-sidebar-btn" data-filter-maintainer="community"><span class="cargo-sidebar-dot dot-community"></span>Community<span class="cargo-sidebar-count">0</span></button>
                     </div>
@@ -151,7 +152,7 @@
                 </div>
 
                 <div class="cargo-toolbar">
-                    <div class="cargo-result-count"><strong id="cargo-count">86</strong> cargos</div>
+                    <div class="cargo-result-count"><strong id="cargo-count">133</strong> cargos</div>
                 </div>
 
                 <div class="cargo-list" id="cargo-grid">
@@ -163,6 +164,102 @@
                             <div class="cargo-row-title">LLM Chat<span class="cargo-badge badge-official">Official</span></div>
                             <div class="cargo-row-desc">Large language model chat inference using llama.cpp</div>
                             <div class="cargo-row-tags"><span class="cargo-tag">Mistral 7B Instruct</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4.4 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen 0.8b language model chat lightweight mobile edge on-device gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-0.8B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-lightweight language model for edge and mobile inference</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-0.8B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>0.6 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen 4b language model chat reasoning gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-4B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Compact language model with strong reasoning capabilities</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-4B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2.7 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen 9b language model chat reasoning consumer gpu gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-9B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Mid-size language model for consumer GPU inference</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-9B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>5.5 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen 27b language model chat reasoning high quality gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-27B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality language model for demanding reasoning tasks</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-27B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen 35b moe mixture of experts efficient language model gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-35B-A3B (MoE)<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Mixture-of-Experts LLM with 35B total / 3B active parameters</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-35B-A3B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>MoE</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>20 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="qwen coder code generation completion programming developer gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-Coder<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Code-specialized LLM for code generation, completion, and explanation</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3-Coder-Next</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="glm 5 zai reasoning coding agentic moe mixture experts gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">GLM-5<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Massive MoE LLM for reasoning, coding, and agentic tasks</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">GLM-5</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>MoE</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>744B/40B active</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>42 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="llama 3 3.1 8b meta instruct language model chat gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Llama 3.1 8B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Meta's general-purpose LLM with large fine-tune ecosystem</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Llama-3.1-8B-Instruct</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4.9 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="gpt oss openai open source 20b language model gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">GPT-OSS 20B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">OpenAI's first open-weight language model</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">gpt-oss-20b</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>12 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="minimax m2.5 agentic workflow language model gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">MiniMax M2.5<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Agentic LLM optimized for complex multi-step workflows</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">MiniMax-M2.5</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="nanbeige 3b chinese multilingual small language model gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Nanbeige4.1-3B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Lightweight multilingual LLM with strong Chinese language support</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Nanbeige4.1-3B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="gguf" data-category="generative" data-maintainer="official" data-search="nemotron nvidia 120b moe mixture experts reasoning gguf">
+                        <div class="cargo-row-icon icon-gguf">GGUF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Nemotron-3 120B-A12B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">NVIDIA's MoE LLM with 120B total / 12B active parameters</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Nemotron-3-120B-A12B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>MoE</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Q4_K_M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>68 GB</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
                         </div>
                     </div>
 
@@ -181,6 +278,86 @@
                             <div class="cargo-row-title">Music Gen<span class="cargo-badge badge-official">Official</span></div>
                             <div class="cargo-row-desc">Text-to-music generation using Meta MusicGen</div>
                             <div class="cargo-row-tags"><span class="cargo-tag">facebook/musicgen-small</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="flux 1 dev black forest labs text to image generation high quality diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">FLUX.1-dev<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality text-to-image generation with superior prompt adherence</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">black-forest-labs/FLUX.1-dev</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>12 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="flux 1 schnell fast text to image generation 4 step diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">FLUX.1-schnell<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-fast text-to-image generation (4-step distilled)</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">FLUX.1-schnell</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4-step</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="z image turbo alibaba tongyi text to image fast diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Z-Image-Turbo<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-fast text-to-image generation from Alibaba</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Tongyi-MAI/Z-Image-Turbo</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="stable diffusion 3.5 large stabilityai mmdit text to image diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Stable Diffusion 3.5 Large<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Latest text-to-image from Stability AI with MMDiT architecture</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">stabilityai/sd-3.5-large</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>MMDiT</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>12 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="qwen image 2512 alibaba text to image multimodal diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen-Image<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Multimodal image generation from Alibaba's Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen-Image-2512</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>12 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="wan 2.1 text to video generation 14b high quality diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Wan2.1-T2V-14B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality text-to-video generation (14B parameters)</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Wan-AI/Wan2.1-T2V-14B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Video</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>24 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="wan 2.2 text to video generation moe efficient diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Wan2.2-T2V-A14B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Text-to-video with MoE architecture for efficient inference</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Wan2.2-T2V-A14B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>MoE</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Video</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="hunyuan video tencent text to video generation diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">HunyuanVideo-1.5<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-fidelity text-to-video generation from Tencent</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">tencent/HunyuanVideo-1.5</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Video</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>24 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="wan 2.1 text to video lightweight small consumer gpu diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Wan2.1-T2V-1.3B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Lightweight text-to-video for consumer GPUs</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Wan2.1-T2V-1.3B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Video</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="diffusers" data-category="generative" data-maintainer="official" data-search="cogvideo x 2b zai text to video generation efficient diffusers">
+                        <div class="cargo-row-icon icon-diffusers">DIFF</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">CogVideoX-2b<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Efficient text-to-video generation from Z.AI</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">zai-org/CogVideoX-2b</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Video</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
                         </div>
                     </div>
 
@@ -355,6 +532,30 @@
                             <div class="cargo-row-tags"><span class="cargo-tag">RealESRGAN_x4plus</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
                         </div>
                     </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-maintainer="official" data-search="glm ocr document understanding text extraction zai onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">GLM-OCR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Advanced document understanding and OCR using GLM vision model</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">zai-org/GLM-OCR</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-maintainer="official" data-search="numarkdown document markdown conversion numind thinking onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">NuMarkdown<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Converts document images to structured Markdown with reasoning</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">numind/NuMarkdown-8B-Thinking</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-maintainer="official" data-search="firered ocr document handwriting scene text recognition onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">FireRed-OCR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-accuracy OCR for documents, handwriting, and scene text</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">FireRedTeam/FireRed-OCR</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
 
                     <!-- ONNX — Audio -->
                     <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="whisper speech to text transcription asr openai faster onnx">
@@ -371,6 +572,160 @@
                             <div class="cargo-row-title">Text-to-Speech<span class="cargo-badge badge-official">Official</span></div>
                             <div class="cargo-row-desc">Converts text to speech audio using Coqui TTS</div>
                             <div class="cargo-row-tags"><span class="cargo-tag">tacotron2-DDC</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="whisper large v3 turbo fast speech to text transcription asr openai onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Whisper Large-v3-Turbo<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Fast speech-to-text (2x faster than large-v3, near-identical quality)</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">openai/whisper-large-v3-turbo</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2x faster</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="qwen3 asr speech recognition multilingual onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-ASR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Multilingual speech recognition from Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen3-ASR-1.7B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Multilingual</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="voxtral mistral speech recognition realtime streaming asr onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Voxtral-ASR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Realtime streaming speech recognition from Mistral AI</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">mistralai/Voxtral-Mini-4B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Realtime</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="vibevoice microsoft speech recognition accuracy asr onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">VibeVoice-ASR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-accuracy speech recognition from Microsoft</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">microsoft/VibeVoice-ASR</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="parakeet nvidia speech recognition fast accurate small asr onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Parakeet-ASR<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Fast accurate speech recognition from NVIDIA (0.6B parameters)</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">nvidia/parakeet-tdt-0.6b-v3</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>0.6B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="kokoro tts text to speech lightweight fast high quality 82m onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Kokoro TTS<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-lightweight high-quality text-to-speech (82M parameters)</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">hexgrad/Kokoro-82M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>82M params</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CPU</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="qwen3 tts text to speech voice cloning custom voice multilingual onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-TTS<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Voice cloning and custom voice text-to-speech from Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen3-TTS-1.7B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Voice cloning</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="chatterbox resemble tts text to speech voice cloning onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Chatterbox TTS<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality voice cloning text-to-speech</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">ResembleAI/chatterbox</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Voice cloning</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="vibevoice microsoft tts text to speech multi speaker instruction following onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">VibeVoice TTS<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Multi-speaker instruction-following text-to-speech from Microsoft</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">microsoft/VibeVoice-1.5B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Multi-speaker</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="csm sesame tts conversational speech model dialogue natural onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">CSM TTS<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Conversational speech model optimized for natural dialogue</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">sesame/csm-1b</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Conversational</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="indextts 2 tts text to speech multilingual onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">IndexTTS-2<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality multilingual text-to-speech</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">IndexTeam/IndexTTS-2</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Multilingual</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>2 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="vibevoice realtime microsoft tts streaming low latency text to speech onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">VibeVoice Realtime<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Realtime streaming text-to-speech optimized for low latency</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">microsoft/VibeVoice-Realtime-0.5B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Streaming</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>GPU optional</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="audio" data-maintainer="official" data-search="fish audio s2 pro tts text to speech multi speaker instruction onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Fish Audio S2<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Multi-speaker text-to-speech with instruction-following control</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">fishaudio/s2-pro</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Multi-speaker</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ONNX — Embeddings -->
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-maintainer="official" data-search="qwen3 embedding 0.6b text embeddings lightweight rag vector onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-Embedding-0.6B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Lightweight text embeddings from Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen3-Embedding-0.6B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>0.6B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CPU</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-maintainer="official" data-search="qwen3 embedding 8b text embeddings high quality rag vector onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-Embedding-8B<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">High-quality text embeddings for RAG from Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen3-Embedding-8B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>8B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>16 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-maintainer="official" data-search="e5 large multilingual text embeddings intfloat 1024 dim rag onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">E5-Large Multilingual<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Battle-tested multilingual text embeddings</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">intfloat/multilingual-e5-large</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>1024 dims</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CPU</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-maintainer="official" data-search="bge small english text embeddings baai 384 dim fast lightweight onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">BGE-Small<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Fast lightweight English text embeddings</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">BAAI/bge-small-en-v1.5</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>384 dims</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CPU</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="nlp" data-maintainer="official" data-search="jina embeddings v5 text embeddings latest generation onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Jina Embeddings v5<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Latest-generation text embeddings from Jina AI</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">jinaai/jina-embeddings-v5-text-small</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CPU</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="onnx" data-category="vision" data-maintainer="official" data-search="qwen3 vl embedding multimodal vision text embeddings onnx">
+                        <div class="cargo-row-icon icon-onnx">ONNX</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3-VL-Embedding<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Vision+text multimodal embeddings from Qwen family</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen/Qwen3-VL-Embedding-2B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Multimodal</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>4 GB VRAM</span><span class="cargo-tag cargo-tag-gpu"><span class="cargo-tag-dot" style="background:currentColor"></span>GPU required</span></div>
                         </div>
                     </div>
 
@@ -647,6 +1002,32 @@
                         <div class="cargo-row-content">
                             <div class="cargo-row-title">Stable Diffusion (Mock)<span class="cargo-badge badge-official">Official</span></div>
                             <div class="cargo-row-desc">Mock image generation for testing</div>
+                        </div>
+                    </div>
+
+                    <!-- CoreML -->
+                    <div class="cargo-row" data-format="coreml" data-category="generative" data-maintainer="official" data-search="qwen 0.8b coreml ios on-device llm language model mobile neural engine">
+                        <div class="cargo-row-icon icon-coreml">CML</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Qwen3.5-0.8B (CoreML)<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-lightweight on-device LLM for iPhone Neural Engine</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Qwen3.5-0.8B</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CoreML</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>iOS 17+</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Neural Engine</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="coreml" data-category="audio" data-maintainer="official" data-search="whisperkit coreml ios on-device speech recognition asr whisper mobile">
+                        <div class="cargo-row-icon icon-coreml">CML</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">WhisperKit (CoreML)<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">On-device speech recognition using pre-compiled CoreML Whisper</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">argmaxinc/whisperkit</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CoreML</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>iOS 17+</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Neural Engine</span></div>
+                        </div>
+                    </div>
+                    <div class="cargo-row" data-format="coreml" data-category="audio" data-maintainer="official" data-search="kokoro tts coreml ios on-device text to speech mobile neural engine">
+                        <div class="cargo-row-icon icon-coreml">CML</div>
+                        <div class="cargo-row-content">
+                            <div class="cargo-row-title">Kokoro TTS (CoreML)<span class="cargo-badge badge-official">Official</span></div>
+                            <div class="cargo-row-desc">Ultra-lightweight on-device text-to-speech for iOS</div>
+                            <div class="cargo-row-tags"><span class="cargo-tag">Kokoro-82M</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>CoreML</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>iOS 17+</span><span class="cargo-tag"><span class="cargo-tag-dot"></span>Neural Engine</span></div>
                         </div>
                     </div>
 

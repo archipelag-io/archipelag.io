@@ -467,6 +467,7 @@ html.light .cargo-search-input {
 .icon-wasm { background: rgba(101, 79, 240, 0.12); color: #8a7af4; }
 .icon-gguf { background: rgba(16, 185, 129, 0.12); color: #34d399; }
 .icon-diffusers { background: rgba(255, 210, 30, 0.12); color: #ffd84d; }
+.icon-coreml { background: rgba(20, 124, 229, 0.12); color: #5ba3ed; }
 
 html.light {
   .icon-onnx { background: rgba(0, 92, 237, 0.08); color: #005CED; }
@@ -474,6 +475,7 @@ html.light {
   .icon-wasm { background: rgba(101, 79, 240, 0.08); color: #654FF0; }
   .icon-gguf { background: rgba(16, 185, 129, 0.08); color: #059669; }
   .icon-diffusers { background: rgba(255, 210, 30, 0.08); color: #b8930a; }
+  .icon-coreml { background: rgba(20, 124, 229, 0.08); color: #147CE5; }
 }
 
 // Content area (middle, grows)
