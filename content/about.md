@@ -63,6 +63,8 @@ Our platform is built on:
 
 We're a small team of distributed systems engineers with backgrounds in cloud infrastructure, data protection, and AI deployment. We believe the future of computing is sovereign, verifiable, and community-operated.
 
+[Meet the team &rarr;](/team)
+
 ## Roadmap
 
 - **Q1 2026**: Private beta with verified compute providers and jurisdiction routing
