@@ -263,32 +263,17 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
-                            <div class="principle-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
+                            <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Route locally</h3>
                             <p class="principle-desc">Jobs run on hosts near you, not in a distant data center. Less distance, faster responses.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <div class="principle-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
-                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
-                                </svg>
-                            </div>
+                            <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Pay hosts directly</h3>
                             <p class="principle-desc">Market-based pricing. Hosts set their own rates, you pay what compute actually costs. No cloud markup.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <div class="principle-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
+                            <canvas class="island-vignette" data-island-scene="security" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Trust nothing</h3>
                             <p class="principle-desc">Every workload is signed and sandboxed. Hosts are identity-verified. No arbitrary code ever runs.</p>
                         </div>
@@ -632,16 +617,19 @@ stream = client.chat.completions.create(
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card tech-card">
+                            <canvas class="island-vignette" data-island-scene="compute" aria-hidden="true"></canvas>
                             <span class="tech-label">Control plane</span>
                             <span class="tech-name">Elixir / Phoenix</span>
                             <p class="tech-desc">The coordinator handles placement, billing, and health. Elixir's actor model gives us per-job fault isolation and hot upgrades with zero downtime.</p>
                         </div>
                         <div class="antigrid-card tech-card">
+                            <canvas class="island-vignette" data-island-scene="streaming" aria-hidden="true"></canvas>
                             <span class="tech-label">Messaging</span>
                             <span class="tech-name">NATS JetStream</span>
                             <p class="tech-desc">Job dispatch and output streaming over NATS. JetStream provides at-least-once delivery with consumer ack, so jobs don't get lost.</p>
                         </div>
                         <div class="antigrid-card tech-card">
+                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
                             <span class="tech-label">Host agent</span>
                             <span class="tech-name">Rust / Tokio</span>
                             <p class="tech-desc">A lightweight binary that manages containers via Bollard, reports heartbeats, and streams output. Compiles to a single static binary.</p>
@@ -683,4 +671,5 @@ stream = client.chat.completions.create(
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
+    <script src="/js/island-vignettes.js" defer></script>
 {% endblock scripts %}

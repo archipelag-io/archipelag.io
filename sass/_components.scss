@@ -852,6 +852,13 @@ html.light .btn-primary {
 }
 
 // Principle cards (section 02)
+// Island vignette canvas — small isometric illustration
+.island-vignette {
+  width: 100%;
+  height: 120px;
+  margin-bottom: var(--space-4);
+}
+
 .antigrid-principle {
   text-align: left;
   display: flex;
