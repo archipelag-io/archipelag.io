@@ -639,11 +639,39 @@ stream = client.chat.completions.create(
             </div>
         </section>
 
-        <!-- SECTION 8: Get Started + Design Partner -->
+        <!-- SECTION 8: Latest from the blog -->
+        {% set news = get_section(path="news/_index.md") %}
+        <section class="section section-alt-flat" aria-labelledby="news-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; News</span>
+                    <h2 id="news-title" class="section-title">From the newsroom</h2>
+                </div>
+
+                <div class="news-preview-grid">
+                    {% for post in news.pages | slice(end=3) %}
+                    <a href="{{ post.permalink }}" class="news-preview-card">
+                        {% if post.extra.category %}
+                        <span class="news-preview-category">{{ post.extra.category }}</span>
+                        {% endif %}
+                        <h3 class="news-preview-title">{{ post.title }}</h3>
+                        <p class="news-preview-desc">{{ post.description }}</p>
+                        <time class="news-preview-date" datetime="{{ post.date }}">{{ post.date | date(format="%B %d, %Y") }}</time>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div style="text-align: center; margin-top: var(--space-10);">
+                    <a href="/news" class="btn btn-secondary btn-lg">All posts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: Get Started + Design Partner -->
         <section id="get-started" class="section section-alt-flat section-aurora" aria-labelledby="getstarted-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Join the Beta</span>
+                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Join the Beta</span>
                     <h2 id="getstarted-title" class="section-title">The network is live. Come build with us.</h2>
                 </div>
 
