@@ -23,7 +23,7 @@ The way AI infrastructure works today is that a handful of companies own the GPU
 
 But here's the thing that gets lost in all the hand-wringing about chip shortages: there is an enormous amount of compute sitting in people's homes right now, doing absolutely nothing. The gaming GPU market alone ships over 30 million discrete cards a year. Add laptops with capable integrated graphics, workstations, retired mining hardware, phones with neural engines, tablets with ML accelerators. The aggregate compute power in ordinary people's hands dwarfs what any single cloud provider operates. It's just fragmented, unconnected, and idle.
 
-We thought there might be a different way. What if the people who need compute could get it from the people who already have it? What if your neighbor's RTX 4070 could serve your LLM requests with lower latency than any data center, because it's literally down the street? What if a network of regular people's machines, from a teenager's gaming PC in Munich to a photographer's Mac Studio in Lisbon, could collectively form something more resilient and more accessible than any centralized cloud?
+We thought there might be a different way. What if the people who need compute could get it from the people who already have it? What if your neighbor's RTX 4070 could serve your LLM requests with lower latency than any data center, because it's literally down the street? What if a network of regular people's machines — from a teenager's gaming PC in Munich to a photographer's Mac Studio in Lisbon — could collectively form something more resilient and more accessible than any centralized cloud?
 
 That's Archipelag.io. A distributed compute network where you contribute what you have and use what you need. The hardware exists. The bandwidth exists. The people exist. We built the coordination layer to connect it all.
 
@@ -33,9 +33,9 @@ We're building this because we think the current trajectory of AI infrastructure
 
 When three companies control the majority of GPU cloud capacity, that's a single point of failure for an increasingly critical technology. When a startup in São Paulo pays the same rate as a hedge fund in Manhattan but gets worse latency because the nearest data center is in Virginia, that's not a market working well. When a solo developer can't afford to experiment with AI because inference costs eat their entire budget, that's talent and ideas we never get to see.
 
-We believe AI compute should work more like the internet itself: decentralized, regional, and owned by the people who participate in it. Not because centralization is evil, but because resilient systems need diverse infrastructure. A network of ten thousand independent hosts spread across real neighborhoods is harder to take down, harder to price-gouge, and closer to the people who actually use it than any single data center campus.
+We believe AI compute should work more like the internet itself: decentralized, regional, and owned by the people who participate in it. Not because centralization is evil, but because resilient systems need diverse infrastructure. A network of ten thousand independent Islands spread across real neighborhoods is harder to take down, harder to price-gouge, and closer to the people who actually use it than any single data center campus.
 
-This is partially idealistic, yes. But it's also practical. Hardware scarcity is not a hypothetical scenario for next decade, it's already here. Lead times for high-end GPUs stretch months. Cloud spot instance prices spike unpredictably. Every new foundation model release triggers another wave of demand that supply can't absorb. The people who already own capable hardware are sitting on an asset that could generate passive income while making AI more accessible for everyone around them. That's not utopian thinking, that's just a better allocation of resources that already exist.
+This is partially idealistic, yes. But it's also practical. Hardware scarcity is not a hypothetical scenario for next decade, it's already here. Lead times for high-end GPUs stretch months. Cloud spot instance prices spike unpredictably. Every new foundation model release triggers another wave of demand that supply can't absorb. The people who already own capable hardware are sitting on an asset that could generate passive income as an Island while making AI more accessible for everyone around them. That's not utopian thinking, that's just a better allocation of resources that already exist.
 
 ## So, open beta
 
@@ -53,25 +53,25 @@ Here's what that means in practice:
 
 **Use AI.** Chat with LLMs (Mistral 7B, Llama), generate images with Stable Diffusion XL, or hit our OpenAI-compatible API with your existing code. There are Python and JavaScript SDKs if you want to build on top of it. The web UI has a playground for trying models and a marketplace for browsing what's available.
 
-**Host with a GPU.** If you've got a decent graphics card (RTX 3060 or better), install the node agent on Windows, macOS, or Linux. Your machine picks up inference jobs from people nearby, runs them, streams the results back. You set your own availability, your machine works when you're not using it, and you earn credits. Think of it as your gaming rig picking up a side job while you sleep.
+**Run an Island with a GPU.** If you've got a decent graphics card (RTX 3060 or better), install the Island software on Windows, macOS, or Linux. Your machine picks up inference jobs from people nearby, runs them, streams the results back. You set your own availability, your machine works when you're not using it, and you earn credits. Think of it as your gaming rig picking up a side job while you sleep.
 
-**Host with a phone.** If you have a recent iPhone or an M-series Mac, you can run smaller models directly on-device. It won't replace a 4090 for heavy inference, but it can handle lightweight tasks, and it lets you see how the network works without dedicating a full machine. We're building this to scale from phones to server racks, because a truly distributed network needs every tier of hardware.
+**Run an Island on your phone.** If you have a recent iPhone or an M-series Mac, you can run smaller models directly on-device. It won't replace a 4090 for heavy inference, but it can handle lightweight tasks, and it lets you see how the network works without dedicating a full machine. We're building this to scale from phones to server racks, because a truly distributed network needs every tier of hardware.
 
-The compute exchange sets prices through supply and demand, so even modest hardware can find work at a price point that makes sense. During the beta, all credits are virtual, but the economics are real: you'll see what your hardware is worth on the network.
+The compute exchange sets prices through supply and demand, so even modest hardware can find work at a price point that makes sense. During the beta, all credits are virtual, but the economics are real: you'll see what your Island's hardware is worth on the network.
 
 ## What we're hoping to learn
 
 Honestly, we don't know exactly what will happen, and that's why we're doing this.
 
-We want to find out if the routing works well enough, if requests actually land on nearby hosts or if they bounce around. We want to see where the onboarding loses people, which error messages are confusing, which features nobody uses. We want to know if the karma system (where hosts build reputation through reliable service) actually incentivizes good behavior or just creates busywork.
+We want to find out if the routing works well enough, if requests actually land on nearby Islands or if they bounce around. We want to see where the onboarding loses people, which error messages are confusing, which features nobody uses. We want to know if the karma system (where Islands build reputation through reliable service) actually incentivizes good behavior or just creates busywork.
 
 We want to hear from you. If something is broken, [open an issue](https://github.com/archipelag-io). If something is confusing, [email us](mailto:hey@archipelag.io). If you have an idea for something we should build, tell us.
 
 ## Getting started
 
-**Want to use AI?** [Sign up](https://app.archipelag.io/auth/login), open the chat, and start talking to a model. It's running on someone's GPU, probably not very far from where you're sitting.
+**Want to use AI?** [Sign up](https://app.archipelag.io/auth/login), open the chat, and start talking to a model. It's running on someone's Island, probably not very far from where you're sitting.
 
-**Want to host?** [Grab the node agent](https://github.com/archipelag-io/node-agent/releases), point it at your API key, and set when you're available. Jobs will start arriving.
+**Want to contribute compute?** [Grab the Island software](https://github.com/archipelag-io/node-agent/releases), point it at your API key, and set when you're available. Jobs will start arriving.
 
 **Want to build?** The [docs](https://docs.archipelag.io) have everything, including the [API reference](https://app.archipelag.io/api/v1/docs) and SDK guides.
 
@@ -79,7 +79,7 @@ We want to hear from you. If something is broken, [open an issue](https://github
 
 After the beta, we plan to turn on real payments, add more models, and grow the network into more regions. The specifics depend on what we learn over the next three months.
 
-The longer arc is this: we want to build a compute network that's as decentralized and resilient as the internet was supposed to be. One where a freelance developer in Kraków can spin up an AI feature without a cloud contract. Where a student in Lagos can access the same models as a researcher at Stanford, served from hardware in their own city. Where the person hosting earns enough to cover their electricity bill and then some, turning idle hardware into a genuine income stream.
+The longer arc is this: we want to build a compute network that's as decentralized and resilient as the internet was supposed to be. One where a freelance developer in Kraków can spin up an AI feature without a cloud contract. Where a student in Lagos can access the same models as a researcher at Stanford, served from hardware in their own city. Where the person running an Island earns enough to cover their electricity bill and then some, turning idle hardware into a genuine income stream.
 
 We're not pretending this is easy. Distributed systems are hard, incentive design is hard, getting strangers to trust a network with their hardware and their workloads is hard. But the alternative, a future where all AI compute funnels through three or four corporate clouds, is not a future we want to build toward.
 

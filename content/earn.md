@@ -1,5 +1,5 @@
 +++
-title = "Host"
-description = "Become a verified compute provider on the Archipelag.io network. Verified nodes serve compliant AI workloads and earn revenue."
+title = "Become an Island"
+description = "Turn your GPU into an Island on the Archipelag.io network. Verified Islands serve AI workloads and earn credits."
 template = "earn.html"
 +++

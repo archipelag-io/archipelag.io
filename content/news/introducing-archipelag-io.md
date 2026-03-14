@@ -17,19 +17,19 @@ We decided to see if we could connect those two sides.
 
 ## What Archipelag.io actually is
 
-The short version: you send us an AI workload (a chat message, an image prompt, an API call), and we route it to a nearby machine that can handle it. That machine runs the job, streams the result back to you, and the person who owns it earns money for the work.
+The short version: you send us an AI workload (a chat message, an image prompt, an API call), and we route it to a nearby Island that can handle it. That machine runs the job, streams the result back to you, and the person who owns it earns money for the work.
 
-The longer version involves a coordinator service that tracks which hosts are online, what hardware they have, how reliable they've been, and where they are relative to you. When a job comes in, the coordinator picks the best available host based on all of that, dispatches the job over NATS (a messaging system built for exactly this kind of thing), and the host's agent picks it up, runs it in a sandboxed container, and streams output back through the coordinator to your browser or API client.
+The longer version involves a coordinator service that tracks which Islands are online, what hardware they have, how reliable they've been, and where they are relative to you. When a job comes in, the coordinator picks the best available Island based on all of that, dispatches the job over NATS (a messaging system built for exactly this kind of thing), and the Island software picks it up, runs it in a sandboxed container, and streams output back through the coordinator to your browser or API client.
 
-Hosts build up a reputation score we call karma. Complete jobs reliably, respond quickly, stay online when you say you will, and your karma goes up. Higher karma means you get offered better jobs and can charge higher rates. Flake out or produce bad results, and the system routes around you. It's a simple mechanism, but it aligns incentives in a way that matters when you're trusting strangers' hardware with real workloads.
+Islands build up a reputation score we call karma. Complete jobs reliably, respond quickly, stay online when you say you will, and your karma goes up. Higher karma means you get offered better jobs and can charge higher rates. Flake out or produce bad results, and the system routes around you. It's a simple mechanism, but it aligns incentives in a way that matters when you're trusting strangers' hardware with real workloads.
 
 ## What you can do with it today
 
 We're launching with AI inference, because that's where the mismatch between supply and demand is most obvious.
 
-You can chat with Mistral 7B and Llama models, with responses streaming token by token from a host near you. You can generate images with Stable Diffusion XL. If you're a developer, there's an OpenAI-compatible API, so if your code already talks to OpenAI, pointing it at Archipelag.io is a configuration change, not a rewrite.
+You can chat with Mistral 7B and Llama models, with responses streaming token by token from an Island near you. You can generate images with Stable Diffusion XL. If you're a developer, there's an OpenAI-compatible API, so if your code already talks to OpenAI, pointing it at Archipelag.io is a configuration change, not a rewrite.
 
-On the hosting side, we have a node agent that runs on Windows, macOS, and Linux. Install it, point it at your API key, tell it when you're available, and it handles the rest: pulling the right container images, managing GPU memory, streaming results, reporting health back to the coordinator. You don't need to understand how inference works. You just need a decent GPU (RTX 3060 or better) and an internet connection.
+On the Island side, we have the Island software that runs on Windows, macOS, and Linux. Install it, point it at your API key, tell it when you're available, and it handles the rest: pulling the right container images, managing GPU memory, streaming results, reporting health back to the coordinator. You don't need to understand how inference works. You just need a decent GPU (RTX 3060 or better) and an internet connection.
 
 We chose to start with inference because it's a contained problem with clear value on both sides. But the architecture underneath doesn't know or care that it's running language models. It dispatches jobs to containers. Those containers could do rendering, transcoding, scientific simulation, whatever. We'll get there.
 
@@ -47,13 +47,13 @@ We're not trying to replace cloud providers. Data centers are good at sustained,
 
 Over the coming months, we're adding more models, expanding into more regions, and shipping SDKs for Python and JavaScript so developers can build on top of this without thinking about the infrastructure underneath. We're also working on a mobile agent, because modern phones have serious compute capabilities and there's no reason they shouldn't participate in the network too.
 
-The harder work is in the economics and the trust model. How do you price compute fairly when every host has different hardware, different electricity costs, different availability patterns? How do you build enough trust that people are willing to send real workloads to strangers' machines? We have initial answers to both of these, but they're hypotheses, not conclusions. We need real usage to test them.
+The harder work is in the economics and the trust model. How do you price compute fairly when every Island has different hardware, different electricity costs, different availability patterns? How do you build enough trust that people are willing to send real workloads to strangers' machines? We have initial answers to both of these, but they're hypotheses, not conclusions. We need real usage to test them.
 
 ## Try it
 
 If you want to use AI on the network: [sign up](https://app.archipelag.io), get 10 free credits, and send a message. It'll be served from someone's GPU, probably closer to you than you'd expect.
 
-If you want to host: [grab the node agent](https://github.com/archipelag-io/node-agent/releases), set your schedule, and see what happens. Your machine works while you don't.
+If you want to contribute compute: [grab the Island software](https://github.com/archipelag-io/node-agent/releases), set your schedule, and see what happens. Your machine works while you don't.
 
 If you want to follow along or contribute: everything is on [GitHub](https://github.com/archipelag-io). If something breaks or confuses you, [tell us](mailto:hey@archipelag.io).
 

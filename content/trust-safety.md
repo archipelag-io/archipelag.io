@@ -37,7 +37,7 @@ Identity verification serves several purposes:
 - **Browsing the marketplace** — No verification needed
 - **Exploring the platform** — No verification needed
 - **Submitting compute workloads** — Verification required
-- **Registering as a compute host** — Verification required
+- **Registering as an Island** — Verification required
 - **Purchasing credits** — Small amounts allowed without verification (free tier)
 
 ### Appeal process

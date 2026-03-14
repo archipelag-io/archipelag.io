@@ -14,10 +14,10 @@ By creating an account or using our Services, you agree to these Terms and our [
 
 ## 2. Description of Services
 
-Archipelag.io provides a distributed compute platform that connects users who need AI inference capabilities with hosts who contribute computing resources. Our Services include:
+Archipelag.io provides a distributed compute platform that connects consumers who need AI inference capabilities with Islands who contribute computing resources. Our Services include:
 
-- **For Users**: Access to AI models (LLM chat, image generation) via web interface and API
-- **For Hosts**: Software to contribute compute resources and earn credits
+- **For Consumers**: Access to AI models (LLM chat, image generation) via web interface and API
+- **For Islands**: Software to contribute compute resources and earn credits
 - **Credit System**: Digital credits used to pay for compute services
 
 ## 3. Account Registration
@@ -61,19 +61,19 @@ When using AI models through our Services, you agree not to generate content tha
 ### 4.3 Enforcement
 We reserve the right to review content and suspend accounts that violate these guidelines. Serious violations may be reported to law enforcement.
 
-## 5. Compute Host Terms
+## 5. Island Terms
 
-### 5.1 Host Requirements
-To participate as a compute host, you must:
+### 5.1 Island Requirements
+To participate as an Island (compute contributor), you must:
 - Have legal authority to operate computing equipment at your location
 - Ensure your hardware meets minimum specifications
 - Maintain adequate internet connectivity
 - Comply with local laws regarding electricity usage and business operations
 
 ### 5.2 Workload Execution
-As a host, you agree to:
+As an Island, you agree to:
 - Run only approved, signed workloads from our platform
-- Not inspect, copy, or retain user data processed through workloads
+- Not inspect, copy, or retain consumer data processed through workloads
 - Maintain the security and isolation of workload containers
 - Report any security incidents immediately
 

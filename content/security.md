@@ -4,7 +4,7 @@ description = "How Archipelag.io protects your data and ensures secure compute o
 date = 2026-01-26
 +++
 
-Security is fundamental to Archipelag.io. We've designed our platform with security at every layer, ensuring both users and hosts can participate safely in our distributed compute network.
+Security is fundamental to Archipelag.io. We've designed our platform with security at every layer, ensuring both consumers and Islands can participate safely in our distributed compute network.
 
 ## Security Architecture
 
@@ -12,8 +12,8 @@ Security is fundamental to Archipelag.io. We've designed our platform with secur
 
 We operate on a zero-trust security model where:
 
-- **Users don't trust hosts**: All user data is encrypted and hosts never see plaintext content
-- **Hosts don't trust workloads**: All workloads run in isolated containers with strict resource limits
+- **Consumers don't trust Islands**: All consumer data is encrypted and Islands never see plaintext content
+- **Islands don't trust workloads**: All workloads run in isolated containers with strict resource limits
 - **The coordinator is the authority**: Cryptographically signed workloads and authenticated communications
 
 ### Encryption
@@ -29,15 +29,15 @@ Every workload on our network runs in complete isolation:
 
 - **Container Sandboxing**: Docker containers with seccomp profiles and AppArmor
 - **Resource Limits**: Strict CPU, memory, and network quotas
-- **No Persistent Storage**: Workloads cannot write to host filesystems
-- **Network Restrictions**: Outbound-only connections, no host network access
+- **No Persistent Storage**: Workloads cannot write to Island filesystems
+- **Network Restrictions**: Outbound-only connections, no Island network access
 - **Signed Images**: Only cryptographically signed container images can execute
 
-## Host Security
+## Island Security
 
 ### Agent Security
 
-The Archipelag.io host agent is designed with security as a priority:
+The Archipelag.io Island software is designed with security as a priority:
 
 - **Written in Rust**: Memory-safe language eliminates entire classes of vulnerabilities
 - **Minimal Privileges**: Runs with least-privilege access
@@ -46,12 +46,12 @@ The Archipelag.io host agent is designed with security as a priority:
 
 ### Network Security
 
-- **Outbound-Only**: Hosts never accept inbound connections
+- **Outbound-Only**: Islands never accept inbound connections
 - **WireGuard VPN**: Encrypted tunnels for all coordinator communication
 - **No Port Forwarding**: No router configuration or firewall changes required
-- **IP Anonymization**: User IPs are not shared with hosts
+- **IP Anonymization**: Consumer IPs are not shared with Islands
 
-## User Security
+## Consumer Security
 
 ### Account Protection
 
@@ -123,7 +123,7 @@ If you discover a security issue, please report it to:
 In-scope systems include:
 - archipelag.io and all subdomains
 - api.archipelag.io
-- The host agent software
+- The Island software
 - Mobile applications
 
 Out of scope:
@@ -142,13 +142,13 @@ Out of scope:
 4. **Enable Notifications**: Get alerts for account changes
 5. **Report Suspicious Activity**: Contact us if you notice anything unusual
 
-### For Hosts
+### For Islands
 
-1. **Keep Systems Updated**: Enable automatic updates for the agent
+1. **Keep Systems Updated**: Enable automatic updates for the Island software
 2. **Secure Your Network**: Use a firewall and secure your home network
 3. **Monitor Resources**: Watch for unusual CPU or network activity
-4. **Dedicated Hardware**: Consider using dedicated hardware for hosting
-5. **Review Logs**: Periodically review agent logs for anomalies
+4. **Dedicated Hardware**: Consider using dedicated hardware for contributing compute
+5. **Review Logs**: Periodically review Island logs for anomalies
 
 ## Security Updates
 

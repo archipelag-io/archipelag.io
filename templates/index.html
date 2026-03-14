@@ -100,7 +100,7 @@
                     "Market-based compute pricing",
                     "Real-time token streaming",
                     "Jurisdiction routing for data residency",
-                    "Karma-based host reputation system"
+                    "Karma-based Island reputation system"
                 ],
                 "offers": {
                     "@type": "Offer",
@@ -125,15 +125,15 @@
                         "name": "How does it work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Users submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby community hosts with the right hardware. Responses stream back in real time. Hosts earn credits for every job completed."
+                            "text": "Consumers submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby Islands with the right hardware. Responses stream back in real time. Islands earn credits for every job completed."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Is it safe to host?",
+                        "name": "Is it safe to be an Island?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Hosts only run network-approved, signed workloads inside sandboxed Docker containers. There is no access to your files, network, or other processes. Resource limits are strictly enforced."
+                            "text": "Yes. Islands only run network-approved, signed workloads inside sandboxed Docker containers. There is no access to your files, network, or other processes. Resource limits are strictly enforced."
                         }
                     },
                     {
@@ -141,7 +141,7 @@
                         "name": "Does my data stay local?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Jobs route to nearby hosts by default, keeping data regional. Teams with compliance requirements can also set explicit jurisdiction policies (e.g. EU-only, Switzerland) to guarantee data residency."
+                            "text": "Yes. Jobs route to nearby Islands by default, keeping data regional. Teams with compliance requirements can also set explicit jurisdiction policies (e.g. EU-only, Switzerland) to guarantee data residency."
                         }
                     }
                 ]
@@ -167,14 +167,14 @@
                         "@type": "HowToStep",
                         "position": 3,
                         "name": "Get streaming results",
-                        "text": "Responses arrive token-by-token from the nearest available host."
+                        "text": "Responses arrive token-by-token from the nearest available Island."
                     }
                 ]
             },
             {
                 "@type": "HowTo",
-                "name": "How to earn with Archipelag.io as a host",
-                "description": "Turn your idle GPU hardware into income by hosting AI workloads on the Archipelag.io network.",
+                "name": "How to earn with Archipelag.io as an Island",
+                "description": "Turn your idle GPU hardware into an Island on the Archipelag.io network and earn credits for AI workloads.",
                 "step": [
                     {
                         "@type": "HowToStep",
@@ -192,7 +192,7 @@
                         "@type": "HowToStep",
                         "position": 3,
                         "name": "Receive jobs",
-                        "text": "The coordinator matches you with nearby users. You earn credits for each completed job."
+                        "text": "The coordinator matches you with nearby consumers. You earn credits for each completed job."
                     }
                 ]
             }
@@ -310,7 +310,7 @@
                         <!-- For AI Users -->
                         <article class="antigrid-card split-content" aria-labelledby="users-title">
                             <h3 id="users-title" class="split-title">Use AI</h3>
-                            <p class="split-desc">Run language models and image generators on community hardware. The coordinator finds the best host for each job.</p>
+                            <p class="split-desc">Run language models and image generators on community hardware. The coordinator finds the best Island for each job.</p>
 
                             <ol class="split-steps" role="list" aria-label="Steps for users">
                                 <li class="step-card">
@@ -331,7 +331,7 @@
                                     <span class="step-number" aria-hidden="true">3</span>
                                     <div class="step-content">
                                         <h4 class="step-title">Get streaming results</h4>
-                                        <p class="step-desc">Responses arrive token-by-token from the nearest available host.</p>
+                                        <p class="step-desc">Responses arrive token-by-token from the nearest available Island.</p>
                                     </div>
                                 </li>
                             </ol>
@@ -342,13 +342,13 @@
                         <!-- For Hosts -->
                         <article class="antigrid-card split-content" aria-labelledby="hosts-title">
                             <h3 id="hosts-title" class="split-title">Contribute compute</h3>
-                            <p class="split-desc">Got a GPU sitting idle? Run the node agent and get paid when your machine does work for the network.</p>
+                            <p class="split-desc">Got a GPU sitting idle? Turn it into an Island and get paid when your machine does work for the network.</p>
 
-                            <ol class="split-steps" role="list" aria-label="Steps for hosts">
+                            <ol class="split-steps" role="list" aria-label="Steps for Islands">
                                 <li class="step-card">
                                     <span class="step-number" aria-hidden="true">1</span>
                                     <div class="step-content">
-                                        <h4 class="step-title">Install the node agent</h4>
+                                        <h4 class="step-title">Install Archipelag.io Island</h4>
                                         <p class="step-desc">A lightweight Rust binary. Linux, Mac, or Windows.</p>
                                     </div>
                                 </li>
@@ -363,12 +363,12 @@
                                     <span class="step-number" aria-hidden="true">3</span>
                                     <div class="step-content">
                                         <h4 class="step-title">Receive jobs</h4>
-                                        <p class="step-desc">The coordinator matches you with nearby users. You earn credits for each completed job.</p>
+                                        <p class="step-desc">The coordinator matches you with nearby consumers. You earn credits for each completed job.</p>
                                     </div>
                                 </li>
                             </ol>
 
-                            <a href="/earn" class="btn btn-tropical">Start hosting</a>
+                            <a href="/earn" class="btn btn-tropical">Become an Island</a>
                         </article>
                     </div>
                 </div>
@@ -392,7 +392,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Proximity routing</h3>
-                            <p class="feature-desc">The coordinator measures real RTT to every host and places jobs on the lowest-latency match. Your request doesn't cross an ocean to reach a GPU.</p>
+                            <p class="feature-desc">The coordinator measures real RTT to every Island and places jobs on the lowest-latency match. Your request doesn't cross an ocean to reach a GPU.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -445,7 +445,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Karma &amp; reputation</h3>
-                            <p class="feature-desc">Every host builds a public karma score from success rate, latency, and uptime. Higher karma means more jobs and better rates.</p>
+                            <p class="feature-desc">Every Island builds a public karma score from success rate, latency, and uptime. Higher karma means more jobs and better rates.</p>
                         </article>
                     </div>
                 </div>
@@ -538,7 +538,7 @@ stream = client.chat.completions.create(
                                         </div>
                                         <div>
                                             <span class="host-diagram-label">Your machine</span>
-                                            <span class="host-diagram-detail">Node agent running</span>
+                                            <span class="host-diagram-detail">Your Island, online</span>
                                         </div>
                                     </div>
                                     <div class="host-diagram-arrow" aria-hidden="true">
@@ -579,14 +579,14 @@ stream = client.chat.completions.create(
                         </div>
 
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; For Hosts</span>
+                            <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; For Islands</span>
                             <h2 id="hosts-preview-title" class="preview-title">Your hardware, your price</h2>
                             <p class="preview-desc">
-                                Run the node agent on any machine with a GPU. Set your own asking price
-                                and availability schedule. The coordinator matches you with nearby users who need compute.
+                                Turn any machine with a GPU into an Island. Set your own asking price
+                                and availability schedule. The coordinator matches you with nearby consumers who need compute.
                             </p>
 
-                            <ul class="preview-list" role="list" aria-label="Host features">
+                            <ul class="preview-list" role="list" aria-label="Island features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
@@ -613,7 +613,7 @@ stream = client.chat.completions.create(
                                 </li>
                             </ul>
 
-                            <a href="/earn" class="btn btn-tropical">Start hosting</a>
+                            <a href="/earn" class="btn btn-tropical">Become an Island</a>
                         </div>
                     </div>
                 </div>

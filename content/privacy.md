@@ -14,7 +14,7 @@ This Privacy Policy describes how Archipelag.io ("we", "us", or "our") collects,
 
 - **Account Information**: When you create an account, we collect your email address, username, and password. If you sign up using GitHub, we receive your GitHub username and email.
 - **Payment Information**: When you purchase credits, our payment processor (Stripe) collects your payment card details. We do not store full card numbers on our servers.
-- **Host Information**: If you register as a compute host, we collect information about your hardware specifications, IP address, and geographic region.
+- **Island Information**: If you register as an Island (compute contributor), we collect information about your hardware specifications, IP address, and geographic region.
 - **Communications**: When you contact us, we collect the information you provide in your messages.
 
 ### Information Collected Automatically
@@ -24,13 +24,13 @@ This Privacy Policy describes how Archipelag.io ("we", "us", or "our") collects,
 - **Log Data**: Our servers automatically record information including your IP address, access times, and pages viewed.
 - **Cookies**: We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies.
 
-### Information from Hosts
+### Information from Islands
 
-When workloads run on host machines:
-- Hosts receive only the minimum data necessary to execute workloads
+When workloads run on Island machines:
+- Islands receive only the minimum data necessary to execute workloads
 - All data is encrypted in transit using TLS 1.3
 - Workloads run in isolated containers with no persistent storage
-- Hosts cannot access or retain user data after workload completion
+- Islands cannot access or retain consumer data after workload completion
 
 ## How We Use Your Information
 
@@ -52,9 +52,9 @@ We do not sell your personal information. We share information only in these cir
 - **Cloud infrastructure**: Hosting and data storage (EU-based)
 - **Email services**: Transactional email delivery
 
-### With Compute Hosts
-- Hosts receive anonymized workload data necessary for execution
-- Hosts do not receive your identity, account details, or payment information
+### With Islands
+- Islands receive anonymized workload data necessary for execution
+- Islands do not receive your identity, account details, or payment information
 - Geographic routing data is approximate (city-level) only
 
 ### For Legal Reasons
