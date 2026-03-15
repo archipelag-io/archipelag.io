@@ -414,11 +414,103 @@
             </div>
         </section>
 
+        <!-- Workflow Orchestration -->
+        <section class="section section-alt-flat" aria-labelledby="workflows-title">
+            <div class="container">
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card preview-content">
+                            <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Workflows</span>
+                            <h2 id="workflows-title" class="preview-title">Chain models into pipelines</h2>
+                            <p class="preview-desc">
+                                Define multi-step workflows as DAGs. The coordinator resolves dependencies,
+                                dispatches steps in parallel across Islands, maps data between steps, and merges results.
+                            </p>
+                            <p class="preview-desc">
+                                Translate text, classify the output, then summarize &mdash; all in one API call.
+                                Each step runs on the best-fit Island. If a step fails, the workflow handles it.
+                            </p>
+
+                            <ul class="preview-list" aria-label="Workflow features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>DAG-based dependency resolution &mdash; steps run in parallel when possible</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Data mapping between steps via templates</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Built-in failure handling &mdash; retry, skip, or abort per step</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Same API &mdash; submit a workflow definition, get merged results</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card flex items-center justify-center">
+                            <figure class="w-full" style="padding: var(--space-6);">
+                                <div class="host-diagram">
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Step 1: Translate</span>
+                                            <span class="host-diagram-detail">LLM Chat &rarr; Island A</span>
+                                        </div>
+                                    </div>
+                                    <div class="host-diagram-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="3" width="7" height="7" rx="1"/><rect x="15" y="3" width="7" height="7" rx="1"/>
+                                                <rect x="2" y="14" width="7" height="7" rx="1"/><rect x="15" y="14" width="7" height="7" rx="1"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Step 2a: Classify &nbsp;|&nbsp; Step 2b: Summarize</span>
+                                            <span class="host-diagram-detail">Parallel &rarr; Island B + Island C</span>
+                                        </div>
+                                    </div>
+                                    <div class="host-diagram-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon host-diagram-icon-accent" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Results merged</span>
+                                            <span class="host-diagram-detail">Translation + classification + summary returned together</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- API section -->
-        <section id="api" class="section section-alt-flat" aria-labelledby="api-title">
+        <section id="api" class="section" aria-labelledby="api-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Integration</span>
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Integration</span>
                     <h2 id="api-title" class="section-title">OpenAI-compatible API</h2>
                     <p class="section-subtitle">If your code works with OpenAI, it works with Archipelag.io. Change the base URL and you're done.</p>
                 </div>
@@ -496,7 +588,7 @@ stream = client.chat.completions.create(
         <section class="section section-alt-flat" aria-labelledby="pricing-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Pricing</span>
+                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Pricing</span>
                     <h2 id="pricing-title" class="section-title">Market-based, not fixed tiers</h2>
                     <p class="section-subtitle">Prices are set by supply and demand on the compute exchange, not by us.</p>
                 </div>
@@ -541,7 +633,7 @@ stream = client.chat.completions.create(
         <section class="section" aria-labelledby="platform-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Platform</span>
+                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Platform</span>
                     <h2 id="platform-title" class="section-title">More than an API</h2>
                     <p class="section-subtitle">Use the full web platform or build your own integration.</p>
                 </div>
@@ -603,7 +695,7 @@ stream = client.chat.completions.create(
         <section class="section section-alt-flat" aria-labelledby="getting-started-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Getting Started</span>
+                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Getting Started</span>
                     <h2 id="getting-started-title" class="section-title">Three steps to your first inference</h2>
                 </div>
 

@@ -77,6 +77,8 @@ We're a small team of distributed systems engineers with backgrounds in cloud in
 - **Q1 2026** (done): Compute Exchange with live market rates, bid/ask matching, price history
 - **Q1 2026** (done): Cargo Marketplace with developer portal, publisher tiers, reviews and ratings
 - **Q1 2026** (done): Mobile compute &mdash; iOS agent with on-device LLM inference via CoreML
+- **Q1 2026** (done): Workflow orchestration &mdash; DAG-based multi-step pipelines with parallel dispatch and data mapping
+- **Q2 2026**: Workflow Phase 2 &mdash; conditional branching, loops, sub-workflows, visual DAG editor
 - **Q2 2026**: Real-money billing, Stripe payouts for Islands, expanded EU/CH coverage
 - **Q3 2026**: Additional jurisdictions, compliance framework integrations, Android agent
 - **Q4 2026**: SOC 2 certification, AI Act compliance toolkit
