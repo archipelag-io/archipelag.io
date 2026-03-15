@@ -51,7 +51,7 @@ Here's what that means in practice:
 
 ## What you can actually do
 
-**Use AI.** Chat with LLMs (Mistral 7B, Llama), generate images with Stable Diffusion XL, or hit our OpenAI-compatible API with your existing code. There are Python and JavaScript SDKs if you want to build on top of it. The web UI has a playground for trying models and a marketplace for browsing what's available.
+**Use AI.** Chat with LLMs (Mistral 7B, Llama), generate images with Stable Diffusion XL, or hit our OpenAI-compatible API with your existing code. There are Python and JavaScript SDKs if you want to build on top of it. The web UI has a playground for trying models and a registry for browsing what's available.
 
 **Run an Island with a GPU.** If you've got a decent graphics card (RTX 3060 or better), install the Island software on Windows, macOS, or Linux. Your machine picks up inference jobs from people nearby, runs them, streams the results back. You set your own availability, your machine works when you're not using it, and you earn credits. Think of it as your gaming rig picking up a side job while you sleep.
 

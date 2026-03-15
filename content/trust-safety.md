@@ -34,7 +34,7 @@ Identity verification serves several purposes:
 
 ### When it's required
 
-- **Browsing the marketplace** — No verification needed
+- **Browsing the Cargo Registry** — No verification needed
 - **Exploring the platform** — No verification needed
 - **Submitting compute Cargos** — Verification required
 - **Registering as an Island** — Verification required
