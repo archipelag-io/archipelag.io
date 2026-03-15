@@ -173,14 +173,15 @@
 
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
-    var rect = canvas.parentElement.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
+    var wrapper = canvas.parentElement;
+    var W = wrapper.clientWidth || wrapper.offsetWidth || 800;
+    var H = wrapper.clientHeight || wrapper.offsetHeight || 320;
+    if (W < 10 || H < 10) { W = 800; H = 320; }
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    var W = rect.width, H = rect.height;
     var isDark = !document.documentElement.classList.contains('light');
 
     // Margins
@@ -441,7 +442,12 @@
   });
 
   // Initialize comparison table and chart on page load
-  updateComparison();
+  // Use rAF to ensure CSS layout is computed before reading dimensions
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      updateComparison();
+    });
+  });
 
   // Re-render chart on resize and theme change
   var resizeTimer;
