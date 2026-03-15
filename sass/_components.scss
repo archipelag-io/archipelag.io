@@ -1432,6 +1432,10 @@ html.light {
   .calc-badge-tight { background: rgba(200, 50, 50, 0.10); color: #b03030; box-shadow: inset 0 0 0 1px rgba(180,40,40,0.15); }
 }
 
+.calc-results-hidden {
+  display: none !important;
+}
+
 .calc-disclaimer {
   margin-top: var(--space-6);
   font-size: var(--text-xs);
