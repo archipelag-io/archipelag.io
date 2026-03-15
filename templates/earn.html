@@ -436,37 +436,44 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Full GPU Comparison (always visible) -->
-                    <div class="calc-comparison" id="calc-comparison">
-                        <h3 class="font-brand text-xl mb-4" style="margin-top:var(--space-10);">All GPUs compared</h3>
-                        <p class="text-sm text-secondary mb-6">Best-case monthly earnings at <span id="comp-hours">8</span>h/day, 15% utilization, $0.01/credit. Select a GPU above for detailed breakdown.</p>
+        <!-- All GPUs Compared -->
+        <section class="section" id="gpu-comparison" aria-labelledby="comparison-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Compare</span>
+                    <h2 id="comparison-title" class="section-title">All GPUs compared</h2>
+                    <p class="section-subtitle">Best-case monthly earnings at <span id="comp-hours">8</span>h/day, 15% utilization, $0.01/credit.</p>
+                </div>
 
-                        <!-- Comparison Chart -->
-                        <div class="calc-chart-wrapper" style="margin-bottom:var(--space-8);">
-                            <canvas id="calc-comparison-chart" aria-label="Bar chart comparing monthly earnings across all GPU models"></canvas>
-                        </div>
-
-                        <div class="calc-table-wrapper">
-                            <table class="calc-table" id="calc-comparison-table">
-                                <thead>
-                                    <tr>
-                                        <th>GPU</th>
-                                        <th>Tier</th>
-                                        <th>VRAM</th>
-                                        <th>Best Cargo</th>
-                                        <th style="text-align:right;">Monthly Credits</th>
-                                        <th style="text-align:right;">Est. USD</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="calc-comparison-body"></tbody>
-                            </table>
-                        </div>
-                        <p class="calc-disclaimer">
-                            Estimates assume 15% utilization at beta pricing ($0.01/credit).
-                            Actual earnings depend on network demand, your asking price, uptime, and karma score.
-                        </p>
+                <div class="calc-comparison" id="calc-comparison">
+                    <!-- Comparison Chart -->
+                    <div class="calc-chart-wrapper" style="margin-bottom:var(--space-8);">
+                        <canvas id="calc-comparison-chart" aria-label="Bar chart comparing monthly earnings across all GPU models"></canvas>
                     </div>
+
+                    <div class="calc-table-wrapper">
+                        <table class="calc-table" id="calc-comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>GPU</th>
+                                    <th>Tier</th>
+                                    <th>VRAM</th>
+                                    <th>Best Cargo</th>
+                                    <th style="text-align:right;">Monthly Credits</th>
+                                    <th style="text-align:right;">Est. USD</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calc-comparison-body"></tbody>
+                        </table>
+                    </div>
+                    <p class="calc-disclaimer">
+                        Estimates assume 15% utilization at beta pricing ($0.01/credit).
+                        Actual earnings depend on network demand, your asking price, uptime, and karma score.
+                    </p>
                 </div>
             </div>
         </section>
@@ -477,7 +484,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Reputation</span>
+                            <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Reputation</span>
                             <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
                             <p class="preview-desc">
                                 Every Island has a karma score visible to the coordinator and the network.
@@ -527,7 +534,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Multi-Island Compute</span>
+                            <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Multi-Island Compute</span>
                             <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger</h2>
                             <p class="preview-desc">
                                 When a model is too large for any single Island, the coordinator forms a pipeline
@@ -619,7 +626,7 @@
         <section class="section section-alt-flat" aria-labelledby="security-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Security</span>
+                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Security</span>
                     <h2 id="security-title" class="section-title">Your machine stays safe</h2>
                     <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
                 </div>
@@ -678,7 +685,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Mobile Compute</span>
+                            <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Mobile Compute</span>
                             <h2 id="mobile-title" class="preview-title">Contribute from your phone</h2>
                             <p class="preview-desc">
                                 Got an iPhone or iPad with an A-series or M-series chip? The Archipelag.io iOS agent runs
@@ -729,7 +736,7 @@
         <section class="section" aria-labelledby="developer-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Developer Track</span>
+                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Developer Track</span>
                     <h2 id="developer-title" class="section-title">Build Cargos, earn per execution</h2>
                     <p class="section-subtitle">Publish your own models and runtimes to the Cargo Marketplace. Earn credits every time someone runs your Cargo.</p>
                 </div>
@@ -776,7 +783,7 @@
         <section class="section section-alt-flat" aria-labelledby="requirements-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Requirements</span>
+                    <span class="section-eyebrow-numbered"><span class="number">10</span> &mdash; Requirements</span>
                     <h2 id="requirements-title" class="section-title">What you need</h2>
                 </div>
 
@@ -812,7 +819,7 @@
         <section class="section section-alt-flat" aria-labelledby="payouts-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">10</span> &mdash; Payouts</span>
+                    <span class="section-eyebrow-numbered"><span class="number">11</span> &mdash; Payouts</span>
                     <h2 id="payouts-title" class="section-title">Getting paid</h2>
                 </div>
 
