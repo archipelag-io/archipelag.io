@@ -429,11 +429,105 @@
             </div>
         </section>
 
+        <!-- Multi-Island Compute -->
+        <section class="section" aria-labelledby="multi-island-title">
+            <div class="container">
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card preview-content">
+                            <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Multi-Island Compute</span>
+                            <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger</h2>
+                            <p class="preview-desc">
+                                When a model is too large for any single Island, the coordinator forms a pipeline
+                                across multiple Islands. Your machine holds a shard of the model and processes its
+                                portion of each inference request.
+                            </p>
+                            <p class="preview-desc">
+                                You earn credits for every token that flows through your layers &mdash; proportional to the
+                                work your Island does. Higher-Karma Islands are preferred for pipeline membership,
+                                so reliability pays off even more.
+                            </p>
+
+                            <ul class="preview-list" aria-label="Multi-Island earning details">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Automatic &mdash; the coordinator invites your Island when it's a good fit</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Model shards stay cached &mdash; subsequent jobs start instantly</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Same sandboxing guarantees as single-Island jobs</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card flex items-center justify-center">
+                            <figure class="w-full" style="padding: var(--space-6);">
+                                <div class="host-diagram">
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                                <line x1="12" y1="17" x2="12" y2="21"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Your Island (layers 0&ndash;15)</span>
+                                            <span class="host-diagram-detail">Downloads and caches model shard</span>
+                                        </div>
+                                    </div>
+                                    <div class="host-diagram-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                                <line x1="12" y1="17" x2="12" y2="21"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Island B (layers 16&ndash;31)</span>
+                                            <span class="host-diagram-detail">Activations flow through the chain</span>
+                                        </div>
+                                    </div>
+                                    <div class="host-diagram-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="host-diagram-step">
+                                        <div class="host-diagram-icon host-diagram-icon-accent" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
+                                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="host-diagram-label">Both Islands earn credits</span>
+                                            <span class="host-diagram-detail">Proportional to layers processed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Security -->
-        <section class="section" aria-labelledby="security-title">
+        <section class="section section-alt-flat" aria-labelledby="security-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Security</span>
+                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Security</span>
                     <h2 id="security-title" class="section-title">Your machine stays safe</h2>
                     <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
                 </div>
@@ -490,7 +584,7 @@
         <section class="section section-alt-flat" aria-labelledby="requirements-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Requirements</span>
+                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Requirements</span>
                     <h2 id="requirements-title" class="section-title">What you need</h2>
                 </div>
 
@@ -538,7 +632,7 @@
         <section class="section" id="calculator" aria-labelledby="calculator-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Estimate</span>
+                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Estimate</span>
                     <h2 id="calculator-title" class="section-title">What can you earn?</h2>
                     <p class="section-subtitle">Select your GPU and see estimated earnings across all Cargo types.</p>
                 </div>
@@ -606,7 +700,7 @@
         <section class="section section-alt-flat" aria-labelledby="payouts-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Payouts</span>
+                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Payouts</span>
                     <h2 id="payouts-title" class="section-title">Getting paid</h2>
                 </div>
 

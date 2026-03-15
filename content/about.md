@@ -50,6 +50,7 @@ Our platform is built on:
 - **NATS messaging** for reliable, low-latency job dispatch
 - **Container isolation** with signed Cargos and seccomp profiles
 - **Cryptographic verification** for node identity and execution integrity
+- **Multi-Island compute** — pipeline parallelism shards large models across multiple Islands; batch fan-out distributes independent work in parallel
 
 ## Security & Privacy
 
@@ -68,7 +69,8 @@ We're a small team of distributed systems engineers with backgrounds in cloud in
 ## Roadmap
 
 - **Q1 2026**: Private beta with verified compute providers and jurisdiction routing
-- **Q2 2026**: Verification program launch, expanded EU/CH coverage
+- **Q1 2026**: Multi-Island compute — batch fan-out and pipeline parallelism (inference rings) for large models across multiple Islands
+- **Q2 2026**: Verification program launch, expanded EU/CH coverage, expert routing for MoE models
 - **Q3 2026**: Additional jurisdictions, compliance framework integrations
 - **Q4 2026**: SOC 2 certification, AI Act compliance toolkit
 

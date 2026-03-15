@@ -100,7 +100,9 @@
                     "Market-based compute pricing",
                     "Real-time token streaming",
                     "Jurisdiction routing for data residency",
-                    "Karma-based Island reputation system"
+                    "Karma-based Island reputation system",
+                    "Multi-Island pipeline parallelism for large models",
+                    "Batch fan-out across multiple Islands"
                 ],
                 "offers": {
                     "@type": "Offer",
@@ -431,6 +433,20 @@
                             </div>
                             <h3 class="feature-title">Karma &amp; reputation</h3>
                             <p class="feature-desc">Every Island builds a public karma score from success rate, latency, and uptime. Higher karma means more jobs and better rates.</p>
+                        </article>
+
+                        <article class="antigrid-card antigrid-feature" role="listitem">
+                            <div class="feature-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="6" cy="12" r="3"/>
+                                    <circle cx="18" cy="12" r="3"/>
+                                    <line x1="9" y1="12" x2="15" y2="12" stroke-linecap="round"/>
+                                    <circle cx="12" cy="5" r="3"/>
+                                    <line x1="12" y1="8" x2="12" y2="9.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Multi-Island compute</h3>
+                            <p class="feature-desc">Models too large for one device run across multiple Islands in a pipeline. A 70B model on four laptops. Batch jobs fan out to fifty phones. Transparent to consumers.</p>
                         </article>
                     </div>
                 </div>
