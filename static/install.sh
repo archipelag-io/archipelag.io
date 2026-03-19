@@ -9,7 +9,7 @@
 
 set -e
 
-REPO="archipelag-io/node-agent"
+REPO="archipelag-io/island"
 INSTALL_DIR="${ISLAND_DIR:-$HOME/.island}"
 BIN_DIR="$INSTALL_DIR/bin"
 CONFIG_DIR="$INSTALL_DIR"
@@ -68,19 +68,22 @@ get_latest_version() {
 
 # Download and install the binary
 download_binary() {
-    ASSET_NAME="${BINARY_NAME}-${VERSION}-${PLATFORM}"
-    URL="https://github.com/${REPO}/releases/download/v${VERSION}/${ASSET_NAME}"
+    ARCHIVE_NAME="${BINARY_NAME}-v${VERSION}-${PLATFORM}.tar.gz"
+    URL="https://github.com/${REPO}/releases/download/v${VERSION}/${ARCHIVE_NAME}"
 
     info "Downloading ${BINARY_NAME} v${VERSION} for ${PLATFORM}..."
 
     mkdir -p "$BIN_DIR"
 
-    HTTP_CODE=$(curl -fsSL -w '%{http_code}' -o "$BIN_DIR/$BINARY_NAME" "$URL")
+    TMPFILE=$(mktemp)
+    HTTP_CODE=$(curl -fsSL -w '%{http_code}' -o "$TMPFILE" "$URL")
     if [ "$HTTP_CODE" != "200" ]; then
-        rm -f "$BIN_DIR/$BINARY_NAME"
+        rm -f "$TMPFILE"
         error "Download failed (HTTP $HTTP_CODE). Check that v${VERSION} has a release for ${PLATFORM}."
     fi
 
+    tar xzf "$TMPFILE" -C "$BIN_DIR"
+    rm -f "$TMPFILE"
     chmod +x "$BIN_DIR/$BINARY_NAME"
     info "Installed to $BIN_DIR/$BINARY_NAME"
 }
@@ -239,34 +242,18 @@ create_config() {
 # Archipelag.io Island Configuration
 # Docs: https://github.com/${REPO}
 
+[coordinator]
+nats_url = "tls://island:f925ab35cc3c46e51af6bb9fb900ed47e16c940e4e196bc4@sail.archipelag.io:4222"
+
 [host]
 name = "${HOSTNAME}"
 region = "auto"
 
-[coordinator]
-nats_url = "tls://island:f925ab35cc3c46e51af6bb9fb900ed47e16c940e4e196bc4@sail.archipelag.io:4222"
-
-[workload]
-llm_chat_image = "ghcr.io/archipelag-io/llm-chat:latest"
-gpu_devices = []
-
-[workload.resource_limits]
-memory_mb = 4096
-read_only_rootfs = true
-tmpfs_size_mb = 256
-network_disabled = true
-
-[cache]
-enable_preload = false
-max_cached_images = 10
-
-[signing]
+[preload]
 enabled = true
-require_signature = false
 
-[registry]
-enabled = true
-require_digest = false
+[model_cache]
+max_cache_gb = 20
 EOF
 }
 
