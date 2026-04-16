@@ -820,18 +820,18 @@
 
                 <div class="install-tabs" style="max-width: 640px; margin: 0 auto;">
                     <div class="install-tab-buttons" role="tablist" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
-                        <button role="tab" class="btn btn-sm install-tab-btn active" aria-selected="true" data-install-tab="unix">Linux / macOS</button>
-                        <button role="tab" class="btn btn-sm install-tab-btn" aria-selected="false" data-install-tab="windows">Windows</button>
+                        <button role="tab" class="btn btn-sm install-tab-btn active" id="install-tab-unix" aria-selected="true" aria-controls="install-panel-unix" data-install-tab="unix">Linux / macOS</button>
+                        <button role="tab" class="btn btn-sm install-tab-btn" id="install-tab-windows" aria-selected="false" aria-controls="install-panel-windows" data-install-tab="windows">Windows</button>
                     </div>
 
-                    <div class="install-tab-panel" data-install-panel="unix">
+                    <div class="install-tab-panel" id="install-panel-unix" role="tabpanel" aria-labelledby="install-tab-unix" data-install-panel="unix">
                         <pre class="install-code"><code>curl -fsSL https://archipelag.io/install.sh | sh</code></pre>
                         <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
                             Downloads the binary, creates a config, and sets up your PATH. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>
                         </p>
                     </div>
 
-                    <div class="install-tab-panel" data-install-panel="windows" hidden>
+                    <div class="install-tab-panel" id="install-panel-windows" role="tabpanel" aria-labelledby="install-tab-windows" data-install-panel="windows" hidden>
                         <pre class="install-code"><code>irm https://archipelag.io/install.ps1 | iex</code></pre>
                         <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
                             Run in PowerShell. Or for the best experience, <a href="https://docs.archipelag.io/getting-started/for-hosts/#windows-wsl--recommended">use WSL</a> and run the Linux installer inside it. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>

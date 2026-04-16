@@ -13,15 +13,58 @@
     <meta property="og:title" content="Press Kit | {{ config.title }}">
     <meta property="og:description" content="Brand assets, guidelines, and company information for journalists and media.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
     <meta property="og:site_name" content="{{ config.title }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{{ config.extra.twitter }}">
+    <meta name="twitter:creator" content="{{ config.extra.twitter }}">
     <meta name="twitter:title" content="Press Kit | {{ config.title }}">
     <meta name="twitter:description" content="Brand assets, guidelines, and company information for journalists and media.">
+    <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
+    <meta name="twitter:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
 {% endblock head_meta %}
 
 {% block head_extra %}
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "{{ config.base_url }}/press/",
+        "url": "{{ config.base_url }}/press/",
+        "name": "Press Kit",
+        "description": "Brand assets, guidelines, and company information for journalists and media covering Archipelag.io.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+            "@id": "{{ config.base_url }}/#website"
+        },
+        "publisher": {
+            "@id": "{{ config.base_url }}/#organization"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ config.base_url }}/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Press",
+                    "item": "{{ config.base_url }}/press/"
+                }
+            ]
+        }
+    }
+    </script>
+
     <style>
         .press-header {
             padding: var(--space-20) 0 var(--space-12);

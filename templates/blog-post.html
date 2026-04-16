@@ -15,6 +15,7 @@
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
     <meta property="og:site_name" content="{{ config.title }}">
     <meta property="og:locale" content="en_US">
     {% if page.date %}
@@ -33,6 +34,7 @@
     <meta name="twitter:title" content="{{ page.title }} | {{ config.title }}">
     <meta name="twitter:description" content="{{ page.description | default(value=config.description) }}">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
+    <meta name="twitter:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
 {% endblock head_meta %}
 
 {% block head_extra %}
