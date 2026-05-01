@@ -18,6 +18,25 @@ run = "zola check"
 description = "Remove build artifacts"
 run = "rm -rf public"
 
+[tasks."og:install"]
+description = "Install OG image generator dependencies"
+run = """
+#!/bin/bash
+set -e
+cd scripts/og-images
+npm install
+npx playwright install chromium
+"""
+
+[tasks."og:generate"]
+description = "Regenerate per-post OG images into static/og/"
+run = """
+#!/bin/bash
+set -e
+cd scripts/og-images
+node generate.js
+"""
+
 [tasks.deploy]
 description = "Build and deploy (Cloudflare Pages auto-deploys on push)"
 run = """

@@ -6,6 +6,7 @@ date = 2026-05-01
 [extra]
 category = "Perspective"
 author = "Raffael Schneider"
+image = "/og/europe-without-datacenters.png"
 +++
 
 It is the first of May. A day about human labour, which makes it a good day to be honest about two things at once: that AI is going to take a meaningful share of the work humans used to have to do, and that the infrastructure deciding *whose* AI does it is being poured in concrete right now, mostly outside Europe.

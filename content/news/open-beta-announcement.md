@@ -6,6 +6,7 @@ date = 2026-03-13
 [extra]
 category = "Announcement"
 author = "Raffael Schneider"
+image = "/og/open-beta-announcement.png"
 +++
 
 There's a GPU in your computer that spends most of its life doing nothing.

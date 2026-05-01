@@ -1,0 +1,13 @@
+{
+  "name": "archipelag-og-images",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "gray-matter": "^4.0.3",
+    "playwright": "^1.48.0"
+  }
+}

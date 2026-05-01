@@ -6,6 +6,7 @@ date = 2026-04-16
 [extra]
 category = "Technical"
 author = "Raffael Schneider"
+image = "/og/your-phone-is-an-island.png"
 +++
 
 There's a chip inside your phone that most software never touches.

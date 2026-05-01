@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1200px;
+    height: 630px;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #fafaf9;
+    color: #1c1917;
+    overflow: hidden;
+  }
+
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:
+      radial-gradient(circle at 88% 12%, rgba(13, 148, 136, 0.10) 0%, transparent 45%),
+      radial-gradient(circle at 8% 92%, rgba(20, 184, 166, 0.07) 0%, transparent 40%),
+      #fafaf9;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(28, 25, 23, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28, 25, 23, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .border-frame {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    border: 1px solid #e7e5e4;
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .brand {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+  }
+
+  .brand-mark {
+    width: 56px;
+    height: 56px;
+    display: block;
+  }
+
+  .brand-text {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1c1917;
+  }
+
+  .brand-text .dot {
+    color: #0d9488;
+  }
+
+  .body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1000px;
+  }
+
+  .accent-line {
+    width: 56px;
+    height: 4px;
+    background: #0d9488;
+    border-radius: 2px;
+  }
+
+  .title {
+    font-size: 78px;
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    color: #1c1917;
+  }
+
+  .title.long {
+    font-size: 64px;
+  }
+
+  .title.very-long {
+    font-size: 56px;
+  }
+
+  .description {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #57534e;
+    max-width: 940px;
+  }
+
+  .footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 20px;
+    color: #78716c;
+    font-weight: 500;
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .category {
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 6px 12px;
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-radius: 999px;
+  }
+
+  .date {
+    color: #57534e;
+    font-weight: 500;
+  }
+
+  .author {
+    text-align: right;
+  }
+
+  .author .name {
+    color: #1c1917;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .author .role {
+    font-size: 16px;
+    color: #78716c;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid-overlay"></div>
+    <div class="border-frame"></div>
+
+    <div class="brand">
+      __BRANDMARK__
+      <span class="brand-text">archipelag<span class="dot">.</span>io</span>
+    </div>
+
+    <div class="body">
+      <div class="accent-line"></div>
+      <h1 class="title" id="title">__TITLE__</h1>
+      <p class="description">__DESCRIPTION__</p>
+    </div>
+
+    <div class="footer">
+      <div class="meta">
+        <span class="category">__CATEGORY__</span>
+        <span class="date">__DATE__</span>
+      </div>
+      <div class="author">
+        <div class="name">__AUTHOR__</div>
+        <div class="role">Founder, Archipelag.io</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const title = document.getElementById('title');
+    const len = title.textContent.length;
+    if (len > 50) title.classList.add('very-long');
+    else if (len > 30) title.classList.add('long');
+  </script>
+</body>
+</html>
