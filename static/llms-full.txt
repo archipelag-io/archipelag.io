@@ -170,6 +170,38 @@ Basic usage is available without KYC. For running an Island and higher spending 
 - [Earn](https://archipelag.io/earn/) — Island information, compute exchange, Karma system, security
 - [News](https://archipelag.io/news/) — Company updates and technical articles
 - [About](https://archipelag.io/about/) — Mission, Swiss/EU heritage, technology overview
+
+## Articles
+
+All articles are authored by Raffael Schneider, founder of Archipelag.io.
+
+### Europe Without Datacenters
+- URL: https://archipelag.io/news/europe-without-datacenters/
+- Published: 2026-05-01
+- Category: Perspective
+
+AI inference is permanent — not a hype cycle, but a new utility on the level of electricity and bandwidth. Europe is currently weak on the layer that delivers it: the hyperscale buildout is happening in Virginia, Texas, the Gulf states, Seoul, and Hefei, while the European share of frontier compute is small and mostly sits inside foreign clouds. The reflex answer of "build more datacenters" is slow — permits, grid headroom, and capital all push elsewhere. Datacenter-less inference is the faster answer: every modern phone, laptop, and workstation is latent compute capacity. Archipelag.io turns that into a network where consumers get inference that is fast, cheap, and running on hardware whose physical location and legal jurisdiction are knowable. Sovereignty here is a side effect of how the network is built, not a slogan. Labour Day frames the human dimension: the fourth industrial revolution lifts arduous, repetitive work — but only if the substrate underneath it is plural, jurisdictionally clear, and within reach of the people whose lives it will reshape.
+
+### Your Phone Is an Island
+- URL: https://archipelag.io/news/your-phone-is-an-island/
+- Published: 2026-04-16
+- Category: Technical
+
+A demonstration of running real LLM inference on iPhones. Apple's Neural Engine (35 trillion ops per second on the A17 Pro) sits idle most of the day across a billion-plus devices. Archipelag.io turns these into compute nodes: a prompt typed in a browser, dispatched by the coordinator, answered by a language model (TinyLlama 1.1B, quantized) running on someone's phone across town, with tokens streaming back in real time over WebSocket. No datacenter, no cloud GPU. The piece argues this is not a gimmick: with a billion idle Neural Engines and Apple GPUs, the aggregate throughput is meaningful, and the latency, energy, and sovereignty profile is fundamentally different from hyperscale.
+
+### Archipelag.io Enters Open Beta
+- URL: https://archipelag.io/news/open-beta-announcement/
+- Published: 2026-03-13
+- Category: Announcement
+
+Open beta runs for three months until June 2026. All credits and earnings are virtual during beta. The post lays out what's available now: LLM chat, image generation, OpenAI-compatible API, jurisdiction-aware routing (EU, Switzerland, custom), market-based pricing via the compute exchange, and Island onboarding for desktops, servers, and mobile devices. Free beta credits for new accounts; no credit card required. The framing is that GPUs, neural engines, and even idle workstations across the network represent compute that is already paid for, already powered on, and currently doing nothing useful — and that opening the platform broadly is the only way to test the matchmaking, latency, and pricing assumptions at real scale.
+
+### Introducing Archipelag.io
+- URL: https://archipelag.io/news/introducing-archipelag-io/
+- Published: 2025-01-26
+- Category: Announcement
+
+The founding article. Why send AI requests halfway across a continent when there's a perfectly good GPU two blocks away? Capable hardware — gaming PCs, workstations, post-mining rigs — sits idle while consumers pay cloud providers for distant equivalents. Archipelag.io routes Cargos (signed workload containers) to nearby independently-operated Islands and orchestrates the result through a coordinator. Security model: only network-approved, cryptographically signed containers run; sandboxed execution; no arbitrary code. The post sets out the principles: local-first placement, controlled cargos, assume-failure design, streaming output, and a market-based exchange where Islands set asking prices and consumers set bid preferences.
 - [Contact](https://archipelag.io/contact/) — Support channels and partnerships
 - [Privacy Policy](https://archipelag.io/privacy/) — Data handling and privacy practices
 - [Terms of Service](https://archipelag.io/terms/) — Usage terms and conditions

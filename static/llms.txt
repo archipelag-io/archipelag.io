@@ -74,6 +74,13 @@ Market-based pricing set by supply and demand on the compute exchange:
 - [Earn](https://archipelag.io/earn/): Information for Islands and earnings
 - [News](https://archipelag.io/news/): Company updates and technical articles
 - [About](https://archipelag.io/about/): Mission, values, and Swiss/EU heritage
+
+## Articles
+
+- [Europe Without Datacenters](https://archipelag.io/news/europe-without-datacenters/) (2026-05-01, by Raffael Schneider): AI inference is here to stay. Europe is weak on the infrastructure that runs it and strong on the values that should shape it. Datacenter-less inference is how the two reconcile.
+- [Your Phone Is an Island](https://archipelag.io/news/your-phone-is-an-island/) (2026-04-16, by Raffael Schneider): Turning an iPhone into a compute node. A prompt typed in a browser, answered by a language model running on someone's phone across town. How it works and why it matters.
+- [Archipelag.io Enters Open Beta](https://archipelag.io/news/open-beta-announcement/) (2026-03-13, by Raffael Schneider): Opening Archipelag.io to everyone for three months. Use AI, lend your GPU, and help us figure out what works.
+- [Introducing Archipelag.io](https://archipelag.io/news/introducing-archipelag-io/) (2025-01-26, by Raffael Schneider): A distributed compute network that routes AI Cargos to nearby hardware instead of distant data centers. The story of why, and what it actually does.
 - [Contact](https://archipelag.io/contact/): Support channels and partnerships
 - [Privacy Policy](https://archipelag.io/privacy/): Data handling and privacy
 - [Terms of Service](https://archipelag.io/terms/): Usage terms

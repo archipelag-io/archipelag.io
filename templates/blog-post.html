@@ -3,6 +3,11 @@
 {% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
+    {% set og_image_path = page.extra.image | default(value="/og-image.png") %}
+    {% set og_image_url = config.base_url ~ og_image_path %}
+    {% if og_image_path is starting_with("http") %}{% set_global og_image_url = og_image_path %}{% endif %}
+    {% set article_section = page.extra.category | default(value="Technology") %}
+    {% set article_author = page.extra.author | default(value="Raffael Schneider") %}
     <meta name="description" content="{{ page.description | default(value=config.description) }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ config.base_url }}{{ current_path }}">
@@ -12,10 +17,10 @@
     <meta property="og:url" content="{{ config.base_url }}{{ current_path }}">
     <meta property="og:title" content="{{ page.title }} | {{ config.title }}">
     <meta property="og:description" content="{{ page.description | default(value=config.description) }}">
-    <meta property="og:image" content="{{ config.base_url }}/og-image.png">
+    <meta property="og:image" content="{{ og_image_url }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
+    <meta property="og:image:alt" content="{{ page.title }} — Archipelag.io">
     <meta property="og:site_name" content="{{ config.title }}">
     <meta property="og:locale" content="en_US">
     {% if page.date %}
@@ -24,8 +29,8 @@
     {% if page.updated %}
     <meta property="article:modified_time" content="{{ page.updated | date(format='%Y-%m-%dT%H:%M:%S+00:00') }}">
     {% endif %}
-    <meta property="article:author" content="{{ config.extra.author }}">
-    <meta property="article:section" content="Technology">
+    <meta property="article:author" content="{{ article_author }}">
+    <meta property="article:section" content="{{ article_section }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -33,11 +38,15 @@
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
     <meta name="twitter:title" content="{{ page.title }} | {{ config.title }}">
     <meta name="twitter:description" content="{{ page.description | default(value=config.description) }}">
-    <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
-    <meta name="twitter:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    <meta name="twitter:image:alt" content="{{ page.title }} — Archipelag.io">
 {% endblock head_meta %}
 
 {% block head_extra %}
+    {% set og_image_path = page.extra.image | default(value="/og-image.png") %}
+    {% set og_image_url = config.base_url ~ og_image_path %}
+    {% if og_image_path is starting_with("http") %}{% set_global og_image_url = og_image_path %}{% endif %}
+    {% set article_section = page.extra.category | default(value="Technology") %}
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -45,15 +54,18 @@
         "@type": "BlogPosting",
         "@id": "{{ config.base_url }}{{ current_path }}",
         "url": "{{ config.base_url }}{{ current_path }}",
-        "headline": "{{ page.title }}",
-        "description": "{{ page.description | default(value=config.description) }}",
+        "headline": {{ page.title | json_encode | safe }},
+        "description": {{ page.description | default(value=config.description) | json_encode | safe }},
         {% if page.date %}"datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
         {% if page.updated %}"dateModified": "{{ page.updated | date(format='%Y-%m-%d') }}",{% elif page.date %}"dateModified": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
         "inLanguage": "en-US",
-        "image": "{{ config.base_url }}/og-image.png",
+        "image": "{{ og_image_url }}",
         {% if page.word_count %}"wordCount": {{ page.word_count }},{% endif %}
+        {% if page.reading_time %}"timeRequired": "PT{{ page.reading_time }}M",{% endif %}
+        "articleSection": {{ article_section | json_encode | safe }},
+        "isAccessibleForFree": true,
         "author": {
-            "@id": "{{ config.base_url }}/#organization"
+            "@id": "{{ config.base_url }}/#person-raffael-schneider"
         },
         "publisher": {
             "@id": "{{ config.base_url }}/#organization"
@@ -67,6 +79,7 @@
             "@id": "{{ config.base_url }}/news/",
             "name": "Archipelag.io Blog"
         },
+        "articleBody": {{ page.content | striptags | json_encode | safe }},
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -85,7 +98,7 @@
                 {
                     "@type": "ListItem",
                     "position": 3,
-                    "name": "{{ page.title }}",
+                    "name": {{ page.title | json_encode | safe }},
                     "item": "{{ config.base_url }}{{ current_path }}"
                 }
             ]
@@ -95,6 +108,7 @@
 {% endblock head_extra %}
 
 {% block content %}
+    {% set article_author = page.extra.author | default(value="Raffael Schneider") %}
         <article class="section" itemscope itemtype="https://schema.org/BlogPosting">
             <div class="container">
                 <div class="max-w-2xl mx-auto">
@@ -129,7 +143,15 @@
                         {% if page.description %}
                         <p class="blog-description" itemprop="description">{{ page.description }}</p>
                         {% endif %}
-                        <meta itemprop="author" content="{{ config.extra.author }}">
+                        <div class="blog-meta">
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <span itemprop="name">{{ article_author }}</span>
+                            </span>
+                            {% if page.reading_time %}
+                            <span aria-hidden="true">·</span>
+                            <span>{{ page.reading_time }} min read</span>
+                            {% endif %}
+                        </div>
                     </header>
 
                     <!-- Article content -->
