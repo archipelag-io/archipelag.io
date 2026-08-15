@@ -4,7 +4,7 @@ description = "The terms and conditions governing your use of Archipelag.io serv
 date = 2026-01-26
 +++
 
-*Last updated: January 26, 2026*
+*Last updated: August 15, 2026*
 
 These Terms of Service ("Terms") govern your access to and use of Archipelag.io's website, platform, APIs, and services (collectively, the "Services"). By accessing or using our Services, you agree to be bound by these Terms.
 
@@ -14,11 +14,13 @@ By creating an account or using our Services, you agree to these Terms and our [
 
 ## 2. Description of Services
 
-Archipelag.io provides a distributed compute platform that connects consumers who need AI inference capabilities with Islands who contribute computing resources. Our Services include:
+Archipelag.io provides a distributed compute platform that connects Consumers who need AI inference capabilities with Islands that contribute computing resources. Our Services include:
 
 - **For Consumers**: Access to AI models (LLM chat, image generation) via web interface and API
 - **For Islands**: Software to contribute compute resources and earn credits
-- **Credit System**: Digital credits used to pay for compute services
+- **Phase 2 Credit System**: Virtual credits used to test metering, matching, and accounting. They have no cash value.
+
+Archipelag.io is currently in Phase 2. Real-money billing, credit purchases, and Island payouts are not enabled. Features marked Beta or Experimental may change or be withdrawn as the network is validated.
 
 ## 3. Account Registration
 
@@ -73,33 +75,31 @@ To participate as an Island (compute contributor), you must:
 ### 5.2 Cargo Execution
 As an Island, you agree to:
 - Run only approved, signed Cargos from our platform
-- Not inspect, copy, or retain consumer data processed through Cargos
+- Not inspect, copy, or retain Consumer data processed through Cargos
 - Maintain the security and isolation of Cargo containers
 - Report any security incidents immediately
 
-### 5.3 Earnings and Payouts
-- Earnings are calculated based on compute time and hardware tier
-- Minimum payout threshold is $25 USD
-- Payouts are processed monthly via Stripe
-- You are responsible for any applicable taxes on earnings
+### 5.3 Phase 2 Island Credits
+- The platform may calculate virtual Island credits from completed Jobs, clearing amounts, and hardware or performance signals
+- Virtual credits are test data, have no cash value, and cannot be withdrawn or transferred
+- No payout is owed for participation during Phase 2
+- A future paid program, if introduced, will be governed by separate or updated commercial terms
 
 ## 6. Credits and Payments
 
-### 6.1 Credit Purchases
-- Credits are purchased in packages as displayed on our pricing page
-- All purchases are final and non-refundable except as required by law
-- Unused credits do not expire
-- Credits have no cash value and cannot be transferred
+### 6.1 Virtual Credits
+- Phase 2 credits are provided without charge
+- Virtual credits may be refilled, adjusted, or reset as testing requires
+- Credits have no cash value and cannot be transferred or redeemed
+- Archipelag.io does not currently sell credit packages
 
 ### 6.2 Credit Usage
-- Credits are deducted based on actual compute usage
-- Usage rates vary by Cargo type and are displayed before submission
-- We reserve the right to adjust pricing with 30 days notice
+- Virtual credits may be deducted based on measured compute usage
+- Simulated rates vary by Cargo type and are shown before Job submission where supported
+- Phase 2 rates and balances may change as the exchange is tested
 
-### 6.3 Refunds
-- Refunds for unused credits may be requested within 30 days of purchase
-- Partially used credit packages are not eligible for refunds
-- Contact [hey@archipelag.io](mailto:hey@archipelag.io) for refund requests
+### 6.3 Purchases and Refunds
+There are no Phase 2 credit purchases to refund. Any future paid service will present its price, refund rules, and applicable commercial terms before purchase.
 
 ## 7. Intellectual Property
 

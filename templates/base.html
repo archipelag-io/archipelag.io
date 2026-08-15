@@ -265,9 +265,9 @@
                 <span class="mobile-nav-heading">Community</span>
                 <a href="/use" class="nav-link{% if current_path %}{% if current_path is starting_with('/use') %} active{% endif %}{% endif %}">Use AI</a>
                 <a href="/earn" class="nav-link{% if current_path %}{% if current_path is starting_with('/earn') %} active{% endif %}{% endif %}">Earn</a>
-                {% for item in config.extra.nav_items %}
-                <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
-                {% endfor %}
+                <a href="/cargo/" class="nav-link">Cargo Registry</a>
+                <a href="/matchmaking" class="nav-link">Matchmaking</a>
+                <a href="/news" class="nav-link">News</a>
             </nav>
             <a href="https://app.archipelag.io/auth/login" class="btn btn-primary w-full">Log In</a>
         </div>
@@ -277,7 +277,7 @@
     <div class="beta-banner" role="status">
         <div class="container">
             <p class="beta-banner-text">
-                <span class="beta-badge">Phase 2</span> Archipelag.io is free and credits-only while we build the catalog of the latest open models. All credits and earnings are virtual.
+                <span class="beta-badge">Phase 2</span> Archipelag.io is free and credits-only while we expand the approved Cargo catalog and validate end-to-end reliability. All credits and earnings are virtual.
                 <a href="/news/phase-2-building-the-catalog/">Read the roadmap &rarr;</a>
             </p>
         </div>
@@ -311,7 +311,7 @@
                         <div class="footer-heading">Platform</div>
                         <ul class="footer-links">
                             <li><a href="/use">Use AI</a></li>
-                            <li><a href="/earn">Earn with GPU</a></li>
+                            <li><a href="/earn">Contribute Compute</a></li>
                             <li><a href="/pricing">Pricing</a></li>
                             <li><a href="https://app.archipelag.io/chat">Chat</a></li>
                             <li><a href="https://app.archipelag.io/image">Image Generation</a></li>
@@ -365,7 +365,7 @@
                             <li><a href="/earn">Overview</a></li>
                             <li><a href="/earn#desktop">Desktop / Server</a></li>
                             <li><a href="/earn#mobile">Mobile Device</a></li>
-                            <li><a href="/earn#calculator">Earnings Calculator</a></li>
+                            <li><a href="/earn#calculator">Credit Simulator</a></li>
                             <li><a href="https://docs.archipelag.io/getting-started/for-hosts">Island Setup Guide</a></li>
                         </ul>
                     </nav>
@@ -494,6 +494,7 @@
         });
     </script>
 
+    <script src="/js/island-vignettes.js" defer></script>
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>

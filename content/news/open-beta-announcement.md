@@ -9,6 +9,8 @@ author = "Raffael Schneider"
 image = "/og/open-beta-announcement.png"
 +++
 
+> **Editorial update, June 25, 2026:** The original three-month beta window described below has been superseded by [Phase 2](/news/phase-2-building-the-catalog/). Archipelag.io remains free and credits-only; real-money billing and Island payouts are not enabled, and there is no fixed monetization date.
+
 There's a GPU in your computer that spends most of its life doing nothing.
 
 Maybe it's a gaming rig that sits idle while you're at work, a machine that cost you the better part of a paycheck and now runs Steam updates and screensavers for twenty hours a day. Maybe it's a workstation that renders video for two hours and sleeps the other twenty-two. Maybe it's a machine you built during the mining craze that's been collecting dust since ETH went proof-of-stake. Maybe it's the M3 MacBook on your kitchen table. Or the iPhone in your pocket, with a neural engine that Apple spent billions designing, currently dedicated to scrolling Instagram.
@@ -79,7 +81,7 @@ We want to hear from you. If something is broken, [open an issue](https://github
 
 ## What happens next
 
-After the beta, we plan to turn on real payments, add more models, and grow the network into more regions. The specifics depend on what we learn over the next three months.
+When this article was published, we expected real payments to follow the initial beta. That plan changed: Phase 2 remains focused on the Cargo catalog and end-to-end reliability, with no fixed date for real-money billing. The specifics depend on what we learn.
 
 The longer arc is this: we want to build a compute network that's as decentralized and resilient as the internet was supposed to be. One where a freelance developer in Kraków can spin up an AI feature without a cloud contract. Where a student in Lagos can access the same models as a researcher at Stanford, served from hardware in their own city. Where the person running an Island earns enough to cover their electricity bill and then some, turning idle hardware into a genuine income stream.
 

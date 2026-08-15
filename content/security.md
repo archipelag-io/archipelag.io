@@ -1,184 +1,86 @@
 +++
 title = "Security"
-description = "How Archipelag.io protects your data and ensures secure compute operations."
-date = 2026-01-26
+description = "The Archipelag.io trust model, implemented controls, and current security boundaries."
+date = 2026-08-15
 +++
 
-Security is fundamental to Archipelag.io. We've designed our platform with security at every layer, ensuring both consumers and Islands can participate safely in our distributed compute network.
+Archipelag.io connects Consumers with independently operated Islands. That makes trust boundaries important: Consumers should not have to trust arbitrary Island software, and Island operators should not have to trust arbitrary Consumer code.
 
-## Security Architecture
+This page describes the current Phase 2 security model. Experimental features are labeled explicitly.
 
-### Zero-Trust Model
+## Security model
 
-We operate on a zero-trust security model where:
+- **The Coordinator is the authority.** It authenticates participants, selects eligible Islands, dispatches Jobs, and records their state.
+- **Islands run controlled Cargos.** The standard Island software accepts network-approved, signed Cargo artifacts rather than arbitrary Consumer code.
+- **Cargos are isolated from the Island.** Container execution uses resource limits, seccomp profiles, and registry controls appropriate to the configured sandbox tier.
+- **Consumers are separated from Island operators.** A Consumer's account identity is not sent to an Island as part of a Job.
+- **Failure is expected.** Heartbeats, acknowledgements, retries, requeueing, and Karma signals help the Coordinator respond when an Island becomes unavailable.
 
-- **Consumers don't trust Islands**: All consumer data is encrypted and Islands never see plaintext content
-- **Islands don't trust Cargos**: All Cargos run in isolated containers with strict resource limits
-- **The coordinator is the authority**: Cryptographically signed Cargos and authenticated communications
+No sandbox is a substitute for a patched operating system. Island operators remain responsible for securing the machines and networks they contribute.
 
-### Encryption
+## What an Island can see
 
-- **In Transit**: All communications use TLS 1.3 with modern cipher suites
-- **At Rest**: Sensitive data encrypted using AES-256-GCM
-- **Cargo Data**: End-to-end encryption for sensitive Cargo payloads
-- **API Keys**: Hashed using Argon2id before storage
+In standard execution mode, Job data is protected in transit, but it is available to the Island's container runtime while the Cargo executes. Consumers should not send secrets or regulated data unless the selected execution mode and their own risk assessment permit it.
 
-### Workload Isolation
+| Data | Standard execution | Confidential execution (Experimental) |
+|---|---|---|
+| Job input and output during execution | Available to the execution environment | Intended to be decrypted only inside an attested environment |
+| Consumer account identity | Not included in the Job dispatch | Not included in the Job dispatch |
+| Cargo identity and resource requirements | Visible to the Island | Visible to the Island |
+| Operational Job metadata | Visible where needed for execution and tracing | Visible where needed for execution and tracing |
 
-Every Cargo on our network runs in complete isolation:
+Confidential inference is under active validation. It is not a production guarantee and requires compatible attested hardware and client support.
 
-- **Container Sandboxing**: Docker containers with seccomp profiles and AppArmor
-- **Resource Limits**: Strict CPU, memory, and network quotas
-- **No Persistent Storage**: Cargos cannot write to Island filesystems
-- **Network Restrictions**: Outbound-only connections, no Island network access
-- **Signed Images**: Only cryptographically signed container images can execute
+## Implemented controls
 
-## Island Security
+### Cargo execution
 
-### Agent Security
+- Approved Cargo and registry allowlists
+- Signed artifact verification
+- Per-sandbox seccomp profiles
+- CPU, memory, and execution limits
+- Capability matching before dispatch
+- Job correlation IDs across dispatch, execution, and completion
 
-The Archipelag.io Island software is designed with security as a priority:
+### Accounts and APIs
 
-- **Written in Rust**: Memory-safe language eliminates entire classes of vulnerabilities
-- **Minimal Privileges**: Runs with least-privilege access
-- **Automatic Updates**: Security patches delivered automatically
-- **Open Source**: Agent code is available for security review
+- Authenticated browser and API access
+- Scoped API keys for read and write operations
+- Session and Job ownership checks for realtime channels
+- Request, body, and message-size limits
+- Rate limits for API and authentication endpoints
 
-### Network Security
+### Island communication
 
-- **Outbound-Only**: Islands never accept inbound connections
-- **WireGuard VPN**: Encrypted tunnels for all coordinator communication
-- **No Port Forwarding**: No router configuration or firewall changes required
-- **IP Anonymization**: Consumer IPs are not shared with Islands
+- Outbound connections from the Island software to the Coordinator and message fabric
+- Encrypted transport
+- Heartbeats and health reporting
+- No requirement to expose an inbound router port for normal operation
 
-## Consumer Security
+The Island software is written in Rust and is available for review in the [public repository](https://github.com/archipelag-io/node-agent).
 
-### Account Protection
+## Placement and compliance
 
-- **Strong Password Requirements**: Minimum 12 characters with complexity requirements
-- **OAuth Integration**: Secure authentication via GitHub
-- **Session Management**: Automatic session expiration and secure token handling
-- **API Key Scoping**: Fine-grained permissions for API keys
+Regional placement policies can restrict which reported Island locations are eligible for a Job, and execution records identify the selected Island. These are technical controls that may support a Consumer's governance or data-residency program. They do not, by themselves, establish GDPR, EU AI Act, SOC 2, ISO 27001, or industry-specific compliance.
 
-### Data Protection
+Archipelag.io is not currently SOC 2 or ISO 27001 certified. Consumers remain responsible for assessing their own legal, security, and contractual requirements.
 
-- **Regional Processing**: Data processed in your geographic region by default
-- **No Data Retention**: Cargo inputs and outputs not stored after completion
-- **Audit Logging**: Complete audit trail of account and API activity
-- **Right to Deletion**: Request complete data deletion at any time
+## Operational security
 
-### Audit Logging
+The platform includes structured logging, Prometheus metrics, dependency scanning, and incident-response runbooks. Security controls and operational coverage continue to be hardened during Phase 2.
 
-- **Hash-Chained Logs**: Immutable audit trail with tamper detection via hash chaining
-- **Trust Events**: All approvals, rejections, and suspensions are logged with full context
-- **Security Incidents**: Automated incident recording with forensic detail
-- **Chain Verification**: Integrity of the audit log can be verified at any time
+For Island operators:
 
-### Rate Limiting & Abuse Prevention
+1. Keep the operating system, container runtime, and Island software updated.
+2. Use a dedicated or appropriately isolated machine for untrusted compute.
+3. Review resource use and logs for unexpected behavior.
+4. Protect API keys and never commit them to source control.
+5. Report suspected incidents promptly.
 
-- **API Rate Limiting**: 100 requests per minute per API key
-- **Authentication Rate Limiting**: 5 requests per minute for magic link login
-- **Input Validation**: Message content capped at 32KB, job input at 256KB, max 128 messages per request
-- **Body Size Limits**: 1MB maximum request body
+## Report a vulnerability
 
-## Infrastructure Security
+Send vulnerability reports to [hey@archipelag.io](mailto:hey@archipelag.io). The canonical disclosure contact is also published at [/.well-known/security.txt](/.well-known/security.txt).
 
-### Platform Security
+Please include the affected component, reproduction steps, potential impact, and a safe way to contact you. Do not access other people's data, use social engineering, or perform denial-of-service testing.
 
-- **EU Data Centers**: Primary infrastructure hosted in EU data centers
-- **DDoS Protection**: Multi-layer DDoS mitigation
-- **Web Application Firewall**: Protection against common web attacks
-- **Regular Penetration Testing**: Third-party security assessments
-
-### Monitoring & Response
-
-- **24/7 Monitoring**: Automated security monitoring and alerting
-- **Incident Response**: Documented procedures for security incidents
-- **Vulnerability Management**: Regular scanning and patching
-- **Security Logging**: Comprehensive logging for forensic analysis
-
-## Compliance
-
-We maintain security practices aligned with:
-
-- **GDPR**: EU data protection requirements
-- **SOC 2 Type II**: (In progress) Security, availability, and confidentiality controls
-- **ISO 27001**: (Planned) Information security management
-
-## Vulnerability Disclosure
-
-We welcome responsible disclosure of security vulnerabilities.
-
-### Reporting a Vulnerability
-
-If you discover a security issue, please report it to:
-
-**Email**: [hey@archipelag.io](mailto:hey@archipelag.io)
-
-**PGP Key**: A `security.txt` file with our PGP key is planned and will be available at `/.well-known/security.txt`
-
-### What to Include
-
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Your contact information (optional, for follow-up)
-
-### Our Commitment
-
-- **Acknowledgment**: We'll acknowledge receipt within 24 hours
-- **Assessment**: Initial assessment within 72 hours
-- **Resolution**: Critical issues addressed within 7 days
-- **Credit**: Public acknowledgment for responsible disclosures (if desired)
-- **No Legal Action**: We will not pursue legal action against good-faith researchers
-
-### Scope
-
-In-scope systems include:
-- archipelag.io and all subdomains
-- api.archipelag.io
-- The Island software
-- Mobile applications
-
-Out of scope:
-- Third-party services (Stripe, GitHub)
-- Social engineering attacks
-- Physical attacks
-- Denial of service testing
-
-## Security Best Practices
-
-### For Users
-
-1. **Use Strong Passwords**: Or sign in with GitHub for OAuth security
-2. **Protect API Keys**: Never commit keys to version control
-3. **Monitor Usage**: Review your account activity regularly
-4. **Enable Notifications**: Get alerts for account changes
-5. **Report Suspicious Activity**: Contact us if you notice anything unusual
-
-### For Islands
-
-1. **Keep Systems Updated**: Enable automatic updates for the Island software
-2. **Secure Your Network**: Use a firewall and secure your home network
-3. **Monitor Resources**: Watch for unusual CPU or network activity
-4. **Dedicated Hardware**: Consider using dedicated hardware for contributing compute
-5. **Review Logs**: Periodically review Island logs for anomalies
-
-## Security Updates
-
-We publish security advisories for significant issues at:
-
-- **Status Page**: status.archipelag.io (coming soon)
-- **Email Notifications**: Security alerts sent to registered users
-- **GitHub**: Security advisories in our public repositories
-
-## Contact
-
-For security questions or concerns:
-
-- **Security Team**: [hey@archipelag.io](mailto:hey@archipelag.io)
-- **General Support**: [hey@archipelag.io](mailto:hey@archipelag.io)
-
----
-
-*Security is an ongoing process. We continuously improve our security posture and welcome feedback from our community.*
+Security is an ongoing process. We welcome good-faith reports and improve these controls as the network matures.

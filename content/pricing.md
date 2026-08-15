@@ -1,5 +1,5 @@
 +++
 title = "Pricing"
-description = "Start free, scale with compliance. Sovereign compute infrastructure with jurisdiction routing and verified execution."
+description = "Archipelag.io is free and virtual-credits-only during Phase 2. Explore the market model being tested before commercial terms are finalized."
 template = "pricing.html"
 +++

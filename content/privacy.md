@@ -4,7 +4,7 @@ description = "How Archipelag.io collects, uses, and protects your personal info
 date = 2026-01-26
 +++
 
-*Last updated: January 26, 2026*
+*Last updated: March 15, 2026*
 
 This Privacy Policy describes how Archipelag.io ("we", "us", or "our") collects, uses, and shares information about you when you use our website, platform, and services (collectively, the "Services").
 
@@ -13,7 +13,7 @@ This Privacy Policy describes how Archipelag.io ("we", "us", or "our") collects,
 ### Information You Provide
 
 - **Account Information**: When you create an account, we collect your email address, username, and password. If you sign up using GitHub, we receive your GitHub username and email.
-- **Payment Information**: When you purchase credits, our payment processor (Stripe) collects your payment card details. We do not store full card numbers on our servers.
+- **Payment Information**: Phase 2 does not accept credit purchases or issue Island payouts. If a paid service is introduced later, its payment processor and collection details will be disclosed before payment.
 - **Island Information**: If you register as an Island (compute contributor), we collect information about your hardware specifications, IP address, and geographic region.
 - **Communications**: When you contact us, we collect the information you provide in your messages.
 
@@ -30,14 +30,28 @@ When Cargos run on Island machines:
 - Islands receive only the minimum data necessary to execute Cargos
 - All data is encrypted in transit using TLS 1.3
 - Cargos run in isolated containers with no persistent storage
-- Islands cannot access or retain consumer data after Cargo completion
+- In standard execution mode, Job data is available to the Island's execution environment while the Cargo runs. Island operators are prohibited from retaining it after completion; see [Security](/security) for the current trust boundary.
+
+### Information from Mobile Apps (iOS & Android)
+
+When you use the Archipelag.io Island app on your mobile device:
+
+- **Device Information**: We collect device model, operating system version, and hardware capabilities (e.g., Neural Engine availability, GPU model) to match your device with compatible Cargos.
+- **Network Status**: We detect WiFi connectivity to ensure jobs only run on unmetered connections. We do not collect WiFi network names or passwords.
+- **Battery & Thermal State**: We monitor battery level, charging status, and thermal state to protect your device. This data is sent as part of heartbeat messages and is not stored long-term.
+- **Device Identifier**: A unique identifier is generated locally on your device for Island registration. This is not linked to your Apple ID, Google account, or advertising identifiers.
+- **ML Model Caching**: AI models downloaded for on-device inference are cached locally on your device. Model files are verified via SHA-256 hash and are not shared with third parties.
+- **Job Execution Data**: Input data for Cargos is processed entirely on your device and streamed back to the coordinator. We do not retain Consumer input data on your device after job completion.
+- **Camera**: The camera is used only for QR code scanning during device pairing. No images or video are stored or transmitted.
+- **Background Activity**: The app may run in the background to process jobs. You can control this via device settings and in-app scheduling preferences.
+- **No Tracking**: Our mobile apps do not use advertising identifiers (IDFA/GAID), do not contain third-party analytics SDKs, and do not track you across other apps or websites.
 
 ## How We Use Your Information
 
 We use the information we collect to:
 
 - **Provide Services**: Process your requests, route Cargos, and deliver results
-- **Manage Accounts**: Create and manage your account, process payments, and handle payouts
+- **Manage Accounts**: Create and manage your account and maintain Phase 2 virtual-credit balances
 - **Improve Services**: Analyze usage patterns to improve performance and develop new features
 - **Ensure Security**: Detect and prevent fraud, abuse, and security threats
 - **Communicate**: Send service announcements, security alerts, and support messages
@@ -48,12 +62,12 @@ We use the information we collect to:
 We do not sell your personal information. We share information only in these circumstances:
 
 ### With Service Providers
-- **Stripe**: Payment processing
+- **Stripe**: Identity or payment services when a feature explicitly requires them
 - **Cloud infrastructure**: Hosting and data storage (EU-based)
 - **Email services**: Transactional email delivery
 
 ### With Islands
-- Islands receive anonymized Cargo data necessary for execution
+- The selected Island receives the Job data needed to execute its Cargo. In standard execution mode, that data is available to the Island's execution environment while the Job runs.
 - Islands do not receive your identity, account details, or payment information
 - Geographic routing data is approximate (city-level) only
 
@@ -67,17 +81,17 @@ If we are involved in a merger, acquisition, or sale of assets, your information
 
 We implement appropriate technical and organizational measures to protect your information:
 
-- **Encryption**: All data encrypted in transit (TLS 1.3) and at rest (AES-256)
-- **Access Controls**: Strict access controls and authentication for internal systems
-- **Monitoring**: Continuous security monitoring and intrusion detection
-- **Audits**: Regular security assessments and penetration testing
+- **Transport Security**: Service and Island connections use encrypted transport
+- **Access Controls**: Authenticated access, scoped API keys, and ownership checks protect service functions
+- **Monitoring**: Operational metrics, health checks, and structured security logs support detection and investigation
+- **Software Security**: Dependency scanning, signed Cargo artifacts, registry controls, and sandbox profiles reduce platform risk
 - **Incident Response**: Documented procedures for security incident handling
 
 ## Data Retention
 
 - **Account Data**: Retained while your account is active, then deleted within 30 days of account closure
 - **Usage Logs**: Retained for 90 days for operational purposes
-- **Payment Records**: Retained for 7 years as required by financial regulations
+- **Payment Records**: Phase 2 does not create credit-purchase or Island-payout records. Records from any future paid service would be retained as required by applicable law.
 - **Support Communications**: Retained for 2 years after resolution
 
 ## Your Rights

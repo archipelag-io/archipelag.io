@@ -1,101 +1,71 @@
 +++
 title = "About"
-description = "Archipelag.io builds sovereign compute infrastructure rooted in Swiss and European data protection heritage."
+description = "Archipelag.io is a local-first distributed compute fabric that routes Jobs to independently operated Islands."
 +++
 
-# About Archipelag.io
-
-**Archipelag.io** (pronounced *archipelago*) is the brand and domain for our sovereign compute platform. The name evokes an archipelago — a network of independent islands working together — which is exactly how our distributed compute fabric operates.
+**Archipelag.io** (pronounced *archipelago*) is a distributed compute fabric. The name describes the network: independent Islands contribute compute, Consumers request it, and the Coordinator connects the two.
 
 ## Our Mission
 
-We're building compute infrastructure that respects data sovereignty. Every organization should be able to run AI Cargos with full control over where their data is processed, who processes it, and how it's handled.
+We're building a practical alternative to sending every AI request to a distant hyperscale region. Consumers should be able to choose nearby compute, understand where a Job runs, and use regional placement controls when location matters.
 
-Sovereignty is not a feature. It's the foundation.
+The launch use case is AI inference, but the fabric is designed for approved, signed Cargos beyond AI as well.
 
-## The Problem
+## How the Network Works
 
-AI adoption is accelerating, but data sovereignty is falling behind:
+1. A **Consumer** submits a Job through the web app or API.
+2. The **Coordinator** matches it to a compatible, available Island using capability, latency, region, asking price, and Karma.
+3. The **Island** runs the approved Cargo in a constrained sandbox.
+4. Results stream back through the Coordinator to the Consumer.
 
-- **Jurisdiction gaps** — Cloud providers process data across borders with limited transparency
-- **Compliance burden** — Teams spend months navigating GDPR, AI Act, and sector-specific regulations
-- **Trust deficit** — Organizations can't verify where their data is actually processed
-- **Vendor lock-in** — Centralized providers control pricing, availability, and data access
+Archipelag.io is not a blockchain. The Coordinator is the control-plane authority for placement, dispatch, identity, billing, and health.
 
-For regulated industries — healthcare, finance, government — these aren't inconveniences. They're blockers.
+## Why Local-First Compute
 
-## Our Solution
-
-Archipelag.io creates a distributed compute network where:
-
-- **Jurisdiction routing** ensures Cargos run in specific regions — EU, Switzerland, or custom zones
-- **Verified nodes** are operated by attested providers with documented compliance capabilities
-- **Policy enforcement** happens at the infrastructure level, not as an afterthought
-- **Audit trails** document every execution for regulatory review
+- **Lower distance** — real round-trip-time measurements favor responsive nearby Islands.
+- **Independent supply** — compatible desktops, servers, and mobile devices can contribute capacity.
+- **Transparent placement** — Consumers can see which Island handled a Job and apply regional policies.
+- **Failure-aware routing** — if an Island goes offline, the Coordinator can requeue the Job and select another match.
+- **Open integration** — the chat API follows the OpenAI-compatible interface, and the core components are open source.
 
 ## Swiss and European Roots
 
-We're built on the data protection heritage of Switzerland and the European Union. These jurisdictions set the global standard for privacy and data sovereignty. Our infrastructure inherits that tradition:
+Archipelag.io is built in Switzerland with European data-protection requirements in mind. Regional placement and execution records can support a Consumer's data-residency and governance program. They do not, by themselves, make a Job or organization legally compliant; each organization remains responsible for its own obligations.
 
-- Swiss Federal Act on Data Protection (FADP)
-- EU General Data Protection Regulation (GDPR)
-- EU AI Act compliance readiness
-- Data residency guarantees with no cross-border transfers
-
-## Technology
+## Boring Technology, Clear Responsibilities
 
 Our platform is built on:
-- **Rust agents** for efficient, secure edge computing with hardware attestation
-- **Elixir/Phoenix** for the coordination layer with real-time streaming
-- **NATS messaging** for reliable, low-latency job dispatch
-- **Container isolation** with signed Cargos and seccomp profiles
-- **Cryptographic verification** for node identity and execution integrity
-- **Multi-Island compute** — pipeline parallelism shards large models across multiple Islands; batch fan-out distributes independent work in parallel
-- **Compute Exchange** — market-based pricing with bid/ask matching and live rate snapshots
-- **Cargo Marketplace** — developer portal with publisher tiers, reviews, ratings, and per-execution payouts
-- **Mobile compute** — iOS agent with on-device LLM inference via CoreML; Android via ONNX
-- **Workflow orchestration** — chain Cargos into DAG pipelines with conditional branching, retry, and templates
-- **Inference caching** — semantic deduplication serves similar prompts from cache instantly (free)
-- **A/B testing** — split traffic between model versions, measure quality, auto-promote the winner
-- **Federated fine-tuning** — train models across Islands without centralizing data; differential privacy built in
-- **Confidential inference** — TEE hardware attestation + AES-256-GCM encryption; Islands never see your data
+
+- **Elixir / Phoenix** for the Coordinator and real-time web experience
+- **NATS JetStream** for Job dispatch and streamed output
+- **Rust / Tokio** for the Island software
+- **Docker and WASM** for controlled Cargo execution
+- **PostgreSQL** for authoritative platform state
+
+Experimental capabilities—including Multi-Island compute, workflow orchestration, inference caching, federated fine-tuning, and confidential inference—are labeled as experimental throughout the site.
 
 ## Security & Privacy
 
-- **Verified providers**: Every node operator goes through identity and compliance verification
-- **Signed Cargos**: Only network-approved containers can execute
-- **Encrypted communication**: All traffic secured with mTLS
-- **Confidential inference**: TEE attestation (SGX, SEV, TrustZone, Nitro) + end-to-end encryption
-- **Hardware isolation**: Strict resource limits, sandboxed execution
-- **Audit logging**: Complete execution records for regulatory review
+- Island operators are identity-verified before receiving Jobs.
+- Only approved, signed Cargos may execute.
+- Cargos run with resource limits and sandbox policies.
+- Traffic between Consumers, the Coordinator, and Islands is encrypted in transit.
+- Standard-mode Island software can access Job data while executing it. Experimental confidential-inference modes aim to provide stronger isolation on supported hardware.
+
+[Read the security model &rarr;](/security)
 
 ## Team
 
-We're a small team of distributed systems engineers with backgrounds in cloud infrastructure, data protection, and AI deployment. We believe the future of computing is sovereign, verifiable, and community-operated.
+We're a small team focused on distributed systems, edge infrastructure, applied security, and open standards.
 
 [Meet the team &rarr;](/team)
 
-## Roadmap
+## Current Phase
 
-- **Q1 2026** (done): Open beta launched with free virtual credits for all users
-- **Q1 2026** (done): Multi-Island compute &mdash; pipeline parallelism, batch fan-out, expert routing for MoE models
-- **Q1 2026** (done): Identity verification via Stripe Identity, KYC enforcement with free tier
-- **Q1 2026** (done): Compute Exchange with live market rates, bid/ask matching, price history
-- **Q1 2026** (done): Cargo Marketplace with developer portal, publisher tiers, reviews and ratings
-- **Q1 2026** (done): Mobile compute &mdash; iOS agent with on-device LLM inference via CoreML
-- **Q1 2026** (done): Workflow orchestration &mdash; DAG pipelines with conditional branching, retry, sub-workflows, visual editor
-- **Q1 2026** (done): Inference caching &mdash; semantic dedup, per-Cargo policy, cross-instance sync
-- **Q1 2026** (done): A/B testing &mdash; traffic splitting, statistical significance, auto-promote, dashboard
-- **Q1 2026** (done): Federated fine-tuning &mdash; train across Islands, FedAvg/FedProx, differential privacy, secure aggregation
-- **Q1 2026** (done): Confidential inference &mdash; TEE attestation, end-to-end encryption, homomorphic option
-- **Q2 2026**: Real-money billing, Stripe payouts for Islands, expanded EU/CH coverage
-- **Q3 2026**: Additional jurisdictions, compliance framework integrations, Android agent
-- **Q4 2026**: SOC 2 certification, AI Act compliance toolkit
+Archipelag.io is in **Phase 2**. Access is free and credits-only while the Cargo catalog and end-to-end reliability are expanded. Credits and Island earnings are virtual; real-money billing and payouts are not enabled.
 
-## Contact
-
-- **General**: [hey@archipelag.io](mailto:hey@archipelag.io)
+Core Job dispatch, streaming inference, Island registration, regional placement, Karma, APIs, and mobile Island work are available for testing. Features marked **Beta** or **Experimental** should not be treated as production guarantees.
 
 ---
 
-*Ready to run sovereign compute? [Get started](https://app.archipelag.io/auth/login) or [apply to become a provider](/earn).*
+*Ready to test the network? [Use AI](https://app.archipelag.io/auth/login), [become an Island](/earn), or [contact us](mailto:hey@archipelag.io).*

@@ -923,10 +923,99 @@ html.light .island-vignette {
   filter: saturate(1.18) contrast(1.06);
 }
 
+.page-island-visual {
+  width: min(100%, 420px);
+  margin: var(--space-8) auto calc(0px - var(--space-2));
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 50% 62%, var(--accent-muted), transparent 68%);
+
+  .island-vignette {
+    height: 180px;
+    margin: 0;
+    background: transparent;
+  }
+}
+
+.page-island-visual-wide {
+  width: min(100%, 680px);
+
+  .island-vignette { height: 220px; }
+}
+
+.cargo-registry-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  align-items: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-5);
+}
+
+.cargo-registry-lead {
+  max-width: 38rem;
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+  font-family: var(--font-subline);
+  line-height: 1.7;
+}
+
+.cargo-registry-vignette {
+  height: 180px;
+  margin: 0;
+}
+
+.not-found-island {
+  width: min(100%, 430px);
+  margin-inline: auto;
+
+  .island-vignette {
+    height: 190px;
+    margin: 0;
+  }
+}
+
+.newsroom-island-signal {
+  width: min(100%, 430px);
+  margin: var(--space-8) auto calc(0px - var(--space-6));
+
+  .island-vignette {
+    height: 150px;
+    margin: 0;
+    background: transparent;
+  }
+}
+
+.subscribe-island-visual {
+  width: min(100%, 430px);
+  margin: var(--space-4) auto calc(0px - var(--space-5));
+
+  .island-vignette {
+    height: 155px;
+    margin: 0;
+    background: transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .cargo-registry-intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .cargo-registry-vignette {
+    height: 150px;
+  }
+}
+
 .antigrid-principle {
   text-align: left;
   display: flex;
   flex-direction: column;
+
+  .island-vignette {
+    height: 150px;
+  }
 
   &:hover .island-vignette {
     filter: saturate(1.18) brightness(1.06);
@@ -1023,10 +1112,136 @@ html.light .island-vignette {
   svg { width: 16px; height: 16px; }
 }
 
+// Animated contribution loop (section 06)
+.island-earning-visual {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 58% 52%, rgba(255, 240, 51, 0.08), transparent 30%),
+    radial-gradient(circle at 42% 60%, var(--accent-muted), transparent 58%);
+}
+
+.island-vignette-earning {
+  height: 280px;
+  margin: 0;
+  background: transparent;
+}
+
+.island-earning-caption {
+  position: absolute;
+  inset: auto var(--space-5) var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  color: var(--text-tertiary);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    position: relative;
+    padding-top: var(--space-3);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 6px;
+      height: 3px;
+      border: 1px solid currentColor;
+      transform: translateX(-50%) rotate(30deg) skewX(-30deg);
+      opacity: 0.6;
+    }
+  }
+}
+
+html.light .island-earning-visual {
+  background:
+    radial-gradient(circle at 58% 52%, rgba(201, 147, 0, 0.12), transparent 32%),
+    radial-gradient(circle at 42% 60%, rgba(0, 201, 176, 0.15), transparent 60%);
+}
+
+// Connected technology panorama (section 07)
+.architecture-archipelago {
+  position: relative;
+  margin: calc(0px - var(--space-6)) 0 var(--space-8);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, transparent 0%, var(--surface-1) 100%),
+    radial-gradient(ellipse at 50% 65%, var(--accent-muted), transparent 58%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 8% 34px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 221, 0.28), transparent);
+    pointer-events: none;
+  }
+}
+
+.island-vignette-architecture {
+  height: 260px;
+  margin: 0;
+  background: transparent;
+}
+
+.architecture-caption {
+  position: relative;
+  z-index: 1;
+  margin: -18px auto 0;
+  padding: 0 var(--space-5) var(--space-5);
+  color: var(--text-tertiary);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+html.light .architecture-archipelago {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.2) 0%, var(--surface-1) 100%),
+    radial-gradient(ellipse at 50% 65%, rgba(0, 201, 176, 0.15), transparent 60%);
+}
+
 // Tech cards (section 07)
 .tech-card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 12px;
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    background: var(--accent-muted);
+    transform: skewY(27deg) rotate(-27deg);
+    opacity: 0.8;
+  }
+
+  .tech-index {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-6);
+    color: var(--border-hover);
+    font-family: var(--font-body);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+  }
 
   .tech-label {
     font-family: var(--font-body);
@@ -1050,6 +1265,26 @@ html.light .island-vignette {
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: 1.7;
+  }
+}
+
+@media (max-width: 640px) {
+  .architecture-archipelago {
+    margin-top: 0;
+  }
+
+  .island-vignette-architecture {
+    height: 220px;
+  }
+
+  .island-vignette-earning {
+    height: 240px;
+  }
+
+  .island-earning-caption {
+    inset-inline: var(--space-3);
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
   }
 }
 

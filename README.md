@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://archipelag.io"><img src="https://img.shields.io/website?url=https%3A%2F%2Farchipelag.io&label=archipelag.io" alt="Website"></a>
-  <a href="https://github.com/archipelag-io/website/blob/main/LICENSE"><img src="https://img.shields.io/github/license/archipelag-io/website" alt="License"></a>
+  <a href="https://github.com/archipelag-io/archipelag.io/blob/main/LICENSE"><img src="https://img.shields.io/github/license/archipelag-io/archipelag.io" alt="License"></a>
   <a href="https://www.getzola.org/"><img src="https://img.shields.io/badge/Built_with-Zola-blue" alt="Built with Zola"></a>
 </p>
 

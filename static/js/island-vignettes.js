@@ -268,7 +268,7 @@
     ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.94)' : 'rgba(255,255,255,0.96)'; ctx.fill();
     ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.82) + ')'; ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.95) + ')';
-    ctx.font = '700 8px IBM Plex Mono, monospace';
+    ctx.font = '700 7px IBM Plex Mono, monospace';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     var cursor = active && !reduceMotion && Math.sin(time * 4.5) < 0 ? ' ' : '_';
     ctx.fillText('>' + cursor, cx, y + 8.5);
@@ -396,6 +396,223 @@
     ctx.restore();
   }
 
+  function drawFlowGuide(ctx, path, ox, oy, color, alpha) {
+    [0.24, 0.48, 0.72].forEach(function(progress) {
+      var point = pointOnGridRoute(path, progress, ox, oy);
+      var next = pointOnGridRoute(path, Math.min(0.99, progress + 0.025), ox, oy);
+      var angle = Math.atan2(next.y - point.y, next.x - point.x);
+      ctx.save();
+      ctx.translate(point.x, point.y - 3);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.moveTo(-3.5, -2.5);
+      ctx.lineTo(1.5, 0);
+      ctx.lineTo(-3.5, 2.5);
+      ctx.strokeStyle = 'rgba(' + color + ', ' + alpha + ')';
+      ctx.lineWidth = 1.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  function drawInfoBadge(ctx, cx, cy, label, color, colors, emphasis) {
+    ctx.save();
+    ctx.font = '700 7px IBM Plex Mono, monospace';
+    var width = Math.max(29, ctx.measureText(label).width + 12);
+    var height = 15;
+    panelPath(ctx, cx - width / 2, cy - height / 2, width, height, 5);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.94)' : 'rgba(255,255,255,0.97)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + (emphasis ? 0.9 : 0.38) + ')';
+    ctx.lineWidth = emphasis ? 1.1 : 0.8;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(' + color + ', ' + (emphasis ? 1 : 0.62) + ')';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, cx, cy + 0.5);
+    ctx.restore();
+  }
+
+  function drawTravelToken(ctx, path, progress, ox, oy, symbol, color, colors) {
+    var point = pointOnGridRoute(path, progress, ox, oy);
+    var radius = 7;
+    ctx.save();
+    var glow = ctx.createRadialGradient(point.x, point.y - 7, 0, point.x, point.y - 7, 15);
+    glow.addColorStop(0, 'rgba(' + color + ', ' + (colors.dark ? 0.42 : 0.26) + ')');
+    glow.addColorStop(1, 'rgba(' + color + ', 0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath(); ctx.arc(point.x, point.y - 7, 15, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(point.x, point.y - 7, radius, 0, Math.PI * 2);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.97)' : 'rgba(255,255,255,0.98)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', 0.96)';
+    ctx.lineWidth = 1.1;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(' + color + ', 1)';
+    ctx.font = '700 8px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(symbol, point.x, point.y - 6.5);
+    ctx.restore();
+  }
+
+  function drawSignedCargo(ctx, path, progress, ox, oy, colors) {
+    var point = pointOnGridRoute(path, progress, ox, oy);
+    drawMiniCargo(ctx, point.x, point.y, colors.wire, colors.bg, colors.strength);
+    ctx.save();
+    ctx.fillStyle = 'rgba(' + colors.wire + ', 1)';
+    ctx.font = '800 7px Satoshi, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('\u2713', point.x, point.y - 5.5);
+    ctx.restore();
+  }
+
+  function drawShield(ctx, cx, cy, color, colors, time, active) {
+    var pulse = reduceMotion ? 0.7 : 0.58 + Math.sin(time * 2.2) * 0.12;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 48);
+    ctx.bezierCurveTo(cx + 20, cy - 45, cx + 21, cy - 30, cx + 17, cy - 20);
+    ctx.bezierCurveTo(cx + 12, cy - 8, cx + 4, cy - 3, cx, cy);
+    ctx.bezierCurveTo(cx - 4, cy - 3, cx - 12, cy - 8, cx - 17, cy - 20);
+    ctx.bezierCurveTo(cx - 21, cy - 30, cx - 20, cy - 45, cx, cy - 48);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(' + color + ', ' + (colors.dark ? 0.045 : 0.06) + ')';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + (active ? pulse : 0.38) + ')';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx - 9, cy - 25);
+    ctx.lineTo(cx - 2, cy - 18);
+    ctx.lineTo(cx + 10, cy - 32);
+    ctx.strokeStyle = 'rgba(' + color + ', 0.92)';
+    ctx.lineWidth = 1.8;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawCoordinatorMarker(ctx, cx, cy, colors, alpha, time) {
+    var tone = colors.wire;
+    var top = cy - 38;
+    ctx.save();
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx - 7, cy - 4);
+    ctx.lineTo(cx - 4, top + 10);
+    ctx.lineTo(cx + 4, top + 10);
+    ctx.lineTo(cx + 7, cy - 4);
+    ctx.closePath();
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.96)' : 'rgba(255,255,255,0.97)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.72) + ')';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    panelPath(ctx, cx - 8, top + 2, 16, 10, 3);
+    ctx.fillStyle = 'rgba(' + tone + ', ' + (colors.dark ? 0.12 : 0.09) + ')';
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(' + tone + ', 0.92)';
+    ctx.beginPath(); ctx.arc(cx, top + 7, 2.2, 0, Math.PI * 2); ctx.fill();
+    var sweep = reduceMotion ? -0.25 : Math.sin(time * 0.9) * 0.48;
+    var beamLength = 38;
+    var beam = ctx.createLinearGradient(cx, top + 7, cx + Math.cos(sweep) * beamLength, top + 7 + Math.sin(sweep) * beamLength);
+    beam.addColorStop(0, 'rgba(' + tone + ', 0.32)');
+    beam.addColorStop(1, 'rgba(' + tone + ', 0)');
+    ctx.strokeStyle = beam;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(cx, top + 7);
+    ctx.lineTo(cx + Math.cos(sweep) * beamLength, top + 7 + Math.sin(sweep) * beamLength);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawRelayMarker(ctx, cx, cy, colors, alpha, time) {
+    var tone = colors.wire;
+    var mastTop = cy - 34;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.76) + ')';
+    ctx.lineWidth = 1.1;
+    ctx.beginPath(); ctx.moveTo(cx, cy - 2); ctx.lineTo(cx, mastTop); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - 7, cy - 3); ctx.lineTo(cx, cy - 12); ctx.lineTo(cx + 7, cy - 3); ctx.stroke();
+    ctx.fillStyle = 'rgba(' + tone + ', 0.96)';
+    ctx.beginPath(); ctx.arc(cx, mastTop, 2.2, 0, Math.PI * 2); ctx.fill();
+    [8, 14].forEach(function(radius, index) {
+      var pulse = reduceMotion ? 0.7 : 0.45 + Math.sin(time * 2.1 - index * 0.7) * 0.18;
+      ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.max(0.14, pulse * alpha) + ')';
+      ctx.beginPath(); ctx.arc(cx, mastTop, radius, Math.PI * 1.16, Math.PI * 1.84); ctx.stroke();
+    });
+    ctx.restore();
+  }
+
+  function drawCreditMarker(ctx, cx, cy, colors, alpha, time) {
+    var tone = colors.yellow;
+    var bob = reduceMotion ? 0 : Math.sin(time * 1.7) * 0.8;
+    ctx.save();
+    [0, 4, 8].forEach(function(offset, index) {
+      var y = cy - 6 - offset + bob;
+      ctx.beginPath();
+      ctx.ellipse(cx, y, 9, 3.8, 0, 0, Math.PI * 2);
+      ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.96)' : 'rgba(255,255,255,0.98)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * (0.58 + index * 0.1)) + ')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+    ctx.fillStyle = 'rgba(' + tone + ', 0.98)';
+    ctx.font = '700 8px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('CR', cx, cy - 15 + bob);
+    ctx.restore();
+  }
+
+  function drawCargoMarker(ctx, cx, cy, colors, alpha) {
+    drawMiniCargo(ctx, cx, cy - 7, colors.wire, colors.bg, colors.strength);
+    ctx.save();
+    ctx.fillStyle = 'rgba(' + colors.wire + ', ' + Math.min(1, alpha) + ')';
+    ctx.font = '800 7px Satoshi, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('\u2713', cx, cy - 12.5);
+    ctx.strokeStyle = 'rgba(' + colors.wire + ', ' + Math.min(0.8, alpha * 0.55) + ')';
+    ctx.beginPath(); ctx.moveTo(cx, cy - 2); ctx.lineTo(cx, cy - 7); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawMobileMarker(ctx, cx, cy, colors, alpha, time) {
+    var tone = colors.yellow;
+    var y = cy - 34;
+    var bob = reduceMotion ? 0 : Math.sin(time * 1.8) * 0.7;
+    ctx.save();
+    ctx.lineJoin = 'round';
+    panelPath(ctx, cx - 8, y + bob, 16, 27, 4);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.96)' : 'rgba(255,255,255,0.98)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.82) + ')';
+    ctx.lineWidth = 1.1;
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.62) + ')';
+    ctx.beginPath(); ctx.moveTo(cx - 3, y + 4 + bob); ctx.lineTo(cx + 3, y + 4 + bob); ctx.stroke();
+    ctx.fillStyle = 'rgba(' + tone + ', 0.96)';
+    ctx.beginPath(); ctx.arc(cx, y + 22.5 + bob, 1.1, 0, Math.PI * 2); ctx.fill();
+    var pulse = reduceMotion ? 0.7 : 0.5 + Math.sin(time * 2.5) * 0.2;
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.max(0.22, pulse) + ')';
+    [5, 9].forEach(function(radius) {
+      ctx.beginPath(); ctx.arc(cx, y + 13 + bob, radius, Math.PI * 1.15, Math.PI * 1.85); ctx.stroke();
+    });
+    ctx.beginPath(); ctx.moveTo(cx, y + 27 + bob); ctx.lineTo(cx, cy - 3); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx, cy - 1, 7.5, 3, 1.2);
+    ctx.fillStyle = colors.bg; ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
   function drawPulseRing(ctx, point, color, time, phase, intensity) {
     var pulse = reduceMotion ? 0.42 : (time * 0.38 + phase) % 1;
     ctx.save();
@@ -407,26 +624,63 @@
     ctx.restore();
   }
 
-  // Scene definitions: each is a grid size + list of tiles
-  // tile: [col, row, type] where type: 1=island, 2=palm, 3=hut, 4=compute
+  // Scene definitions: each is a grid size + list of tiles.
+  // tile: [col, row, type] where 1-4 are terrain, 5-6 are network roles,
+  // and 7-11 are Coordinator, relay, credit, Cargo, and mobile landmarks.
   var scenes = {
-    // Proximity — a cluster of nearby islands, one highlighted
+    // Proximity — one nearby Island is selected over a visibly slower option.
     routing: {
-      cols: 5, rows: 5,
-      tiles: [[1,2,5],[2,1,1],[2,2,1],[2,3,1],[3,2,6],[3,3,2]],
-      links: [[0,4]], tone: 'wire'
+      cols: 5, rows: 4,
+      tiles: [[0,2,5],[2,2,6],[4,0,6]],
+      tone: 'wire'
     },
-    // Market — islands at varying "heights" (drawn with extra depth)
+    // Market — a Consumer pays the selected Island without an intermediary.
     exchange: {
       cols: 5, rows: 4,
-      tiles: [[1,1,6],[2,2,1],[3,1,6],[3,2,6],[1,2,5]],
-      links: [[4,0]], tone: 'yellow'
+      tiles: [[0,2,5],[3,2,6]],
+      tone: 'yellow'
     },
-    // Security — single fortified island with hut
+    // Security — only a signed Cargo may enter the verified, sandboxed Island.
     security: {
+      cols: 5, rows: 4,
+      tiles: [[3,2,6]],
+      tone: 'wire'
+    },
+    // A connected overview of the dependable components under the network.
+    architecture: {
+      cols: 10, rows: 5,
+      tiles: [[0,3,5],[3,3,7],[5,2,8],[7,1,6],[7,3,6],[9,2,6],[2,0,2],[6,4,3]],
+      tone: 'wire'
+    },
+    // A complete contribution loop: job in, compute, credits out.
+    earning: {
+      cols: 6, rows: 4,
+      tiles: [[0,2,5],[3,2,6],[5,1,9]],
+      tone: 'yellow'
+    },
+    // A signed Cargo moves from a Consumer to a compatible Island.
+    cargo: {
+      cols: 6, rows: 4,
+      tiles: [[0,2,5],[3,2,10],[5,1,6]],
+      tone: 'wire'
+    },
+    // A phone registered as a small mobile Island.
+    mobile: {
       cols: 4, rows: 4,
-      tiles: [[1,1,5],[2,1,1],[1,2,3],[2,2,6]],
-      links: [[0,3]], tone: 'pink'
+      tiles: [[2,2,11],[0,2,8]],
+      tone: 'yellow'
+    },
+    // A small relay Island for contact and communication moments.
+    beacon: {
+      cols: 5, rows: 4,
+      tiles: [[2,2,8],[1,3,2],[4,1,3]],
+      tone: 'wire'
+    },
+    // A quiet stranded Island for the 404 page.
+    lost: {
+      cols: 5, rows: 4,
+      tiles: [[2,2,3]],
+      tone: 'pink'
     },
     // Streaming — chain of islands
     streaming: {
@@ -462,12 +716,6 @@
 
   function tileLift(sceneName, index, time, hover) {
     if (reduceMotion) return 0;
-    if (sceneName === 'exchange') {
-      return -Math.max(0, Math.sin(time * 1.35 + index * 1.2)) * (hover ? 6 : 3.5);
-    }
-    if (sceneName === 'routing' && index === 2) {
-      return -1.5 - Math.sin(time * 1.6) * (hover ? 1.8 : 0.8);
-    }
     return 0;
   }
 
@@ -507,6 +755,72 @@
         tone, colors, time, index * 0.23, intensity, index === 0);
     });
 
+    var semanticPath;
+    var flowOy = floorOy - TILE_H * 0.35;
+    if (state.name === 'routing') {
+      semanticPath = buildGridRoute(scene.tiles[0], scene.tiles[1], true);
+      drawFlowGuide(ctx, semanticPath, ox, flowOy, teal, 0.66);
+      var requestProgress = reduceMotion ? 0.56 : (time * 0.18) % 1;
+      drawTravelToken(ctx, semanticPath, requestProgress, ox, flowOy, '?', colors.pink, colors);
+    }
+    if (state.name === 'exchange') {
+      semanticPath = buildGridRoute(scene.tiles[0], scene.tiles[1], false);
+      drawFlowGuide(ctx, semanticPath, ox, flowOy, colors.yellow, 0.74);
+      var paymentProgress = reduceMotion ? 0.58 : (time * 0.2) % 1;
+      drawTravelToken(ctx, semanticPath, paymentProgress, ox, flowOy, 'CR', colors.yellow, colors);
+    }
+    if (state.name === 'security') {
+      semanticPath = buildGridRoute([0,2], scene.tiles[0], true);
+      drawFlowGuide(ctx, semanticPath, ox, flowOy, teal, 0.7);
+      var cargoProgress = reduceMotion ? 0.52 : (time * 0.16) % 1;
+      drawSignedCargo(ctx, semanticPath, cargoProgress, ox, flowOy, colors);
+    }
+    var architecturePaths;
+    if (state.name === 'architecture') {
+      architecturePaths = [
+        buildGridRoute(scene.tiles[0], scene.tiles[1], true),
+        buildGridRoute(scene.tiles[1], scene.tiles[2], false),
+        buildGridRoute(scene.tiles[2], scene.tiles[3], true),
+        buildGridRoute(scene.tiles[2], scene.tiles[4], false),
+        buildGridRoute(scene.tiles[2], scene.tiles[5], true)
+      ];
+      architecturePaths.forEach(function(path, index) {
+        drawFlowGuide(ctx, path, ox, flowOy, index === 0 ? colors.pink : teal, index < 2 ? 0.68 : 0.42);
+      });
+      var architectureProgress = reduceMotion ? 0.55 : (time * 0.16) % 1;
+      drawTravelToken(ctx, architecturePaths[0], architectureProgress, ox, flowOy, '?', colors.pink, colors);
+      drawTravelToken(ctx, architecturePaths[2], (architectureProgress + 0.34) % 1, ox, flowOy, '01', colors.yellow, colors);
+      drawTravelToken(ctx, architecturePaths[3], (architectureProgress + 0.68) % 1, ox, flowOy, 'AI', colors.yellow, colors);
+    }
+    var earningPaths;
+    if (state.name === 'earning') {
+      earningPaths = [
+        buildGridRoute(scene.tiles[0], scene.tiles[1], true),
+        buildGridRoute(scene.tiles[1], scene.tiles[2], false)
+      ];
+      drawFlowGuide(ctx, earningPaths[0], ox, flowOy, colors.pink, 0.62);
+      drawFlowGuide(ctx, earningPaths[1], ox, flowOy, colors.yellow, 0.7);
+      var earningPhase = reduceMotion ? 0.58 : (time * 0.18) % 1;
+      if (reduceMotion || earningPhase < 0.5)
+        drawTravelToken(ctx, earningPaths[0], reduceMotion ? 0.58 : earningPhase * 2, ox, flowOy, '?', colors.pink, colors);
+      else
+        drawTravelToken(ctx, earningPaths[1], (earningPhase - 0.5) * 2, ox, flowOy, 'CR', colors.yellow, colors);
+    }
+    var cargoPaths;
+    if (state.name === 'cargo') {
+      cargoPaths = [
+        buildGridRoute(scene.tiles[0], scene.tiles[1], true),
+        buildGridRoute(scene.tiles[1], scene.tiles[2], false)
+      ];
+      drawFlowGuide(ctx, cargoPaths[0], ox, flowOy, colors.pink, 0.58);
+      drawFlowGuide(ctx, cargoPaths[1], ox, flowOy, teal, 0.68);
+      var cargoScenePhase = reduceMotion ? 0.56 : (time * 0.15) % 1;
+      if (reduceMotion || cargoScenePhase < 0.5)
+        drawTravelToken(ctx, cargoPaths[0], reduceMotion ? 0.56 : cargoScenePhase * 2, ox, flowOy, '?', colors.pink, colors);
+      else
+        drawSignedCargo(ctx, cargoPaths[1], (cargoScenePhase - 0.5) * 2, ox, flowOy, colors);
+    }
+
     for (var sideIndex = 0; sideIndex < scene.tiles.length; sideIndex++) {
       drawCuboidSides(ctx, positions[sideIndex].x, positions[sideIndex].y, teal, 0.88 * colors.strength, bg);
     }
@@ -520,26 +834,94 @@
       if (currentTile[2] === 4) drawComputeMarker(ctx, pos.x, pos.y, teal, colors.strength, time, bg);
       if (currentTile[2] === 5) drawConsumerRoleIcon(ctx, pos.x, pos.y, colors, colors.strength, time, true);
       if (currentTile[2] === 6) {
-        var activeProducerIndex = state.name === 'exchange' ? 0 : (state.name === 'routing' ? 4 : 3);
-        drawProducerRoleIcon(ctx, pos.x, pos.y, colors, colors.strength, time, topIndex === activeProducerIndex);
+        var producerActive = (state.name === 'exchange' || state.name === 'routing' || state.name === 'earning')
+          ? topIndex === 1
+          : state.name === 'architecture';
+        drawProducerRoleIcon(ctx, pos.x, pos.y, colors, colors.strength, time, producerActive);
       }
+      if (currentTile[2] === 7) drawCoordinatorMarker(ctx, pos.x, pos.y, colors, colors.strength, time);
+      if (currentTile[2] === 8) drawRelayMarker(ctx, pos.x, pos.y, colors, colors.strength, time);
+      if (currentTile[2] === 9) drawCreditMarker(ctx, pos.x, pos.y, colors, colors.strength, time);
+      if (currentTile[2] === 10) drawCargoMarker(ctx, pos.x, pos.y, colors, colors.strength);
+      if (currentTile[2] === 11) drawMobileMarker(ctx, pos.x, pos.y, colors, colors.strength, time);
     }
 
-    scene.tiles.forEach(function(tile, index) {
-      if (tile[2] === 5) drawStatusBubble(ctx, positions[index].x, positions[index].y, '?', colors.pink, colors, time, index);
-      if (tile[2] === 6 && (state.name !== 'exchange' || index === 0))
-        drawStatusBubble(ctx, positions[index].x, positions[index].y, '!', colors.yellow, colors, time, index);
-    });
+    if (state.name === 'routing') {
+      drawInfoBadge(ctx, positions[0].x - 13, positions[0].y - 44, 'CONSUMER', colors.pink, colors, true);
+      drawInfoBadge(ctx, positions[1].x + 19, positions[1].y - 46, 'NEAREST \u00b7 12ms', teal, colors, true);
+      drawInfoBadge(ctx, positions[2].x + 8, positions[2].y - 44, 'FAR \u00b7 86ms', teal, colors, false);
+    } else if (state.name === 'exchange') {
+      var paymentLabelPoint = pointOnGridRoute(semanticPath, 0.51, ox, flowOy);
+      drawInfoBadge(ctx, positions[0].x - 12, positions[0].y - 44, 'CONSUMER', colors.pink, colors, true);
+      drawInfoBadge(ctx, paymentLabelPoint.x, paymentLabelPoint.y - 21, 'VIRTUAL', colors.yellow, colors, true);
+      drawInfoBadge(ctx, positions[1].x + 15, positions[1].y - 45, 'ISLAND \u00b7 0.08 CR', colors.yellow, colors, true);
+    } else if (state.name === 'security') {
+      drawShield(ctx, positions[0].x, positions[0].y, teal, colors, time, true);
+      var cargoLabelPoint = toScreen(0, 2, ox, flowOy);
+      drawInfoBadge(ctx, cargoLabelPoint.x - 4, cargoLabelPoint.y - 24, 'SIGNED CARGO \u2713', teal, colors, true);
+      drawInfoBadge(ctx, positions[0].x + 22, positions[0].y - 47, 'SIGNED ONLY \u2713', teal, colors, true);
+      drawInfoBadge(ctx, positions[0].x - 24, positions[0].y - 20, 'SANDBOXED', teal, colors, true);
+    } else if (state.name === 'architecture') {
+      drawInfoBadge(ctx, positions[0].x + 2, positions[0].y - 46, 'CONSUMER', colors.pink, colors, true);
+      drawInfoBadge(ctx, positions[1].x - 8, positions[1].y - 54, 'PHOENIX CONTROL', teal, colors, true);
+      drawInfoBadge(ctx, positions[2].x + 2, positions[2].y - 51, 'NATS', teal, colors, true);
+      drawInfoBadge(ctx, positions[3].x + 22, positions[3].y - 48, 'RUST ISLANDS', colors.yellow, colors, true);
+    } else if (state.name === 'earning') {
+      drawInfoBadge(ctx, positions[0].x - 8, positions[0].y - 46, 'JOB', colors.pink, colors, true);
+      drawInfoBadge(ctx, positions[1].x + 2, positions[1].y - 49, 'YOUR ISLAND', colors.yellow, colors, true);
+      drawInfoBadge(ctx, positions[2].x + 12, positions[2].y - 35, 'VIRTUAL +0.08 CR', colors.yellow, colors, true);
+    } else if (state.name === 'cargo') {
+      drawInfoBadge(ctx, positions[0].x - 4, positions[0].y - 46, 'CONSUMER', colors.pink, colors, true);
+      drawInfoBadge(ctx, positions[1].x, positions[1].y - 36, 'SIGNED CARGO', teal, colors, true);
+      drawInfoBadge(ctx, positions[2].x + 14, positions[2].y - 46, 'COMPATIBLE ISLAND', colors.yellow, colors, true);
+    } else if (state.name === 'beacon') {
+      drawInfoBadge(ctx, positions[0].x + 7, positions[0].y - 52, 'OPEN CHANNEL', teal, colors, true);
+    } else if (state.name === 'mobile') {
+      drawInfoBadge(ctx, positions[0].x + 8, positions[0].y - 49, 'MOBILE ISLAND', colors.yellow, colors, true);
+      drawInfoBadge(ctx, positions[1].x - 4, positions[1].y - 48, 'HEARTBEAT', teal, colors, true);
+    } else if (state.name === 'lost') {
+      drawStatusBubble(ctx, positions[0].x, positions[0].y, '?', colors.pink, colors, time, 0);
+      drawInfoBadge(ctx, positions[0].x + 25, positions[0].y - 18, 'NO ROUTE', colors.pink, colors, true);
+    } else {
+      scene.tiles.forEach(function(tile, index) {
+        if (tile[2] === 5) drawStatusBubble(ctx, positions[index].x, positions[index].y, '?', colors.pink, colors, time, index);
+        if (tile[2] === 6)
+          drawStatusBubble(ctx, positions[index].x, positions[index].y, '!', colors.yellow, colors, time, index);
+      });
+    }
 
     intensity *= colors.strength;
-    if (state.name === 'routing') drawPulseRing(ctx, positions[4], tone, time, 0.08, intensity);
+    if (state.name === 'routing') drawPulseRing(ctx, positions[1], tone, time, 0.08, intensity);
     if (state.name === 'exchange') {
-      drawPulseRing(ctx, positions[0], tone, time, 0, intensity);
-      drawPulseRing(ctx, positions[3], tone, time, 0.52, intensity * 0.7);
+      drawPulseRing(ctx, positions[1], tone, time, 0, intensity);
     }
     if (state.name === 'security') {
-      drawPulseRing(ctx, positions[3], tone, time * 0.72, 0.1, intensity);
-      drawPulseRing(ctx, positions[3], tone, time * 0.72, 0.58, intensity * 0.68);
+      drawPulseRing(ctx, positions[0], tone, time * 0.72, 0.1, intensity * 0.72);
+    }
+    if (state.name === 'architecture') {
+      drawPulseRing(ctx, positions[1], teal, time, 0.1, intensity * 0.62);
+      drawPulseRing(ctx, positions[2], teal, time, 0.45, intensity * 0.78);
+      drawPulseRing(ctx, positions[3], colors.yellow, time, 0.18, intensity * 0.55);
+      drawPulseRing(ctx, positions[4], colors.yellow, time, 0.54, intensity * 0.48);
+    }
+    if (state.name === 'earning') {
+      drawPulseRing(ctx, positions[1], colors.yellow, time, 0.12, intensity * 0.72);
+      drawPulseRing(ctx, positions[2], colors.yellow, time, 0.55, intensity * 0.5);
+    }
+    if (state.name === 'cargo') {
+      drawPulseRing(ctx, positions[1], teal, time, 0.12, intensity * 0.6);
+      drawPulseRing(ctx, positions[2], colors.yellow, time, 0.48, intensity * 0.48);
+    }
+    if (state.name === 'beacon') {
+      drawPulseRing(ctx, positions[0], teal, time, 0.12, intensity);
+      drawPulseRing(ctx, positions[0], teal, time, 0.58, intensity * 0.6);
+    }
+    if (state.name === 'mobile') {
+      drawPulseRing(ctx, positions[0], colors.yellow, time, 0.16, intensity * 0.72);
+      drawPulseRing(ctx, positions[1], teal, time, 0.5, intensity * 0.5);
+    }
+    if (state.name === 'lost') {
+      drawPulseRing(ctx, positions[0], colors.pink, time * 0.7, 0.2, intensity * 0.5);
     }
   }
 

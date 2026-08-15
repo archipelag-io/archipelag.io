@@ -14,7 +14,7 @@
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
+    <meta property="og:image:alt" content="Archipelag.io distributed compute fabric">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -24,7 +24,7 @@
     <meta property="twitter:title" content="{{ config.title }}">
     <meta property="twitter:description" content="{{ config.description }}">
     <meta property="twitter:image" content="{{ config.base_url }}/og-image.png">
-    <meta name="twitter:image:alt" content="Archipelag.io - Decentralized AI Compute Network">
+    <meta name="twitter:image:alt" content="Archipelag.io distributed compute fabric">
 
     <title>{{ config.title }}</title>
 
@@ -76,18 +76,22 @@
                 <span class="brand-wordmark">archipelag<span class="dot">.</span>io</span>
             </div>
 
+            <div class="subscribe-island-visual" aria-hidden="true">
+                <canvas class="island-vignette" data-island-scene="beacon"></canvas>
+            </div>
+
             <!-- Hero -->
             <div class="hero">
                 <h1 class="hero-title">Sovereign compute is here.</h1>
                 <p class="hero-subtitle">
-                    AI infrastructure with jurisdiction routing, verified nodes, and full data residency control. Built for teams that can't compromise on compliance.
+                    Regional placement controls, independently operated Islands, and an inspectable execution path for teams testing where AI Jobs run.
                 </p>
             </div>
 
             <!-- CTA -->
             <div class="subscribe">
                 <a href="https://app.archipelag.io/auth/login" class="subscribe-button" style="display: inline-block; text-decoration: none; text-align: center;">Create Account</a>
-                <p class="subscribe-note">Free credits to get started. No credit card required.</p>
+                <p class="subscribe-note">Phase 2 uses free virtual credits. No credit card required.</p>
             </div>
         </main>
 
@@ -104,6 +108,7 @@
         </footer>
     </div>
 
+    <script src="/js/island-vignettes.js" defer></script>
     <script>
         // Theme toggle (dark-first: toggles light class)
         const toggle = document.getElementById('theme-toggle');

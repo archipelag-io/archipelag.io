@@ -55,6 +55,19 @@
                             {{ page.date | date(format="%B %d, %Y") }}
                         </time>
                         {% endif %}
+                        {% if current_path == "/about/" %}
+                        <div class="page-island-visual page-island-visual-wide" aria-hidden="true">
+                            <canvas class="island-vignette" data-island-scene="architecture"></canvas>
+                        </div>
+                        {% elif current_path == "/security/" or current_path == "/trust-safety/" %}
+                        <div class="page-island-visual" aria-hidden="true">
+                            <canvas class="island-vignette" data-island-scene="security"></canvas>
+                        </div>
+                        {% elif current_path == "/contact/" %}
+                        <div class="page-island-visual" aria-hidden="true">
+                            <canvas class="island-vignette" data-island-scene="beacon"></canvas>
+                        </div>
+                        {% endif %}
                     </header>
 
                     <div class="prose" itemprop="mainContentOfPage">

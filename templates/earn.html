@@ -3,17 +3,17 @@
 {% block title %}Contribute Compute | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="Turn your GPU into an Island on the Archipelag.io network and earn credits for AI inference jobs. Market-based pricing, sandboxed execution, identity-verified. Open beta.">
+    <meta name="description" content="Turn compatible hardware into an Archipelag.io Island and test AI Job execution with virtual Phase 2 credit accounting.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-    <meta name="keywords" content="GPU earning, compute island, earn with GPU, distributed computing, AI compute, community compute, archipelag island, passive income GPU, GPU registry, rent GPU">
+    <meta name="keywords" content="compute Island, contribute GPU, distributed computing, AI compute, community compute, Archipelag.io Island, GPU registry">
     <link rel="canonical" href="{{ config.base_url }}/earn/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/earn/">
-    <meta property="og:title" content="Contribute Compute &amp; Earn | {{ config.title }}">
-    <meta property="og:description" content="Turn your GPU into an Island on Archipelag.io and earn credits for completed AI inference jobs. Set your own price.">
+    <meta property="og:title" content="Become an Island | {{ config.title }}">
+    <meta property="og:description" content="Contribute compatible hardware, set a virtual asking price, and test AI Job execution during Phase 2.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -25,8 +25,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
-    <meta name="twitter:title" content="Contribute Compute &amp; Earn | {{ config.title }}">
-    <meta name="twitter:description" content="Turn your GPU into an Island on Archipelag.io and earn credits for completed inference jobs. Open beta.">
+    <meta name="twitter:title" content="Become an Island | {{ config.title }}">
+    <meta name="twitter:description" content="Contribute compatible hardware and test virtual-credit Job execution during Archipelag.io Phase 2.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io - Contribute Compute">
 {% endblock head_meta %}
@@ -41,8 +41,8 @@
                 "@type": "WebPage",
                 "@id": "{{ config.base_url }}/earn/",
                 "url": "{{ config.base_url }}/earn/",
-                "name": "Contribute Compute and Earn",
-                "description": "Turn your GPU into an Island on the Archipelag.io network and earn credits for AI inference jobs.",
+                "name": "Become an Archipelag.io Island",
+                "description": "Contribute compatible hardware and test AI Job execution with virtual Phase 2 credit accounting.",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
@@ -76,7 +76,7 @@
             {
                 "@type": "HowTo",
                 "name": "How to become an Island on Archipelag.io",
-                "description": "Start earning by contributing your GPU compute to the Archipelag.io network.",
+                "description": "Register compatible hardware as an Island on the Archipelag.io network.",
                 "totalTime": "PT15M",
                 "tool": [
                     "NVIDIA GPU with 8GB+ VRAM",
@@ -106,7 +106,7 @@
                         "@type": "HowToStep",
                         "position": 4,
                         "name": "Start receiving jobs",
-                        "text": "The coordinator matches you with nearby users. You earn credits at your asking price for each completed job."
+                        "text": "The Coordinator matches the Island with nearby Consumers. Completed Jobs accrue virtual Phase 2 credits at the simulated clearing amount."
                     }
                 ]
             },
@@ -118,7 +118,7 @@
                         "name": "How much can I earn?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Earnings depend on your GPU, your asking price, your availability, and network demand. During the beta, demand is growing — early Islands build karma scores that give them priority as the network scales."
+                            "text": "Phase 2 records virtual credit earnings only. Results depend on hardware, asking price, availability, simulated demand, and Karma. Virtual credits have no cash value and are not a promise of future income."
                         }
                     },
                     {
@@ -126,15 +126,15 @@
                         "name": "Is it safe to run Cargos on my machine?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Islands only run network-approved, cosign-signed container images under seccomp security profiles. Containers have no access to your filesystem, network, or other processes. Resource limits are strictly enforced."
+                            "text": "Archipelag.io reduces risk by allowing only approved, signed Cargos and applying sandbox and resource policies. Island operators should still review the security model and keep the Island software updated."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "How do payouts work?",
+                        "name": "Can I cash out Phase 2 credits?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Earnings accrue as credits. Payouts are processed via Stripe, which supports direct deposit in 40+ countries."
+                            "text": "No. Phase 2 credits and Island earnings are virtual and have no cash value. Real-money billing and payouts are not enabled."
                         }
                     },
                     {
@@ -159,11 +159,11 @@
             <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
             <div class="container" style="position:relative;z-index:1;">
                 <div class="hero-glass">
-                    <span class="section-eyebrow">For GPU Owners</span>
+                    <span class="section-eyebrow">For Island Operators</span>
                     <h1 id="hero-title" class="hero-title">Your hardware, your price</h1>
                     <p class="hero-subtitle">
-                        Turn any machine with a GPU into an Island. Set your own asking price.
-                        The coordinator matches you with nearby consumers who need compute.
+                        Turn compatible desktop, server, or mobile hardware into an Island. Set a virtual asking price,
+                        and let the Coordinator match nearby Consumers during Phase 2.
                     </p>
                     <div class="hero-cta">
                         <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join the beta</a>
@@ -187,7 +187,7 @@
                         <div class="cargo-whatis-cols">
                             <div class="cargo-whatis-text">
                                 <p class="cargo-whatis-lead">A <strong>Cargo</strong> is a portable, signed unit of computation that runs on <a href="https://docs.archipelag.io/architecture/node-agent/">Islands</a> across the Archipelag.io network.</p>
-                                <p>Think of it as a shipping container for code&thinsp;&mdash;&thinsp;each one packages a model, runtime, and resource requirements into a single deployable artifact. Consumers submit jobs, the coordinator finds the best Island, and the Cargo executes in a secure sandbox.</p>
+                                <p>Think of it as a shipping manifest for compute: an entry identifies an approved artifact, runtime, and resource requirements. A Consumer submits a Job, the Coordinator selects a compatible Island, and the Cargo executes inside the configured sandbox.</p>
                             </div>
                             <div class="cargo-whatis-diagram">
                                 <div class="cargo-whatis-flow">
@@ -245,7 +245,7 @@
                                     </div>
                                     <div>
                                         <span class="host-diagram-label">Your Island comes online</span>
-                                        <span class="host-diagram-detail">Registers with coordinator, reports GPU capabilities</span>
+                                        <span class="host-diagram-detail">Registers with the Coordinator and reports hardware capabilities</span>
                                     </div>
                                 </div>
                                 <div class="host-diagram-arrow" aria-hidden="true">
@@ -311,8 +311,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <span class="host-diagram-label">Credits earned at clearing price</span>
-                                        <span class="host-diagram-detail">Karma score updated, payout balance grows</span>
+                                        <span class="host-diagram-label">Virtual credits recorded</span>
+                                        <span class="host-diagram-detail">Karma and virtual Phase 2 totals update</span>
                                     </div>
                                 </div>
                             </div>
@@ -322,12 +322,12 @@
                             <h3 class="preview-title">What happens on your machine</h3>
                             <p class="preview-desc">
                                 The Island software is a lightweight Rust binary that manages everything.
-                                It connects to the coordinator via NATS, pulls signed container images when a job arrives,
+                                It connects to the Coordinator via NATS, pulls signed container images when a Job arrives,
                                 runs them under strict sandboxing, and streams the output back.
                             </p>
                             <p class="preview-desc">
                                 You control when your machine is available and what you charge.
-                                The coordinator only sends jobs that match your GPU capabilities and asking price.
+                                The Coordinator only sends Jobs that match your reported capabilities, availability, and virtual ask.
                             </p>
                         </div>
                     </div>
@@ -354,7 +354,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Asking price</h3>
-                            <p class="principle-desc">Set your rate per Cargo type. The coordinator only sends you jobs at or above your price. Adjust anytime.</p>
+                            <p class="principle-desc">Set a virtual ask per Cargo type. The Coordinator only considers your Island for Jobs within the Consumer's budget. Adjust anytime.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
@@ -362,9 +362,9 @@
                             <p class="principle-desc">The exchange snapshots rates every 5 minutes. More Islands in your region lowers the clearing price; more demand raises it.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
+                            <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Early mover advantage</h3>
-                            <p class="principle-desc">The beta has growing demand and few Islands. Early Islands build high karma scores, which means job priority and better rates as the network scales.</p>
+                            <p class="principle-desc">Phase 2 lets early Islands build Karma from completed Jobs, latency, and uptime while the network's placement behavior is validated.</p>
                         </div>
                     </div>
                 </div>
@@ -376,8 +376,8 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Estimate</span>
-                    <h2 id="calculator-title" class="section-title">What can you earn?</h2>
-                    <p class="section-subtitle">Select your GPU and adjust hours to see estimated earnings. The chart updates live.</p>
+                    <h2 id="calculator-title" class="section-title">Simulate virtual earnings</h2>
+                    <p class="section-subtitle">Select hardware and online hours to explore the Phase 2 credit model. This is not an income forecast.</p>
                 </div>
 
                 <div class="calc-widget" id="calc-form">
@@ -410,7 +410,7 @@
                             </div>
                             <div class="calc-summary-item">
                                 <div class="calc-summary-value" id="calc-usd">$0</div>
-                                <div class="calc-summary-label">est. USD / month</div>
+                                <div class="calc-summary-label">illustrative USD*</div>
                             </div>
                         </div>
                         <div class="calc-tier-info">
@@ -441,7 +441,7 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Compare</span>
                     <h2 id="comparison-title" class="section-title">All GPUs compared</h2>
-                    <p class="section-subtitle">Best-case monthly earnings at <span id="comp-hours">8</span>h/day, 15% utilization, $0.01/credit.</p>
+                    <p class="section-subtitle">Illustrative comparison at <span id="comp-hours">8</span>h/day and 15% utilization. The USD column uses a hypothetical conversion only.</p>
                 </div>
 
                 <div class="calc-comparison" id="calc-comparison">
@@ -459,15 +459,14 @@
                                     <th>VRAM</th>
                                     <th>Best Cargo</th>
                                     <th style="text-align:right;">Monthly Credits</th>
-                                    <th style="text-align:right;">Est. USD</th>
+                                    <th style="text-align:right;">Illustrative USD*</th>
                                 </tr>
                             </thead>
                             <tbody id="calc-comparison-body"></tbody>
                         </table>
                     </div>
                     <p class="calc-disclaimer">
-                        Estimates assume 15% utilization at beta pricing ($0.01/credit).
-                        Actual earnings depend on network demand, your asking price, uptime, and karma score.
+                        *The calculator uses a hypothetical $0.01/credit conversion for comparison. Phase 2 credits have no cash value, cannot be withdrawn, and do not predict future pricing or income.
                     </p>
                 </div>
             </div>
@@ -482,8 +481,8 @@
                             <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Reputation</span>
                             <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
                             <p class="preview-desc">
-                                Every Island has a karma score visible to the coordinator and the network.
-                                It's calculated from your job success rate, response latency, and uptime consistency.
+                                Every Island has a Karma score tracked by the Coordinator.
+                                It is calculated from Job success rate, response latency, and uptime consistency.
                             </p>
 
                             <ul class="preview-list" aria-label="Karma system details">
@@ -493,11 +492,11 @@
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Goes up with completed jobs, down with failures or timeouts</span>
+                                    <span>Goes up with completed Jobs, down with failures or timeouts</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Higher karma = priority in job placement</span>
+                                    <span>Higher Karma can improve future Job placement</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -512,7 +511,7 @@
                                 <figcaption>
                                     <div class="font-brand text-lg mb-2" style="font-weight:500;">Karma Score</div>
                                     <p class="text-sm text-secondary">
-                                        142 completed jobs<br>
+                                        142 completed Jobs<br>
                                         99.3% success rate &middot; 38ms avg. latency
                                     </p>
                                 </figcaption>
@@ -530,30 +529,28 @@
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
                             <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Multi-Island Compute</span>
-                            <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger</h2>
+                            <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger <span class="feature-badge-experimental">Experimental</span></h2>
                             <p class="preview-desc">
-                                When a model is too large for any single Island, the coordinator forms a pipeline
-                                across multiple Islands. Your machine holds a shard of the model and processes its
-                                portion of each inference request.
+                                Experimental pipeline placement explores how a model can be divided across compatible
+                                Islands. A participating machine holds a shard and processes one stage of a Job.
                             </p>
                             <p class="preview-desc">
-                                You earn credits for every token that flows through your layers &mdash; proportional to the
-                                work your Island does. Higher-Karma Islands are preferred for pipeline membership,
-                                so reliability pays off even more.
+                                Phase 2 can account virtual credits in proportion to assigned work. Interfaces,
+                                performance, and placement behavior may change while the feature is validated.
                             </p>
 
                             <ul class="preview-list" aria-label="Multi-Island earning details">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Automatic &mdash; the coordinator invites your Island when it's a good fit</span>
+                                    <span>Coordinator selects only compatible, available Island candidates</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Model shards stay cached &mdash; subsequent jobs start instantly</span>
+                                    <span>Model-shard caching is tested to reduce repeated startup work</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Same sandboxing guarantees as single-Island jobs</span>
+                                    <span>Each stage remains subject to the Cargo's configured sandbox policy</span>
                                 </li>
                             </ul>
                         </div>
@@ -605,7 +602,7 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <span class="host-diagram-label">Both Islands earn credits</span>
+                                            <span class="host-diagram-label">Both Islands receive virtual credits</span>
                                             <span class="host-diagram-detail">Proportional to layers processed</span>
                                         </div>
                                     </div>
@@ -648,7 +645,7 @@
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Resource limits</strong> &mdash; CPU, memory, and GPU time are capped per job</span>
+                                    <span><strong>Resource limits</strong> &mdash; CPU, memory, and GPU time are capped per Job</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -661,7 +658,7 @@
                             <h3 class="preview-title">Defense in depth</h3>
                             <p class="preview-desc">
                                 The security model assumes mutual distrust. Consumers don't trust Islands with their data.
-                                Islands don't trust the code they run. The coordinator is the authority on what's allowed.
+                                Islands don't trust the code they run. The Coordinator is the authority on what's allowed.
                             </p>
                             <p class="preview-desc">
                                 In v1, the network only runs Cargos that we've reviewed, signed, and published.
@@ -681,20 +678,20 @@
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
                             <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Mobile Compute</span>
-                            <h2 id="mobile-title" class="preview-title">Contribute from your phone</h2>
+                            <h2 id="mobile-title" class="preview-title">Contribute from your phone <span class="feature-badge-beta">Beta</span></h2>
                             <p class="preview-desc">
                                 Got an iPhone or iPad with an A-series or M-series chip? The Archipelag.io iOS agent runs
                                 lightweight LLMs on-device using CoreML &mdash; no GPU workstation needed.
                             </p>
                             <p class="preview-desc">
                                 Pair your device with a QR code, and it becomes an Island on the network.
-                                Same sandboxing, same karma system, same earnings.
+                                Mobile Islands participate in the same Karma and virtual-credit accounting model, with device-specific safety limits.
                             </p>
 
                             <ul class="preview-list" aria-label="Mobile Island features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>On-device inference via CoreML &mdash; no cloud round-trip</span>
+                                    <span>On-device execution via CoreML with Coordinator-mediated dispatch</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -716,9 +713,9 @@
                                     </svg>
                                 </div>
                                 <figcaption>
-                                    <div class="font-brand text-xl mb-2">iOS Agent</div>
-                                    <p class="text-sm text-secondary">iPhone, iPad, and Mac with Apple Silicon</p>
-                                    <p class="text-sm text-tertiary mt-2">Android agent coming Q3 2026</p>
+                                    <div class="font-brand text-xl mb-2">Mobile Islands</div>
+                                    <p class="text-sm text-secondary">iOS via CoreML; Android via ONNX</p>
+                                    <p class="text-sm text-tertiary mt-2">Early beta &mdash; device support varies</p>
                                 </figcaption>
                             </figure>
                         </div>
@@ -732,8 +729,8 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Developer Track</span>
-                    <h2 id="developer-title" class="section-title">Build Cargos, earn per execution</h2>
-                    <p class="section-subtitle">Publish your own models and runtimes to the Cargo Marketplace. Earn credits every time someone runs your Cargo.</p>
+                    <h2 id="developer-title" class="section-title">Build Cargos, validate real usage</h2>
+                    <p class="section-subtitle">Submit models and runtimes for review, then track approved execution and virtual Phase 2 credit attribution.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -756,8 +753,8 @@
                                     <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="principle-title">Get verified</h3>
-                            <p class="principle-desc">Publisher tiers (Creator, Verified, Official) unlock more submissions, higher resource limits, and GPU access.</p>
+                            <h3 class="principle-title">Pass review</h3>
+                            <p class="principle-desc">Publisher accountability, artifact scanning, signing, resource declarations, and runtime compatibility inform Cargo approval.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -767,7 +764,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Earn</h3>
-                            <p class="principle-desc">Earn a share of every execution. Track your Cargo's usage, reviews, and payouts from the developer dashboard.</p>
+                            <p class="principle-desc">Track approved Cargo usage, reviews, and virtual Phase 2 credit attribution from the developer dashboard.</p>
                         </div>
                     </div>
                 </div>
@@ -791,7 +788,7 @@
                         </article>
 
                         <article class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
+                            <canvas class="island-vignette" data-island-scene="mobile" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Or a phone</h3>
                             <p class="principle-desc">iPhone or iPad with A14+ or M-series chip for lightweight mobile models. No GPU workstation required.</p>
                         </article>
@@ -803,7 +800,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Network</h3>
-                            <p class="principle-desc">Stable internet connection. Lower latency means you're preferred for nearby users. The coordinator measures RTT directly.</p>
+                            <p class="principle-desc">Stable internet connection. Lower latency can help with nearby Consumers; the Coordinator measures RTT directly.</p>
                         </article>
                     </div>
                 </div>
@@ -841,27 +838,27 @@
             </div>
         </section>
 
-        <!-- Payouts -->
+        <!-- Phase 2 accounting -->
         <section class="section section-alt-flat" aria-labelledby="payouts-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">12</span> &mdash; Payouts</span>
-                    <h2 id="payouts-title" class="section-title">Getting paid</h2>
+                    <span class="section-eyebrow-numbered"><span class="number">12</span> &mdash; Phase 2 Accounting</span>
+                    <h2 id="payouts-title" class="section-title">Virtual credits, clearly labeled</h2>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card" style="text-align:center;">
-                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Stripe</div>
-                            <p class="text-sm text-secondary">Payouts processed via Stripe Connect. Direct deposit in 40+ countries.</p>
+                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">No payout</div>
+                            <p class="text-sm text-secondary">Real-money billing and Island payouts are not enabled during Phase 2.</p>
                         </div>
                         <div class="antigrid-card" style="text-align:center;">
                             <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Credits</div>
-                            <p class="text-sm text-secondary">Earnings accrue as virtual credits during beta. No real money changes hands until launch.</p>
+                            <p class="text-sm text-secondary">Completed Jobs accrue virtual credits for testing placement and market behavior.</p>
                         </div>
                         <div class="antigrid-card" style="text-align:center;">
                             <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Transparent</div>
-                            <p class="text-sm text-secondary">Every job shows exactly what you earned, the clearing price, and your running balance.</p>
+                            <p class="text-sm text-secondary">Every Job records its virtual clearing amount and updates the Island's Phase 2 total.</p>
                         </div>
                     </div>
                 </div>
@@ -883,7 +880,6 @@
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
-    <script src="/js/island-vignettes.js" defer></script>
     <script src="/js/calculator.js" defer></script>
     <script defer src="/js/cargo-whatis.js"></script>
     <script defer src="/js/install-tabs.js"></script>

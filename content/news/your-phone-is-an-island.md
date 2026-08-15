@@ -1,6 +1,6 @@
 +++
 title = "Your Phone Is an Island"
-description = "We turned an iPhone into a compute node. A prompt typed in a browser, answered by a language model running on someone's phone across town. Here's how it works, and why it matters."
+description = "We turned an iPhone into an Island. A prompt typed in a browser, answered by a language model running on someone's phone across town. Here's how it works, and why it matters."
 date = 2026-04-16
 
 [extra]
@@ -21,7 +21,7 @@ We looked at that and thought: what if it didn't have to be?
 
 Here's what we built. It's easier to show than to explain.
 
-Person A opens an app on their iPhone. The app connects to the Archipelag.io coordinator — our control plane — and registers the phone as an Island on the network. The phone reports what it can do: which chip it has, how much memory is available, what model formats it supports. From this moment, the phone is a compute node, ready to accept work.
+Person A opens an app on their iPhone. The app connects to the Archipelag.io Coordinator — our control plane — and registers the phone as an Island on the network. The phone reports what it can do: which chip it has, how much memory is available, what model formats it supports. From this moment, the phone is an Island, ready to accept work.
 
 Person B opens a browser on their laptop, navigates to Archipelag.io, and types a message into a chat interface. Something like: "Explain distributed computing in one sentence."
 
@@ -43,7 +43,7 @@ Fair question. Here's why we think this matters.
 
 **The numbers are better than you'd expect.** An iPhone 15 Pro (A17 chip) runs TinyLlama at roughly 25 tokens per second. That's fast enough for conversational use — most people read at about 4-5 words per second, and each token is roughly three-quarters of a word. The model is small (1.1 billion parameters), but it's coherent, and it's enough for a wide range of tasks: summarization, Q&A, classification, simple creative writing. Larger phones with more RAM can run bigger models. The M-series iPads and MacBooks can run 7B and 13B parameter models at speeds that rival some cloud endpoints.
 
-**The hardware already exists at enormous scale.** Apple has shipped over 2.3 billion iPhones since 2007. Even if you only count devices from the last three years — phones with Neural Engines capable of running quantized LLMs — that's hundreds of millions of devices. Each one is a potential compute node. No one needs to buy new hardware. No one needs to provision a cloud instance. The compute is already distributed across every city, every neighborhood, every pocket.
+**The hardware already exists at enormous scale.** Apple has shipped over 2.3 billion iPhones since 2007. Even if you only count devices from the last three years — phones with Neural Engines capable of running quantized LLMs — that's hundreds of millions of devices. Each compatible device is a potential Island. No one needs to buy new hardware. No one needs to provision a cloud instance. The compute is already distributed across every city, every neighborhood, every pocket.
 
 **Latency can be better, not worse.** When a GPU is physically close to the person making the request, the network round-trip is measured in single-digit milliseconds instead of the 50-200ms typical of cloud endpoints in a different region. For streaming applications — where tokens arrive one at a time and perceived speed matters as much as throughput — local inference on modest hardware can feel faster than remote inference on expensive hardware.
 
@@ -55,7 +55,7 @@ For the engineers in the room, here's how the pieces fit together.
 
 ### The Island software
 
-The Archipelag.io Island app is a native Swift application built on Apple's platform stack. At its core is `AgentCore`, which manages the lifecycle of the phone as a compute node: registration, heartbeating, job acceptance, execution, and result streaming.
+The Archipelag.io Island app is a native Swift application built on Apple's platform stack. At its core is `AgentCore`, which manages the lifecycle of the phone as an Island: registration, heartbeating, Job acceptance, execution, and result streaming.
 
 When the app starts, it generates a persistent host ID (a UUID stored locally), detects the device's capability class based on the chip generation, and opens a WebSocket connection to the coordinator using the Phoenix Channel protocol. Registration includes the device's supported runtimes (`llmcpp` for quantized language models, `coreml` for Apple's ML framework, `wasm` for WebAssembly modules), available memory, and performance estimates.
 
@@ -79,7 +79,7 @@ The coordinator is an Elixir/Phoenix application that serves as the control plan
 
 For mobile Islands running LLM inference, speed is weighted heaviest (50%), because on-device inference time dominates the user experience. The coordinator also prefers "warm" Islands — those that have recently run the same model and still have it loaded in memory — to avoid the latency of cold-starting a model load.
 
-Once a host is selected, the coordinator dispatches the job over the WebSocket channel, including the model URL, expected hash, context window size, and temperature setting. The Island software picks it up, runs inference, and streams tokens back through the same channel.
+Once an Island is selected, the Coordinator dispatches the Job over the WebSocket channel, including the model URL, expected hash, context window size, and temperature setting. The Island software picks it up, runs inference, and streams tokens back through the same channel.
 
 ### Pairing
 
@@ -107,13 +107,13 @@ But more importantly, the architecture isn't limited to AI inference at all. The
 
 This is what makes Archipelag.io fundamentally different from inference-only networks that are locked to a single hardware vendor. We're not building a relay for LLM API calls. We're building a compute fabric — one where any device, running any supported runtime, can contribute capacity to the network and earn credits for the work it does.
 
-The phone in your pocket is not just a client. It's a node. It's an Island.
+The phone in your pocket is not just a client. It can become an Island.
 
 ## The economics
 
 During our [open beta](/news/open-beta-announcement), all credits are virtual — nobody pays, nobody gets paid. But the economic signals are real.
 
-An Island earns credits for every job it completes. The [Compute Exchange](/matchmaking) sets prices through supply and demand: Islands post asking prices, consumers place bids, and the market clears. A phone that reliably completes lightweight inference jobs earns credits at a rate proportional to the work it does. Over time, Islands build up karma — a reputation score based on completion rate, speed, and reliability — which gives them access to higher-value jobs.
+During Phase 2, an Island receives virtual credits for completed Jobs. The [Compute Exchange](/matchmaking) tests supply-and-demand behavior: Islands publish virtual asks, Consumers set budgets, and the Coordinator records a clearing amount. These credits have no cash value. Over time, Islands build Karma from completion rate, latency, and reliability, which informs future placement.
 
 The marginal cost of running inference on a phone is effectively zero. The device is already purchased, already charged (usually), already on WiFi. The electricity consumed during inference is negligible — pennies per day. There's no rack to rent, no cooling bill, no bandwidth fee. This means even modest earnings represent near-pure margin for the phone's owner.
 

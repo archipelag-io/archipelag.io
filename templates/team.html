@@ -58,6 +58,22 @@
             max-width: 60rem;
             margin: 0 auto;
         }
+        .team-page-header {
+            max-width: 60rem;
+            margin: 0 auto var(--space-12);
+        }
+        .team-page-title {
+            font-family: var(--font-brand);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            margin: 0 0 var(--space-3);
+        }
+        .team-page-intro {
+            color: var(--text-secondary);
+            max-width: 42rem;
+            line-height: 1.7;
+        }
 
         /* --- ToC (left column) --- */
         .team-toc {
@@ -261,6 +277,11 @@
 {% block content %}
         <section class="section">
             <div class="container">
+                <header class="team-page-header">
+                    <span class="section-eyebrow">The people</span>
+                    <h1 class="team-page-title">Team</h1>
+                    <p class="team-page-intro">Building the Coordinator, Island software, Cargo system, and operating model behind Archipelag.io.</p>
+                </header>
                 <div class="team-layout">
 
                     <!-- Left: Table of Contents -->
@@ -291,7 +312,7 @@
                                 </picture>
 
                                 <div class="member-heading">
-                                    <h1 class="member-name">Raffael Schneider</h1>
+                                    <h2 class="member-name">Raffael Schneider</h2>
                                     <p class="member-role">Founder</p>
                                 </div>
                             </div>
@@ -325,9 +346,9 @@
 
                                 <p>The idea behind Archipelag.io started in 2016, when Raffael visited an Ethereum mining operation in Glarus, a mountain town in eastern Switzerland. Watching Vitalik Buterin inspect rows of GPU-laden mining rigs, he became fascinated — not by the financial side of crypto, but by the infrastructure topology itself: thousands of people, globally, had independently decided to run compute infrastructure from their homes.</p>
 
-                                <p>That observation turned into a decade-long project. After years of sketching architectures and prototyping, the launch of ChatGPT in late 2022 reoriented the vision toward GPU-accelerated inference as the critical workload. The technology stack reflects a pragmatic philosophy: Elixir and BEAM for fault-tolerant coordination, Rust for the host agent, NATS for simple and reliable messaging, and Docker for workload isolation — each chosen for what it does well, not for hype.</p>
+                                <p>That observation turned into a decade-long project. After years of sketching architectures and prototyping, the launch of ChatGPT in late 2022 reoriented the vision toward GPU-accelerated inference as the critical launch use case. The technology stack reflects a pragmatic philosophy: Elixir and BEAM for fault-tolerant coordination, Rust for the Island software, NATS for simple and reliable messaging, and Docker for Cargo isolation — each chosen for what it does well, not for hype.</p>
 
-                                <p>The conviction is straightforward: the hardware exists, the bandwidth exists, the people exist. What's missing is coordination — a protocol and registry connecting idle consumer GPU capacity with users who need affordable, low-latency compute. Archipelag.io is that missing piece.</p>
+                                <p>The conviction is straightforward: the hardware exists, the bandwidth exists, and the people exist. What's missing is coordination — a fabric connecting independently operated compute with Consumers who need nearby, useful capacity. Archipelag.io is that coordination layer.</p>
                             </div>
                         </article>
 

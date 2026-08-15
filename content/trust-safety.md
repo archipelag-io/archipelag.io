@@ -1,84 +1,37 @@
 +++
 title = "Trust & Safety"
-description = "How Archipelag.io verifies users and providers to keep the network safe and trustworthy."
+description = "How Archipelag.io establishes accountability for Consumers, Island operators, and Cargo publishers."
 template = "page.html"
 +++
 
-## Identity Verification
+Archipelag.io brings together three distinct roles: Consumers submit Jobs, Island operators contribute compute, and Cargo publishers define approved packages that can execute those Jobs. The Coordinator enforces the network rules between them.
 
-Archipelag.io requires identity verification for users who submit compute Cargos and providers who contribute compute resources. This helps prevent fraud, abuse, and ensures accountability across the network.
+## Participation and identity
 
-### What's verified
+Browsing public information and the Cargo Registry does not require identity verification. Higher-trust actions may require account or identity checks depending on the feature and its Phase 2 rollout, including registering an Island, publishing a Cargo, or accessing sensitive platform functions.
 
-- **Government-issued photo ID** — passport, driver's license, or national ID card
-- **Selfie match** — a live selfie is compared against the photo on your ID to confirm you are the document holder
+Where identity verification is requested, the verification provider processes the submitted identity document and likeness. Archipelag.io is designed to retain the verification result and the minimum account attributes needed for accountability, rather than copies of identity documents. The applicable collection and retention details are described in the [Privacy Policy](/privacy).
 
-### What we store
+Verification establishes that an accountable participant is behind an account. It does not certify the safety of every Job, Cargo, Island, or generated result.
 
-We store only the minimum information needed:
+## Cargo approval
 
-- **Your verified name** — as it appears on your government ID
-- **Your country** — the issuing country of your ID document
-- **Verification status** — whether your identity has been confirmed
+Consumers do not upload arbitrary code directly to Islands. Cargos enter the network through an approval path that can include publisher review, artifact signing, automated scanning, declared resource requirements, and runtime compatibility checks.
 
-We do **not** store copies of your ID documents or selfie images. All document processing is handled securely by [Stripe Identity](https://stripe.com/identity), a PCI-certified payment infrastructure provider.
+A Cargo Registry entry is a catalog record; it does not promise that a compatible Island is online or that the Cargo is enabled in every environment. The Coordinator only dispatches an approved Cargo to an eligible Island.
 
-### Why it's required
+## Island accountability
 
-Identity verification serves several purposes:
+Islands register their capabilities and send health information to the Coordinator. Successful execution, latency, uptime, and failures contribute to Karma and placement decisions. An Island may be made ineligible when it is unhealthy, incompatible, suspended, or outside a Consumer's placement policy.
 
-1. **Fraud prevention** — Ensures real people behind accounts, reducing abuse and fraudulent activity
-2. **Accountability** — Compute providers handling sensitive Cargos must be identifiable
-3. **Compliance** — Supports GDPR and EU AI Act requirements for data processing transparency
-4. **Network trust** — Verified users and providers create a more reliable compute network
+The standard trust model still matters: Job data is available to the Island's execution environment while a Cargo runs. See [Security](/security) for the boundary and for the status of experimental confidential execution.
 
-### When it's required
+## Consumer responsibility
 
-- **Browsing the Cargo Registry** — No verification needed
-- **Exploring the platform** — No verification needed
-- **Submitting compute Cargos** — Verification required
-- **Registering as an Island** — Verification required
-- **Purchasing credits** — Small amounts allowed without verification (free tier)
+Consumers must submit lawful Jobs and review AI-generated results before relying on them. Archipelag.io's placement controls, Cargo approval process, and account safeguards do not replace a Consumer's own legal, security, and content-safety obligations.
 
-### Appeal process
+## Enforcement and appeals
 
-If your verification is rejected, you can:
+Accounts, Islands, or Cargos may be restricted or suspended for malicious code, fraud, attempts to bypass security controls, abuse of compute resources, or violations of the [Terms of Service](/terms).
 
-1. **Try again** — Submit a new verification with a different document or better photo quality
-2. **Contact support** — Email [hey@archipelag.io](mailto:hey@archipelag.io) if you believe the rejection was in error
-3. **Request manual review** — In exceptional circumstances, our team can review your case manually
-
-## Publisher Verification
-
-Developers who publish Cargos to the marketplace go through a separate verification process:
-
-- **Creator** (default) — up to 3 submissions, limited resource allocation, no GPU access
-- **Verified** — up to 10 submissions, higher resource limits, identity-verified publisher badge
-- **Official** — unlimited submissions, custom resource limits, GPU access, partner-level support
-
-Publisher tier upgrades are reviewed by the Archipelag.io team. All submitted Cargos undergo automated security scanning before approval.
-
-## Cargo Reputation
-
-Every Cargo in the marketplace has a reputation score (0.0 to 5.0) based on:
-
-- **Job success rate** — successful completions increase score, failures decrease it
-- **User reviews** — star ratings and written reviews from consumers
-- **Automated monitoring** — Cargos with sustained low success rates are automatically flagged or suspended
-
-Cargos that drop below a 0.5 reputation score are suspended from the network. Repeated complaints trigger manual review.
-
-## Account Bans
-
-Accounts may be suspended for violations of our [Terms of Service](/terms), including:
-
-- Submitting malicious or illegal Cargos
-- Attempting to circumvent security controls
-- Fraudulent activity or identity misrepresentation
-- Abuse of compute resources
-
-Banned users may appeal by contacting [hey@archipelag.io](mailto:hey@archipelag.io).
-
-## Reporting
-
-To report trust or safety concerns, contact [hey@archipelag.io](mailto:hey@archipelag.io).
+If you believe a restriction was made in error, or need to report fraud, abuse, or unsafe behavior, contact [hey@archipelag.io](mailto:hey@archipelag.io). Include the relevant account, Island, Cargo, or Job identifier when available; do not include secrets or unnecessary personal data.

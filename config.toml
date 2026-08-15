@@ -2,7 +2,7 @@
 
 # Site metadata
 title = "Archipelag.io"
-description = "Compute, closer to you. Run AI on a decentralized network of community hosts — fast, fair, and local."
+description = "Compute, closer to you. Archipelag.io routes AI Jobs to nearby independently operated Islands."
 base_url = "https://archipelag.io"
 
 # Build settings

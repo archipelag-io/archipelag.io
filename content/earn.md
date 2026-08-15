@@ -1,5 +1,5 @@
 +++
 title = "Become an Island"
-description = "Turn your GPU into an Island on the Archipelag.io network. Verified Islands serve AI Cargos and earn credits."
+description = "Turn compatible hardware into an Archipelag.io Island, serve approved AI Cargos, and earn virtual credits during Phase 2."
 template = "earn.html"
 +++

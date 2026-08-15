@@ -9,7 +9,7 @@ category = "Technical"
 author = "Raffael Schneider"
 +++
 
-In April we [turned an iPhone into a compute node](/news/your-phone-is-an-island/). A prompt typed in a browser, answered by a language model running on a phone across town. Since that post, one question has come up more than any other: what about Android?
+In April we [turned an iPhone into an Island](/news/your-phone-is-an-island/). A prompt typed in a browser was answered by a language model running on a phone across town. Since that post, one question has come up more than any other: what about Android?
 
 Fair question. There are more than three billion active Android devices in the world — roughly seven out of every ten smartphones. The flagships among them carry Snapdragon silicon with NPUs, big GPUs, and 8 to 16 gigabytes of RAM. If the network's premise is that capable hardware sits idle in people's pockets, Android isn't a nice-to-have. It's most of the hardware.
 

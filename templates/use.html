@@ -54,7 +54,7 @@
                     "cssSelector": ["#hero-title", ".hero-subtitle", "#capabilities-title", "#api-title"]
                 },
                 "datePublished": "2024-01-01",
-                "dateModified": "2026-03-13",
+                "dateModified": "2026-08-15",
                 "breadcrumb": {
                     "@type": "BreadcrumbList",
                     "itemListElement": [
@@ -87,14 +87,14 @@
                     "OpenAI-compatible /v1/chat/completions endpoint",
                     "Real-time streaming over WebSocket and SSE",
                     "Python and JavaScript SDKs",
-                    "Jurisdiction routing for data residency compliance",
-                    "Market-based pricing with no fixed tiers",
+                    "Regional placement policies and execution records",
+                    "Virtual compute exchange for Phase 2 testing",
                     "Mistral 7B, Llama, Stable Diffusion XL, FLUX models",
-                    "Multi-Island pipeline parallelism for 70B+ models",
-                    "Batch fan-out across up to 100 Islands",
+                    "Experimental Multi-Island pipeline parallelism",
+                    "Experimental batch fan-out",
                     "Web chat and image generation interfaces",
                     "Interactive API playground",
-                    "Cargo Marketplace with 133+ models",
+                    "Cargo Registry with model and compute-task entries",
                     "Developer portal for publishing custom Cargos"
                 ],
                 "offers": {
@@ -154,7 +154,7 @@
                         "name": "How much does it cost?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Pricing is market-based — Islands set asking prices and the compute exchange clears a rate per Cargo type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers."
+                            "text": "Phase 2 uses virtual credits only. The exchange simulates Island asks, Consumer budgets, and clearing amounts so market behavior can be tested before real-money billing is enabled."
                         }
                     },
                     {
@@ -162,7 +162,7 @@
                         "name": "Does my data stay in my region?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "By default, jobs route to nearby Islands for lower latency. For compliance, you can set explicit jurisdiction policies (EU-only, Switzerland, or custom) so your data never leaves a specific region."
+                            "text": "By default, Jobs favor nearby compatible Islands. Optional regional policies restrict eligible placement to configured regions. These controls can support a compliance program but are not, by themselves, a legal guarantee."
                         }
                     }
                 ]
@@ -183,7 +183,7 @@
                     <h1 id="hero-title" class="hero-title">Drop-in API, distributed backend</h1>
                     <p class="hero-subtitle">
                         OpenAI-compatible inference running on community GPUs.
-                        Switch your base URL and your code runs on a decentralized network instead of a single cloud.
+                        Switch your base URL and your code runs through a distributed network of independently operated Islands instead of a single cloud region.
                     </p>
                     <div class="hero-cta">
                         <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Get free beta credits</a>
@@ -207,7 +207,7 @@
                         <div class="cargo-whatis-cols">
                             <div class="cargo-whatis-text">
                                 <p class="cargo-whatis-lead">A <strong>Cargo</strong> is a portable, signed unit of computation that runs on <a href="https://docs.archipelag.io/architecture/node-agent/">Islands</a> across the Archipelag.io network.</p>
-                                <p>Think of it as a shipping container for code&thinsp;&mdash;&thinsp;each one packages a model, runtime, and resource requirements into a single deployable artifact. Consumers submit jobs, the coordinator finds the best Island, and the Cargo executes in a secure sandbox.</p>
+                                <p>Think of it as a shipping manifest for compute: an entry identifies an approved artifact, runtime, and resource requirements. A Consumer submits a Job, the Coordinator selects a compatible Island, and the Cargo executes inside the configured sandbox.</p>
                             </div>
                             <div class="cargo-whatis-diagram">
                                 <div class="cargo-whatis-flow">
@@ -248,8 +248,8 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Cargos</span>
-                    <h2 id="capabilities-title" class="section-title">What you can run today</h2>
-                    <p class="section-subtitle">The network currently supports these Cargo types. More are being added during beta.</p>
+                    <h2 id="capabilities-title" class="section-title">The Phase 2 Cargo focus</h2>
+                    <p class="section-subtitle">Streaming language-model inference is the launch path. Image and other Cargo availability depends on approved artifacts and compatible online Islands.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -329,8 +329,8 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Scale Beyond One Island</span>
-                    <h2 id="multi-island-title" class="section-title">Multi-Island compute</h2>
-                    <p class="section-subtitle">Run models too large for any single device, or process batches across dozens of Islands at once.</p>
+                    <h2 id="multi-island-title" class="section-title">Multi-Island compute <span class="feature-badge-experimental">Experimental</span></h2>
+                    <p class="section-subtitle">Experimental pipeline and fan-out modes explore how compatible Islands can share work that does not fit one device.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -354,15 +354,15 @@
                             <ul class="preview-list" aria-label="Pipeline parallelism features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Run 70B+ models across 2&ndash;8 Islands</span>
+                                    <span>Prototype model-layer pipelines across compatible Islands</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Automatic &mdash; coordinator detects when pipeline is needed</span>
+                                    <span>Coordinator-led placement based on shard compatibility and availability</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Same API, same streaming &mdash; invisible to your code</span>
+                                    <span>Designed to preserve the same streaming API shape</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -389,11 +389,11 @@
                             <ul class="preview-list" aria-label="Batch fan-out features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Submit up to 100 inputs in a single API call</span>
+                                    <span>Batch API accepts multiple independent inputs</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Each input dispatched to a different Island in parallel</span>
+                                    <span>Eligible inputs can be dispatched across available Islands</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -421,14 +421,14 @@
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
                             <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Workflows</span>
-                            <h2 id="workflows-title" class="preview-title">Chain models into pipelines</h2>
+                            <h2 id="workflows-title" class="preview-title">Chain models into pipelines <span class="feature-badge-experimental">Experimental</span></h2>
                             <p class="preview-desc">
-                                Define multi-step workflows as DAGs. The coordinator resolves dependencies,
+                                Experimental workflow definitions use DAGs. The Coordinator resolves dependencies,
                                 dispatches steps in parallel across Islands, maps data between steps, and merges results.
                             </p>
                             <p class="preview-desc">
                                 Translate text, classify the output, then summarize &mdash; all in one API call.
-                                Each step runs on the best-fit Island. If a step fails, the workflow handles it.
+                                Each step can run on a compatible Island, with retry or abort behavior defined per step.
                             </p>
 
                             <ul class="preview-list" aria-label="Workflow features">
@@ -512,7 +512,7 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Advanced Capabilities</span>
                     <h2 id="advanced-title" class="section-title">Beyond inference</h2>
-                    <p class="section-subtitle">Cache, test, train, and protect &mdash; all on the same distributed network.</p>
+                    <p class="section-subtitle">Experimental capabilities under active validation. Interfaces and guarantees may change during Phase 2.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -525,15 +525,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-brand text-xl mb-2">Inference Caching</h3>
-                                    <p class="text-secondary">Similar prompts served from cache instantly</p>
+                                    <h3 class="font-brand text-xl mb-2">Inference Caching <span class="feature-badge-experimental">Experimental</span></h3>
+                                    <p class="text-secondary">Reuse eligible results without repeating compute</p>
                                 </div>
                             </div>
                             <ul class="preview-list">
                                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Cache hits are instant and free &mdash; no Island compute used</span></li>
                                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Semantic matching catches near-duplicates (not just exact text)</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>30-60% cost reduction for chatbots, FAQ, and support</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Automatic &mdash; no configuration needed, per-Cargo opt-out available</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Can reduce latency and duplicated compute for repetitive Jobs</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Per-Cargo eligibility and opt-out controls are being tested</span></li>
                             </ul>
                         </article>
 
@@ -546,7 +546,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-brand text-xl mb-2">A/B Testing</h3>
+                                    <h3 class="font-brand text-xl mb-2">A/B Testing <span class="feature-badge-experimental">Experimental</span></h3>
                                     <p class="text-secondary">Compare model versions with real traffic</p>
                                 </div>
                             </div>
@@ -569,15 +569,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-brand text-xl mb-2">Federated Fine-Tuning</h3>
+                                    <h3 class="font-brand text-xl mb-2">Federated Fine-Tuning <span class="feature-badge-experimental">Experimental</span></h3>
                                     <p class="text-secondary">Train models without centralizing data</p>
                                 </div>
                             </div>
                             <ul class="preview-list">
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Each Island trains on its local data &mdash; data never leaves</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Only gradient updates exchanged (not raw data)</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Participating Islands train against locally held datasets</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Model updates are aggregated instead of collecting source datasets</span></li>
                                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Differential privacy for mathematical data protection</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>HIPAA, finance, legal &mdash; fine-tune without compliance risk</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Not a compliance guarantee; organizations must validate their own use case</span></li>
                             </ul>
                         </article>
 
@@ -591,15 +591,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-brand text-xl mb-2">Confidential Inference</h3>
-                                    <p class="text-secondary">Encrypted end-to-end &mdash; Islands can't see your data</p>
+                                    <h3 class="font-brand text-xl mb-2">Confidential Inference <span class="feature-badge-experimental">Experimental</span></h3>
+                                    <p class="text-secondary">Stronger isolation on supported attested hardware</p>
                                 </div>
                             </div>
                             <ul class="preview-list">
                                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>TEE hardware attestation (Intel SGX, AMD SEV, ARM TrustZone)</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>AES-256-GCM encryption &mdash; input and output encrypted at all times</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Homomorphic option for software-only privacy (no TEE required)</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Same API, same billing &mdash; just add <code>confidential: true</code></span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Payload encryption outside the attested execution boundary</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Availability depends on Island hardware and current attestation state</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Use only after validating the experimental threat model</span></li>
                             </ul>
                         </article>
                     </div>
@@ -694,8 +694,8 @@ stream = client.chat.completions.create(
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Pricing</span>
-                    <h2 id="pricing-title" class="section-title">Market-based, not fixed tiers</h2>
-                    <p class="section-subtitle">Prices are set by supply and demand on the compute exchange, not by us.</p>
+                    <h2 id="pricing-title" class="section-title">Test the market before money moves</h2>
+                    <p class="section-subtitle">Phase 2 simulates asks, budgets, and clearing amounts using virtual credits.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -706,8 +706,8 @@ stream = client.chat.completions.create(
                                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="principle-title">Live rates</h3>
-                            <p class="principle-desc">The compute exchange shows current clearing prices for each Cargo type. Check the <a href="https://app.archipelag.io/exchange" style="color:var(--accent)">exchange</a> for live rates.</p>
+                            <h3 class="principle-title">Current virtual rates</h3>
+                            <p class="principle-desc">The compute exchange shows current simulated clearing amounts for each Cargo type. Explore the <a href="https://app.archipelag.io/exchange" style="color:var(--accent)">exchange</a> to see the test market.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -717,7 +717,7 @@ stream = client.chat.completions.create(
                                 </svg>
                             </div>
                             <h3 class="principle-title">Free during beta</h3>
-                            <p class="principle-desc">The beta uses virtual credits &mdash; no real money changes hands. You get 10,000 credits on signup and they auto-refill. After beta: buy credits, no subscriptions.</p>
+                            <p class="principle-desc">Phase 2 uses virtual credits &mdash; no real money changes hands. Balances may refill or reset as metering and matching are validated.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -727,7 +727,7 @@ stream = client.chat.completions.create(
                                 </svg>
                             </div>
                             <h3 class="principle-title">Transparent billing</h3>
-                            <p class="principle-desc">Every job shows its clearing price before execution. You see exactly what you'll pay and which Island will run it.</p>
+                            <p class="principle-desc">Every Job shows its virtual clearing amount and selected Island before execution during Phase 2.</p>
                         </div>
                     </div>
                 </div>
@@ -746,9 +746,9 @@ stream = client.chat.completions.create(
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="streaming" aria-hidden="true"></canvas>
+                            <canvas class="island-vignette" data-island-scene="cargo" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Chat interface</h3>
-                            <p class="principle-desc">Full-featured web chat with conversation history, model selection, and host preferences. Real-time streaming built in.</p>
+                            <p class="principle-desc">Web chat with conversation history, model selection, Island preferences, and streamed responses.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -762,12 +762,16 @@ stream = client.chat.completions.create(
                             <p class="principle-desc">Web UI for text-to-image with configurable dimensions, inference steps, and a gallery of past generations.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l3 3-3 3M13 15h3" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg>
+                            </div>
                             <h3 class="principle-title">Playground</h3>
-                            <p class="principle-desc">Try the API without signing up. Interactive testing with live code examples in Python and JavaScript.</p>
+                            <p class="principle-desc">Explore request parameters and live Python and JavaScript examples from the developer interface.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="compute" aria-hidden="true"></canvas>
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                            </div>
                             <h3 class="principle-title">Batch jobs</h3>
                             <p class="principle-desc">Submit batches of inputs via the API or web UI. Monitor progress in real time with a visual dashboard.</p>
                         </div>
@@ -780,7 +784,7 @@ stream = client.chat.completions.create(
                                 </svg>
                             </div>
                             <h3 class="principle-title">Cargo Marketplace</h3>
-                            <p class="principle-desc">Browse <a href="/cargo" style="color:var(--accent)">133+ Cargos</a> in the registry. Reviews, ratings, and publisher tiers help you find trusted models.</p>
+                            <p class="principle-desc">Browse <a href="/cargo" style="color:var(--accent)">Cargo catalog entries</a> and inspect format, size, capability, and publisher metadata.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -841,6 +845,5 @@ stream = client.chat.completions.create(
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
-    <script src="/js/island-vignettes.js" defer></script>
     <script defer src="/js/cargo-whatis.js"></script>
 {% endblock scripts %}

@@ -3,7 +3,7 @@
 {% block title %}Matchmaking | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="How the Archipelag.io Compute Exchange matches supply and demand. Market-based pricing, bid/ask clearing, hardware tiers, and the economics of distributed compute.">
+    <meta name="description" content="How the Archipelag.io Compute Exchange tests Island asks, Consumer budgets, placement signals, and virtual clearing amounts during Phase 2.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="keywords" content="compute exchange, market-based pricing, GPU pricing, distributed compute economics, bid ask matching, compute marketplace, AI inference pricing">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/matchmaking/">
     <meta property="og:title" content="Matchmaking - How the Compute Exchange Works | {{ config.title }}">
-    <meta property="og:description" content="Market-based pricing for distributed AI compute. Islands set asking prices, consumers set bids, and the exchange clears a rate.">
+    <meta property="og:description" content="A Phase 2 simulation of Island asks, Consumer budgets, and compute matching using virtual credits.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -26,7 +26,7 @@
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
     <meta name="twitter:title" content="Matchmaking - How the Compute Exchange Works | {{ config.title }}">
-    <meta name="twitter:description" content="Market-based pricing for distributed AI compute. No fixed tiers, no subscriptions.">
+    <meta name="twitter:description" content="Explore Archipelag.io's virtual compute market during Phase 2.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io - Compute Exchange">
 {% endblock head_meta %}
@@ -42,7 +42,7 @@
                 "@id": "{{ config.base_url }}/matchmaking/",
                 "url": "{{ config.base_url }}/matchmaking/",
                 "name": "Matchmaking - How the Compute Exchange Works",
-                "description": "Market-based pricing for distributed AI compute. Islands set asking prices, consumers set bids, and the exchange clears a rate.",
+                "description": "A Phase 2 simulation of Island asks, Consumer budgets, and compute matching using virtual credits.",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
@@ -72,7 +72,7 @@
                         "name": "How does pricing work on Archipelag.io?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Pricing is market-based. Islands set asking prices per Cargo type. Consumers set maximum bids. The coordinator matches each job to the cheapest Island willing to work at the consumer's price. There are no fixed tiers."
+                            "text": "During Phase 2, Islands set virtual asks per Cargo type and Consumers set virtual budgets. The Coordinator selects an eligible match using price alongside capability, availability, latency, placement policy, and Karma. No real money changes hands."
                         }
                     },
                     {
@@ -80,7 +80,7 @@
                         "name": "What determines the clearing price?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "The clearing price equals the Island's asking price at the time of the match. Consumers always pay the Island's rate, not their maximum bid. You never overpay."
+                            "text": "The simulated clearing amount equals the selected Island's ask and cannot exceed the Consumer's budget. Phase 2 uses virtual credits only."
                         }
                     },
                     {
@@ -88,7 +88,7 @@
                         "name": "What is surge pricing?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "When queued jobs exceed twice the available Island capacity, a 25% surge multiplier is applied. This incentivizes more Islands to come online during peak demand and smooths load over time."
+                            "text": "The Phase 2 market model can apply a simulated multiplier when queued Jobs exceed configured available capacity. The exchange exposes the multiplier and all amounts remain virtual."
                         }
                     }
                 ]
@@ -109,10 +109,10 @@
                     <h1 id="hero-title" class="hero-title">Prices set by the network, not by us</h1>
                     <p class="hero-subtitle">
                         Islands set asking prices. Consumers set bids.
-                        The coordinator matches supply and demand in real time and clears a market rate.
+                        The Coordinator simulates supply-and-demand matching in real time using virtual Phase 2 credits.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/exchange" class="btn btn-tropical btn-lg">See live rates</a>
+                        <a href="https://app.archipelag.io/exchange" class="btn btn-tropical btn-lg">Open the exchange</a>
                         <a href="#how-it-works" class="btn btn-secondary btn-lg">How it works</a>
                     </div>
                 </div>
@@ -126,13 +126,13 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; The Model</span>
                     <h2 id="model-title" class="section-title">Ask-price auction</h2>
-                    <p class="section-subtitle">Every match follows the same rule: the consumer pays the Island's asking price, never more than their bid.</p>
+                    <p class="section-subtitle">Each simulated match uses the selected Island's ask without exceeding the Consumer's virtual budget.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
+                            <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Islands set asking prices</h3>
                             <p class="principle-desc">Each Island posts a per-Cargo asking price based on their hardware costs, electricity, and desired margin. They can adjust anytime.</p>
                         </div>
@@ -149,7 +149,7 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Coordinator clears the match</h3>
-                            <p class="principle-desc">The coordinator finds the cheapest willing Island for each job. Clearing price = the Island's asking price. You never pay your full bid if cheaper options exist.</p>
+                            <p class="principle-desc">The Coordinator selects an eligible Island within the Consumer's budget. The selected Island's ask becomes the virtual clearing amount.</p>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Bid Resolution</span>
                     <h2 id="resolution-title" class="section-title">How your price is determined</h2>
-                    <p class="section-subtitle">The system resolves a bid for every job, using a fallback chain so you always get a fair price.</p>
+                    <p class="section-subtitle">The system resolves a virtual budget for each Job through a transparent fallback chain.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -176,8 +176,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <span class="host-diagram-label">1. Explicit job bid</span>
-                                        <span class="host-diagram-detail">If you set a price on this specific job, that's used first</span>
+                                        <span class="host-diagram-label">1. Explicit Job budget</span>
+                                        <span class="host-diagram-detail">A budget attached to this Job is considered first</span>
                                     </div>
                                 </div>
                                 <div class="host-diagram-arrow" aria-hidden="true">
@@ -209,8 +209,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <span class="host-diagram-label">3. Current market rate</span>
-                                        <span class="host-diagram-detail">Average clearing price from recent jobs on the exchange</span>
+                                        <span class="host-diagram-label">3. Current virtual rate</span>
+                                        <span class="host-diagram-detail">Average clearing amount from recent Jobs in the test exchange</span>
                                     </div>
                                 </div>
                                 <div class="host-diagram-arrow" aria-hidden="true">
@@ -227,7 +227,7 @@
                                     </div>
                                     <div>
                                         <span class="host-diagram-label">4. Cargo default price</span>
-                                        <span class="host-diagram-detail">The workload's base price &mdash; always a safe fallback</span>
+                                        <span class="host-diagram-detail">The Cargo's configured default virtual amount</span>
                                     </div>
                                 </div>
                             </div>
@@ -237,12 +237,12 @@
                             <h3 class="preview-title">Set it once, forget it</h3>
                             <p class="preview-desc">
                                 Most consumers set a bid preference per Cargo type and leave it. The coordinator uses your
-                                preference for every job, finds the cheapest Island willing to accept it, and charges you
-                                their asking price &mdash; not your maximum.
+                                preference for every Job, finds an eligible Island willing to accept it, and records
+                                that Island's virtual asking amount &mdash; not the Consumer's maximum.
                             </p>
                             <p class="preview-desc">
-                                If you want more control, override on individual jobs. The system always picks the
-                                lowest clearing price available within your budget.
+                                A Consumer can override the budget on an individual Job. Placement also considers
+                                compatibility, region, latency, availability, and Karma—not price alone.
                             </p>
                         </div>
                     </div>
@@ -309,7 +309,7 @@
                             </p>
                             <p class="preview-desc">
                                 Consumers on a budget can target entry-tier Islands at 1.0x or even CPU-only
-                                at 0.5x for lighter workloads. The exchange surfaces all options transparently.
+                                at 0.5x for lighter Cargos. The exchange surfaces all options transparently.
                             </p>
                         </div>
                     </div>
@@ -322,14 +322,14 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Market Dynamics</span>
-                    <h2 id="dynamics-title" class="section-title">A volatile, self-correcting market</h2>
-                    <p class="section-subtitle">Prices move with real-world conditions. That's the point.</p>
+                    <h2 id="dynamics-title" class="section-title">Test how a dynamic market behaves</h2>
+                    <p class="section-subtitle">Phase 2 amounts respond to simulated demand and reported Island availability.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
+                            <canvas class="island-vignette" data-island-scene="beacon" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Availability</h3>
                             <p class="principle-desc">Islands come and go. A home GPU in Berlin is online evenings; a rack server in Zurich runs 24/7. Supply shifts throughout the day, and prices adjust with it.</p>
                         </div>
@@ -369,7 +369,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Demand spikes</h3>
-                            <p class="principle-desc">When a product launch drives traffic, demand surges. The exchange responds: prices tick up, incentivizing more Islands online, and equilibrium is restored.</p>
+                            <p class="principle-desc">When queued Jobs exceed available capacity, the Phase 2 model can raise its virtual multiplier. The exchange exposes the change so the behavior can be evaluated.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -379,7 +379,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Karma gating</h3>
-                            <p class="principle-desc">New Islands must earn 10+ karma (about 10 hours of successful compute) before they can receive payouts. Reliability is a prerequisite, not a luxury.</p>
+                            <p class="principle-desc">Karma from successful Jobs, latency, and uptime influences placement. Phase 2 does not enable cash payouts.</p>
                         </div>
                     </div>
                 </div>
@@ -395,13 +395,12 @@
                             <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Surge Pricing</span>
                             <h2 id="surge-title" class="preview-title">When demand exceeds supply</h2>
                             <p class="preview-desc">
-                                If queued jobs exceed twice the available Island capacity, a 25% surge multiplier kicks in.
-                                This is automatic and transparent &mdash; the exchange UI shows when surge is active.
+                                The Phase 2 model can apply a simulated 25% multiplier when queued Jobs exceed twice
+                                the configured available Island capacity. The exchange UI shows when the rule is active.
                             </p>
                             <p class="preview-desc">
-                                Surge pricing serves two purposes: it incentivizes more Islands to come online during peaks,
-                                and it prioritizes price-insensitive jobs that need to run now. As capacity normalizes,
-                                the multiplier drops back to 1.0x.
+                                The rule lets the team observe how supply might respond to demand and how Consumers
+                                prioritize urgent Jobs. All values remain virtual during Phase 2.
                             </p>
 
                             <ul class="preview-list" aria-label="Surge pricing details">
@@ -435,7 +434,7 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <span class="host-diagram-label">80 jobs queued</span>
+                                            <span class="host-diagram-label">80 Jobs queued</span>
                                             <span class="host-diagram-detail">30 Islands with capacity</span>
                                         </div>
                                     </div>
@@ -485,19 +484,19 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; The Dashboard</span>
-                    <h2 id="dashboard-title" class="section-title">Full transparency, real time</h2>
-                    <p class="section-subtitle">The Compute Exchange dashboard is public. Anyone can see current rates, historical trends, and order book depth.</p>
+                    <h2 id="dashboard-title" class="section-title">A visible test market</h2>
+                    <p class="section-subtitle">The Compute Exchange exposes current virtual amounts, recent trends, and simulated supply-and-demand depth.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Live market rates</h3>
-                            <p class="principle-desc">Current clearing price, average ask, average bid, active supply and demand counts, and jobs cleared &mdash; updated every 30 seconds.</p>
+                            <h3 class="principle-title">Current virtual rates</h3>
+                            <p class="principle-desc">The dashboard can expose clearing amount, average ask, average budget, and active supply and demand counts. Values remain virtual during Phase 2.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="streaming" aria-hidden="true"></canvas>
+                            <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18l5-5 4 3 7-9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h4v4"/></svg></div>
                             <h3 class="principle-title">Price history</h3>
                             <p class="principle-desc">Charts showing avg, min, max, and median clearing prices over 1 hour, 24 hours, 7 days, or 30 days. See how supply and demand evolved.</p>
                         </div>
@@ -550,7 +549,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">For Islands</h3>
-                            <p class="principle-desc">Suggested ask = current market rate &times; hardware tier multiplier. An RTX 4090 (2.0x) is guided to ask twice the base rate. Set it higher to earn more per job, lower to win more jobs.</p>
+                            <p class="principle-desc">A suggested virtual ask combines the current test rate with a hardware-tier multiplier. Operators can adjust it to explore how price affects simulated placement.</p>
                         </article>
                     </div>
                 </div>
@@ -560,10 +559,10 @@
         <!-- Beta Note -->
         <section class="section section-alt-flat section-aurora cta-section" aria-labelledby="cta-title">
             <div class="container text-center">
-                <h2 id="cta-title" class="cta-title">The exchange is live</h2>
-                <p class="cta-subtitle">During the beta, all credits are virtual &mdash; no real money changes hands. But the market mechanics are real: bid, ask, and match just like production.</p>
+                <h2 id="cta-title" class="cta-title">The Phase 2 exchange is open</h2>
+                <p class="cta-subtitle">Test asks, budgets, matching, and market visibility with virtual credits. No real money changes hands.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/exchange" class="btn btn-tropical btn-lg">See live rates</a>
+                    <a href="https://app.archipelag.io/exchange" class="btn btn-tropical btn-lg">Open the exchange</a>
                     <a href="https://app.archipelag.io/auth/login" class="btn btn-secondary btn-lg">Join the beta</a>
                 </div>
             </div>
@@ -572,5 +571,4 @@
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
-    <script src="/js/island-vignettes.js" defer></script>
 {% endblock scripts %}

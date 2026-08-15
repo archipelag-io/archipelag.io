@@ -3,7 +3,7 @@
 {% block title %}Pricing | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="Free during open beta. Market-based pricing after launch &mdash; no fixed tiers, no subscriptions. Virtual credits, no credit card required.">
+    <meta name="description" content="Archipelag.io Phase 2 uses free virtual credits to test metering, Island asks, Consumer budgets, and compute matching. No real-money billing or payouts.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="sovereign compute pricing, distributed AI pricing, market-based compute, free AI beta, GPU compute credits, community compute pricing">
     <link rel="canonical" href="{{ config.base_url }}/pricing/">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/pricing/">
     <meta property="og:title" content="Pricing - Free During Beta | {{ config.title }}">
-    <meta property="og:description" content="Free during open beta with virtual credits. Market-based pricing after launch. No fixed tiers, no subscriptions.">
+    <meta property="og:description" content="Free virtual-credit access during Phase 2. No real-money billing or Island payouts.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -25,7 +25,7 @@
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
     <meta name="twitter:title" content="Pricing - Free During Beta | {{ config.title }}">
-    <meta name="twitter:description" content="Free during open beta. Market-based pricing after launch. No subscriptions.">
+    <meta name="twitter:description" content="Free virtual-credit access during Phase 2. No real-money billing or Island payouts.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io Pricing">
 {% endblock head_meta %}
@@ -41,7 +41,7 @@
                 "@id": "{{ config.base_url }}/pricing/",
                 "url": "{{ config.base_url }}/pricing/",
                 "name": "Pricing",
-                "description": "Start free, scale with compliance. Sovereign compute infrastructure.",
+                "description": "Free, virtual-credit access during Archipelag.io Phase 2.",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
                 },
@@ -66,21 +66,21 @@
             {
                 "@type": "Product",
                 "name": "Archipelag.io Distributed Compute",
-                "description": "Distributed AI compute network with market-based pricing. Free during open beta.",
+                "description": "Distributed compute fabric using free virtual credits during Phase 2.",
                 "offers": [
                     {
                         "@type": "Offer",
                         "name": "Open Beta",
                         "price": "0",
                         "priceCurrency": "USD",
-                        "description": "Free virtual credits during beta (until June 2026). All features included."
+                        "description": "Free virtual credits during Phase 2. Experimental features remain subject to availability and change."
                     },
                     {
                         "@type": "Offer",
                         "name": "Enterprise",
                         "price": "0",
                         "priceCurrency": "USD",
-                        "description": "Custom pricing - Dedicated node pools, SLA guarantees, compliance toolkit"
+                        "description": "Design partner program - custom engagements for regulated industries (private preview)"
                     }
                 ]
             },
@@ -92,7 +92,7 @@
                         "name": "How does jurisdiction routing work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "When you submit a Cargo, you specify a jurisdiction policy. The platform routes your job exclusively to verified nodes within that jurisdiction. Your data never leaves the specified region."
+                            "text": "A Consumer can attach a regional placement policy to a Job. The Coordinator limits eligible matches to Islands reporting a location inside that policy and records the selected Island. This control supports data-residency planning but is not a legal guarantee."
                         }
                     },
                     {
@@ -100,7 +100,7 @@
                         "name": "What are verification levels?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Compute providers go through three verification tiers: Tier 1 (identity + hardware attestation), Tier 2 (facility audit + compliance training), and Tier 3 (dedicated infrastructure + SLA). Higher tiers serve more sensitive Cargos."
+                            "text": "Island operators complete identity verification before receiving Jobs. The Island software reports hardware capabilities and the Karma system records success, latency, and uptime. Archipelag.io does not currently advertise audited facility tiers."
                         }
                     },
                     {
@@ -108,7 +108,7 @@
                         "name": "Is Archipelag.io GDPR compliant?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. The platform is designed for GDPR compliance. Jurisdiction routing ensures data residency, verified nodes provide processing guarantees, and audit trails document every execution."
+                            "text": "Archipelag.io provides regional placement controls and execution records that may support a GDPR program. Using those controls does not make a Consumer or Job compliant by itself; organizations must assess their own legal obligations."
                         }
                     },
                     {
@@ -116,7 +116,7 @@
                         "name": "Are you SOC 2 certified?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "SOC 2 certification is on our Q4 2026 roadmap. Enterprise tier customers will have access to our compliance documentation and can request audit reports."
+                            "text": "No. Archipelag.io is not currently SOC 2 certified. Design partners can discuss security documentation and requirements directly with the team."
                         }
                     },
                     {
@@ -124,7 +124,7 @@
                         "name": "How does this relate to the EU AI Act?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Archipelag.io helps teams meet AI Act requirements through verified execution, audit trails, and transparency reporting. Our compliance toolkit (Q4 2026) will include AI Act-specific templates and documentation."
+                            "text": "Archipelag.io can provide placement and execution information, but does not currently provide an AI Act compliance certification or complete regulatory toolkit."
                         }
                     }
                 ]
@@ -144,7 +144,7 @@
                     <h1 id="hero-title" class="hero-title">Free during the beta</h1>
                     <p class="hero-subtitle">
                         The beta runs on virtual credits &mdash; no real money, no credit card.
-                        When we launch, pricing will be market-based: set by supply and demand, not fixed tiers.
+                        The planned commercial model is market-based, but paid pricing and terms are not finalized.
                     </p>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                     <article class="card pricing-card featured" role="listitem">
                         <h3 class="pricing-name">Open Beta</h3>
                         <div class="pricing-price" style="font-size: var(--text-2xl);">Free</div>
-                        <p class="pricing-period">until June 13, 2026</p>
+                        <p class="pricing-period">through Phase 2</p>
                         <p class="pricing-credits">10,000 virtual credits on signup</p>
                         <ul class="pricing-features" aria-label="Beta features">
                             <li>
@@ -185,7 +185,7 @@
                             </li>
                             <li>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Jurisdiction routing and data residency</span>
+                                <span>Regional placement controls and execution records</span>
                             </li>
                         </ul>
                         <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical w-full">Join the beta</a>
@@ -198,9 +198,9 @@
         <section class="section section-alt" aria-labelledby="market-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; After Beta</span>
+                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Planned Model</span>
                     <h2 id="market-title" class="section-title">Market-based pricing</h2>
-                    <p class="section-subtitle">When the beta ends, pricing will be set by supply and demand &mdash; not by us. No fixed tiers, no subscriptions.</p>
+                    <p class="section-subtitle">The intended commercial model is market-based, but pricing, payment methods, and terms are not finalized.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -208,17 +208,17 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Compute exchange</h3>
-                            <p class="principle-desc">Islands set asking prices. Consumers set bid preferences. The coordinator clears a market rate per Cargo type. Check the <a href="https://app.archipelag.io/exchange" style="color:var(--accent)">exchange</a> for live rates.</p>
+                            <p class="principle-desc">Islands set virtual asks and Consumers set budgets. The Coordinator clears a simulated amount per Cargo type so the market mechanics can be tested.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Credits, not subscriptions</h3>
-                            <p class="principle-desc">Buy credits when you need them. No monthly fees, no commitments. Credits never expire.</p>
+                            <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">Phase 2 credits</h3>
+                            <p class="principle-desc">Virtual balances let the team validate metering and accounting. They may be adjusted or reset and do not represent a future paid balance.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="streaming" aria-hidden="true"></canvas>
+                            <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l3 3v17H6z"/><path d="M15 2v4h4M9 11h6M9 15h6" stroke-linecap="round"/></svg></div>
                             <h3 class="principle-title">Transparent billing</h3>
-                            <p class="principle-desc">Every job shows its clearing price before execution. You see exactly what you'll pay and which Island will run it.</p>
+                            <p class="principle-desc">Every Job shows its virtual clearing amount and selected Island before execution during Phase 2.</p>
                         </div>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                         <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Early Access</span>
                         <h2 id="partner-title" class="preview-title">Design Partner Program</h2>
                         <p class="preview-desc">
-                            Work directly with our engineering team to shape sovereign compute for your specific compliance requirements. Design partners get priority access, dedicated support, and custom integrations.
+                            Work directly with the engineering team to test placement, execution records, and integration requirements. The program does not confer regulatory certification.
                         </p>
 
                         <ul class="preview-list" aria-label="Design partner benefits">
@@ -247,7 +247,7 @@
                             </li>
                             <li>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Custom compliance framework integration</span>
+                                <span>Governance and integration discovery</span>
                             </li>
                             <li>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -271,7 +271,7 @@
                             <figcaption>
                                 <div class="font-brand text-xl mb-2">Design Partners</div>
                                 <p class="text-secondary mb-4">Limited spots available</p>
-                                <p class="text-sm text-tertiary">For teams with specific compliance requirements</p>
+                                <p class="text-sm text-tertiary">For teams evaluating regional compute requirements</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -283,40 +283,40 @@
         <section class="section" aria-labelledby="enterprise-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Enterprise</span>
-                    <h2 id="enterprise-title" class="section-title">Built for regulated industries</h2>
-                    <p class="section-subtitle">Sovereign compute infrastructure for healthcare, finance, government, and any team that can't compromise on compliance.</p>
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Enterprise Private Preview</span>
+                    <h2 id="enterprise-title" class="section-title">For regulated industries</h2>
+                    <p class="section-subtitle">We're working with a small number of design partners in healthcare, finance, and government to build sovereign compute infrastructure. These capabilities are available as custom engagements during the beta.</p>
                 </div>
 
                 <div class="grid grid-3 gap-6 max-w-4xl mx-auto">
                     <article class="card p-6">
-                        <h3 class="font-brand text-lg mb-3">Dedicated Node Pools</h3>
-                        <p class="text-sm text-secondary">Reserved Tier 3 verified infrastructure exclusively for your organization. No shared resources.</p>
+                        <h3 class="font-brand text-lg mb-3">Dedicated Island Pools</h3>
+                        <p class="text-sm text-secondary">Explore reserved groups of eligible Islands with the engineering team. Availability is defined per engagement.</p>
                     </article>
                     <article class="card p-6">
-                        <h3 class="font-brand text-lg mb-3">SLA Guarantees</h3>
-                        <p class="text-sm text-secondary">99.9% uptime commitments with financial backing. Dedicated escalation paths and incident response.</p>
+                        <h3 class="font-brand text-lg mb-3">Custom SLAs</h3>
+                        <p class="text-sm text-secondary">Discuss availability targets and escalation needs. Archipelag.io does not advertise a general production SLA during Phase 2.</p>
                     </article>
                     <article class="card p-6">
-                        <h3 class="font-brand text-lg mb-3">Compliance Toolkit</h3>
-                        <p class="text-sm text-secondary">Pre-built templates for GDPR, SOC 2, and AI Act reporting. Audit-ready documentation generated automatically.</p>
+                        <h3 class="font-brand text-lg mb-3">Compliance Support</h3>
+                        <p class="text-sm text-secondary">Regional placement controls are available for testing. Archipelag.io is not currently SOC 2 certified and does not provide a compliance guarantee.</p>
                     </article>
                     <article class="card p-6">
                         <h3 class="font-brand text-lg mb-3">Custom Jurisdictions</h3>
-                        <p class="text-sm text-secondary">Define custom routing zones beyond standard EU/CH. Country-specific or even city-level data residency.</p>
+                        <p class="text-sm text-secondary">Evaluate custom regional placement zones where Island location data and capacity permit. This remains a technical control.</p>
                     </article>
                     <article class="card p-6">
-                        <h3 class="font-brand text-lg mb-3">Priority Support</h3>
-                        <p class="text-sm text-secondary">Named account manager, direct Slack channel, and priority engineering support for integrations.</p>
+                        <h3 class="font-brand text-lg mb-3">Direct Engineering Access</h3>
+                        <p class="text-sm text-secondary">Work directly with our engineering team on integration, custom Cargos, and platform requirements.</p>
                     </article>
                     <article class="card p-6">
-                        <h3 class="font-brand text-lg mb-3">Volume Pricing</h3>
-                        <p class="text-sm text-secondary">Custom credit packages with volume discounts. Annual commitments with predictable billing.</p>
+                        <h3 class="font-brand text-lg mb-3">Commercial Discovery</h3>
+                        <p class="text-sm text-secondary">Help shape a future commercial model. Paid credit packages and volume terms are not currently offered.</p>
                     </article>
                 </div>
 
                 <div class="text-center mt-12">
-                    <a href="mailto:hey@archipelag.io" class="btn btn-primary btn-lg">Contact Sales</a>
+                    <a href="mailto:hey@archipelag.io" class="btn btn-primary btn-lg">Become a Design Partner</a>
                 </div>
             </div>
         </section>
@@ -333,31 +333,31 @@
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">How does jurisdiction routing work?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">When you submit a Cargo, you specify a jurisdiction policy (e.g., EU-West, Switzerland). The platform routes your job exclusively to verified nodes within that jurisdiction. Your data never leaves the specified region during processing.</span>
+                            <span itemprop="text">Attach a regional policy to a Job and the Coordinator restricts eligible placement to Islands reporting a location within that policy. The selected Island is recorded. This is a technical placement control, not a legal guarantee.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">What are verification levels?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Compute providers go through three verification tiers. Tier 1: identity + hardware attestation for standard Cargos. Tier 2: facility audit + compliance training for GDPR Cargos. Tier 3: dedicated infrastructure + SLA for enterprise and regulated Cargos.</span>
+                            <span itemprop="text">Island operators complete identity verification before receiving Jobs. Hardware capabilities are reported by the Island software, while Karma records success, latency, and uptime. Audited facility tiers are not currently offered.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">Is Archipelag.io GDPR compliant?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Yes. The platform is designed for GDPR compliance from the ground up. Jurisdiction routing ensures data residency, verified nodes provide processing guarantees, and complete audit trails document every execution for regulatory reporting.</span>
+                            <span itemprop="text">Archipelag.io provides regional placement controls and execution records that may support a GDPR program. Organizations remain responsible for assessing their own processing, contracts, and legal obligations.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">Are you SOC 2 certified?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">SOC 2 certification is on our Q4 2026 roadmap. Enterprise tier customers will have access to our compliance documentation and can request audit reports as we progress through certification.</span>
+                            <span itemprop="text">No. Archipelag.io is not currently SOC 2 certified. Design partners can discuss current security documentation and requirements directly with the team.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">How does this help with the EU AI Act?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Archipelag.io helps teams meet AI Act requirements through verified execution, audit trails, and transparency reporting. Our compliance toolkit (Q4 2026) will include AI Act-specific templates and documentation for regulatory submissions.</span>
+                            <span itemprop="text">Archipelag.io can expose placement and execution information, but does not currently provide AI Act certification or a complete regulatory toolkit.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -369,19 +369,19 @@
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">How will pricing work after the beta?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Pricing will be market-based. Islands set asking prices, consumers set bid preferences, and the compute exchange clears a rate per Cargo type. No fixed tiers, no subscriptions. You buy credits when you need them.</span>
+                            <span itemprop="text">The intended model is market-based: Islands publish asks, Consumers set budgets, and the Compute Exchange determines a clearing amount per Cargo type. Commercial pricing, payment methods, and terms have not been finalized.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 class="font-brand text-lg mb-2" itemprop="name">Do credits expire?</h3>
+                        <h3 class="font-brand text-lg mb-2" itemprop="name">Do Phase 2 credits carry over?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">No. Credits never expire. Use them whenever you need them.</span>
+                            <span itemprop="text">Not necessarily. Phase 2 balances are test data and may be refilled, adjusted, or reset. They have no cash value and do not represent a future paid balance.</span>
                         </p>
                     </article>
                     <article class="card p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <h3 class="font-brand text-lg mb-2" itemprop="name">Do I need to verify my identity?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Identity verification (government ID + selfie) is required before submitting Cargos or registering as an Island. You can browse the Cargo Registry and explore the platform without verification. We use Stripe Identity for secure verification and only store your verified name and country.</span>
+                            <span itemprop="text">Browsing public pages and the Cargo Registry does not require identity verification. Higher-trust actions can require verification depending on the feature and its Phase 2 rollout; the verification flow explains what is collected before submission.</span>
                         </p>
                     </article>
                 </div>
@@ -403,5 +403,4 @@
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
-    <script src="/js/island-vignettes.js" defer></script>
 {% endblock scripts %}

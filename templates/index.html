@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ config.title }} - Decentralized AI Compute Network{% endblock title %}
+{% block title %}{{ config.title }} - Local-First Distributed Compute{% endblock title %}
 
 {% block head_meta %}
-    <meta name="title" content="{{ config.title }} - Decentralized AI Compute Network">
+    <meta name="title" content="{{ config.title }} - Local-First Distributed Compute">
     <meta name="description" content="{{ config.description }}">
-    <meta name="keywords" content="AI inference, distributed computing, GPU sharing, LLM, machine learning, decentralized AI, edge computing, community hosting, local compute, data residency">
+    <meta name="keywords" content="AI inference, distributed computing, GPU sharing, LLM, edge computing, Island compute, local-first compute, regional placement">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <link rel="canonical" href="{{ config.base_url }}/">
@@ -13,7 +13,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/">
-    <meta property="og:title" content="{{ config.title }} - Decentralized AI Compute Network">
+    <meta property="og:title" content="{{ config.title }} - Local-First Distributed Compute">
     <meta property="og:description" content="{{ config.description }}">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ config.base_url }}/">
-    <meta name="twitter:title" content="{{ config.title }} - Decentralized AI Compute Network">
+    <meta name="twitter:title" content="{{ config.title }} - Local-First Distributed Compute">
     <meta name="twitter:description" content="{{ config.description }}">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io - Compute, closer to you">
@@ -50,7 +50,7 @@
                 "@type": "WebPage",
                 "@id": "{{ config.base_url }}/#webpage",
                 "url": "{{ config.base_url }}/",
-                "name": "Archipelag.io - Decentralized AI Compute Network",
+                "name": "Archipelag.io - Local-First Distributed Compute",
                 "description": "{{ config.description }}",
                 "isPartOf": {
                     "@id": "{{ config.base_url }}/#website"
@@ -81,7 +81,7 @@
                     ]
                 },
                 "datePublished": "2024-01-01",
-                "dateModified": "2026-03-13"
+                "dateModified": "2026-08-15"
             },
             {
                 "@type": "SoftwareApplication",
@@ -89,7 +89,7 @@
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web, Windows, macOS, Linux",
                 "applicationSubCategory": "AI Inference Platform",
-                "description": "Decentralized AI compute network with an OpenAI-compatible API. Run LLM and image generation Cargos on community hardware.",
+                "description": "Coordinator-backed distributed compute fabric with an OpenAI-compatible API. Run AI Jobs through approved Cargos on independently operated Islands.",
                 "url": "{{ config.base_url }}",
                 "provider": {
                     "@id": "{{ config.base_url }}/#organization"
@@ -97,9 +97,9 @@
                 "featureList": [
                     "OpenAI-compatible /v1/chat/completions endpoint",
                     "Proximity-based job routing",
-                    "Market-based compute pricing",
+                    "Virtual compute exchange for Phase 2 testing",
                     "Real-time token streaming",
-                    "Jurisdiction routing for data residency",
+                    "Regional placement policies and execution records",
                     "Karma-based Island reputation system",
                     "Multi-Island pipeline parallelism for large models",
                     "Batch fan-out across multiple Islands"
@@ -119,7 +119,7 @@
                         "name": "What is Archipelag.io?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Archipelag.io (pronounced 'archipelago') is a decentralized AI compute network. The name evokes an archipelago — independent islands working together. Consumers run AI Cargos on community-operated Islands nearby, getting lower latency and fair pricing. Islands earn money by contributing idle GPU compute. All Cargos are sandboxed and verified."
+                            "text": "Archipelag.io (pronounced 'archipelago') is a distributed compute fabric. Consumers submit Jobs, the Coordinator places them on compatible independently operated Islands, and approved signed Cargos perform the work. Phase 2 uses virtual credits while reliability and market behavior are tested."
                         }
                     },
                     {
@@ -127,7 +127,7 @@
                         "name": "How does it work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Consumers submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby Islands with the right hardware. Responses stream back in real time. Islands earn credits for every job completed."
+                            "text": "Consumers submit AI Jobs through the web app or API. The Coordinator selects a compatible Island using availability, capability, latency, policy, and Karma signals. A signed Cargo executes the Job and streams results back. Islands receive virtual credits during Phase 2."
                         }
                     },
                     {
@@ -135,7 +135,7 @@
                         "name": "Is it safe to be an Island?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Islands only run network-approved, signed Cargos inside sandboxed Docker containers. There is no access to your files, network, or other processes. Resource limits are strictly enforced."
+                            "text": "The standard Island software accepts only approved, signed Cargos and applies container isolation, resource limits, and network controls. Island operators must still keep their systems patched and follow the security guidance."
                         }
                     },
                     {
@@ -143,7 +143,7 @@
                         "name": "Does my data stay local?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Jobs route to nearby Islands by default, keeping data regional. Teams with compliance requirements can also set explicit jurisdiction policies (e.g. EU-only, Switzerland) to guarantee data residency."
+                            "text": "Jobs favor nearby compatible Islands by default. Consumers can attach a regional placement policy, and the Coordinator records the selected Island. These technical controls can support a data-residency program but are not a legal compliance guarantee."
                         }
                     }
                 ]
@@ -151,7 +151,7 @@
             {
                 "@type": "HowTo",
                 "name": "How to use Archipelag.io as an AI user",
-                "description": "Get started using AI on the Archipelag.io decentralized compute network in three steps.",
+                "description": "Get started using AI on the Archipelag.io distributed compute fabric in three steps.",
                 "step": [
                     {
                         "@type": "HowToStep",
@@ -194,7 +194,7 @@
                         "@type": "HowToStep",
                         "position": 3,
                         "name": "Receive jobs",
-                        "text": "The coordinator matches you with nearby consumers. You earn credits for each completed job."
+                        "text": "The Coordinator matches eligible Jobs to your Island. Phase 2 records virtual credits for each completed Job."
                     }
                 ]
             }
@@ -244,14 +244,14 @@
                                 <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            Verified Islands
+                            Approved Cargos
                         </span>
                     </div>
 
                     <h1 id="hero-title" class="hero-title" itemprop="headline">Compute, <span class="accent">closer to you.</span></h1>
                     <p class="hero-subtitle" itemprop="description">
-                        Run AI models on a decentralized network of community-operated Islands.
-                        Lower latency, fair pricing, and your data stays local.
+                        Run AI Jobs on a distributed network of independently operated Islands.
+                        The Coordinator finds a nearby compatible match and streams the result back.
                     </p>
                     <div class="hero-cta" role="group" aria-label="Get started options">
                         <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Try It Out</a>
@@ -261,6 +261,34 @@
             </div>
         </section>
         </div>
+
+        <!-- NETWORK STATUS STRIP -->
+        <section id="network-status" class="section-status" aria-label="Live network status" hidden>
+            <div class="container">
+                <div class="status-strip">
+                    <div class="status-item">
+                        <span class="status-value" id="stat-islands">&mdash;</span>
+                        <span class="status-label">Islands Online</span>
+                    </div>
+                    <div class="status-divider" aria-hidden="true"></div>
+                    <div class="status-item">
+                        <span class="status-value" id="stat-regions">&mdash;</span>
+                        <span class="status-label">Regions</span>
+                    </div>
+                    <div class="status-divider" aria-hidden="true"></div>
+                    <div class="status-item">
+                        <span class="status-value" id="stat-jobs">&mdash;</span>
+                        <span class="status-label">Jobs Completed</span>
+                    </div>
+                    <div class="status-divider" aria-hidden="true"></div>
+                    <div class="status-item">
+                        <span class="status-pulse" aria-hidden="true"></span>
+                        <span class="status-label">Network Live</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="/js/network-status.js" defer></script>
 
         <!-- SECTION 2: Core Principles -->
         <section class="section-sm" aria-labelledby="principles-title">
@@ -278,8 +306,8 @@
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Pay Islands directly</h3>
-                            <p class="principle-desc">Market-based pricing. Islands set their own rates, you pay what compute actually costs. No cloud markup.</p>
+                            <h3 class="principle-title">Settle with Islands directly</h3>
+                            <p class="principle-desc">Islands publish asking prices and Consumers set budgets. Phase 2 simulates settlement with virtual credits; real-money payments are not enabled.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="security" aria-hidden="true"></canvas>
@@ -304,7 +332,7 @@
                         <!-- For AI Users -->
                         <article class="antigrid-card split-content" aria-labelledby="users-title">
                             <h3 id="users-title" class="split-title">Use AI</h3>
-                            <p class="split-desc">Run language models and image generators on community hardware. The coordinator finds the best Island for each job.</p>
+                            <p class="split-desc">Run language models and image generators through approved Cargos. The Coordinator finds an eligible Island for each Job.</p>
 
                             <ol class="split-steps" role="list" aria-label="Steps for users">
                                 <li class="step-card">
@@ -336,7 +364,7 @@
                         <!-- For Hosts -->
                         <article class="antigrid-card split-content" aria-labelledby="hosts-title">
                             <h3 id="hosts-title" class="split-title">Contribute compute</h3>
-                            <p class="split-desc">Got a GPU sitting idle? Turn it into an Island and get paid when your machine does work for the network.</p>
+                            <p class="split-desc">Got compatible hardware sitting idle? Turn it into an Island and help test how the network attributes useful compute.</p>
 
                             <ol class="split-steps" role="list" aria-label="Steps for Islands">
                                 <li class="step-card">
@@ -357,7 +385,7 @@
                                     <span class="step-number" aria-hidden="true">3</span>
                                     <div class="step-content">
                                         <h4 class="step-title">Receive jobs</h4>
-                                        <p class="step-desc">The coordinator matches you with nearby consumers. You earn credits for each completed job.</p>
+                                        <p class="step-desc">The Coordinator matches eligible Jobs to your Island. Phase 2 records virtual credits for completed work.</p>
                                     </div>
                                 </li>
                             </ol>
@@ -374,7 +402,7 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Why Archipelag.io</span>
-                    <h2 id="features-title" class="section-title">What centralized clouds can't do</h2>
+                    <h2 id="features-title" class="section-title">Why distribute the work</h2>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -386,7 +414,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Proximity routing</h3>
-                            <p class="feature-desc">The coordinator measures real RTT to every Island and places jobs on the lowest-latency match. Your request doesn't cross an ocean to reach a GPU.</p>
+                            <p class="feature-desc">The Coordinator measures RTT and favors a nearby eligible Island while still considering capability, availability, policy, and Karma.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -397,7 +425,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Compute exchange</h3>
-                            <p class="feature-desc">Hosts set asking prices. Users set bid preferences. The coordinator clears a market rate for each Cargo type. No fixed tiers, no surprise bills.</p>
+                            <p class="feature-desc">Islands publish virtual asks and Consumers set budgets. During Phase 2, the Coordinator simulates a clearing amount for each Cargo type with no real-money settlement.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -408,7 +436,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Data residency</h3>
-                            <p class="feature-desc">Jobs default to regional hosts. For compliance, set explicit jurisdiction policies&mdash;EU-only, Swiss, or custom&mdash;and your data never leaves.</p>
+                            <p class="feature-desc">Jobs favor nearby Islands. Regional placement policies restrict eligible matches and record the selected Island; they support governance without acting as a legal guarantee.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -428,8 +456,8 @@
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Zero-trust hosts</h3>
-                            <p class="feature-desc">Identity verification via Stripe. Cargos are cosign-signed containers running under seccomp profiles. Hosts never see raw user data.</p>
+                            <h3 class="feature-title">Zero-trust Islands</h3>
+                            <p class="feature-desc">The standard Island software accepts approved, signed Cargos and applies registry controls, resource limits, and seccomp profiles. Operators still secure the underlying machine.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -439,7 +467,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Karma &amp; reputation</h3>
-                            <p class="feature-desc">Every Island builds a public karma score from success rate, latency, and uptime. Higher karma means more jobs and better rates.</p>
+                            <p class="feature-desc">Success, latency, and uptime contribute to Karma. The Coordinator uses that operational history as one signal when placing future Jobs.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -452,8 +480,8 @@
                                     <line x1="12" y1="8" x2="12" y2="9.5" stroke-linecap="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Multi-Island compute</h3>
-                            <p class="feature-desc">Models too large for one device run across multiple Islands in a pipeline. A 70B model on four laptops. Batch jobs fan out to fifty phones. Transparent to consumers.</p>
+                            <h3 class="feature-title">Multi-Island compute <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental pipeline and fan-out modes explore how a Job can span multiple compatible Islands when one device is not enough.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -465,7 +493,7 @@
                                 </svg>
                             </div>
                             <h3 class="feature-title">Cargo Marketplace</h3>
-                            <p class="feature-desc">Browse 133+ Cargos in the registry. Developers publish models and earn per execution. Reviews, ratings, and publisher tiers build trust.</p>
+                            <p class="feature-desc">Browse catalog entries across container, WASM, GGUF, ONNX, and mobile formats. Execution still depends on an approved artifact and a compatible online Island.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -475,8 +503,8 @@
                                     <line x1="12" y1="18" x2="12.01" y2="18"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Mobile compute</h3>
-                            <p class="feature-desc">iPhones and iPads become Islands via the iOS agent. On-device LLM inference with CoreML &mdash; no GPU workstation needed.</p>
+                            <h3 class="feature-title">Mobile compute <span class="feature-badge-beta">Beta</span></h3>
+                            <p class="feature-desc">The early iOS and Android Island apps explore on-device inference with hardware-aware safety limits and mobile runtimes.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -488,8 +516,8 @@
                                     <rect x="15" y="14" width="7" height="7" rx="1"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Batch processing</h3>
-                            <p class="feature-desc">Submit up to 100 inputs in a single API call. Each dispatched to a different Island. Progress tracked in real time, results merged automatically.</p>
+                            <h3 class="feature-title">Batch processing <span class="feature-badge-beta">Beta</span></h3>
+                            <p class="feature-desc">Eligible inputs can fan out across available Islands, with progress tracked and results collected through one Job flow.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -502,8 +530,8 @@
                                     <line x1="12" y1="8" x2="18" y2="16" stroke-linecap="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Workflow orchestration</h3>
-                            <p class="feature-desc">Chain models into DAG pipelines. Steps run in parallel across Islands, data flows between them via templates, and results merge automatically.</p>
+                            <h3 class="feature-title">Workflow orchestration <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental DAG orchestration coordinates dependent Cargo steps and explores parallel execution across compatible Islands.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -512,8 +540,8 @@
                                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Inference caching</h3>
-                            <p class="feature-desc">Similar prompts served from cache instantly &mdash; free. Semantic matching catches near-duplicates. 30-60% cost reduction for repetitive workloads.</p>
+                            <h3 class="feature-title">Inference caching <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental semantic matching can reuse eligible results for repetitive Jobs, reducing latency and duplicated compute.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -523,8 +551,8 @@
                                     <path d="M21 16v5h-5M4 4l17 17" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">A/B testing</h3>
-                            <p class="feature-desc">Deploy multiple model versions, split traffic, measure latency and accuracy per variant. Auto-promote the winner with statistical significance.</p>
+                            <h3 class="feature-title">A/B testing <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental traffic splitting records latency and result-quality signals across multiple Cargo or model variants.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -536,8 +564,8 @@
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Federated fine-tuning</h3>
-                            <p class="feature-desc">Train models across Islands without centralizing data. Each Island trains locally, shares only gradients. Your data never leaves your machines.</p>
+                            <h3 class="feature-title">Federated fine-tuning <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental coordination lets participating Islands train locally and aggregate model updates without collecting each Island's source dataset.</p>
                         </article>
 
                         <article class="antigrid-card antigrid-feature" role="listitem">
@@ -548,8 +576,8 @@
                                     <circle cx="12" cy="16" r="1"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Confidential inference</h3>
-                            <p class="feature-desc">Encrypted end-to-end. Islands can't see your data, even while processing it. TEE hardware attestation or homomorphic encryption &mdash; your choice.</p>
+                            <h3 class="feature-title">Confidential inference <span class="feature-badge-experimental">Experimental</span></h3>
+                            <p class="feature-desc">Experimental TEE-backed modes aim to keep Job payloads encrypted outside an attested execution boundary on supported hardware.</p>
                         </article>
                     </div>
                 </div>
@@ -598,7 +626,7 @@
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
-                                    <span>Jurisdiction routing for data residency compliance</span>
+                                    <span>Regional placement policies and execution records</span>
                                 </li>
                             </ul>
 
@@ -636,64 +664,22 @@ stream = client.chat.completions.create(
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card flex items-center justify-center">
-                            <div class="w-full host-how-it-works">
-                                <div class="host-diagram">
-                                    <div class="host-diagram-step">
-                                        <div class="host-diagram-icon" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                                <line x1="12" y1="17" x2="12" y2="21"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <span class="host-diagram-label">Your machine</span>
-                                            <span class="host-diagram-detail">Your Island, online</span>
-                                        </div>
-                                    </div>
-                                    <div class="host-diagram-arrow" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                    <div class="host-diagram-step">
-                                        <div class="host-diagram-icon" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <span class="host-diagram-label">Job arrives via NATS</span>
-                                            <span class="host-diagram-detail">Signed container pulled &amp; executed</span>
-                                        </div>
-                                    </div>
-                                    <div class="host-diagram-arrow" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                    <div class="host-diagram-step">
-                                        <div class="host-diagram-icon host-diagram-icon-accent" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
-                                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <span class="host-diagram-label">Credits earned</span>
-                                            <span class="host-diagram-detail">At your asking price, paid via Stripe</span>
-                                        </div>
-                                    </div>
+                            <div class="island-earning-visual w-full">
+                                <canvas class="island-vignette island-vignette-earning" data-island-scene="earning" aria-hidden="true"></canvas>
+                                <div class="island-earning-caption" aria-hidden="true">
+                                    <span>Job arrives</span>
+                                    <span>Compute runs</span>
+                                    <span>Credits accrue</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="antigrid-card preview-content">
                             <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; For Islands</span>
-                            <h2 id="hosts-preview-title" class="preview-title">Your hardware, your price</h2>
+                            <h2 id="hosts-preview-title" class="preview-title">Your hardware, your virtual ask</h2>
                             <p class="preview-desc">
-                                Turn any machine with a GPU into an Island. Set your own asking price
-                                and availability schedule. The coordinator matches you with nearby consumers who need compute.
+                                Turn compatible hardware into an Island. Set an availability schedule and a virtual ask.
+                                The Coordinator matches eligible Jobs from nearby Consumers during Phase 2.
                             </p>
 
                             <ul class="preview-list" role="list" aria-label="Island features">
@@ -707,13 +693,13 @@ stream = client.chat.completions.create(
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
-                                    <span>You set the price &mdash; market clearing, not fixed tiers</span>
+                                    <span>Set a virtual ask and test how it affects matching</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
-                                    <span>Sandboxed containers &mdash; seccomp profiles, no host access</span>
+                                    <span>Controlled Cargos &mdash; signed artifacts and seccomp profiles</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -725,7 +711,7 @@ stream = client.chat.completions.create(
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
-                                    <span>Or publish Cargos &mdash; earn per execution as a developer</span>
+                                    <span>Publish Cargos &mdash; track virtual execution attribution</span>
                                 </li>
                             </ul>
 
@@ -745,23 +731,28 @@ stream = client.chat.completions.create(
                     <p class="section-subtitle">No blockchain, no token. Just battle-tested infrastructure.</p>
                 </div>
 
+                <div class="architecture-archipelago">
+                    <canvas class="island-vignette island-vignette-architecture" data-island-scene="architecture" aria-hidden="true"></canvas>
+                    <p class="architecture-caption">One request, one dependable path: coordinate, dispatch, execute, stream back.</p>
+                </div>
+
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card tech-card">
-                            <canvas class="island-vignette" data-island-scene="compute" aria-hidden="true"></canvas>
+                            <span class="tech-index" aria-hidden="true">01</span>
                             <span class="tech-label">Control plane</span>
                             <span class="tech-name">Elixir / Phoenix</span>
-                            <p class="tech-desc">The coordinator handles placement, billing, and health. Elixir's actor model gives us per-job fault isolation and hot upgrades with zero downtime.</p>
+                            <p class="tech-desc">The Coordinator handles placement, accounting, and health. Elixir supervision isolates failures and keeps concurrent Job state manageable.</p>
                         </div>
                         <div class="antigrid-card tech-card">
-                            <canvas class="island-vignette" data-island-scene="streaming" aria-hidden="true"></canvas>
+                            <span class="tech-index" aria-hidden="true">02</span>
                             <span class="tech-label">Messaging</span>
                             <span class="tech-name">NATS JetStream</span>
-                            <p class="tech-desc">Job dispatch and output streaming over NATS. JetStream provides at-least-once delivery with consumer ack, so jobs don't get lost.</p>
+                            <p class="tech-desc">NATS carries Job dispatch and streamed output. JetStream acknowledgements support retry and requeue when an Island disappears.</p>
                         </div>
                         <div class="antigrid-card tech-card">
-                            <canvas class="island-vignette" data-island-scene="solo" aria-hidden="true"></canvas>
-                            <span class="tech-label">Host agent</span>
+                            <span class="tech-index" aria-hidden="true">03</span>
+                            <span class="tech-label">Island software</span>
                             <span class="tech-name">Rust / Tokio</span>
                             <p class="tech-desc">A lightweight binary that manages containers via Bollard, reports heartbeats, and streams output. Compiles to a single static binary.</p>
                         </div>
@@ -830,5 +821,4 @@ stream = client.chat.completions.create(
 
 {% block scripts %}
     <script src="/js/hero.js" defer></script>
-    <script src="/js/island-vignettes.js" defer></script>
 {% endblock scripts %}

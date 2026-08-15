@@ -35,7 +35,7 @@ If we locked in a price sheet against this landscape, we'd be pricing a product 
 
 ## Why "too big to run" is our favorite problem
 
-Here's the part that gets us out of bed. A 1.5-terabyte model that no single machine can hold is not a problem for a distributed compute network. It's the reason a distributed compute network should exist.
+Here's the part that gets us out of bed. A 1.5-terabyte model that no ordinary machine can hold is a compelling target for distributed compute. It is also a hard systems problem, and multi-Island inference remains experimental while we validate the latency, reliability, and placement tradeoffs.
 
 The old shape of AI infrastructure — a handful of companies own the GPUs, everyone else rents — assumed models would live on one big machine somewhere in a data center. But the frontier is now producing models that don't fit on *any* one machine you'd want to own. The future isn't one giant box. It's many ordinary boxes, coordinated. A teenager's gaming PC in Munich, a photographer's Mac Studio in Lisbon, the M4 laptop on your kitchen table — pooled, sharded, and pointed at a model none of them could run alone.
 
@@ -55,7 +55,7 @@ We'd rather tell you the plan than imply we don't have one.
 
 A closed AI platform is only ever as good as the one model its vendor ships. Archipelag.io gets better every single time the open-source community ships — and right now, they are shipping at a pace that's genuinely hard to keep up with. We'd rather ride that wave than bet against it.
 
-None of this means we're standing still on the things that make a network trustworthy. Identity verification, abuse controls, and transparent pricing on the [Exchange](/exchange) are all moving forward regardless. Maturing the platform and putting up a paywall are different projects, and we're doing the first one without the second.
+None of this means we're standing still on the things that make a network trustworthy. Identity verification, abuse controls, and transparent virtual amounts on the [Compute Exchange](/matchmaking) are all moving forward regardless. Maturing the platform and putting up a paywall are different projects, and we're doing the first one without the second.
 
 So: still free, for now, on purpose. We'll be busy filling the catalog. Come use it, lend a machine, and watch the frontier show up on hardware you already own.
 
