@@ -1,6 +1,6 @@
 +++
-title = "The Math Says We Cannot Read Your Prompt"
-description = "Most cloud AI runs on a contractual privacy promise: we say we won't read your prompts. We're moving to a technical one: we cannot. Here's what we shipped on Apple Silicon, what it actually protects against, and what it doesn't."
+title = "Toward Confidential Inference on Apple Silicon"
+description = "A technical prototype for reducing prompt exposure on Apple Silicon, its threat model, and the validation still required before production use."
 date = 2026-05-08
 
 [extra]
@@ -8,13 +8,15 @@ category = "Technical"
 author = "Raffael Schneider"
 +++
 
+> **Editorial update, August 15, 2026:** The work below is an engineering prototype. Confidential inference remains experimental and is not a production privacy guarantee. The current security boundary is documented on the [Security page](/security/).
+
 Most cloud AI privacy guarantees are contractual. The provider says: *we won't read your prompts.* You believe them, or you don't. There's nothing about the system that prevents them from reading. The OS user on the inference box can read process memory. The deploy account can pull database rows. Anyone who compels the provider can compel the data.
 
 This is also true of Archipelag.io for Tier-0 commodity workloads, and we want to be honest about that. A workload running in a Docker container on a contributor's GPU is visible to that contributor's `docker exec`, their `tcpdump localhost`, their memory snapshots. A prompt that flows through the coordinator is visible in NATS and in PostgreSQL. We promise we don't look. We can't prove we didn't.
 
 For most workloads — public chat, image generation, code formatting — that's fine. The same trust model is what every standard LLM API runs on, and it's been good enough for the last three years. But there's a class of workloads where contractual privacy isn't enough. Medical notes. Legal drafts. Internal company data that nobody outside the company is supposed to see. For those, we want to ship something stronger.
 
-Today we're shipping the first piece: **Tier-1 confidential inference on Apple Silicon.**
+The first prototype explores **Tier-1 hardened inference on Apple Silicon.**
 
 ## What "Tier 1" actually means
 
@@ -26,13 +28,13 @@ We split workloads into three privacy tiers:
 | **1** | Hardened | Yes | **No** |
 | **2** | Confidential | **No** | **No** |
 
-Tier 0 is what we've always had. Tier 1 closes the Island side: the contributor running the hardware can no longer read the prompt or the response. Tier 2 closes the coordinator side too — the operator (us) can't read it either. Tier 1 is shipped today on Apple Silicon. Tier 2 is on the roadmap (P2 in [`PRIVACY_ROADMAP.md`](https://github.com/archipelag-io/.claude/blob/main/PRIVACY_ROADMAP.md)).
+Tier 0 is the standard execution boundary. The Tier-1 prototype is designed to reduce Island-operator access, while Tier 2 would also reduce Coordinator-operator access. Neither tier should be treated as generally available production protection today.
 
-This work is heavily inspired by [Eigen Labs' April 2026 paper on private decentralized inference](https://github.com/Layr-Labs/d-inference). They sketched the access-path-elimination approach for Apple Silicon; we took that approach, applied it to a consumer compute network, and shipped working code.
+This work is inspired by [Eigen Labs' paper on private distributed inference](https://github.com/Layr-Labs/d-inference). We used its access-path-elimination ideas as input to an Archipelag.io prototype.
 
 ## Anatomy of a confidential job
 
-Here's what happens when you submit a job with `privacy_tier: 1` to a macOS Island today.
+Here is the intended prototype flow for a Job with `privacy_tier: 1` on a compatible macOS Island.
 
 ### 1. The Island attests itself
 
@@ -75,7 +77,7 @@ The coordinator routes the sealed response back. The consumer derives the same s
 
 End to end, the prompt was readable in exactly two places: the consumer's RAM (where it was typed), and the inside of the hardened Island binary on attested hardware (where inference happened). Nowhere else. The coordinator saw ciphertext only.
 
-We verified this end-to-end on a real Apple M4 yesterday — full round-trip, encrypted prompt → SE-attested island → TinyLlama inference → encrypted response → consumer-side decrypt.
+We verified this prototype end to end on one Apple M4: encrypted prompt → prototype-attested Island → TinyLlama inference → encrypted response → Consumer-side decrypt. That test does not establish production availability or resistance to every operator, hardware, or side-channel attack.
 
 ## What this actually protects against
 
@@ -112,15 +114,13 @@ So the math worked out: a privacy substrate built on hardware most cloud provide
 
 The privacy roadmap covers six phases:
 
-- **P0 — Threat Model & Honest Statement.** Done. See the [updated SECURITY.md](https://github.com/archipelag-io/.claude/blob/main/SECURITY.md).
-- **P1 — Apple Silicon Tier 1.** Done. Live in production today.
+- **P0 — Threat Model & Honest Statement.** Documented on the public [Security page](/security/).
+- **P1 — Apple Silicon Tier 1.** Prototype validated on a test device; production hardening remains.
 - **P2 — Coordinator TEE.** Run the coordinator itself inside Intel TDX or AMD SEV-SNP so the operator can't read prompts either. This is the bridge from Tier 1 to Tier 2.
 - **P3 — End-to-end encryption.** Done at the protocol layer (this post). Awaits P2 to close the trust loop.
 - **P4 — Linux Tier 1/2.** TPM 2.0 + IMA-measured boot for Linux Islands; SGX/TDX/SEV-SNP for Linux Tier 2.
 - **P5 — Continuous Verification.** Periodic re-attestation with audit logs, transparent reporting of what each Island did and when.
 
-The full document is in our [engineering context repo](https://github.com/archipelag-io/.claude/blob/main/PRIVACY_ROADMAP.md).
+The public [Security page](/security/) is the canonical source for current boundaries. Do not submit sensitive production data on the assumption that the prototype provides confidential-computing guarantees.
 
-If you have a workload where contractual privacy isn't enough — set `privacy_tier: 1` on your Cargo. The job will only route to a Verified Island within its blessing TTL, the prompt will be encrypted to that Island's SE-bound key, and the response comes back the same way. The coordinator carries ciphertext; the contributor's machine sees the work; nobody else sees either.
-
-That's the difference between "we promise we don't read your prompts" and "the math says we cannot." For Tier 1, we shipped the math.
+The prototype demonstrates a direction: replace broad contractual trust with narrower, testable technical boundaries. It does not yet close every access path required for that promise.

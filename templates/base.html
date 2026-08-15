@@ -43,11 +43,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Font loading: preconnect to CDNs, preload only critical fonts (Satoshi 400+700) -->
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2" crossorigin>
+    <!-- Self-hosted typography: preload only the critical Satoshi weights -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-bold.woff2" crossorigin>
 
     <!-- Feed & AI discoverability -->
     <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ config.base_url }}/atom.xml">
@@ -70,7 +68,6 @@
                 "@type": "Organization",
                 "@id": "{{ config.base_url }}/#organization",
                 "name": "Archipelag.io",
-                "alternateName": ["Archipelago"],
                 "url": "{{ config.base_url }}",
                 "logo": {
                     "@type": "ImageObject",
@@ -85,10 +82,10 @@
                 "image": "{{ config.base_url }}/og-image.png",
                 "description": "{{ config.description }}",
                 "slogan": "Compute, closer to you.",
-                "knowsAbout": ["AI Inference", "Distributed Computing", "GPU Computing", "Data Sovereignty", "GDPR Compliance", "Edge Computing", "LLM Inference"],
+                "knowsAbout": ["AI Inference", "Distributed Computing", "GPU Computing", "Regional Placement", "Edge Computing", "LLM Inference"],
                 "sameAs": [
                     "https://github.com/archipelag-io",
-                    "https://twitter.com/archipelagio"
+                    "{{ config.extra.linkedin }}"
                 ],
                 "contactPoint": [
                     {
@@ -98,12 +95,7 @@
                         "availableLanguage": "English"
                     }
                 ],
-                "areaServed": ["EU", "CH", "Global"],
-                "foundingDate": "2024",
-                "numberOfEmployees": {
-                    "@type": "QuantitativeValue",
-                    "value": "1-10"
-                },
+                "foundingDate": "{{ config.extra.company_founded }}",
                 "potentialAction": {
                     "@type": "UseAction",
                     "target": "https://app.archipelag.io/auth/login",
@@ -181,7 +173,7 @@
                             <a href="/cargo/" class="nav-menu-item">Cargo Registry</a>
                             <a href="/matchmaking" class="nav-menu-item">Matchmaking</a>
                             <a href="/use" class="nav-menu-item">Use AI</a>
-                            <a href="/earn" class="nav-menu-item">Earn</a>
+                            <a href="/earn" class="nav-menu-item">Operate an Island</a>
                         </div>
                     </div>
                     <div class="nav-menu-dropdown">
@@ -217,7 +209,7 @@
                     </button>
                     <div class="nav-dropdown md:block sm:hidden">
                         <div class="nav-dropdown-trigger">
-                            <a href="https://app.archipelag.io/auth/login" class="btn btn-primary btn-sm">Try out</a>
+                            <a href="https://app.archipelag.io/playground" class="btn btn-primary btn-sm">Run a Job</a>
                             <button class="nav-dropdown-chevron" aria-label="More options" aria-expanded="false">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -264,7 +256,7 @@
                 <a href="https://docs.archipelag.io" class="nav-link">Documentation</a>
                 <span class="mobile-nav-heading">Community</span>
                 <a href="/use" class="nav-link{% if current_path %}{% if current_path is starting_with('/use') %} active{% endif %}{% endif %}">Use AI</a>
-                <a href="/earn" class="nav-link{% if current_path %}{% if current_path is starting_with('/earn') %} active{% endif %}{% endif %}">Earn</a>
+                <a href="/earn" class="nav-link{% if current_path %}{% if current_path is starting_with('/earn') %} active{% endif %}{% endif %}">Operate an Island</a>
                 <a href="/cargo/" class="nav-link">Cargo Registry</a>
                 <a href="/matchmaking" class="nav-link">Matchmaking</a>
                 <a href="/news" class="nav-link">News</a>
@@ -277,7 +269,7 @@
     <div class="beta-banner" role="status">
         <div class="container">
             <p class="beta-banner-text">
-                <span class="beta-badge">Phase 2</span> Archipelag.io is free and credits-only while we expand the approved Cargo catalog and validate end-to-end reliability. All credits and earnings are virtual.
+                <span class="beta-badge">{{ config.extra.phase }}</span> {{ config.extra.phase_summary }} {{ config.extra.financial_status }}
                 <a href="/news/phase-2-building-the-catalog/">Read the roadmap &rarr;</a>
             </p>
         </div>
@@ -311,7 +303,7 @@
                         <div class="footer-heading">Platform</div>
                         <ul class="footer-links">
                             <li><a href="/use">Use AI</a></li>
-                            <li><a href="/earn">Contribute Compute</a></li>
+                            <li><a href="/earn">Operate an Island</a></li>
                             <li><a href="/pricing">Pricing</a></li>
                             <li><a href="https://app.archipelag.io/chat">Chat</a></li>
                             <li><a href="https://app.archipelag.io/image">Image Generation</a></li>
@@ -325,7 +317,7 @@
                         <div class="footer-heading">Cargos</div>
                         <ul class="footer-links">
                             <li><a href="/cargo/">Cargo Catalog</a></li>
-                            <li><a href="https://app.archipelag.io/cargo">Marketplace</a></li>
+                            <li><a href="https://app.archipelag.io/cargo">Live Cargo Registry</a></li>
                             <li><a href="https://app.archipelag.io/chat">LLM Chat</a></li>
                             <li><a href="https://app.archipelag.io/image">Image Generation</a></li>
                         </ul>
@@ -385,7 +377,7 @@
                     <nav class="footer-column" aria-label="Community links">
                         <div class="footer-heading">Community</div>
                         <ul class="footer-links">
-                            <li><a href="/news">Blog</a></li>
+                            <li><a href="/news">News</a></li>
                             <li><a href="https://discord.gg/vwUGXjXmsq" target="_blank" rel="noopener noreferrer" class="external">Discord</a></li>
                             <li><a href="https://github.com/orgs/archipelag-io/discussions" target="_blank" rel="noopener noreferrer" class="external">Discussions</a></li>
                             <li><a href="mailto:hey@archipelag.io">Design Partners</a></li>
@@ -416,6 +408,7 @@
                         <div class="footer-heading">Resources</div>
                         <ul class="footer-links">
                             <li><a href="/llms.txt">llms.txt</a></li>
+                            <li><a href="/status">Current Status</a></li>
                             <li><a href="/humans.txt">humans.txt</a></li>
                             <li><a href="/sitemap.xml">Sitemap</a></li>
                             <li><a href="/atom.xml">RSS Feed</a></li>
@@ -428,9 +421,9 @@
             <div class="footer-bottom">
                 <span>&copy; {{ now() | date(format="%Y") }} archipelag.io</span>
                 <div class="footer-social">
-                    <span class="footer-social-disabled" role="img" aria-label="X (coming soon)">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </span>
+                    <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg>
+                    </a>
                     <a href="https://github.com/archipelag-io" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                     </a>
@@ -494,7 +487,14 @@
         });
     </script>
 
-    <script src="/js/island-vignettes.js" defer></script>
+    <script>
+        if (document.querySelector('.island-vignette')) {
+            const islandScript = document.createElement('script');
+            islandScript.src = '/js/island-vignettes.js';
+            islandScript.defer = true;
+            document.body.appendChild(islandScript);
+        }
+    </script>
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>

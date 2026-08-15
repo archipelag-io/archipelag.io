@@ -1,6 +1,6 @@
 +++
 title = "Eight Billion Parameters in One Gigabyte"
-description = "We're adding sub-2-bit LLM inference to our macOS Islands. An 8B model now fits in 1.1 GB on disk, 2.4 GB at runtime, and runs at 66 tokens/sec on a MacBook M4 — through Archipelag.io's actual production code path, not a vendored CLI. Here's why it matters and what we had to fix to get there."
+description = "We're validating sub-2-bit LLM inference for macOS Islands. An 8B model fits in 1.1 GB on disk, uses about 2.4 GB at runtime, and measured 66 tokens/sec on one MacBook M4 through the integrated Island code path."
 date = 2026-05-09
 
 [extra]
@@ -12,7 +12,7 @@ The compression curve hit something interesting this spring. PrismML's [Bonsai-8
 
 We can fit that in an attested macOS Island's hardened-process budget on every M-series Mac.
 
-This isn't a research-stage curiosity. We've measured it end-to-end on Apple M4 through the actual code path the Mac Island runs in production: **66.3 tokens/sec** of generation, within ±5% of the spike's `llama-cli` baseline of 63.5 tok/s. Swift wrapper overhead is negligible. The Q1_0 Metal kernels (`kernel_mul_mv_q1_0_f32`, `kernel_mul_mm_q1_0_f32`) carry the load.
+This is more than a standalone CLI spike. We measured it end-to-end on one Apple M4 through the integrated Mac Island code path: **66.3 tokens/sec** of generation, within ±5% of the spike's `llama-cli` baseline of 63.5 tok/s. This is a single-device engineering measurement, not a network-wide performance guarantee. The Q1_0 Metal kernels (`kernel_mul_mv_q1_0_f32`, `kernel_mul_mm_q1_0_f32`) carry the load.
 
 We're not flipping the workload's `approved` flag yet — there are gates left, and we'll cover them below. But the rails are built.
 
@@ -70,7 +70,7 @@ Throughput on the host classes we don't have. We've measured M4. M1, M2, M3 are 
 
 Quality eval. PrismML published their own MMLU/HellaSwag/ARC/GSM8K numbers; we re-run them internally before publishing a `quality_tier` claim. If Q1_0 is within 5% of fp16 Qwen3-8B baseline, the workload stays at `quality_tier: standard`. If not, it gets `aggressive` and a candid note on the Cargo Registry detail page.
 
-A Metal pipeline-compile race we tracked down ([mobile-agent-ios#7](https://github.com/archipelag-io/mobile-agent-ios/issues/7)). Single-shot generation works fine; running multiple generations within one process — even with proper KV-cache reset between calls — can SIGSEGV during late Metal pipeline compilation if the warmup prompt didn't trigger every kernel real workloads will need. Production is currently safe because the prompts in our smoke matrix compile the common kernel set, but this needs to land before sustained Bonsai traffic.
+A Metal pipeline-compile race we tracked down in the mobile agent. Single-shot generation works; running multiple generations within one process — even with proper KV-cache reset between calls — can SIGSEGV during late Metal pipeline compilation if the warmup prompt did not trigger every kernel real Jobs will need. This must be resolved before sustained Bonsai traffic.
 
 License notice bundling. PrismML's NOTICE/LICENSE and llama.cpp's LICENSE need to travel inside the Mac Island binary's `LICENSES/` directory. Apache 2.0 / MIT both require it. Mechanical, just hasn't been done yet.
 
@@ -82,7 +82,7 @@ Bonsai is one of three Q1_0/i2_s ternary model lineages we've evaluated. Microso
 
 Beyond Bonsai-8B, the [PrismML collection](https://huggingface.co/collections/prism-ml/bonsai) ships 1.7B and 4B Q1_0 variants we haven't yet benched. The 4B is a likely good fit for older M1/M2 hardware where 8B runtime memory is tight; the 1.7B fits everything down to A17 Pro iPhones if the dispatch-payload story extends to mobile (it doesn't yet, but the architecture supports it).
 
-There's also a browser story. Q1_0 in the browser would mean any `https://chat.archipelag.io` user's tab becomes an Island, contributing compute back into the pool while they consume from it. We have notes on what that costs — primarily, transformers.js absorbing Q1_0 or us shipping a custom WGSL kernel — at [Phase 7 of the quantization plan](https://github.com/archipelag-io/.claude/blob/main/QUANTIZATION_VARIANTS_PLAN.md).
+There is also a browser research path. Q1_0 in the browser could let an opted-in tab become a constrained Island, but that depends on browser-runtime support or a custom WGSL kernel and is not currently available.
 
 The shape of the bet is: ultra-low-bit quants make the on-device confidential inference story bigger, not smaller. We started with Apple Silicon because the Secure Enclave gives us hardware-bound key material for Tier-1. We're building toward "every Mac you own is a confidential inference endpoint, capable of running 8B-class models on the hardware you already paid for, with cryptographic attestation that the operator (us) can't read your prompts."
 

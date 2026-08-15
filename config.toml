@@ -23,23 +23,33 @@ taxonomies = [
 # Build output
 output_dir = "public"
 
+[link_checker]
+# The Scalar reference rejects Zola's link-checker user agent with HTTP 406,
+# while remaining available to browsers.
+skip_prefixes = ["https://app.archipelag.io/api/v1/docs"]
+
 # Theme settings
 [extra]
 # Site metadata
 author = "Archipelag.io"
 email = "hello@archipelag.io"
 tagline = "Compute, closer to you."
+phase = "Phase 2"
+phase_summary = "Free and credits-only while reliability, placement, and the approved Cargo catalog are validated."
+financial_status = "Virtual credits only. Real-money billing and Island payouts are not enabled."
+company_founded = "2025"
 waitlist_url = "https://buttondown.email/api/emails/embed-subscribe/raskell"
 design_partner_email = "partners@archipelag.io"
 
 # Navigation
 nav_items = [
     { name = "Use AI", url = "/use" },
-    { name = "Earn", url = "/earn" },
+    { name = "Operate an Island", url = "/earn" },
 ]
 
 # Social links
 github = "https://github.com/archipelag-io"
+linkedin = "https://www.linkedin.com/company/archipelag-io"
 twitter = "@archipelagio"
 
 # App URLs

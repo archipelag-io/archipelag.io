@@ -1,7 +1,7 @@
 {
   "name": "Archipelag.io",
-  "short_name": "Archipelag",
-  "description": "Compute, closer to you. Distributed AI inference on community hardware.",
+  "short_name": "Archipelag.io",
+  "description": "Compute, closer to you. Route AI Jobs through approved Cargos on independently operated Islands.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fafaf9",

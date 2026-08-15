@@ -3,7 +3,7 @@
 {% block title %}Use AI | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
-    <meta name="description" content="Run AI inference on distributed community hardware. OpenAI-compatible API, streaming responses, jurisdiction routing. Open beta with free credits.">
+    <meta name="description" content="Run streaming AI Jobs through approved Cargos on compatible Archipelag.io Islands. Test the OpenAI-compatible API with virtual Phase 2 credits.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="keywords" content="AI inference, LLM API, language models, image generation, OpenAI compatible, distributed computing, community hosting, data residency, GPU cloud alternative, edge AI">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/use/">
     <meta property="og:title" content="Use AI on Community Hardware | {{ config.title }}">
-    <meta property="og:description" content="OpenAI-compatible API running on distributed community GPUs. Streaming responses, jurisdiction routing, free beta credits.">
+    <meta property="og:description" content="Run streaming AI Jobs through approved Cargos on compatible Islands with virtual Phase 2 credits.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -138,7 +138,7 @@
                         "name": "Is the Archipelag.io API compatible with OpenAI?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes. Archipelag.io exposes a /v1/chat/completions endpoint that is fully compatible with the OpenAI client libraries. You can use the official Python or JavaScript OpenAI SDKs — just change the base_url to https://app.archipelag.io/api/v1."
+                            "text": "Archipelag.io exposes an OpenAI-compatible /v1/chat/completions endpoint for supported request and streaming patterns. Point a compatible client at https://app.archipelag.io/api/v1 and validate the options your integration uses."
                         }
                     },
                     {
@@ -186,7 +186,7 @@
                         Switch your base URL and your code runs through a distributed network of independently operated Islands instead of a single cloud region.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Get free beta credits</a>
+                        <a href="https://app.archipelag.io/playground" class="btn btn-tropical btn-lg">Run a Job</a>
                         <a href="#api" class="btn btn-secondary btn-lg">See the API</a>
                     </div>
                 </div>
@@ -617,7 +617,7 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Integration</span>
                     <h2 id="api-title" class="section-title">OpenAI-compatible API</h2>
-                    <p class="section-subtitle">If your code works with OpenAI, it works with Archipelag.io. Change the base URL and you're done.</p>
+                    <p class="section-subtitle">Use the OpenAI-compatible chat-completions path with supported request and streaming options. Change the base URL, then validate the options your integration relies on.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -783,7 +783,7 @@ stream = client.chat.completions.create(
                                     <line x1="8" y1="9" x2="8" y2="21"/>
                                 </svg>
                             </div>
-                            <h3 class="principle-title">Cargo Marketplace</h3>
+                            <h3 class="principle-title">Cargo Registry</h3>
                             <p class="principle-desc">Browse <a href="/cargo" style="color:var(--accent)">Cargo catalog entries</a> and inspect format, size, capability, and publisher metadata.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">

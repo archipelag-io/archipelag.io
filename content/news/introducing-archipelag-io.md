@@ -9,6 +9,8 @@ author = "Raffael Schneider"
 image = "/og/introducing-archipelag-io.png"
 +++
 
+> **Editorial update, August 15, 2026:** Archipelag.io is now in Phase 2. Credits and Island earnings are virtual and have no cash value; real-money billing and Island payouts are not enabled. Some capabilities described below remain experimental. See [Current Status](/status/) for the canonical product state.
+
 This started with a question that kept nagging at us: why are we sending AI requests halfway across a continent when there's a perfectly good GPU two blocks away?
 
 Not a hypothetical GPU. A real one. Sitting inside a gaming PC in someone's apartment, drawing 15 watts at idle, waiting for its owner to get home from work so it can render some frames in a first-person shooter. Or inside a video editor's workstation that finished a render at 2pm and won't touch the GPU again until tomorrow morning. Or inside one of the thousands of machines people built during the Ethereum mining era, now gathering dust in closets and garages because proof-of-stake made them obsolete overnight.
@@ -19,7 +21,7 @@ We decided to see if we could connect those two sides.
 
 ## What Archipelag.io actually is
 
-The short version: you send us an AI Cargo (a chat message, an image prompt, an API call), and we route it to a nearby Island that can handle it. That machine runs the job, streams the result back to you, and the person who owns it earns money for the work.
+The short version: a Consumer submits an AI Job (a chat message, an image prompt, or an API call), and the Coordinator routes it to a compatible nearby Island. An approved Cargo performs the work, streams the result back, and Phase 2 records virtual credits for the Island.
 
 The longer version involves a coordinator service that tracks which Islands are online, what hardware they have, how reliable they've been, and where they are relative to you. When a job comes in, the coordinator picks the best available Island based on all of that, dispatches the job over NATS (a messaging system built for exactly this kind of thing), and the Island software picks it up, runs it in a sandboxed container, and streams output back through the coordinator to your browser or API client.
 
@@ -53,7 +55,7 @@ The harder work is in the economics and the trust model. How do you price comput
 
 ## Try it
 
-If you want to use AI on the network: [sign up](https://app.archipelag.io), get 10 free credits, and send a message. It'll be served from someone's GPU, probably closer to you than you'd expect.
+If you want to use AI on the network: [sign up](https://app.archipelag.io/auth/login), receive virtual Phase 2 credits, and send a message. Execution depends on an approved Cargo and a compatible online Island.
 
 If you want to contribute compute: [grab the Island software](https://github.com/archipelag-io/node-agent/releases), set your schedule, and see what happens. Your machine works while you don't.
 

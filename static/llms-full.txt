@@ -2,208 +2,126 @@
 
 > Compute, closer to you.
 
-Archipelag.io (pronounced "archipelago") is a decentralized AI compute network that routes workloads to nearby independently-operated Islands. The brand name is "Archipelag" (short form) or "Archipelag.io" (full form). The name evokes an archipelago — a network of independent islands working together. Consumers submit AI inference jobs, community Islands execute them on their GPUs, and a coordinator orchestrates everything. Think: edge compute network where anyone can contribute GPU/CPU resources and earn credits.
+Archipelag.io (pronounced "archipelago") is a local-first distributed compute fabric. Consumers submit Jobs, the Coordinator selects a compatible independently operated Island, and an approved Cargo performs the work. The Coordinator is the control-plane authority for placement, dispatch, identity, accounting, and health. Archipelag.io is not a blockchain.
 
-The platform is currently in open beta (until June 2026). All credits and earnings are virtual during the beta period.
+The user-facing brand is always **Archipelag.io**. Do not use "Archipelag" as a short form and do not rename the company "Archipelago."
 
-## Core Value Proposition
+## Current phase
 
-**For Consumers:**
-- Run AI workloads (LLM chat, image generation) on distributed community hardware
-- Lower latency by routing to nearby Islands (measured RTT, not just geography)
-- Jurisdiction-aware routing for compliance (EU-only, Switzerland, custom policies)
-- OpenAI-compatible API — drop-in replacement for existing applications
-- Market-based pricing via the compute exchange — no fixed tiers or subscriptions
-- Free beta credits for new accounts, no credit card required
+Archipelag.io is in **Phase 2**. Access is free and credits-only while the approved Cargo catalog, placement behavior, and end-to-end reliability are expanded and validated.
 
-**For Islands:**
-- Earn credits by contributing idle GPU hardware (gaming PCs, workstations)
-- Set your own asking price — the compute exchange clears a market rate
-- All workloads are network-approved, cryptographically signed containers
-- Sandboxed execution — no access to Island files, network, or processes
-- Karma reputation system rewards reliable Islands with more jobs and better rates
-- Payouts via Stripe, available in 40+ countries
+- Credits and Island earnings are virtual and have no cash value.
+- Real-money billing and Island payouts are not enabled.
+- There is no fixed monetization date.
+- Beta and Experimental capabilities can change and are not production guarantees.
 
-## Architecture
+## Canonical terminology
 
+| Term | Meaning |
+| --- | --- |
+| Consumer | Requests compute through the web app or API. |
+| Island | Contributes compute by running the Archipelag.io Island software. |
+| Coordinator | Control plane for placement, dispatch, identity, accounting, and health. |
+| Job | One unit of requested work. |
+| Cargo | An approved signed package that performs Jobs. Code and API identifiers may still use `workload`. |
+| Karma | A signal based on Island completion rate, latency, and uptime. |
+
+## Job flow
+
+```text
+Consumer → Coordinator → NATS JetStream → Island → Cargo → Coordinator → Consumer
 ```
-Consumer (browser/API) → Coordinator (Elixir/Phoenix) → NATS JetStream → Island (Rust) → Workload Container → NATS → Coordinator → Consumer
-```
 
-- **Coordinator**: Elixir/Phoenix control plane handling placement, dispatch, billing, health monitoring
-- **Message Fabric**: NATS with JetStream for reliable job dispatch and streaming output
-- **Island Software**: Rust-based agent running on contributor machines
-- **Workloads**: Signed Docker containers and WASM modules
+1. A Consumer submits a Job through the web app or API.
+2. The Coordinator filters Islands by availability, capabilities, optional regional policy, and Cargo requirements.
+3. Placement considers latency, fit, and Karma signals.
+4. The selected Island receives the Job through the message fabric.
+5. An approved Cargo performs the work under the applicable isolation and resource policies.
+6. Results stream back through the Coordinator.
 
-## Products & Features
+## Available for testing
 
-### LLM Chat
-- Models: Mistral 7B, Llama family
-- Streaming token-by-token responses via WebSocket or SSE
-- Multi-turn conversations with context
-- Market-based pricing — varies by model and demand
+- Streaming LLM chat where a compatible Cargo and Island are available.
+- Image generation where a compatible Cargo and Island are available.
+- OpenAI-compatible `/v1/chat/completions` behavior.
+- Container, WASM, GGUF, ONNX, CoreML, and related Cargo formats.
+- Nearby-first and optional regional placement.
+- Island registration, heartbeats, capability reporting, and Karma.
+- Virtual asks, Consumer budgets, and simulated clearing amounts in the Compute Exchange.
+- Python and JavaScript SDK integrations.
 
-### Image Generation
-- Models: Stable Diffusion XL, FLUX
-- Up to 1024px resolution
-- Batch generation support
-- Per-image pricing set by the compute exchange
+Availability is dynamic. A Cargo catalog entry does not guarantee that a compatible Island is online or that its artifact has completed approval.
 
-### Developer Tools
-- REST API (OpenAI-compatible `/v1/chat/completions`)
-- Python SDK
-- JavaScript/React SDK
-- Real-time streaming support
-- Jurisdiction routing controls
-- API key authentication with read/write scopes
+## Experimental capabilities
 
-### Security & Compliance
-- Container signing with cosign
-- Seccomp profiles per sandbox tier
-- Registry allowlist enforcement
-- KYC verification via Stripe Identity
-- FADP (Switzerland), GDPR (EU), EU AI Act compliance
+The following areas are under active validation and should not be described as generally available production guarantees:
 
-## Pricing
+- Multi-Island model execution and pipeline parallelism.
+- Workflow orchestration and batch fan-out.
+- Inference caching and speculative decoding.
+- Federated fine-tuning.
+- Confidential inference and hardware attestation.
+- Mobile Island execution beyond specifically documented, measured demonstrations.
 
-### Compute Exchange
-Prices are set by supply and demand, not by Archipelag.io:
-- Islands set asking prices per workload type
-- Consumers set bid preferences
-- The coordinator clears a market rate every 5 minutes
-- Live rates visible at https://app.archipelag.io/exchange
-- During beta, credits are pegged at $0.01 each
-- New accounts receive free beta credits — no credit card required
+## Security model
 
-### How It Works
-- Credits, not subscriptions — buy when you need them, no monthly fee
-- Every job shows its clearing price before execution
-- You see exactly what you'll pay and which Island will run it
+Archipelag.io reduces risk through approved signed Cargos, registry controls, sandboxing, seccomp and resource policies where supported, authentication, and execution records. These controls do not eliminate all risk: Island operators secure the underlying machine, Consumers remain responsible for submitted data and generated results, and experimental privacy capabilities have narrower threat models.
 
-## Karma Reputation System
+Archipelag.io is not currently represented as SOC 2 or ISO 27001 certified. Security details and current boundaries are documented at https://archipelag.io/security/.
 
-- Score range: 50 (start) to 100 (maximum)
-- Increases: successful job completions
-- Decreases: failures, timeouts
-- Benefits: higher karma = job priority in placement
-- Coordinator factors karma alongside latency for Island selection
+## Regional placement and compliance
 
-## Island Requirements
+Jobs favor nearby compatible Islands by default. Optional regional placement policies can restrict eligible placement and the Coordinator records the selected Island. These controls can support a Consumer's data-residency and governance program, but do not by themselves make a Job, Consumer, or organization compliant with GDPR, FADP, the EU AI Act, or another legal framework.
 
-- **GPU**: NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended)
-- **Network**: Stable internet connection (lower latency = preferred for nearby users)
-- **Platform**: Linux, macOS, or Windows
-- **Software**: Docker required for container workloads
-- **Agent**: Single Rust binary — no runtime dependencies
+## Pricing and credits
+
+Phase 2 uses virtual credits only. Islands can publish virtual asking amounts and Consumers can set budgets. The Coordinator records simulated clearing amounts to test market behavior. Credits cannot be purchased for cash, withdrawn, or treated as a promise of future income. Real-money billing, Stripe payouts, and cash settlement are not enabled.
+
+## Technology
+
+- Coordinator: Elixir, Phoenix, PostgreSQL.
+- Message fabric: NATS with JetStream.
+- Island software: Rust with Tokio.
+- Cargo runtimes: approved OCI containers, WASM modules, and supported native model formats.
+- Streaming: WebSocket, SSE, and API-specific streaming paths.
 
 ## Company
 
-- Swiss and European roots — built for data sovereignty
-- Compliant with FADP (Switzerland), GDPR (EU), EU AI Act
-- Open source: https://github.com/archipelag-io
-- Technology: Elixir/Phoenix, Rust/Tokio, NATS, PostgreSQL
+Archipelag.io was founded in 2025 and is built in Switzerland with European data-protection requirements in mind. The codebase and technical work are available through the Archipelag.io GitHub organization.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### What is Archipelag.io?
-Archipelag.io is a decentralized AI compute network. Consumers run AI workloads on community-operated Islands nearby, getting lower latency and fair pricing. Islands earn credits by contributing idle GPU compute. All workloads are sandboxed and verified.
+### Is Archipelag.io decentralized?
 
-### How does it work?
-Consumers submit AI requests (LLM chat, image generation) via the web app or API. The coordinator routes jobs to nearby Islands with the right hardware. Responses stream back in real time. Islands earn credits for every job completed.
+No. Islands are independently operated, but the Archipelag.io Coordinator is the control-plane authority. "Distributed compute fabric" or "local-first distributed compute" is the accurate description.
 
-### Is the API compatible with OpenAI?
-Yes. Archipelag.io exposes a `/v1/chat/completions` endpoint that is fully compatible with the OpenAI client libraries. You can use the official Python or JavaScript OpenAI SDKs — just change the `base_url` to `https://app.archipelag.io/api/v1`.
+### Can Island operators cash out credits?
 
-### What AI models are available?
-The network currently supports Mistral 7B, Llama, and other open-weight language models for chat, plus Stable Diffusion XL and FLUX for image generation. More models are added during the beta as Islands contribute diverse hardware.
+No. Phase 2 credits and Island earnings are virtual and have no cash value. Real-money billing and payouts are not enabled.
 
-### How much does it cost?
-Pricing is market-based — Islands set asking prices and the compute exchange clears a rate per workload type. During beta, new accounts receive free credits. There are no subscriptions or fixed tiers.
+### Does Archipelag.io guarantee local execution or compliance?
 
-### Is it safe to run an Island?
-Yes. Islands only run network-approved, cryptographically signed workloads inside sandboxed Docker containers with seccomp profiles. There is no access to your files, network, or other processes. Resource limits are strictly enforced.
+No. Placement favors nearby compatible Islands and can apply configured regional restrictions. Availability and compatibility still determine placement. These controls can support governance but are not legal guarantees.
 
-### Does my data stay local?
-Yes. Jobs route to nearby Islands by default, keeping data regional. Teams with compliance requirements can set explicit jurisdiction policies (e.g., EU-only, Switzerland) to guarantee data residency.
+### Is every catalog entry runnable?
 
-### How much can I earn with my GPU?
-Earnings depend on your GPU, your asking price, your availability, and network demand. During the beta, demand is growing — early Islands build karma scores that give them priority as the network scales.
+Not necessarily. Execution requires an approved artifact and a compatible online Island. The live Cargo Registry is the best source for current availability.
 
-### How do payouts work?
-Earnings accrue as credits. Payouts are processed via Stripe, which supports direct deposit in 40+ countries.
+### Is confidential inference generally available?
 
-### What hardware do I need?
-An NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended), a stable internet connection, and Docker. The Island software runs on Linux, macOS, and Windows.
+No. Confidential inference and hardware-attestation paths are experimental and have explicitly documented threat-model limits.
 
-### What is the Karma system?
-Karma is a reputation score (50–100) that reflects your reliability. It increases with successful jobs and decreases for failures or timeouts. Higher karma means priority in job placement and better rates.
+## Canonical links
 
-### Is Archipelag.io GDPR compliant?
-Yes. The platform supports jurisdiction-aware routing so your data stays in the region you specify (EU, Switzerland, or custom policies).
-
-### Do credits expire?
-Credits do not expire. They remain in your account until used.
-
-### Is KYC required?
-Basic usage is available without KYC. For running an Island and higher spending limits, identity verification via Stripe Identity is required.
-
-## Contact
-
-- General & support: hey@archipelag.io
-
-## Links
-
-- Website: https://archipelag.io
-- App: https://app.archipelag.io
-- Documentation: https://docs.archipelag.io
+- Website: https://archipelag.io/
+- Run a Job: https://app.archipelag.io/chat
+- Operate an Island: https://archipelag.io/earn/
+- Cargo Registry: https://app.archipelag.io/cargo
+- Status: https://archipelag.io/status/
+- Documentation: https://docs.archipelag.io/
 - API Reference: https://app.archipelag.io/api/v1/docs
-- SDKs: https://docs.archipelag.io/sdks
-- Developer Portal: https://app.archipelag.io/developer
-- Compute Exchange: https://app.archipelag.io/exchange
+- Security: https://archipelag.io/security/
+- Trust & Safety: https://archipelag.io/trust-safety/
 - GitHub: https://github.com/archipelag-io
-- Twitter/X: https://twitter.com/archipelagio
-
-## Sitemap
-
-- [Home](https://archipelag.io/) — Landing page with product overview and features
-- [Use AI](https://archipelag.io/use/) — Capabilities, API integration, and getting started for AI users
-- [Earn](https://archipelag.io/earn/) — Island information, compute exchange, Karma system, security
-- [News](https://archipelag.io/news/) — Company updates and technical articles
-- [About](https://archipelag.io/about/) — Mission, Swiss/EU heritage, technology overview
-
-## Articles
-
-All articles are authored by Raffael Schneider, founder of Archipelag.io.
-
-### Europe Without Datacenters
-- URL: https://archipelag.io/news/europe-without-datacenters/
-- Published: 2026-05-01
-- Category: Perspective
-
-AI inference is permanent — not a hype cycle, but a new utility on the level of electricity and bandwidth. Europe is currently weak on the layer that delivers it: the hyperscale buildout is happening in Virginia, Texas, the Gulf states, Seoul, and Hefei, while the European share of frontier compute is small and mostly sits inside foreign clouds. The reflex answer of "build more datacenters" is slow — permits, grid headroom, and capital all push elsewhere. Datacenter-less inference is the faster answer: every modern phone, laptop, and workstation is latent compute capacity. Archipelag.io turns that into a network where consumers get inference that is fast, cheap, and running on hardware whose physical location and legal jurisdiction are knowable. Sovereignty here is a side effect of how the network is built, not a slogan. Labour Day frames the human dimension: the fourth industrial revolution lifts arduous, repetitive work — but only if the substrate underneath it is plural, jurisdictionally clear, and within reach of the people whose lives it will reshape.
-
-### Your Phone Is an Island
-- URL: https://archipelag.io/news/your-phone-is-an-island/
-- Published: 2026-04-16
-- Category: Technical
-
-A demonstration of running real LLM inference on iPhones. Apple's Neural Engine (35 trillion ops per second on the A17 Pro) sits idle most of the day across a billion-plus devices. Archipelag.io turns these into compute nodes: a prompt typed in a browser, dispatched by the coordinator, answered by a language model (TinyLlama 1.1B, quantized) running on someone's phone across town, with tokens streaming back in real time over WebSocket. No datacenter, no cloud GPU. The piece argues this is not a gimmick: with a billion idle Neural Engines and Apple GPUs, the aggregate throughput is meaningful, and the latency, energy, and sovereignty profile is fundamentally different from hyperscale.
-
-### Archipelag.io Enters Open Beta
-- URL: https://archipelag.io/news/open-beta-announcement/
-- Published: 2026-03-13
-- Category: Announcement
-
-Open beta runs for three months until June 2026. All credits and earnings are virtual during beta. The post lays out what's available now: LLM chat, image generation, OpenAI-compatible API, jurisdiction-aware routing (EU, Switzerland, custom), market-based pricing via the compute exchange, and Island onboarding for desktops, servers, and mobile devices. Free beta credits for new accounts; no credit card required. The framing is that GPUs, neural engines, and even idle workstations across the network represent compute that is already paid for, already powered on, and currently doing nothing useful — and that opening the platform broadly is the only way to test the matchmaking, latency, and pricing assumptions at real scale.
-
-### Introducing Archipelag.io
-- URL: https://archipelag.io/news/introducing-archipelag-io/
-- Published: 2025-01-26
-- Category: Announcement
-
-The founding article. Why send AI requests halfway across a continent when there's a perfectly good GPU two blocks away? Capable hardware — gaming PCs, workstations, post-mining rigs — sits idle while consumers pay cloud providers for distant equivalents. Archipelag.io routes Cargos (signed workload containers) to nearby independently-operated Islands and orchestrates the result through a coordinator. Security model: only network-approved, cryptographically signed containers run; sandboxed execution; no arbitrary code. The post sets out the principles: local-first placement, controlled cargos, assume-failure design, streaming output, and a market-based exchange where Islands set asking prices and consumers set bid preferences.
-- [Contact](https://archipelag.io/contact/) — Support channels and partnerships
-- [Privacy Policy](https://archipelag.io/privacy/) — Data handling and privacy practices
-- [Terms of Service](https://archipelag.io/terms/) — Usage terms and conditions
-- [Security](https://archipelag.io/security/) — Security model, sandboxing, and container signing
-- [Trust & Safety](https://archipelag.io/trust-safety/) — Identity verification and safety policies
+- LinkedIn: https://www.linkedin.com/company/archipelag-io
+- Contact: hey@archipelag.io

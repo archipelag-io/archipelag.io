@@ -9,10 +9,10 @@
 // FONTS
 // ============================================
 
-/* Satoshi - brand typeface (via Fontshare) */
+/* Satoshi - self-hosted brand typeface */
 @font-face {
   font-family: 'Satoshi';
-  src: url('https://cdn.fontshare.com/wf/D7WD5OXZFWQ5T76HSPWAC7MNKAJXE2YG/LUGNSPO5YC34ABNB2O6K7AFDSOJZT56V/WNDVG7O66ENLOD43GS7FBUCC4KMT5OM2.woff2') format('woff2');
+  src: url('/fonts/satoshi-light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2') format('woff2');
+  src: url('/fonts/satoshi-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('https://cdn.fontshare.com/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2') format('woff2');
+  src: url('/fonts/satoshi-medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2') format('woff2');
+  src: url('/fonts/satoshi-bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -45,7 +45,7 @@
 /* Sora - subline typeface (geometric grotesk) */
 @font-face {
   font-family: 'Sora';
-  src: url('https://cdn.fontshare.com/wf/XR5REPALAPN54FEEIVU4Z7ZE3Z5TYAXV/ZVSCLT36TMKD3NSNAKQISILPVOHE4VFU/NTHDIHEFNRRDAFXF6EKGHNYZ4FA3VMWE.woff2') format('woff2');
+  src: url('/fonts/sora-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -53,7 +53,7 @@
 
 @font-face {
   font-family: 'Sora';
-  src: url('https://cdn.fontshare.com/wf/SJWETCERZXVLDCL4K6NJGS3H7NAV5YTM/F5EBUUP2RO5CM2W74SL4R7M6IUX4GDPL/OAO3FLMO5KOXWLXSTUJGS4EGOYFMSDQ3.woff2') format('woff2');
+  src: url('/fonts/sora-medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -61,7 +61,7 @@
 
 @font-face {
   font-family: 'Sora';
-  src: url('https://cdn.fontshare.com/wf/GLVBSLTLGSCYENHQZEZZBTPERIGASIAQ/CT5J6DRJRGN4DH5H6MRQDPOBOI4XDORK/ECOUY4IVDS6VGQYSST232TDR3EZRRMCW.woff2') format('woff2');
+  src: url('/fonts/sora-semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -70,7 +70,7 @@
 /* IBM Plex Mono - body typeface (full files with OpenType features) */
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('https://cdn.jsdelivr.net/gh/IBM/plex@v6.4.1/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2') format('woff2');
+  src: url('/fonts/ibm-plex-mono-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -78,7 +78,7 @@
 
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('https://cdn.jsdelivr.net/gh/IBM/plex@v6.4.1/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Medium.woff2') format('woff2');
+  src: url('/fonts/ibm-plex-mono-medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -86,7 +86,7 @@
 
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('https://cdn.jsdelivr.net/gh/IBM/plex@v6.4.1/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2') format('woff2');
+  src: url('/fonts/ibm-plex-mono-bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

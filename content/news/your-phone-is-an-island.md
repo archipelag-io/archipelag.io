@@ -9,6 +9,8 @@ author = "Raffael Schneider"
 image = "/og/your-phone-is-an-island.png"
 +++
 
+> **Editorial update, August 15, 2026:** This article describes an engineering demonstration, not general mobile-Island availability or a production performance guarantee. Mobile execution remains under validation. See [Current Status](/status/) for the canonical product state.
+
 There's a chip inside your phone that most software never touches.
 
 Apple calls it the Neural Engine. It's a dedicated matrix-multiplication accelerator — sixteen cores on the A17 Pro, capable of 35 trillion operations per second. It was designed for machine learning: face recognition, photo enhancement, Siri's on-device processing, that sort of thing. But most of the time, across most of the billion-plus iPhones in the world, it does absolutely nothing.
@@ -121,7 +123,7 @@ At scale, the aggregate capacity is striking. If one percent of iPhones sold in 
 
 ## What comes next
 
-The mobile Island is live in our beta today for iOS. Android support (using ONNX Runtime for on-device inference) is in active development. We're working on expanding the set of models that run efficiently on mobile hardware — Phi-3 Mini (3.8B parameters) runs well on recent iPhones with 8GB+ of RAM, and the M-series iPads and Macs can handle much larger models.
+The iOS mobile-Island path has been demonstrated end to end and remains under validation rather than generally available. Android support has since progressed to internal testing. We're continuing to measure which models run reliably across supported mobile hardware before broad availability.
 
 We're also exploring distributed inference — splitting a single large model across multiple nearby devices, so a cluster of phones could collectively run a model that none of them could run alone. This is early-stage research, not a shipped feature, but the architecture was designed with it in mind.
 

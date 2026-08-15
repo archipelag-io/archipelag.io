@@ -1,1 +1,4 @@
 /install.sh https://raw.githubusercontent.com/archipelag-io/node-agent/main/install.sh 302
+/blog /news/ 301
+/blog/ /news/ 301
+/blog/* /news/:splat 301

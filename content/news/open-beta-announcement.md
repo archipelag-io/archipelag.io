@@ -83,7 +83,7 @@ We want to hear from you. If something is broken, [open an issue](https://github
 
 When this article was published, we expected real payments to follow the initial beta. That plan changed: Phase 2 remains focused on the Cargo catalog and end-to-end reliability, with no fixed date for real-money billing. The specifics depend on what we learn.
 
-The longer arc is this: we want to build a compute network that's as decentralized and resilient as the internet was supposed to be. One where a freelance developer in Kraków can spin up an AI feature without a cloud contract. Where a student in Lagos can access the same models as a researcher at Stanford, served from hardware in their own city. Where the person running an Island earns enough to cover their electricity bill and then some, turning idle hardware into a genuine income stream.
+The longer arc is this: we want to build a resilient compute network where a freelance developer in Kraków can test an AI feature without a cloud contract, a student in Lagos can reach useful models from nearby hardware, and independent Island operators can participate on transparent terms. Phase 2 is validating the technical and accounting foundations only; it makes no income or future-pricing promise.
 
 We're not pretending this is easy. Distributed systems are hard, incentive design is hard, getting strangers to trust a network with their hardware and their Cargos is hard. But the alternative, a future where all AI compute funnels through three or four corporate clouds, is not a future we want to build toward.
 
