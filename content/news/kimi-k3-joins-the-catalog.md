@@ -1,9 +1,8 @@
 +++
 title = "Kimi K3 Joins the Catalog"
 description = "The newest entry in the Archipelag.io catalog is Moonshot's Kimi K3 — 2.8 trillion parameters, open weights, and a memory footprint that starts at 594 GB. It's our first datacenter-tier Cargo, and it's an invitation."
-# Held for w/c 2026-08-10 — bump `date` and flip `draft` when publishing.
-date = 2026-08-02
-draft = true
+date = 2026-08-15
+draft = false
 
 [extra]
 category = "Technical"
@@ -32,15 +31,15 @@ It means the network knows how to describe K3, price it, and route it — correc
 
 The pleasant surprise while building this: our placement logic needed **no new concepts**. The coordinator has always matched Cargos to Islands on declared requirements — RAM, VRAM, cores, runtimes, quantization formats, trust tiers. A "datacenter tier" is just very large values in the same fields. The `gguf-kimi-k3` entry demands a terabyte of RAM and 32 cores, and the same gates that keep a Bonsai job away from an Island without Q1_0 kernels keep K3 away from your phone. We wrote placement tests to prove it and stopped there, because there was nothing else to build.
 
-What did ship, across three repos this week:
+What shipped, across three repos:
 
 - **The K3 Cargo**: a containerized llama.cpp server with the chat template read from the GGUF itself, a 131k-token default context (native max is 1M, but the KV cache at that length is its own hardware problem), and a cold-load timeout in the tens of minutes — loading 861 GB off disk is not quick. One footnote for the record: mainline llama.cpp can't run K3's architecture yet; support lives in a fork while the upstream PR lands, and the Cargo pins accordingly.
 - **The catalog entry**: priced to reflect what terabyte-class hardware's time is worth, and never chosen by the auto-selector, which always prefers the smallest model that can do the job.
-- **Big-Island capability declarations**: operators of serious hardware can now advertise it to the coordinator — declared capabilities get you considered, verified capabilities get you trusted, same posture as everywhere else on the network.
+- **Capability overrides for big-Island operators**: an Island already measures and reports its own RAM and cores, but datacenter setups are exactly where auto-detection is least trustworthy — containers, hypervisors, and reserved capacity all lie to it. Operators can now declare those values explicitly in config instead. It's a lab and staging tool, and the agent says so loudly in its logs whenever an override is active: declared capabilities get you considered, verified capabilities get you trusted, same posture as everywhere else on the network.
 
 ## The invitation
 
-A catalog entry is a promise: *if* a machine that can hold this model joins the network, jobs will route to it, meter correctly, and pay out. The software side of that promise is built and in final review. The other side of it is you.
+A catalog entry is a promise: *if* a machine that can hold this model joins the network, jobs will route to it, meter correctly, and pay out. The software side of that promise is merged and live in production. The other side of it is you.
 
 If you operate hardware in this class — a lab with idle H100 nodes, an overprovisioned inference box, a university cluster with quiet weekends — the network now has work worthy of your machine, and the strongest open-weight models finally have somewhere sovereign to run. [Talk to us](/contact/).
 
