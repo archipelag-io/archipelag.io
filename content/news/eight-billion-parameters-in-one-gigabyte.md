@@ -68,7 +68,7 @@ Coherent, stays on topic, doesn't hallucinate. From an 8B model in 1.1 GB on dis
 
 Throughput on the host classes we don't have. We've measured M4. M1, M2, M3 are unmeasured; the bench harness is set up to populate them as we get hands on the hardware. Until then, the coordinator's placement scoring treats Apple Silicon capability as a boolean ("can run Q1_0: yes/no") rather than the per-(host_class, format) throughput ranking we want.
 
-Quality eval. PrismML published their own MMLU/HellaSwag/ARC/GSM8K numbers; we re-run them internally before publishing a `quality_tier` claim. If Q1_0 is within 5% of fp16 Qwen3-8B baseline, the workload stays at `quality_tier: standard`. If not, it gets `aggressive` and a candid note on the Cargo Registry detail page.
+Quality eval. PrismML publishes MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval and BFCLv3 for Bonsai-8B — deliberately not HellaSwag or ARC, which their whitepaper excludes as pretraining-saturated. Against the fp16 Qwen3-8B this model is built from, measured under their own harness, Bonsai scores **65.7 on MMLU-Redux versus 83.0** — a 17-point gap, and nowhere near the 5% we said we'd require before calling a variant `quality_tier: standard`. So it doesn't get `standard`, and the Cargo Registry page will say why. That is the honest price of 14× compression, and pretending otherwise would make the quality tiers worthless for everything else in the catalog.
 
 A Metal pipeline-compile race we tracked down in the mobile agent. Single-shot generation works; running multiple generations within one process — even with proper KV-cache reset between calls — can SIGSEGV during late Metal pipeline compilation if the warmup prompt did not trigger every kernel real Jobs will need. This must be resolved before sustained Bonsai traffic.
 
@@ -87,3 +87,7 @@ There is also a browser research path. Q1_0 in the browser could let an opted-in
 The shape of the bet is: ultra-low-bit quants make the on-device confidential inference story bigger, not smaller. We started with Apple Silicon because the Secure Enclave gives us hardware-bound key material for Tier-1. We're building toward "every Mac you own is a confidential inference endpoint, capable of running 8B-class models on the hardware you already paid for, with cryptographic attestation that the operator (us) can't read your prompts."
 
 This is one piece of that. More to come.
+
+---
+
+*Correction, August 15, 2026: this post originally said PrismML had published MMLU, HellaSwag, ARC and GSM8K numbers for Bonsai-8B. They publish MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval and BFCLv3 — not HellaSwag or ARC, which their whitepaper deliberately excludes. The quality-eval paragraph has been rewritten and now reports the measured MMLU-Redux gap rather than describing the evaluation as pending.*
