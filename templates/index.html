@@ -104,12 +104,8 @@
                     "Experimental Multi-Island pipeline research",
                     "Experimental batch fan-out"
                 ],
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD",
-                    "description": "Free beta credits for new accounts"
-                }
+                "softwareVersion": "Phase 2",
+                "releaseNotes": "Free testing with virtual credits. Real-money billing and Island payouts are not enabled."
             },
             {
                 "@type": "FAQPage",
@@ -210,6 +206,7 @@
         <div class="hero-wrapper" id="hero-wrapper">
         <section class="hero-section" aria-labelledby="hero-title">
             <canvas id="archipelago-map" class="hero-map" tabindex="0" role="application" aria-label="Interactive Archipelag.io network simulation. Consumer Islands request AI inference from available producer Islands. Click an Island to change its availability, or use arrow keys and Enter."></canvas>
+            <span id="network-sim-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></span>
             <div class="hero-horizon" aria-hidden="true"></div>
             <div class="hero-network-legend" aria-hidden="true">
                 <span class="legend-state"><i class="legend-state-pulse"></i><b id="network-sim-status">Consumer requesting inference</b></span>
@@ -288,7 +285,7 @@
                 </div>
             </div>
         </section>
-        <script src="/js/network-status.js" defer></script>
+        <script src="{{ get_url(path='js/network-status.js', cachebust=true) }}" defer></script>
 
         <!-- SECTION 2: Core Principles -->
         <section class="section-sm" aria-labelledby="principles-title">
@@ -820,5 +817,5 @@ stream = client.chat.completions.create(
 {% endblock content %}
 
 {% block scripts %}
-    <script src="/js/hero.js" defer></script>
+    <script src="{{ get_url(path='js/hero.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}

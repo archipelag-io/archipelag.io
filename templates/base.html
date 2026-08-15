@@ -54,7 +54,7 @@
     <link rel="help" href="https://docs.archipelag.io">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="{{ get_url(path='main.css', cachebust=true) }}">
 
     {% block head_extra %}{% endblock head_extra %}
 
@@ -165,11 +165,11 @@
                     <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
                     {% endfor %}
                     <div class="nav-menu-dropdown">
-                        <button class="nav-menu-trigger" aria-expanded="false">
+                        <button class="nav-menu-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="community-menu">
                             Community
                             <svg class="nav-menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
-                        <div class="nav-menu-panel">
+                        <div class="nav-menu-panel" id="community-menu">
                             <a href="/cargo/" class="nav-menu-item">Cargo Registry</a>
                             <a href="/matchmaking" class="nav-menu-item">Matchmaking</a>
                             <a href="/use" class="nav-menu-item">Use AI</a>
@@ -177,11 +177,11 @@
                         </div>
                     </div>
                     <div class="nav-menu-dropdown">
-                        <button class="nav-menu-trigger" aria-expanded="false">
+                        <button class="nav-menu-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="learn-menu">
                             Learn
                             <svg class="nav-menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
-                        <div class="nav-menu-panel">
+                        <div class="nav-menu-panel" id="learn-menu">
                             <a href="https://docs.archipelag.io" class="nav-menu-item">Documentation</a>
                             <a href="https://app.archipelag.io/api/v1/docs" class="nav-menu-item">API Specs</a>
                             <span class="nav-menu-item nav-menu-item-tbd">SDK <span class="nav-tbd">tbd</span></span>
@@ -210,13 +210,13 @@
                     <div class="nav-dropdown md:block sm:hidden">
                         <div class="nav-dropdown-trigger">
                             <a href="https://app.archipelag.io/playground" class="btn btn-primary btn-sm">Run a Job</a>
-                            <button class="nav-dropdown-chevron" aria-label="More options" aria-expanded="false">
+                            <button class="nav-dropdown-chevron" aria-label="More ways to use Archipelag.io" aria-expanded="false" aria-haspopup="true" aria-controls="product-menu">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                         </div>
-                        <div class="nav-dropdown-menu">
+                        <div class="nav-dropdown-menu" id="product-menu">
                             <span class="nav-dropdown-label">Use Compute</span>
                             <a href="https://app.archipelag.io/chat" class="nav-dropdown-item">Chat</a>
                             <a href="https://app.archipelag.io/image" class="nav-dropdown-item">Generate Image</a>
@@ -250,7 +250,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" aria-hidden="true">
             <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
                 <span class="mobile-nav-heading">Learn</span>
                 <a href="https://docs.archipelag.io" class="nav-link">Documentation</a>
@@ -445,6 +445,53 @@
         });
         themeToggle.setAttribute('aria-pressed', !document.documentElement.classList.contains('light'));
 
+        // Desktop dropdowns: keep visual state and ARIA state in sync.
+        const desktopDropdowns = document.querySelectorAll('.nav-menu-dropdown, .nav-dropdown');
+        desktopDropdowns.forEach((dropdown) => {
+            const trigger = dropdown.querySelector('[aria-expanded]');
+            if (!trigger) return;
+
+            const setOpen = (open) => {
+                dropdown.classList.toggle('open', open);
+                trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            };
+
+            trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                const opening = trigger.getAttribute('aria-expanded') !== 'true';
+                desktopDropdowns.forEach((other) => {
+                    if (other === dropdown) return;
+                    const otherTrigger = other.querySelector('[aria-expanded]');
+                    other.classList.remove('open');
+                    if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                });
+                setOpen(opening);
+            });
+            dropdown.addEventListener('mouseenter', () => setOpen(true));
+            dropdown.addEventListener('mouseleave', () => {
+                if (!dropdown.contains(document.activeElement)) setOpen(false);
+            });
+            dropdown.addEventListener('focusin', () => setOpen(true));
+            dropdown.addEventListener('focusout', (event) => {
+                if (!dropdown.contains(event.relatedTarget)) setOpen(false);
+            });
+            dropdown.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    setOpen(false);
+                    trigger.focus();
+                }
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            desktopDropdowns.forEach((dropdown) => {
+                if (dropdown.contains(event.target)) return;
+                const trigger = dropdown.querySelector('[aria-expanded]');
+                dropdown.classList.remove('open');
+                if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
         // Mobile menu toggle with ARIA updates and focus trap
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -490,7 +537,7 @@
     <script>
         if (document.querySelector('.island-vignette')) {
             const islandScript = document.createElement('script');
-            islandScript.src = '/js/island-vignettes.js';
+            islandScript.src = "{{ get_url(path='js/island-vignettes.js', cachebust=true) }}";
             islandScript.defer = true;
             document.body.appendChild(islandScript);
         }

@@ -844,6 +844,6 @@ stream = client.chat.completions.create(
 {% endblock content %}
 
 {% block scripts %}
-    <script src="/js/hero.js" defer></script>
+    <script src="{{ get_url(path='js/hero.js', cachebust=true) }}" defer></script>
     <script defer src="/js/cargo-whatis.js"></script>
 {% endblock scripts %}

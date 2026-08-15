@@ -64,27 +64,6 @@
                 }
             },
             {
-                "@type": "Product",
-                "name": "Archipelag.io Distributed Compute",
-                "description": "Distributed compute fabric using free virtual credits during Phase 2.",
-                "offers": [
-                    {
-                        "@type": "Offer",
-                        "name": "Open Beta",
-                        "price": "0",
-                        "priceCurrency": "USD",
-                        "description": "Free virtual credits during Phase 2. Experimental features remain subject to availability and change."
-                    },
-                    {
-                        "@type": "Offer",
-                        "name": "Enterprise",
-                        "price": "0",
-                        "priceCurrency": "USD",
-                        "description": "Design partner program - custom engagements for regulated industries (private preview)"
-                    }
-                ]
-            },
-            {
                 "@type": "FAQPage",
                 "mainEntity": [
                     {
@@ -402,5 +381,5 @@
 {% endblock content %}
 
 {% block scripts %}
-    <script src="/js/hero.js" defer></script>
+    <script src="{{ get_url(path='js/hero.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}

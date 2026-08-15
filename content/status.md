@@ -1,11 +1,29 @@
 +++
 title = "Current Status"
 description = "What can be tested on Archipelag.io today, what remains experimental, and what Phase 2 virtual credits mean."
+date = 2026-08-15
 +++
 
 # What works today
 
 Archipelag.io is in **Phase 2**. Access is free and credits-only while the approved Cargo catalog, placement behavior, and end-to-end reliability are expanded and validated. Credits and Island earnings are virtual; real-money billing and Island payouts are not enabled.
+
+**Last reviewed:** 15 August 2026. This page is the canonical public source for the current product phase and commercial status.
+
+## Network facts
+
+| Fact | Current public status |
+| --- | --- |
+| Product phase | Phase 2 validation |
+| Commercial access | Free to test |
+| Credits | Virtual accounting only; no cash value |
+| Island payouts | Not enabled |
+| Primary launch use case | AI inference |
+| Compute contributors | Independently operated Islands |
+| Execution unit | Approved, signed Cargo |
+| Placement | Compatible-Island matching with nearby-first and regional-policy signals |
+
+These statements describe the publicly supported product boundary. Source-code presence alone does not make a feature generally available or production-verified.
 
 ## Available for testing
 
@@ -38,3 +56,9 @@ Experimental interfaces, measurements, and security boundaries can change withou
 - [Follow the source and releases](https://github.com/archipelag-io)
 
 If a public page and this status page disagree, please [tell us](mailto:hey@archipelag.io).
+
+## Evidence and update method
+
+This status is reviewed against the deployed marketing site, public application routes, documentation, release history, and current Phase 2 operating policy. It deliberately avoids publishing live Island, Cargo, latency, or availability counts without a timestamped measurement source.
+
+Operational measurements will be added here only when they include the observation time, sample window, environment, and collection method. Historical claims remain available through dated [news posts](/news/) and [GitHub releases](https://github.com/archipelag-io).

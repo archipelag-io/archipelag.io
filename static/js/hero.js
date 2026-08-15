@@ -28,6 +28,7 @@
   const dpr = window.devicePixelRatio || 1;
   const section = canvas.parentElement;
   const networkStatusLabel = document.getElementById('network-sim-status');
+  const networkAnnouncer = document.getElementById('network-sim-announcer');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function resize() {
@@ -1025,6 +1026,9 @@
 
   function toggleNetworkNode(node, now) {
     if (!node) return;
+    const roleNodes = networkNodes.filter((candidate) => candidate.role === node.role);
+    const nodeNumber = roleNodes.indexOf(node) + 1;
+    const nodeLabel = `${node.role === 'producer' ? 'Producer' : 'Consumer'} Island ${nodeNumber}`;
     if (node.role === 'producer') {
       if (node.online) {
         if (node === networkState.producer) triggerFailover(now, node, false);
@@ -1036,6 +1040,9 @@
         node.online = true;
         node.recoverAt = 0;
         if (networkState.phase === 'waiting-producer') setNetworkPhase('matching', now);
+      }
+      if (networkAnnouncer) {
+        networkAnnouncer.textContent = `${nodeLabel} ${node.online ? 'online and available' : 'offline'}. ${networkStatusLabel ? networkStatusLabel.textContent : ''}`;
       }
       if (reduceMotion) requestAnimationFrame(draw);
       return;
@@ -1049,7 +1056,18 @@
       node.online = true;
       beginRequest(now, node);
     }
+    if (networkAnnouncer) {
+      networkAnnouncer.textContent = `${nodeLabel} ${node.online ? 'active and requesting inference' : 'offline'}. ${networkStatusLabel ? networkStatusLabel.textContent : ''}`;
+    }
     if (reduceMotion) requestAnimationFrame(draw);
+  }
+
+  function announceKeyboardNode() {
+    if (!networkAnnouncer || !networkNodes.length) return;
+    const node = networkNodes[keyboardNodeIndex];
+    const roleNodes = networkNodes.filter((candidate) => candidate.role === node.role);
+    const nodeNumber = roleNodes.indexOf(node) + 1;
+    networkAnnouncer.textContent = `${node.role === 'producer' ? 'Producer' : 'Consumer'} Island ${nodeNumber}, ${node.online ? 'online' : 'offline'}. Press Enter or Space to change availability.`;
   }
 
   canvas.addEventListener('pointermove', (event) => {
@@ -1069,9 +1087,11 @@
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       keyboardNodeIndex = (keyboardNodeIndex + 1) % networkNodes.length;
       event.preventDefault();
+      announceKeyboardNode();
     } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       keyboardNodeIndex = (keyboardNodeIndex - 1 + networkNodes.length) % networkNodes.length;
       event.preventDefault();
+      announceKeyboardNode();
     } else if (event.key === 'Enter' || event.key === ' ') {
       toggleNetworkNode(networkNodes[keyboardNodeIndex], performance.now());
       event.preventDefault();

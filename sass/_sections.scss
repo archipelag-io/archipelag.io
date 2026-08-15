@@ -768,7 +768,8 @@ html.light .header-logo img { filter: none; }
 }
 
 .nav-menu-dropdown:hover .nav-menu-chevron,
-.nav-menu-dropdown:focus-within .nav-menu-chevron {
+.nav-menu-dropdown:focus-within .nav-menu-chevron,
+.nav-menu-dropdown.open .nav-menu-chevron {
   transform: rotate(180deg);
 }
 
@@ -794,7 +795,8 @@ html:not(.light) .nav-menu-panel {
 }
 
 .nav-menu-dropdown:hover .nav-menu-panel,
-.nav-menu-dropdown:focus-within .nav-menu-panel {
+.nav-menu-dropdown:focus-within .nav-menu-panel,
+.nav-menu-dropdown.open .nav-menu-panel {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -911,13 +913,15 @@ html.light .nav-dropdown-chevron {
 }
 
 .nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu {
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.nav-dropdown:hover .nav-dropdown-chevron svg {
+.nav-dropdown:hover .nav-dropdown-chevron svg,
+.nav-dropdown.open .nav-dropdown-chevron svg {
   transform: rotate(180deg);
 }
 
