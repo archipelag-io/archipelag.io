@@ -89,7 +89,9 @@ async function main() {
     return;
   }
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    executablePath: process.env.OG_CHROME_PATH || undefined,
+  });
   const context = await browser.newContext({
     viewport: { width: 1200, height: 630 },
     deviceScaleFactor: 2,

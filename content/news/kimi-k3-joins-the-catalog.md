@@ -7,6 +7,7 @@ draft = false
 [extra]
 category = "Technical"
 author = "Raffael Schneider"
+image = "/og/kimi-k3-joins-the-catalog.png"
 +++
 
 The Archipelag.io catalog has a new entry, and it's the largest one by three orders of magnitude: **Kimi K3**, Moonshot AI's mixture-of-experts model — 2.8 trillion total parameters, 104 billion active per token, weights released July 27th under an MIT-style license.
