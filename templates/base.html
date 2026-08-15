@@ -184,7 +184,7 @@
                         <div class="nav-menu-panel" id="learn-menu">
                             <a href="https://docs.archipelag.io" class="nav-menu-item">Documentation</a>
                             <a href="https://app.archipelag.io/api/v1/docs" class="nav-menu-item">API Specs</a>
-                            <span class="nav-menu-item nav-menu-item-tbd">SDK <span class="nav-tbd">tbd</span></span>
+                            <a href="https://docs.archipelag.io/sdks/" class="nav-menu-item">SDKs</a>
                         </div>
                     </div>
                     <a href="/news" class="nav-link{% if current_path %}{% if current_path is starting_with('/news') %} active{% endif %}{% endif %}">News</a>
@@ -220,8 +220,8 @@
                             <span class="nav-dropdown-label">Use Compute</span>
                             <a href="https://app.archipelag.io/chat" class="nav-dropdown-item">Chat</a>
                             <a href="https://app.archipelag.io/image" class="nav-dropdown-item">Generate Image</a>
-                            <span class="nav-dropdown-item disabled">Speech to Text (Coming soon)</span>
-                            <span class="nav-dropdown-item disabled">Batch Processing (Coming soon)</span>
+                            <span class="nav-dropdown-item disabled">Speech to Text (Planned)</span>
+                            <span class="nav-dropdown-item disabled">Batch Processing (Experimental API)</span>
                             <span class="nav-dropdown-label">Provide Compute</span>
                             <a href="/earn" class="nav-dropdown-item">Browser Island</a>
                             <a href="/earn#desktop" class="nav-dropdown-item">Desktop / Server</a>
@@ -270,7 +270,8 @@
         <div class="container">
             <p class="beta-banner-text">
                 <span class="beta-badge">{{ config.extra.phase }}</span> {{ config.extra.phase_summary }} {{ config.extra.financial_status }}
-                <a href="/news/phase-2-building-the-catalog/">Read the roadmap &rarr;</a>
+                <a href="/status/">Current status</a>
+                <a href="https://docs.archipelag.io/reference/feature-maturity/">Feature maturity &rarr;</a>
             </p>
         </div>
     </div>

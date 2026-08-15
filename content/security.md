@@ -22,7 +22,7 @@ No sandbox is a substitute for a patched operating system. Island operators rema
 
 In standard execution mode, Job data is protected in transit, but it is available to the Island's container runtime while the Cargo executes. Consumers should not send secrets or regulated data unless the selected execution mode and their own risk assessment permit it.
 
-| Data | Standard execution | Confidential execution (Experimental) |
+| Data | Standard execution | Confidential execution (Security prototype) |
 |---|---|---|
 | Job input and output during execution | Available to the execution environment | Intended to be decrypted only inside an attested environment |
 | Consumer account identity | Not included in the Job dispatch | Not included in the Job dispatch |

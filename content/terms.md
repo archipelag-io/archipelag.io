@@ -20,7 +20,7 @@ Archipelag.io provides a distributed compute platform that connects Consumers wh
 - **For Islands**: Software to contribute compute resources and earn credits
 - **Phase 2 Credit System**: Virtual credits used to test metering, matching, and accounting. They have no cash value.
 
-Archipelag.io is currently in Phase 2. Real-money billing, credit purchases, and Island payouts are not enabled. Features marked Beta or Experimental may change or be withdrawn as the network is validated.
+Archipelag.io is currently in Phase 2. Real-money billing, credit purchases, and Island payouts are not enabled. Features marked Phase 2 simulation, Experimental, Security prototype, or Planned may change or be withdrawn as the network is validated.
 
 ## 3. Account Registration
 

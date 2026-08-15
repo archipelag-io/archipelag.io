@@ -26,7 +26,7 @@
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
     <meta name="twitter:title" content="Use AI on Community Hardware | {{ config.title }}">
-    <meta name="twitter:description" content="OpenAI-compatible API running on distributed community GPUs. Free beta credits to get started.">
+    <meta name="twitter:description" content="Test an OpenAI-compatible API on compatible community-operated Islands with a virtual Phase 2 balance.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
     <meta name="twitter:image:alt" content="Archipelag.io - Distributed AI Inference">
 {% endblock head_meta %}
@@ -89,7 +89,7 @@
                     "Python and JavaScript SDKs",
                     "Regional placement policies and execution records",
                     "Virtual compute exchange for Phase 2 testing",
-                    "Mistral 7B, Llama, Stable Diffusion XL, FLUX models",
+                    "Approved AI Cargos when compatible Islands are online",
                     "Experimental Multi-Island pipeline parallelism",
                     "Experimental batch fan-out",
                     "Web chat and image generation interfaces",
@@ -101,7 +101,7 @@
                     "@type": "Offer",
                     "price": "0",
                     "priceCurrency": "USD",
-                    "description": "Free beta credits for new accounts"
+                    "description": "Free access with a virtual Phase 2 test balance"
                 }
             },
             {
@@ -114,7 +114,7 @@
                         "@type": "HowToStep",
                         "position": 1,
                         "name": "Create an account",
-                        "text": "Sign up with email or GitHub. You get free beta credits immediately."
+                        "text": "Sign up with email or GitHub. Phase 2 accounts receive a virtual test balance with no cash value."
                     },
                     {
                         "@type": "HowToStep",
@@ -146,7 +146,7 @@
                         "name": "What AI models are available?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "The network currently supports Mistral 7B, Llama, and other open-weight language models for chat, plus Stable Diffusion XL and FLUX for image generation. More models are added during the beta as Islands contribute diverse hardware."
+                            "text": "The Cargo Registry lists approved language and image models. Runtime availability depends on a compatible Island being online, so Consumers should check the live catalog before depending on a model."
                         }
                     },
                     {
@@ -192,6 +192,10 @@
                 </div>
             </div>
         </section>
+        </div>
+
+        <div class="container maturity-key-wrap">
+            {% include "partials/maturity-key.html" %}
         </div>
 
         <!-- What's a Cargo? -->
@@ -591,15 +595,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-brand text-xl mb-2">Confidential Inference <span class="feature-badge-experimental">Experimental</span></h3>
+                                    <h3 class="font-brand text-xl mb-2">Confidential Inference <a class="feature-badge-prototype" href="https://docs.archipelag.io/reference/feature-maturity/">Security prototype</a></h3>
                                     <p class="text-secondary">Stronger isolation on supported attested hardware</p>
                                 </div>
                             </div>
                             <ul class="preview-list">
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>TEE hardware attestation (Intel SGX, AMD SEV, ARM TrustZone)</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Payload encryption outside the attested execution boundary</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Availability depends on Island hardware and current attestation state</span></li>
-                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Use only after validating the experimental threat model</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Encrypted-envelope and attestation code paths exist but remain unaudited</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Coordinator-assisted encryption does not hide plaintext from the Coordinator</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Hardware and end-to-end trust boundaries are not production-verified</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Do not submit sensitive, regulated, or confidential data</span></li>
                             </ul>
                         </article>
                     </div>
@@ -773,7 +777,7 @@ stream = client.chat.completions.create(
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                             </div>
                             <h3 class="principle-title">Batch jobs</h3>
-                            <p class="principle-desc">Submit batches of inputs via the API or web UI. Monitor progress in real time with a visual dashboard.</p>
+                            <p class="principle-desc">Exercise experimental batch fan-out through the API. Availability and end-to-end behavior remain under validation.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -813,7 +817,7 @@ stream = client.chat.completions.create(
                         <div class="antigrid-card" style="text-align:center;">
                             <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">1</span>
                             <h3 class="font-brand text-lg mb-2">Create an account</h3>
-                            <p class="text-sm text-secondary">Email or GitHub. You get free beta credits immediately&mdash;no credit card needed.</p>
+                            <p class="text-sm text-secondary">Email or GitHub. Phase 2 provides a virtual test balance&mdash;no credit card needed.</p>
                         </div>
                         <div class="antigrid-card" style="text-align:center;">
                             <span class="step-number mb-4" style="margin:0 auto var(--space-4);" aria-hidden="true">2</span>

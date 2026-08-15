@@ -259,6 +259,10 @@
         </section>
         </div>
 
+        <div class="container maturity-key-wrap">
+            {% include "partials/maturity-key.html" %}
+        </div>
+
         <!-- NETWORK STATUS STRIP -->
         <section id="network-status" class="section-status" aria-label="Live network status" hidden>
             <div class="container">
@@ -336,7 +340,7 @@
                                     <span class="step-number" aria-hidden="true">1</span>
                                     <div class="step-content">
                                         <h4 class="step-title">Create an account</h4>
-                                        <p class="step-desc">Email or GitHub. You get free beta credits to start.</p>
+                                        <p class="step-desc">Email or GitHub. Phase 2 provides a virtual test balance with no cash value.</p>
                                     </div>
                                 </li>
                                 <li class="step-card">
@@ -500,7 +504,7 @@
                                     <line x1="12" y1="18" x2="12.01" y2="18"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Mobile compute <span class="feature-badge-beta">Beta</span></h3>
+                            <h3 class="feature-title">Mobile compute <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h3>
                             <p class="feature-desc">The early iOS and Android Island apps explore on-device inference with hardware-aware safety limits and mobile runtimes.</p>
                         </article>
 
@@ -513,7 +517,7 @@
                                     <rect x="15" y="14" width="7" height="7" rx="1"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Batch processing <span class="feature-badge-beta">Beta</span></h3>
+                            <h3 class="feature-title">Batch processing <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h3>
                             <p class="feature-desc">Eligible inputs can fan out across available Islands, with progress tracked and results collected through one Job flow.</p>
                         </article>
 
@@ -573,7 +577,7 @@
                                     <circle cx="12" cy="16" r="1"/>
                                 </svg>
                             </div>
-                            <h3 class="feature-title">Confidential inference <span class="feature-badge-experimental">Experimental</span></h3>
+                            <h3 class="feature-title">Confidential inference <a class="feature-badge-prototype" href="https://docs.archipelag.io/reference/feature-maturity/">Security prototype</a></h3>
                             <p class="feature-desc">Experimental TEE-backed modes aim to keep Job payloads encrypted outside an attested execution boundary on supported hardware.</p>
                         </article>
                     </div>
@@ -617,7 +621,7 @@
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
-                                    <span>Batch processing and real-time streaming</span>
+                                    <span>Real-time streaming; experimental batch API paths</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -798,7 +802,7 @@ stream = client.chat.completions.create(
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card cta-card">
                             <h3 class="cta-card-title">Try it out</h3>
-                            <p class="cta-card-desc">Create an account and run your first inference job on community hardware. Free beta credits, no credit card.</p>
+                            <p class="cta-card-desc">Create an account and run your first inference Job on compatible community hardware. Phase 2 uses virtual credits and requires no credit card.</p>
                             <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create account</a>
                         </div>
 

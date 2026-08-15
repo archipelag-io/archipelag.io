@@ -1,7 +1,7 @@
 /**
- * Hardware Earnings Calculator
+ * Hardware Virtual Attribution Simulator
  *
- * Estimates potential earnings for prospective Archipelag.io hosts
+ * Illustrates Phase 2 credit attribution for prospective Archipelag.io Islands
  * based on their GPU model, using the same bandwidth table and
  * fit scoring logic as the coordinator placement engine.
  */
@@ -110,11 +110,9 @@
     { name: 'WASM Task',          minVram: 0,  modelGb: 0,    basePrice: 0.5,  type: 'wasm' }
   ];
 
-  var PLATFORM_FEE = 0.20;
-  var CREDIT_VALUE = 0.01; // $0.01 per credit (beta)
   var UTILIZATION = 0.15; // 15% of online time is actual job execution
 
-  // Calculate best earnings for a GPU at given hours
+  // Calculate the highest synthetic attribution for a GPU at given hours
   function calcBestEarnings(gpu, hoursPerDay) {
     var mult = TIER_MULT[gpu.tier] || 1.0;
     var bestDaily = 0;
@@ -131,13 +129,13 @@
         var tokS = Math.round(gpu.bw / wl.modelGb * efficiency * modeFactor);
         var secsPerJob = (200 / Math.max(tokS, 1)) + 2;
         var jobsPerHour = Math.round(Math.floor(3600 / secsPerJob) * UTILIZATION);
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       } else if (wl.type === 'container') {
         var jobsPerHour = Math.round(120 * UTILIZATION);
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       } else if (wl.type === 'wasm') {
         var jobsPerHour = Math.round(300 * UTILIZATION);
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       }
 
       var daily = creditsPerHour * hoursPerDay;
@@ -225,7 +223,7 @@
     var barGap = Math.max(1, Math.min(3, chartW / n * 0.15));
     var barW = Math.max(2, (chartW - barGap * (n - 1)) / n);
 
-    // Find sweet spot: best earnings-per-VRAM ratio among mid_range/high_end
+    // Find sweet spot: best attribution-per-VRAM ratio among mid_range/high_end
     var bestEfficiency = 0, sweetSpotIdx = -1;
     gpuData.forEach(function (d, i) {
       if (d.vram > 0 && (d.tier === 'mid_range' || d.tier === 'high_end')) {
@@ -306,7 +304,7 @@
     var compHoursEl = document.getElementById('comp-hours');
     if (compHoursEl) compHoursEl.textContent = hours;
 
-    // Calculate earnings for all GPUs
+    // Calculate virtual attribution for all GPUs
     var data = GPU_DB.map(function (gpu) {
       var result = calcBestEarnings(gpu, hours);
       return {
@@ -314,12 +312,11 @@
         tier: gpu.tier,
         vram: gpu.vram,
         monthly: result.monthly,
-        bestCargo: result.bestCargo,
-        usd: (result.monthly * CREDIT_VALUE).toFixed(2)
+        bestCargo: result.bestCargo
       };
     });
 
-    // Sort by monthly earnings descending
+    // Sort by monthly attribution descending
     data.sort(function (a, b) { return b.monthly - a.monthly; });
 
     // Find sweet spot (best credits/VRAM for mid/high tier)
@@ -341,7 +338,6 @@
       html += '<td>' + (d.vram > 0 ? d.vram + ' GB' : '&mdash;') + '</td>';
       html += '<td>' + (d.bestCargo || '&mdash;') + '</td>';
       html += '<td style="text-align:right; font-weight:500;">' + d.monthly.toLocaleString() + '</td>';
-      html += '<td style="text-align:right;">$' + d.usd + '</td>';
       html += '</tr>';
     });
     document.getElementById('calc-comparison-body').innerHTML = html;
@@ -380,19 +376,19 @@
         var secsPerJob = (200 / Math.max(tokS, 1)) + 2;
         var maxJobsPerHour = Math.floor(3600 / secsPerJob);
         var jobsPerHour = Math.round(maxJobsPerHour * UTILIZATION);
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       } else if (canRun && wl.type === 'container') {
         var maxPerHour = 120;
         var jobsPerHour = Math.round(maxPerHour * UTILIZATION);
         throughputLabel = jobsPerHour + ' jobs/hr';
         fitLevel = gpu.vram >= wl.minVram * 1.5 ? 'Perfect' : 'Good';
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       } else if (canRun && wl.type === 'wasm') {
         var maxPerHour = 300;
         var jobsPerHour = Math.round(maxPerHour * UTILIZATION);
         throughputLabel = jobsPerHour + ' jobs/hr';
         fitLevel = 'Perfect';
-        creditsPerHour = jobsPerHour * wl.basePrice * mult * (1 - PLATFORM_FEE);
+        creditsPerHour = jobsPerHour * wl.basePrice * mult;
       }
 
       var thisDaily = canRun ? (creditsPerHour * hoursPerDay) : 0;
@@ -414,11 +410,8 @@
 
     var dailyCredits = Math.round(bestDaily);
     var monthlyCredits = dailyCredits * 30;
-    var monthlyUsd = (monthlyCredits * CREDIT_VALUE).toFixed(2);
-
     document.getElementById('calc-daily').textContent = dailyCredits.toLocaleString();
     document.getElementById('calc-monthly').textContent = monthlyCredits.toLocaleString();
-    document.getElementById('calc-usd').textContent = '$' + monthlyUsd;
     document.getElementById('calc-tier').textContent = gpu.tier.replace(/_/g, ' ');
     document.getElementById('calc-mult').textContent = mult + 'x';
 

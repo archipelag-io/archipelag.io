@@ -25,6 +25,18 @@ Archipelag.io is in **Phase 2**. Access is free and credits-only while the appro
 
 These statements describe the publicly supported product boundary. Source-code presence alone does not make a feature generally available or production-verified.
 
+## Shared maturity labels
+
+| Label | Meaning |
+| --- | --- |
+| **Current path** | The normal Phase 2 path used by the app and supported tooling |
+| **Phase 2 simulation** | A real interface exercising virtual accounting or market behavior; no cash value |
+| **Experimental** | Feature code or endpoints exist, but production or end-to-end validation is incomplete |
+| **Security prototype** | Unaudited security-sensitive work without a production-verified trust boundary |
+| **Planned** | A documented direction without a supported operational path |
+
+These labels are shared by the marketing site, application, and documentation. See the [canonical definitions](https://docs.archipelag.io/reference/feature-maturity/) for appropriate-use guidance and the current feature map.
+
 ## Available for testing
 
 - Consumer account access and API-key management

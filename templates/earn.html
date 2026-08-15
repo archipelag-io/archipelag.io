@@ -166,12 +166,16 @@
                         and let the Coordinator match nearby Consumers during Phase 2.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join the beta</a>
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join Phase 2</a>
                         <a href="#how-it-works" class="btn btn-secondary btn-lg">How it works</a>
                     </div>
                 </div>
             </div>
         </section>
+        </div>
+
+        <div class="container maturity-key-wrap">
+            {% include "partials/maturity-key.html" %}
         </div>
 
         <!-- What's a Cargo? -->
@@ -339,9 +343,9 @@
         <section class="section" aria-labelledby="pricing-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Earnings</span>
-                    <h2 id="pricing-title" class="section-title">You set the price</h2>
-                    <p class="section-subtitle">No fixed rate tables. The compute exchange matches supply and demand.</p>
+                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Virtual exchange</span>
+                    <h2 id="pricing-title" class="section-title">Set a virtual ask</h2>
+                    <p class="section-subtitle">The Phase 2 simulation exercises supply, demand, and matching behavior without real-money pricing.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -359,7 +363,7 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Market clearing</h3>
-                            <p class="principle-desc">The exchange snapshots rates every 5 minutes. More Islands in your region lowers the clearing price; more demand raises it.</p>
+                            <p class="principle-desc">The exchange snapshots simulated clearing amounts every 5 minutes so matching behavior can be tested as supply and demand change.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
@@ -371,12 +375,12 @@
             </div>
         </section>
 
-        <!-- Earnings Calculator -->
+        <!-- Virtual Attribution Simulator -->
         <section class="section section-alt-flat" id="calculator" aria-labelledby="calculator-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Estimate</span>
-                    <h2 id="calculator-title" class="section-title">Simulate virtual earnings</h2>
+                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Simulation</span>
+                    <h2 id="calculator-title" class="section-title">Simulate virtual attribution</h2>
                     <p class="section-subtitle">Select hardware and online hours to explore the Phase 2 credit model. This is not an income forecast.</p>
                 </div>
 
@@ -408,10 +412,6 @@
                                 <div class="calc-summary-value" id="calc-monthly">0</div>
                                 <div class="calc-summary-label">credits / month</div>
                             </div>
-                            <div class="calc-summary-item">
-                                <div class="calc-summary-value" id="calc-usd">$0</div>
-                                <div class="calc-summary-label">illustrative USD*</div>
-                            </div>
                         </div>
                         <div class="calc-tier-info">
                             Hardware tier: <strong id="calc-tier"></strong> (<span id="calc-mult"></span> multiplier)
@@ -424,7 +424,7 @@
                                         <th>Cargo</th>
                                         <th>Fit</th>
                                         <th>Throughput</th>
-                                        <th>Earnings</th>
+                                        <th>Virtual attribution</th>
                                     </tr>
                                 </thead>
                                 <tbody id="calc-table-body"></tbody>
@@ -441,13 +441,13 @@
                 <div class="section-header">
                     <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Compare</span>
                     <h2 id="comparison-title" class="section-title">All GPUs compared</h2>
-                    <p class="section-subtitle">Illustrative comparison at <span id="comp-hours">8</span>h/day and 15% utilization. The USD column uses a hypothetical conversion only.</p>
+                    <p class="section-subtitle">Synthetic Phase 2 credit attribution at <span id="comp-hours">8</span>h/day and 15% utilization.</p>
                 </div>
 
                 <div class="calc-comparison" id="calc-comparison">
                     <!-- Comparison Chart -->
                     <div class="calc-chart-wrapper" style="margin-bottom:var(--space-8);">
-                        <canvas id="calc-comparison-chart" aria-label="Bar chart comparing monthly earnings across all GPU models"></canvas>
+                        <canvas id="calc-comparison-chart" aria-label="Bar chart comparing synthetic monthly virtual credit attribution across GPU models"></canvas>
                     </div>
 
                     <div class="calc-table-wrapper">
@@ -459,14 +459,13 @@
                                     <th>VRAM</th>
                                     <th>Best Cargo</th>
                                     <th style="text-align:right;">Monthly Credits</th>
-                                    <th style="text-align:right;">Illustrative USD*</th>
                                 </tr>
                             </thead>
                             <tbody id="calc-comparison-body"></tbody>
                         </table>
                     </div>
                     <p class="calc-disclaimer">
-                        *The calculator uses a hypothetical $0.01/credit conversion for comparison. Phase 2 credits have no cash value, cannot be withdrawn, and do not predict future pricing or income.
+                        Synthetic values use example Cargo amounts, hardware multipliers, and assumed utilization. They are not live rates or an income forecast; no commercial fee or conversion schedule is active.
                     </p>
                 </div>
             </div>
@@ -678,7 +677,7 @@
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
                             <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Mobile Compute</span>
-                            <h2 id="mobile-title" class="preview-title">Contribute from your phone <span class="feature-badge-beta">Beta</span></h2>
+                            <h2 id="mobile-title" class="preview-title">Contribute from your phone <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h2>
                             <p class="preview-desc">
                                 Got an iPhone or iPad with an A-series or M-series chip? The Archipelag.io iOS agent runs
                                 lightweight LLMs on-device using CoreML &mdash; no GPU workstation needed.
@@ -871,7 +870,7 @@
                 <h2 id="cta-title" class="cta-title">The archipelago needs more Islands</h2>
                 <p class="cta-subtitle">Early Islands build karma and reputation before the network scales. Join now.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join the beta</a>
+                    <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join Phase 2</a>
                     <a href="mailto:hey@archipelag.io" class="btn btn-secondary btn-lg">Talk to us</a>
                 </div>
             </div>

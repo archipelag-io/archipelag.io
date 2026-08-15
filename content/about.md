@@ -64,7 +64,7 @@ We're a small team focused on distributed systems, edge infrastructure, applied 
 
 Archipelag.io is in **Phase 2**. Access is free and credits-only while the Cargo catalog and end-to-end reliability are expanded. Credits and Island earnings are virtual; real-money billing and payouts are not enabled.
 
-Core Job dispatch, streaming inference, Island registration, regional placement, Karma, APIs, and mobile Island work are available for testing. Features marked **Beta** or **Experimental** should not be treated as production guarantees.
+Single-Island Job dispatch, streaming inference, Island registration, regional placement, Karma, and supported APIs form the current path. Mobile execution and other features marked **Experimental** remain limited to controlled evaluation; **Security prototype** features are not suitable for sensitive data.
 
 ---
 
