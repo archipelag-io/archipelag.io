@@ -26,7 +26,7 @@ Sub-2-bit quants change the shape of what's feasible inside the Tier-1 box:
 - **More devices in the eligible pool.** A 5 GB Q4 model excludes the 8 GB MacBook Air; a 1.1 GB Q1_0 model includes it. Larger eligible pool = lower placement latency and better fit-scoring.
 - **Cheaper cold starts.** First-job model download time scales with file size. A Q4 8B model is ~4.5 GB; Q1_0 is ~1.1 GB. On a typical home connection, that's the difference between a multi-minute initial download and one that finishes while the consumer is still typing the prompt.
 
-None of this matters if the quality collapses. Bonsai-8B's headline numbers from PrismML's evaluation are competitive with fp16 baselines on standard benchmarks (MMLU, HellaSwag, ARC, GSM8K) — within a few percentage points. We'll re-run those internally before flipping `approved` (more on that in the gates section), but the early indication is that the quality-per-byte ratio of Q1_0 is genuinely surprising in 2026.
+None of this matters if the quality collapses. It doesn't collapse — but it does cost. On PrismML's own evaluation Bonsai-8B averages 70.5 across their six headline benchmarks against 79.3 for the fp16 Qwen3-8B it is built from, holding up best on arithmetic and instruction-following (GSM8K 88.0 vs 93.0, IFEval 79.8 vs 81.5) and giving up the most on broad knowledge (MMLU-Redux 65.7 vs 83.0). That is a real gap, not a rounding error, and we treat it as one in the gates section below. The interesting claim was never that Q1_0 is free — it's that a 14× smaller model retaining roughly four-fifths of the original's benchmark average is a trade some workloads should be allowed to make.
 
 ## How quantization-format support is wired
 
@@ -90,4 +90,4 @@ This is one piece of that. More to come.
 
 ---
 
-*Correction, August 15, 2026: this post originally said PrismML had published MMLU, HellaSwag, ARC and GSM8K numbers for Bonsai-8B. They publish MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval and BFCLv3 — not HellaSwag or ARC, which their whitepaper deliberately excludes. The quality-eval paragraph has been rewritten and now reports the measured MMLU-Redux gap rather than describing the evaluation as pending.*
+*Correction, August 15, 2026: this post twice said PrismML had published MMLU, HellaSwag, ARC and GSM8K numbers for Bonsai-8B. They publish MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval and BFCLv3 — not HellaSwag or ARC, which their whitepaper deliberately excludes as pretraining-saturated. It also described those results as "within a few percentage points" of fp16; the actual gap is 70.5 versus 79.3 on their six-benchmark average, and 65.7 versus 83.0 on MMLU-Redux. Both passages have been rewritten to report the measured figures, and the quality-eval gate now states the conclusion those figures force rather than describing the evaluation as pending.*
