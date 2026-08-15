@@ -909,15 +909,33 @@ html.light .btn-primary {
 // Principle cards (section 02)
 // Island vignette canvas — small isometric illustration
 .island-vignette {
+  display: block;
   width: 100%;
   height: 120px;
   margin-bottom: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 64%, var(--accent-muted), transparent 62%);
+  transition: filter var(--transition-base), transform var(--transition-base);
+}
+
+html.light .island-vignette {
+  background: radial-gradient(circle at 50% 64%, rgba(0, 201, 176, 0.16), transparent 66%);
+  filter: saturate(1.18) contrast(1.06);
 }
 
 .antigrid-principle {
   text-align: left;
   display: flex;
   flex-direction: column;
+
+  &:hover .island-vignette {
+    filter: saturate(1.18) brightness(1.06);
+    transform: translateY(-2px);
+  }
+
+  html.light &:hover .island-vignette {
+    filter: saturate(1.28) contrast(1.08) brightness(0.99);
+  }
 
   .principle-icon {
     width: 40px;

@@ -208,11 +208,18 @@
 {% block content %}
         <!-- SECTION 1: Hero -->
         <div class="hero-wrapper" id="hero-wrapper">
-        <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
-            <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
-            <div class="container" style="position:relative;z-index:1;">
+        <section class="hero-section" aria-labelledby="hero-title">
+            <canvas id="archipelago-map" class="hero-map" tabindex="0" role="application" aria-label="Interactive Archipelag.io network simulation. Consumer Islands request AI inference from available producer Islands. Click an Island to change its availability, or use arrow keys and Enter."></canvas>
+            <div class="hero-horizon" aria-hidden="true"></div>
+            <div class="hero-network-legend" aria-hidden="true">
+                <span class="legend-state"><i class="legend-state-pulse"></i><b id="network-sim-status">Consumer requesting inference</b></span>
+                <span><i class="legend-node legend-node-consumer">?</i> Consumer request</span>
+                <span><i class="legend-node legend-node-producer">!</i> Producer compute</span>
+                <span class="legend-interaction">Click an Island to change availability</span>
+            </div>
+            <div class="container">
                 <div class="hero-glass">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span></span>
+                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; The Network</span>
 
                     <!-- Trust Badges -->
                     <div class="trust-badges" role="group" aria-label="Network highlights">
@@ -237,13 +244,13 @@
                                 <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            Verified Hosts
+                            Verified Islands
                         </span>
                     </div>
 
                     <h1 id="hero-title" class="hero-title" itemprop="headline">Compute, <span class="accent">closer to you.</span></h1>
                     <p class="hero-subtitle" itemprop="description">
-                        Run AI models on a decentralized network of community hosts.
+                        Run AI models on a decentralized network of community-operated Islands.
                         Lower latency, fair pricing, and your data stays local.
                     </p>
                     <div class="hero-cta" role="group" aria-label="Get started options">
@@ -267,17 +274,17 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Route locally</h3>
-                            <p class="principle-desc">Jobs run on hosts near you, not in a distant data center. Less distance, faster responses.</p>
+                            <p class="principle-desc">Jobs run on Islands near you, not in a distant data center. Less distance, faster responses.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Pay hosts directly</h3>
-                            <p class="principle-desc">Market-based pricing. Hosts set their own rates, you pay what compute actually costs. No cloud markup.</p>
+                            <h3 class="principle-title">Pay Islands directly</h3>
+                            <p class="principle-desc">Market-based pricing. Islands set their own rates, you pay what compute actually costs. No cloud markup.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="security" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Trust nothing</h3>
-                            <p class="principle-desc">Every Cargo is signed and sandboxed. Hosts are identity-verified. No arbitrary code ever runs.</p>
+                            <p class="principle-desc">Every Cargo is signed and sandboxed. Islands are identity-verified. No arbitrary code ever runs.</p>
                         </div>
                     </div>
                 </div>

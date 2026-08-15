@@ -8,10 +8,31 @@
     return { x: (gx - gy) * TX + ox, y: (gx + gy) * TY + oy };
   }
 
-  function isDark() { return !document.documentElement.classList.contains('light'); }
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function colorToRgb(value, fallback) {
+    var color = value.trim();
+    var hex = color.match(/^#([0-9a-f]{6})$/i);
+    if (hex) {
+      var n = parseInt(hex[1], 16);
+      return ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255);
+    }
+    var rgb = color.match(/^rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+    return rgb ? rgb[1] + ',' + rgb[2] + ',' + rgb[3] : fallback;
+  }
+
   function getColors() {
-    const dark = isDark();
-    return { wire: '13,148,136', bg: dark ? '#0a0a0a' : '#ffffff' };
+    var styles = getComputedStyle(document.documentElement);
+    var dark = !document.documentElement.classList.contains('light');
+    return {
+      wire: colorToRgb(styles.getPropertyValue('--accent'), '0,255,221'),
+      yellow: dark ? colorToRgb(styles.getPropertyValue('--accent-yellow'), '255,240,51') : '201,147,0',
+      pink: colorToRgb(styles.getPropertyValue('--accent-pink'), '255,92,184'),
+      bg: styles.getPropertyValue('--bg').trim() || '#0a0a0a',
+      dark: dark,
+      strength: dark ? 1 : 1.55,
+      gridAlpha: dark ? 0.1 : 0.19
+    };
   }
 
   // Drawing primitives (matching hero.js style)
@@ -90,9 +111,193 @@
     drawSprite(ctx, cx, cy, parasolPath, color, alpha, 0.045, 512, bg);
   }
 
+  // Compact markers designed for the isometric scene instead of adapted icon silhouettes.
+  function drawTreeMarker(ctx, cx, cy, color, alpha, bg) {
+    var stroke = Math.min(0.9, alpha * 0.46);
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.fillStyle = 'rgba(' + color + ', ' + (alpha * 0.08) + ')';
+    ctx.beginPath(); ctx.ellipse(cx, cy - 1, 9, 3.5, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = bg;
+    ctx.lineWidth = 3.2;
+    ctx.beginPath(); ctx.moveTo(cx, cy - 2); ctx.quadraticCurveTo(cx - 2, cy - 12, cx + 1, cy - 19); ctx.stroke();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + stroke + ')';
+    ctx.lineWidth = 1.3;
+    ctx.stroke();
+    var crownY = cy - 19;
+    [[-11,-4],[-7,-9],[0,-11],[8,-8],[11,-3]].forEach(function(leaf, index) {
+      ctx.beginPath();
+      ctx.moveTo(cx + 1, crownY);
+      ctx.quadraticCurveTo(cx + leaf[0] * 0.45, crownY + leaf[1] * 0.22, cx + leaf[0], crownY + leaf[1]);
+      ctx.strokeStyle = 'rgba(' + color + ', ' + Math.min(0.95, stroke + (index === 2 ? 0.16 : 0)) + ')';
+      ctx.lineWidth = 1.7;
+      ctx.stroke();
+    });
+    ctx.fillStyle = 'rgba(' + color + ', ' + Math.min(1, alpha * 0.72) + ')';
+    ctx.beginPath(); ctx.arc(cx + 1, crownY, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawDepotMarker(ctx, cx, cy, color, alpha, bg) {
+    var stroke = 'rgba(' + color + ', ' + Math.min(0.9, alpha * 0.48) + ')';
+    ctx.save();
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, cy - 10); ctx.lineTo(cx, cy - 5); ctx.lineTo(cx, cy + 1); ctx.lineTo(cx - 10, cy - 4);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill(); ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx + 10, cy - 10); ctx.lineTo(cx, cy - 5); ctx.lineTo(cx, cy + 1); ctx.lineTo(cx + 10, cy - 4);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 21); ctx.lineTo(cx - 12, cy - 11); ctx.lineTo(cx, cy - 5); ctx.closePath();
+    ctx.fillStyle = 'rgba(' + color + ', ' + (alpha * 0.09) + ')'; ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 21); ctx.lineTo(cx + 12, cy - 11); ctx.lineTo(cx, cy - 5); ctx.closePath();
+    ctx.fillStyle = 'rgba(' + color + ', ' + (alpha * 0.14) + ')'; ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + Math.min(1, alpha * 0.68) + ')';
+    ctx.strokeRect(cx + 3, cy - 8, 3.5, 6);
+    ctx.restore();
+  }
+
+  function drawComputeMarker(ctx, cx, cy, color, alpha, time, bg) {
+    var w = 7, h = 3.5, d = 12, topY = cy - 12;
+    var stroke = 'rgba(' + color + ', ' + Math.min(1, alpha * 0.62) + ')';
+    ctx.save();
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx - w, topY); ctx.lineTo(cx, topY + h); ctx.lineTo(cx, topY + h + d); ctx.lineTo(cx - w, topY + d);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill(); ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx + w, topY); ctx.lineTo(cx, topY + h); ctx.lineTo(cx, topY + h + d); ctx.lineTo(cx + w, topY + d);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill(); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx, topY, w, h, 1.2);
+    ctx.fillStyle = 'rgba(' + color + ', ' + (alpha * 0.16) + ')'; ctx.fill(); ctx.stroke();
+    var blink = reduceMotion ? 0.8 : 0.58 + Math.sin(time * 2.4) * 0.25;
+    ctx.fillStyle = 'rgba(' + color + ', ' + Math.min(1, alpha * blink) + ')';
+    [-3.5, 0, 3.5].forEach(function(offset) {
+      ctx.beginPath(); ctx.arc(cx + offset, topY + h + 7, 0.9, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.strokeStyle = 'rgba(' + color + ', ' + Math.min(0.9, alpha * 0.44) + ')';
+    ctx.beginPath(); ctx.moveTo(cx, topY - 1); ctx.lineTo(cx, topY - 7); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, topY - 9, 1.7, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawProducerMarker(ctx, cx, cy, colors, alpha, time, active) {
+    var tone = colors.yellow;
+    drawComputeMarker(ctx, cx, cy, tone, alpha, time, colors.bg);
+    var brainY = cy - 33;
+    var nodes = [[-6,1],[-3,-5],[2,-7],[7,-2],[6,5],[0,6],[-6,5]];
+    var links = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0],[1,5],[2,4]];
+    var pulse = reduceMotion ? 0.75 : 0.62 + Math.sin(time * 2.2) * 0.18;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(0.72, alpha * (active ? 0.48 : 0.28)) + ')';
+    ctx.lineWidth = 0.75;
+    links.forEach(function(link) {
+      ctx.beginPath();
+      ctx.moveTo(cx + nodes[link[0]][0], brainY + nodes[link[0]][1]);
+      ctx.lineTo(cx + nodes[link[1]][0], brainY + nodes[link[1]][1]);
+      ctx.stroke();
+    });
+    nodes.forEach(function(node, index) {
+      ctx.fillStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * (active && index % 2 === 0 ? pulse : 0.58)) + ')';
+      ctx.beginPath(); ctx.arc(cx + node[0], brainY + node[1], active ? 1.5 : 1.1, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(0.8, alpha * 0.44) + ')';
+    ctx.beginPath(); ctx.ellipse(cx, brainY, 10.5, 8.5, 0, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawConsumerMarker(ctx, cx, cy, colors, alpha, time, active) {
+    var tone = colors.pink;
+    var top = cy - 25 + (reduceMotion || !active ? 0 : Math.sin(time * 1.8) * 0.7);
+    ctx.save();
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, top); ctx.lineTo(cx + 10, top + 2); ctx.lineTo(cx + 8, top + 14); ctx.lineTo(cx - 8, top + 12);
+    ctx.closePath(); ctx.fillStyle = colors.bg; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * (active ? 0.82 : 0.54)) + ')';
+    ctx.lineWidth = 1.1; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - 6, top + 5); ctx.lineTo(cx - 3, top + 8); ctx.lineTo(cx - 6, top + 11); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, top + 11); ctx.lineTo(cx + 5, top + 11.5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, top + 14); ctx.lineTo(cx - 2, cy - 4); ctx.lineTo(cx + 4, cy - 3); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx + 1, cy - 1, 8, 3.5, 1.2);
+    ctx.fillStyle = colors.bg; ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  function panelPath(ctx, x, y, w, h, radius) {
+    var r = Math.min(radius, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function drawProducerRoleIcon(ctx, cx, cy, colors, alpha, time, active) {
+    var tone = colors.yellow, x = cx - 10, y = cy - 30;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.74) + ')';
+    ctx.lineWidth = 1;
+    [-6, 0, 6].forEach(function(offset) {
+      ctx.beginPath(); ctx.moveTo(cx + offset, y - 2.5); ctx.lineTo(cx + offset, y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx + offset, y + 17); ctx.lineTo(cx + offset, y + 19.5); ctx.stroke();
+    });
+    panelPath(ctx, x, y, 20, 17, 4);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.94)' : 'rgba(255,255,255,0.96)'; ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.96) + ')';
+    ctx.font = '700 8px Satoshi, system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('AI', cx, y + 9);
+    if (active && !reduceMotion) {
+      ctx.strokeStyle = 'rgba(' + tone + ', 0.26)';
+      ctx.beginPath(); ctx.moveTo(x + 3, y + 4 + ((time * 7) % 9)); ctx.lineTo(x + 17, y + 4 + ((time * 7) % 9)); ctx.stroke();
+    }
+    ctx.beginPath(); ctx.moveTo(cx, y + 17); ctx.lineTo(cx, cy - 3); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx, cy - 1, 7, 3, 1.2); ctx.fillStyle = colors.bg; ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawConsumerRoleIcon(ctx, cx, cy, colors, alpha, time, active) {
+    var tone = colors.pink, x = cx - 11, y = cy - 29;
+    ctx.save();
+    panelPath(ctx, x, y, 22, 16, 4);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.94)' : 'rgba(255,255,255,0.96)'; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.82) + ')'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = 'rgba(' + tone + ', ' + Math.min(1, alpha * 0.95) + ')';
+    ctx.font = '700 8px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    var cursor = active && !reduceMotion && Math.sin(time * 4.5) < 0 ? ' ' : '_';
+    ctx.fillText('>' + cursor, cx, y + 8.5);
+    ctx.beginPath(); ctx.moveTo(cx, y + 16); ctx.lineTo(cx, cy - 3); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx, cy - 1, 7.5, 3, 1.2); ctx.fillStyle = colors.bg; ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawStatusBubble(ctx, cx, cy, symbol, color, colors, time, phase) {
+    var bob = reduceMotion ? 0 : Math.sin(time * 2 + phase) * 1.4;
+    var x = cx - 10, y = cy - 52 + bob, w = 20, h = 17, r = 5;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(cx + 2.5, y + h); ctx.lineTo(cx, y + h + 3.5); ctx.lineTo(cx - 2.5, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.94)' : 'rgba(255,255,255,0.96)'; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', 0.82)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = 'rgba(' + color + ', 0.96)';
+    ctx.font = '700 10px Satoshi, system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(symbol, cx, y + 8);
+    ctx.restore();
+  }
+
   // Draw grid floor lines
-  function drawGrid(ctx, ox, oy, gridCols, gridRows, color) {
-    ctx.strokeStyle = 'rgba(' + color + ', 0.1)';
+  function drawGrid(ctx, ox, oy, gridCols, gridRows, color, alpha) {
+    ctx.strokeStyle = 'rgba(' + color + ', ' + alpha + ')';
     ctx.lineWidth = 0.5;
     for (var r = 0; r <= gridRows; r++) {
       var a = toScreen(0, r, ox, oy);
@@ -106,23 +311,122 @@
     }
   }
 
+  function buildGridRoute(from, to, alternate) {
+    var path = [{ c: from[0], r: from[1] }];
+    var c = from[0];
+    var r = from[1];
+    var moveColumn = alternate;
+    while (c !== to[0] || r !== to[1]) {
+      if (c !== to[0] && (r === to[1] || moveColumn)) c += Math.sign(to[0] - c);
+      else r += Math.sign(to[1] - r);
+      path.push({ c: c, r: r });
+      moveColumn = !moveColumn;
+    }
+    return path;
+  }
+
+  function pointOnGridRoute(path, progress, ox, oy) {
+    var segments = Math.max(1, path.length - 1);
+    var scaled = Math.min(segments - 0.0001, progress * segments);
+    var index = Math.floor(scaled);
+    var local = scaled - index;
+    var a = toScreen(path[index].c, path[index].r, ox, oy);
+    var next = path[Math.min(index + 1, path.length - 1)];
+    var b = toScreen(next.c, next.r, ox, oy);
+    return { x: a.x + (b.x - a.x) * local, y: a.y + (b.y - a.y) * local };
+  }
+
+  function drawMiniCargo(ctx, cx, cy, color, bg, strength) {
+    var w = 5, h = 2.8, d = 5;
+    cy -= 4;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - w, cy); ctx.lineTo(cx, cy + h); ctx.lineTo(cx, cy + h + d); ctx.lineTo(cx - w, cy + d);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + Math.min(1, 0.78 * strength) + ')'; ctx.lineWidth = 0.9; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx + w, cy); ctx.lineTo(cx, cy + h); ctx.lineTo(cx, cy + h + d); ctx.lineTo(cx + w, cy + d);
+    ctx.closePath(); ctx.fillStyle = bg; ctx.fill(); ctx.stroke();
+    drawRoundedIsoDiamond(ctx, cx, cy, w, h, 1);
+    ctx.fillStyle = 'rgba(' + color + ', ' + (0.16 * strength) + ')'; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + Math.min(1, 0.94 * strength) + ')'; ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawMiniDemandToken(ctx, cx, cy, color, colors) {
+    var x = cx - 7, y = cy - 14;
+    ctx.save();
+    var glow = ctx.createRadialGradient(cx, y + 7, 0, cx, y + 7, 13);
+    glow.addColorStop(0, 'rgba(' + color + ', ' + (colors.dark ? 0.38 : 0.24) + ')');
+    glow.addColorStop(1, 'rgba(' + color + ', 0)');
+    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, y + 7, 13, 0, Math.PI * 2); ctx.fill();
+    panelPath(ctx, x, y, 14, 14, 5);
+    ctx.fillStyle = colors.dark ? 'rgba(10,10,10,0.96)' : 'rgba(255,255,255,0.97)'; ctx.fill();
+    ctx.strokeStyle = 'rgba(' + color + ', 0.94)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = 'rgba(' + color + ', 1)';
+    ctx.font = '700 9px Satoshi, system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('?', cx, y + 6.7);
+    ctx.restore();
+  }
+
+  function drawConnection(ctx, from, to, ox, oy, color, colors, time, phase, intensity, showCargo) {
+    var path = buildGridRoute(from, to, phase > 0.3);
+    ctx.save();
+    path.forEach(function(cell, index) {
+      if (index === 0 || index === path.length - 1) return;
+      var point = toScreen(cell.c, cell.r, ox, oy);
+      drawRoundedIsoDiamond(ctx, point.x, point.y, TX - 5, TY - 3, 2.5);
+      ctx.fillStyle = 'rgba(' + color + ', ' + (colors.dark ? 0.045 : 0.085) + ')';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(' + color + ', ' + (colors.dark ? 0.22 : 0.4) + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    });
+
+    if (showCargo) {
+      var progress = reduceMotion ? 0.55 : (time * 0.16 + phase) % 1;
+      var packet = pointOnGridRoute(path, progress, ox, oy);
+      var glow = ctx.createRadialGradient(packet.x, packet.y, 0, packet.x, packet.y, 10);
+      glow.addColorStop(0, 'rgba(' + color + ', ' + (colors.dark ? 0.35 : 0.24) + ')');
+      glow.addColorStop(1, 'rgba(' + color + ', 0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath(); ctx.arc(packet.x, packet.y, 10, 0, Math.PI * 2); ctx.fill();
+      drawMiniDemandToken(ctx, packet.x, packet.y, colors.pink, colors);
+    }
+    ctx.restore();
+  }
+
+  function drawPulseRing(ctx, point, color, time, phase, intensity) {
+    var pulse = reduceMotion ? 0.42 : (time * 0.38 + phase) % 1;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(' + color + ', ' + ((1 - pulse) * 0.4 * intensity) + ')';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.ellipse(point.x, point.y + 4, 8 + pulse * 19, 4 + pulse * 9, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
   // Scene definitions: each is a grid size + list of tiles
   // tile: [col, row, type] where type: 1=island, 2=palm, 3=hut, 4=compute
   var scenes = {
     // Proximity — a cluster of nearby islands, one highlighted
     routing: {
       cols: 5, rows: 5,
-      tiles: [[1,2,1],[2,1,2],[2,2,1],[2,3,1],[3,2,2],[3,3,1]]
+      tiles: [[1,2,5],[2,1,1],[2,2,1],[2,3,1],[3,2,6],[3,3,2]],
+      links: [[0,4]], tone: 'wire'
     },
     // Market — islands at varying "heights" (drawn with extra depth)
     exchange: {
       cols: 5, rows: 4,
-      tiles: [[1,1,4],[2,2,1],[3,1,2],[3,2,1],[1,2,1]]
+      tiles: [[1,1,6],[2,2,1],[3,1,6],[3,2,6],[1,2,5]],
+      links: [[4,0]], tone: 'yellow'
     },
     // Security — single fortified island with hut
     security: {
       cols: 4, rows: 4,
-      tiles: [[1,1,1],[2,1,1],[1,2,3],[2,2,1]]
+      tiles: [[1,1,5],[2,1,1],[1,2,3],[2,2,6]],
+      links: [[0,3]], tone: 'pink'
     },
     // Streaming — chain of islands
     streaming: {
@@ -141,63 +445,173 @@
     }
   };
 
-  function renderScene(canvas, sceneName) {
-    var scene = scenes[sceneName];
-    if (!scene) return;
+  var states = [];
+  var startTime = performance.now();
 
-    var ctx = canvas.getContext('2d');
+  function resizeState(state) {
+    var rect = state.canvas.getBoundingClientRect();
     var dpr = window.devicePixelRatio || 1;
-    var rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    state.canvas.width = Math.max(1, Math.round(rect.width * dpr));
+    state.canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    state.canvas.style.width = rect.width + 'px';
+    state.canvas.style.height = rect.height + 'px';
+    state.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    state.width = rect.width;
+    state.height = rect.height;
+  }
 
-    var w = rect.width, h = rect.height;
-    var colors = getColors();
-    var teal = colors.wire, bg = colors.bg;
+  function tileLift(sceneName, index, time, hover) {
+    if (reduceMotion) return 0;
+    if (sceneName === 'exchange') {
+      return -Math.max(0, Math.sin(time * 1.35 + index * 1.2)) * (hover ? 6 : 3.5);
+    }
+    if (sceneName === 'routing' && index === 2) {
+      return -1.5 - Math.sin(time * 1.6) * (hover ? 1.8 : 0.8);
+    }
+    return 0;
+  }
 
-    // Center the grid in the canvas
-    var gridW = (scene.cols + scene.rows) * TX;
+  function renderState(state, time) {
+    var scene = state.scene;
+    var ctx = state.ctx;
+    var w = state.width;
+    var h = state.height;
+    if (!w || !h) return;
+
+    state.x += (state.targetX - state.x) * 0.08;
+    state.y += (state.targetY - state.y) * 0.08;
+
+    var colors = state.colors;
+    var teal = colors.wire;
+    var bg = colors.bg;
+    var tone = colors[scene.tone] || teal;
+    var intensity = state.hover ? 1 : 0.72;
     var gridH = (scene.cols + scene.rows) * TY;
-    var ox = w / 2 - (scene.cols - scene.rows) * TX / 2;
-    var oy = h / 2 - gridH / 2 + TY;
+    var ox = w / 2 - (scene.cols - scene.rows) * TX / 2 + state.x * 5;
+    var oy = h / 2 - gridH / 2 + TY + state.y * 3;
+    var positions = [];
+    var floorOy = oy + TY - 1 + TILE_H;
 
     ctx.clearRect(0, 0, w, h);
+    drawGrid(ctx, ox, floorOy, scene.cols, scene.rows, teal, colors.gridAlpha);
 
-    // Draw grid floor
-    var floorOy = oy + TY - 1 + TILE_H;
-    drawGrid(ctx, ox, floorOy, scene.cols, scene.rows, teal);
-
-    // Pass 1: sides (back to front)
     for (var i = 0; i < scene.tiles.length; i++) {
-      var t = scene.tiles[i];
-      var pos = toScreen(t[0], t[1], ox, oy);
-      drawCuboidSides(ctx, pos.x, pos.y, teal, 1, bg);
+      var tile = scene.tiles[i];
+      var point = toScreen(tile[0], tile[1], ox, oy);
+      point.y += tileLift(state.name, i, time, state.hover);
+      positions.push(point);
     }
 
-    // Pass 2: tops + decorations
-    for (var i = 0; i < scene.tiles.length; i++) {
-      var t = scene.tiles[i];
-      var pos = toScreen(t[0], t[1], ox, oy);
-      drawCuboidTop(ctx, pos.x, pos.y, teal, 1, bg);
-      if (t[2] === 2) drawPalmTree(ctx, pos.x, pos.y, teal, 1, bg);
-      if (t[2] === 3) drawMountain(ctx, pos.x, pos.y, teal, 1, bg);
-      if (t[2] === 4) drawComputeNode(ctx, pos.x, pos.y, teal, 1, bg);
-    }
-  }
-
-  function initAll() {
-    var canvases = document.querySelectorAll('canvas[data-island-scene]');
-    canvases.forEach(function(c) {
-      renderScene(c, c.getAttribute('data-island-scene'));
+    (scene.links || []).forEach(function(link, index) {
+      drawConnection(ctx, scene.tiles[link[0]], scene.tiles[link[1]], ox, floorOy,
+        tone, colors, time, index * 0.23, intensity, index === 0);
     });
+
+    for (var sideIndex = 0; sideIndex < scene.tiles.length; sideIndex++) {
+      drawCuboidSides(ctx, positions[sideIndex].x, positions[sideIndex].y, teal, 0.88 * colors.strength, bg);
+    }
+
+    for (var topIndex = 0; topIndex < scene.tiles.length; topIndex++) {
+      var currentTile = scene.tiles[topIndex];
+      var pos = positions[topIndex];
+      drawCuboidTop(ctx, pos.x, pos.y, teal, colors.strength, bg);
+      if (currentTile[2] === 2) drawTreeMarker(ctx, pos.x, pos.y, teal, colors.strength, bg);
+      if (currentTile[2] === 3) drawDepotMarker(ctx, pos.x, pos.y, teal, colors.strength, bg);
+      if (currentTile[2] === 4) drawComputeMarker(ctx, pos.x, pos.y, teal, colors.strength, time, bg);
+      if (currentTile[2] === 5) drawConsumerRoleIcon(ctx, pos.x, pos.y, colors, colors.strength, time, true);
+      if (currentTile[2] === 6) {
+        var activeProducerIndex = state.name === 'exchange' ? 0 : (state.name === 'routing' ? 4 : 3);
+        drawProducerRoleIcon(ctx, pos.x, pos.y, colors, colors.strength, time, topIndex === activeProducerIndex);
+      }
+    }
+
+    scene.tiles.forEach(function(tile, index) {
+      if (tile[2] === 5) drawStatusBubble(ctx, positions[index].x, positions[index].y, '?', colors.pink, colors, time, index);
+      if (tile[2] === 6 && (state.name !== 'exchange' || index === 0))
+        drawStatusBubble(ctx, positions[index].x, positions[index].y, '!', colors.yellow, colors, time, index);
+    });
+
+    intensity *= colors.strength;
+    if (state.name === 'routing') drawPulseRing(ctx, positions[4], tone, time, 0.08, intensity);
+    if (state.name === 'exchange') {
+      drawPulseRing(ctx, positions[0], tone, time, 0, intensity);
+      drawPulseRing(ctx, positions[3], tone, time, 0.52, intensity * 0.7);
+    }
+    if (state.name === 'security') {
+      drawPulseRing(ctx, positions[3], tone, time * 0.72, 0.1, intensity);
+      drawPulseRing(ctx, positions[3], tone, time * 0.72, 0.58, intensity * 0.68);
+    }
   }
 
-  // Init + re-render on resize and theme change
-  initAll();
-  window.addEventListener('resize', initAll);
-  var obs = new MutationObserver(initAll);
+  function createState(canvas) {
+    var name = canvas.getAttribute('data-island-scene');
+    var scene = scenes[name];
+    if (!scene) return null;
+    var state = {
+      canvas: canvas,
+      ctx: canvas.getContext('2d'),
+      name: name,
+      scene: scene,
+      colors: getColors(),
+      width: 0,
+      height: 0,
+      visible: true,
+      hover: false,
+      x: 0,
+      y: 0,
+      targetX: 0,
+      targetY: 0
+    };
+
+    canvas.addEventListener('pointerenter', function() { state.hover = true; });
+    canvas.addEventListener('pointermove', function(event) {
+      var rect = canvas.getBoundingClientRect();
+      state.targetX = (event.clientX - rect.left) / rect.width * 2 - 1;
+      state.targetY = (event.clientY - rect.top) / rect.height * 2 - 1;
+    }, { passive: true });
+    canvas.addEventListener('pointerleave', function() {
+      state.hover = false;
+      state.targetX = 0;
+      state.targetY = 0;
+    });
+
+    resizeState(state);
+    return state;
+  }
+
+  document.querySelectorAll('canvas[data-island-scene]').forEach(function(canvas) {
+    var state = createState(canvas);
+    if (state) states.push(state);
+  });
+
+  var visibilityObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var state = states.find(function(item) { return item.canvas === entry.target; });
+      if (state) state.visible = entry.isIntersecting;
+    });
+  }, { threshold: 0 });
+  states.forEach(function(state) { visibilityObserver.observe(state.canvas); });
+
+  function frame(now) {
+    var time = reduceMotion ? 0 : (now - startTime) / 1000;
+    states.forEach(function(state) {
+      if (state.visible) renderState(state, time);
+    });
+    if (!reduceMotion) requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', function() {
+    states.forEach(function(state) { resizeState(state); });
+    if (reduceMotion) requestAnimationFrame(frame);
+  });
+
+  var obs = new MutationObserver(function() {
+    states.forEach(function(state) {
+      state.colors = getColors();
+      resizeState(state);
+    });
+    if (reduceMotion) requestAnimationFrame(frame);
+  });
   obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  requestAnimationFrame(frame);
 })();
