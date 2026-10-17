@@ -836,3 +836,15 @@ html.light .lab-chips .lab-chip-prototype { color: #b91c1c; border-color: #fecac
   font-size: var(--text-sm);
   font-weight: 700;
 }
+
+// Small phones: the header can't fit logo, theme toggle, Run a Job and the menu
+// button, so Run a Job moves into the mobile menu (see base.html)
+@media (max-width: 400px) {
+  .header-actions .nav-dropdown { display: none; }
+}
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

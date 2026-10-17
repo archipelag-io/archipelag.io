@@ -720,6 +720,9 @@ html.light .hero-glass {
   align-items: center;
   gap: var(--space-3);
   text-decoration: none;
+  // The <picture> is the flex item; without flex-shrink: 0 the global img
+  // max-width reset lets a crowded header collapse the brandmark to 0px
+  picture { display: block; flex-shrink: 0; }
   img { width: 32px; height: 32px; }
   .logo-text { font-family: var(--font-brand); font-size: var(--text-xl); font-weight: 300; color: var(--text); .dot { color: var(--accent); } }
 }
@@ -1061,8 +1064,9 @@ html.light .footer-logo img { filter: invert(1); }
 // Link columns grid
 .site-footer .footer-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 3rem 2rem;
+  // minmax(0, 1fr): long headings must not widen the columns past a 320px screen
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 3rem 1.5rem;
   margin-bottom: 5rem;
 
   @media (min-width: 768px) {
