@@ -18,6 +18,14 @@ run = "zola check"
 description = "Remove build artifacts"
 run = "rm -rf public"
 
+[tasks."cargo:sync"]
+description = "Snapshot the live Cargo catalog into data/cargos.json for /cargo"
+run = "python3 scripts/sync-cargo-catalog.py"
+
+[tasks."cargo:check"]
+description = "Fail if data/cargos.json differs from the live catalog"
+run = "python3 scripts/sync-cargo-catalog.py --check"
+
 [tasks."og:install"]
 description = "Install OG image generator dependencies"
 run = """

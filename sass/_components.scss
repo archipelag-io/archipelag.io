@@ -1387,14 +1387,17 @@ html.light .architecture-archipelago {
   display: flex;
   flex-direction: column;
   padding: var(--space-8);
-  background: var(--surface-1);
+  // Sits on bg-subtle sections, which share the surface-1 colour; the border keeps it visible
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s ease;
+  transition: border-color var(--transition-base), transform var(--transition-base);
 
   &:hover {
-    background: var(--surface-2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
   }
 }
 

@@ -40,8 +40,9 @@ financial_status = "Virtual credits only. Real-money billing and Island payouts 
 company_founded = "2025"
 waitlist_url = "https://buttondown.email/api/emails/embed-subscribe/raskell"
 design_partner_email = "partners@archipelag.io"
-# Model slug shown in public API examples — must be an approved, enabled Cargo
-example_model = "gguf-gemma-4-e4b"
+# Model slug shown in public API examples. Must be approved and enabled in the
+# production catalog (see data/cargos.json, refreshed by `mise run cargo:sync`).
+example_model = "gguf-qwen3.5-9b"
 
 # Navigation
 nav_items = [

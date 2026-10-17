@@ -149,6 +149,20 @@ Activated via `.dark` class on `<html>`. Theme preference stored in `localStorag
 <div class="split">50/50 two-column layout</div>
 ```
 
+## Cargo Catalog Data
+
+`/cargo` renders from `data/cargos.json`, a snapshot of the Coordinator's public
+`GET /api/v1/cargos` endpoint (enabled and approved Cargos only). Refresh it
+before a release and commit the result:
+
+```bash
+mise run cargo:sync    # write data/cargos.json from production
+mise run cargo:check   # exit 1 if the snapshot is stale
+```
+
+`example_model` in `config.toml` sets the model used in public API code samples;
+it must be a slug present in that snapshot.
+
 ## SEO & Accessibility
 
 All templates include:
