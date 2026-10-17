@@ -115,7 +115,7 @@ No. Confidential inference and hardware-attestation paths are experimental and h
 
 - Website: https://archipelag.io/
 - Run a Job: https://app.archipelag.io/chat
-- Operate an Island: https://archipelag.io/earn/
+- Run an Island: https://archipelag.io/earn/
 - Cargo Registry: https://app.archipelag.io/cargo
 - Status: https://archipelag.io/status/
 - Documentation: https://docs.archipelag.io/

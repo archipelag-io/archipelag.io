@@ -120,25 +120,28 @@
             <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
             <div class="container" style="position:relative;z-index:3;">
                 <div class="hero-glass">
-                    <h1 id="hero-title" class="hero-title">Free during Phase 2</h1>
+                    <span class="section-eyebrow">Pricing</span>
+                    <h1 id="hero-title" class="hero-title">Free <span class="accent">during Phase 2.</span></h1>
                     <p class="hero-subtitle">
                         Phase 2 runs on virtual credits &mdash; no real money, no credit card.
                         The planned commercial model is market-based, but paid pricing and terms are not finalized.
                     </p>
+                    <div class="hero-cta">
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create a free account <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                        <a href="#phase-2-simulation" class="btn btn-secondary btn-lg">Who pays what</a>
+                    </div>
                 </div>
             </div>
         </section>
         </div>
 
-        <div class="container maturity-key-wrap">
-            {% include "partials/maturity-key.html" %}
-        </div>
+        {% include "partials/page-nav.html" %}
 
         <!-- Beta -->
-        <section class="section pricing-section" aria-labelledby="beta-title">
+        <section id="phase-2-simulation" class="section pricing-section" aria-labelledby="beta-title" data-toc="Phase 2">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Phase 2 Simulation</span>
+                    <span class="section-eyebrow">Phase 2 Simulation</span>
                     <h2 id="beta-title" class="section-title">Free while the network is validated</h2>
                     <p class="section-subtitle">Phase 2 uses virtual credits &mdash; no real money changes hands. Nobody pays, nobody gets paid. The accounting and matching paths are being tested.</p>
                 </div>
@@ -197,10 +200,10 @@
         </section>
 
         <!-- How pricing will work -->
-        <section class="section section-alt" aria-labelledby="market-title">
+        <section id="planned-model" class="section section-alt" aria-labelledby="market-title" data-toc="Planned model">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Planned Model</span>
+                    <span class="section-eyebrow">Planned Model</span>
                     <h2 id="market-title" class="section-title">Market-based pricing</h2>
                     <p class="section-subtitle">The intended commercial model is market-based, but pricing, payment methods, and terms are not finalized.</p>
                 </div>
@@ -228,11 +231,11 @@
         </section>
 
         <!-- Design Partner Program -->
-        <section class="section section-alt" aria-labelledby="partner-title">
+        <section id="early-access" class="section section-alt" aria-labelledby="partner-title" data-toc="Design partners">
             <div class="container">
                 <div class="split">
                     <div class="preview-content">
-                        <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Early Access</span>
+                        <span class="section-eyebrow">Early Access</span>
                         <h2 id="partner-title" class="preview-title">Design Partner Program</h2>
                         <p class="preview-desc">
                             Work directly with the engineering team to test placement, execution records, and integration requirements. The program does not confer regulatory certification.
@@ -257,7 +260,7 @@
                             </li>
                         </ul>
 
-                        <a href="mailto:hey@archipelag.io" class="btn btn-primary btn-lg">Apply to be a Design Partner</a>
+                        <a href="mailto:{{ config.extra.design_partner_email }}?subject=Design%20partner%20program" class="btn btn-tropical btn-lg">Apply to be a design partner</a>
                     </div>
 
                     <div class="flex items-center justify-center p-8">
@@ -282,10 +285,10 @@
         </section>
 
         <!-- Enterprise Section -->
-        <section class="section" aria-labelledby="enterprise-title">
+        <section id="enterprise-private-preview" class="section" aria-labelledby="enterprise-title" data-toc="Enterprise">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Enterprise Private Preview</span>
+                    <span class="section-eyebrow">Enterprise Private Preview</span>
                     <h2 id="enterprise-title" class="section-title">For regulated industries</h2>
                     <p class="section-subtitle">We're exploring sovereign-compute requirements with a small number of design partners. Any evaluation scope and availability are confirmed case by case during Phase 2.</p>
                 </div>
@@ -318,16 +321,16 @@
                 </div>
 
                 <div class="text-center mt-12">
-                    <a href="mailto:hey@archipelag.io" class="btn btn-primary btn-lg">Become a Design Partner</a>
+                    <a href="mailto:{{ config.extra.design_partner_email }}?subject=Design%20partner%20program" class="btn btn-tropical btn-lg">Become a design partner</a>
                 </div>
             </div>
         </section>
 
         <!-- FAQ -->
-        <section class="section section-alt" aria-labelledby="faq-title">
+        <section id="faq" class="section section-alt" aria-labelledby="faq-title" data-toc="FAQ">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; FAQ</span>
+                    <span class="section-eyebrow">FAQ</span>
                     <h2 id="faq-title" class="section-title">Common questions</h2>
                 </div>
 

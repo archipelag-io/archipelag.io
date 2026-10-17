@@ -165,15 +165,14 @@
                     <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}"{% if current_path %}{% if current_path is starting_with(item.url) %} aria-current="page"{% endif %}{% endif %}>{{ item.name }}</a>
                     {% endfor %}
                     <div class="nav-menu-dropdown">
-                        <button class="nav-menu-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="community-menu">
-                            Community
+                        <button class="nav-menu-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="explore-menu">
+                            Explore
                             <svg class="nav-menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
-                        <div class="nav-menu-panel" id="community-menu">
+                        <div class="nav-menu-panel" id="explore-menu">
                             <a href="/cargo/" class="nav-menu-item">Cargo Registry</a>
-                            <a href="/matchmaking" class="nav-menu-item">Matchmaking</a>
-                            <a href="/use" class="nav-menu-item">Use AI</a>
-                            <a href="/earn" class="nav-menu-item">Operate an Island</a>
+                            <a href="/matchmaking" class="nav-menu-item">Compute Exchange</a>
+                            <a href="/status/" class="nav-menu-item">Current status</a>
                         </div>
                     </div>
                     <div class="nav-menu-dropdown">
@@ -183,8 +182,9 @@
                         </button>
                         <div class="nav-menu-panel" id="learn-menu">
                             <a href="https://docs.archipelag.io" class="nav-menu-item">Documentation</a>
-                            <a href="https://app.archipelag.io/api/v1/docs" class="nav-menu-item">API Specs</a>
+                            <a href="https://app.archipelag.io/api/v1/docs" class="nav-menu-item">API reference</a>
                             <a href="https://docs.archipelag.io/sdks/" class="nav-menu-item">SDKs</a>
+                            <a href="https://docs.archipelag.io/glossary/" class="nav-menu-item">Glossary</a>
                         </div>
                     </div>
                     <a href="/news" class="nav-link{% if current_path %}{% if current_path is starting_with('/news') %} active{% endif %}{% endif %}">News</a>
@@ -209,7 +209,7 @@
                     </button>
                     <div class="nav-dropdown md:block sm:hidden">
                         <div class="nav-dropdown-trigger">
-                            <a href="https://app.archipelag.io/playground" class="btn btn-primary btn-sm">Run a Job</a>
+                            <a href="https://app.archipelag.io/playground" class="btn btn-tropical btn-sm">Run a Job</a>
                             <button class="nav-dropdown-chevron" aria-label="More ways to use Archipelag.io" aria-expanded="false" aria-haspopup="true" aria-controls="product-menu">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -252,14 +252,17 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" aria-hidden="true">
             <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+                {%- for item in config.extra.nav_items %}
+                <a href="{{ item.url }}" class="nav-link{% if current_path %}{% if current_path is starting_with(item.url) %} active{% endif %}{% endif %}">{{ item.name }}</a>
+                {%- endfor %}
+                <span class="mobile-nav-heading">Explore</span>
+                <a href="/cargo/" class="nav-link">Cargo Registry</a>
+                <a href="/matchmaking" class="nav-link">Compute Exchange</a>
+                <a href="/status/" class="nav-link">Current status</a>
+                <a href="/news" class="nav-link">News</a>
                 <span class="mobile-nav-heading">Learn</span>
                 <a href="https://docs.archipelag.io" class="nav-link">Documentation</a>
-                <span class="mobile-nav-heading">Community</span>
-                <a href="/use" class="nav-link{% if current_path %}{% if current_path is starting_with('/use') %} active{% endif %}{% endif %}">Use AI</a>
-                <a href="/earn" class="nav-link{% if current_path %}{% if current_path is starting_with('/earn') %} active{% endif %}{% endif %}">Operate an Island</a>
-                <a href="/cargo/" class="nav-link">Cargo Registry</a>
-                <a href="/matchmaking" class="nav-link">Matchmaking</a>
-                <a href="/news" class="nav-link">News</a>
+                <a href="https://app.archipelag.io/api/v1/docs" class="nav-link">API reference</a>
             </nav>
             <div class="mobile-menu-actions">
                 <a href="https://app.archipelag.io/playground" class="btn btn-tropical w-full">Run a Job</a>
@@ -307,14 +310,14 @@
                         <div class="footer-heading">Platform</div>
                         <ul class="footer-links">
                             <li><a href="/use">Use AI</a></li>
-                            <li><a href="/earn">Operate an Island</a></li>
+                            <li><a href="/earn">Run an Island</a></li>
                             <li><a href="/pricing">Pricing</a></li>
                             <li><a href="https://app.archipelag.io/chat">Chat</a></li>
                             <li><a href="https://app.archipelag.io/image">Image Generation</a></li>
                             <li><a href="https://app.archipelag.io/batch">Batch Monitor</a></li>
                             <li><a href="https://app.archipelag.io/playground">Playground</a></li>
-                            <li><a href="/matchmaking">Matchmaking</a></li>
-                            <li><a href="https://app.archipelag.io/exchange">Compute Exchange</a></li>
+                            <li><a href="/matchmaking">Compute Exchange</a></li>
+                            <li><a href="https://app.archipelag.io/exchange">Live exchange</a></li>
                         </ul>
                     </nav>
                     <nav class="footer-column" aria-label="Cargo links">
@@ -356,7 +359,7 @@
 
                 <div class="footer-col-stack">
                     <nav class="footer-column" aria-label="Island links">
-                        <div class="footer-heading">Become an Island</div>
+                        <div class="footer-heading">Run an Island</div>
                         <ul class="footer-links">
                             <li><a href="/earn">Overview</a></li>
                             <li><a href="/earn#desktop">Desktop / Server</a></li>

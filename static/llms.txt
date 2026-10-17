@@ -42,7 +42,7 @@ Jobs favor nearby compatible Islands. Optional regional placement policies can r
 
 - Website: https://archipelag.io/
 - Run a Job: https://app.archipelag.io/chat
-- Operate an Island: https://archipelag.io/earn/
+- Run an Island: https://archipelag.io/earn/
 - Cargo Registry: https://app.archipelag.io/cargo
 - Documentation: https://docs.archipelag.io/
 - API Reference: https://app.archipelag.io/api/v1/docs
@@ -55,9 +55,9 @@ Jobs favor nearby compatible Islands. Optional regional placement policies can r
 ## Main pages
 
 - [Use AI](https://archipelag.io/use/)
-- [Operate an Island](https://archipelag.io/earn/)
+- [Run an Island](https://archipelag.io/earn/)
 - [Cargo Catalog](https://archipelag.io/cargo/)
-- [Matchmaking](https://archipelag.io/matchmaking/)
+- [Compute Exchange](https://archipelag.io/matchmaking/)
 - [Pricing and virtual credits](https://archipelag.io/pricing/)
 - [News](https://archipelag.io/news/)
 - [About](https://archipelag.io/about/)

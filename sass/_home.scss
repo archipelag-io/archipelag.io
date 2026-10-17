@@ -376,9 +376,9 @@ html.light .code-window {
 
 .maturity-col {
   padding: var(--space-8);
-  border-radius: var(--antigrid-radius-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-1);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border);
 
   @media (min-width: 768px) { padding: var(--space-10); }
 }
@@ -847,4 +847,85 @@ html.light .lab-chips .lab-chip-prototype { color: #b91c1c; border-color: #fecac
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+}
+
+// Ergonomics -------------------------------------------------------------------
+
+// Anchor targets land below the sticky header (and the page nav where present)
+html { scroll-padding-top: 72px; }
+html:has([data-page-nav]:not([hidden])) { scroll-padding-top: 128px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+// A hairline under the sticky header so content doesn't blur into it
+.site-header { border-bottom: 1px solid var(--border-subtle); }
+
+// In-page section navigation (long pages) --------------------------------------
+
+.page-nav {
+  position: sticky;
+  top: 48px;
+  z-index: 90;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+
+  @media (min-width: 768px) { top: 52px; }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+}
+
+.page-nav-label {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+
+  @media (max-width: 767px) { display: none; }
+}
+
+.page-nav-list {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-2) 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  // Fade the scrolling edge so it reads as "more to the right"
+  mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+// Two classes: must outrank the global `li a:not(.btn)` in-text link style
+.page-nav .page-nav-link {
+  display: block;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+
+  &:hover { color: var(--text); background: var(--surface-1); text-decoration: none; }
+
+  &.active {
+    color: var(--text);
+    background: var(--surface-2);
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
 }

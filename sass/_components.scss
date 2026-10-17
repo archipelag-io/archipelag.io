@@ -191,8 +191,8 @@ html.light .btn-tropical { color: #ffffff; }
 // Cards
 .card {
   background: var(--surface-1);
-  border: none;
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
 }
 
@@ -416,12 +416,15 @@ html.light .btn-tropical { color: #ffffff; }
   gap: var(--antigrid-gap);
 }
 
+// Every card on the site shares one shape: full radius, subtle border, and a
+// border highlight on hover (no per-position corner rounding)
 .antigrid-card {
   background: var(--surface-1);
-  border: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--antigrid-padding);
-  transition: background-color var(--transition-base);
-  &:hover { background: var(--surface-2); }
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+  &:hover { border-color: var(--text-tertiary); }
 }
 
 // Corner rounding
@@ -442,42 +445,26 @@ html.light .btn-tropical { color: #ffffff; }
 
 .antigrid-wrapper {
   background: transparent;
-  border-radius: calc(var(--antigrid-radius) + var(--antigrid-gap));
   padding: 0;
-  overflow: hidden;
 }
 
 // 6-card layout
 .antigrid-6 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  .antigrid-card:nth-child(1) { border-top-left-radius: var(--antigrid-radius-lg); border-top-right-radius: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-  .antigrid-card:nth-child(2) { border-radius: 0; }
-  .antigrid-card:nth-child(3) { border-top-left-radius: 0; border-top-right-radius: var(--antigrid-radius-lg); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-  .antigrid-card:nth-child(4) { border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: var(--antigrid-radius-lg); border-bottom-right-radius: 0; }
-  .antigrid-card:nth-child(5) { border-radius: 0; }
-  .antigrid-card:nth-child(6) { border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: 0; border-bottom-right-radius: var(--antigrid-radius-lg); }
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-    .antigrid-card:nth-child(1) { border-top-left-radius: var(--antigrid-radius-lg); border-top-right-radius: 0; border-bottom: 0; }
-    .antigrid-card:nth-child(2) { border-top-right-radius: var(--antigrid-radius-lg); border-top-left-radius: 0; border-bottom: 0; }
-    .antigrid-card:nth-child(3), .antigrid-card:nth-child(4) { border-radius: 0; }
-    .antigrid-card:nth-child(5) { border-bottom-left-radius: var(--antigrid-radius-lg); border-radius: 0; border-bottom-left-radius: var(--antigrid-radius-lg); }
-    .antigrid-card:nth-child(6) { border-radius: 0; border-bottom-right-radius: var(--antigrid-radius-lg); }
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    .antigrid-card { border-radius: 0; }
-    .antigrid-card:first-child { border-top-left-radius: var(--antigrid-radius-lg); border-top-right-radius: var(--antigrid-radius-lg); }
-    .antigrid-card:last-child { border-bottom-left-radius: var(--antigrid-radius-lg); border-bottom-right-radius: var(--antigrid-radius-lg); }
   }
 }
 
 // Bento layout
 .antigrid-bento {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: auto;
   .antigrid-card { min-height: 200px; }
   .span-2 { grid-column: span 2; }
@@ -489,7 +476,7 @@ html.light .btn-tropical { color: #ffffff; }
   .antigrid-card.bento-accent { background: var(--accent); border-color: var(--accent); color: white; --text: white; --text-secondary: rgba(255,255,255,0.8); &:hover { background: var(--accent-light); border-color: var(--accent-light); } }
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     .span-3 { grid-column: span 2; }
     .antigrid-card.bento-hero { grid-column: span 2; }
   }
@@ -502,29 +489,19 @@ html.light .btn-tropical { color: #ffffff; }
 
 // 3-card layout
 .antigrid-3 {
-  grid-template-columns: repeat(3, 1fr);
-  .antigrid-card:nth-child(1) { border-top-left-radius: var(--antigrid-radius-lg); border-bottom-left-radius: var(--antigrid-radius-lg); border-top-right-radius: 0; border-bottom-right-radius: 0; }
-  .antigrid-card:nth-child(2) { border-radius: 0; }
-  .antigrid-card:nth-child(3) { border-top-right-radius: var(--antigrid-radius-lg); border-bottom-right-radius: var(--antigrid-radius-lg); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    .antigrid-card { border-radius: 0; }
-    .antigrid-card:first-child { border-top-left-radius: var(--antigrid-radius-lg); border-top-right-radius: var(--antigrid-radius-lg); }
-    .antigrid-card:last-child { border-bottom-left-radius: var(--antigrid-radius-lg); border-bottom-right-radius: var(--antigrid-radius-lg); }
   }
 }
 
 // 2-card layout
 .antigrid-2 {
-  grid-template-columns: repeat(2, 1fr);
-  .antigrid-card:nth-child(1) { border-top-left-radius: var(--antigrid-radius-lg); border-bottom-left-radius: var(--antigrid-radius-lg); border-top-right-radius: 0; border-bottom-right-radius: 0; }
-  .antigrid-card:nth-child(2) { border-top-right-radius: var(--antigrid-radius-lg); border-bottom-right-radius: var(--antigrid-radius-lg); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    .antigrid-card:nth-child(1) { border-top-left-radius: var(--antigrid-radius-lg); border-top-right-radius: var(--antigrid-radius-lg); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-    .antigrid-card:nth-child(2) { border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: var(--antigrid-radius-lg); border-bottom-right-radius: var(--antigrid-radius-lg); }
   }
 }
 
@@ -910,7 +887,7 @@ html:not(.light) {
 .blog-title {
   font-family: var(--font-brand);
   font-size: var(--text-4xl);
-  font-weight: 300;
+  font-weight: 600;
   color: var(--text);
   margin-top: var(--space-2);
   margin-bottom: var(--space-4);
