@@ -40,6 +40,38 @@
 // Font utility classes
 .font-subline { font-family: var(--font-subline); }
 
+// Text and spacing helpers used by page templates. These were dropped when the
+// site moved to design-system tokens, which left those elements unstyled.
+.text-center { text-align: center; }
+.text-sm { font-size: var(--text-sm); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-6xl { font-size: var(--text-6xl); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-accent { color: var(--accent); }
+.font-brand { font-family: var(--font-brand); }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.border-t { border-top: 1px solid var(--border); }
+.max-w-4xl { max-width: 56rem; }
+
+.mt-2 { margin-top: var(--space-2); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.pt-8 { padding-top: var(--space-8); }
+
 // Prose styling for content pages
 .prose {
   max-width: 65ch;

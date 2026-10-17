@@ -42,7 +42,7 @@ These labels are shared by the marketing site, application, and documentation. S
 - Consumer account access and API-key management
 - Job submission through supported web and API paths
 - Streaming AI inference where an approved Cargo and compatible Island are available
-- Island registration, heartbeats, capability reporting, placement, and Karma signals
+- Island registration, heartbeats, capability reporting, placement, and Karma tracking
 - Nearby-first placement and configured regional restrictions
 - The public Cargo Registry and virtual Compute Exchange
 

@@ -14,7 +14,7 @@ This page describes the current Phase 2 security model. Experimental features ar
 - **Islands run controlled Cargos.** The standard Island software accepts network-approved, signed Cargo artifacts rather than arbitrary Consumer code.
 - **Cargos are isolated from the Island.** Container execution uses resource limits, seccomp profiles, and registry controls appropriate to the configured sandbox tier.
 - **Consumers are separated from Island operators.** A Consumer's account identity is not sent to an Island as part of a Job.
-- **Failure is expected.** Heartbeats, acknowledgements, retries, requeueing, and Karma signals help the Coordinator respond when an Island becomes unavailable.
+- **Failure is expected.** Heartbeats, acknowledgements, retries, requeueing, and cooldowns after failures help the Coordinator respond when an Island becomes unavailable.
 
 No sandbox is a substitute for a patched operating system. Island operators remain responsible for securing the machines and networks they contribute.
 

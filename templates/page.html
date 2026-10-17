@@ -44,15 +44,15 @@
 {% block content %}
         <section class="section">
             <div class="container">
-                <article class="max-w-2xl mx-auto" itemscope itemtype="https://schema.org/WebPage">
-                    <header class="text-center mb-12">
-                        <h1 class="font-brand text-4xl font-light mb-4" itemprop="name">{{ page.title }}</h1>
+                <article class="page-article" itemscope itemtype="https://schema.org/WebPage">
+                    <header class="page-header">
+                        <h1 class="page-title" itemprop="name">{{ page.title }}</h1>
                         {% if page.description %}
-                        <p class="text-xl text-secondary" itemprop="description">{{ page.description }}</p>
+                        <p class="page-lede" itemprop="description">{{ page.description }}</p>
                         {% endif %}
                         {% if page.date %}
-                        <time class="text-sm text-tertiary mt-4 block" datetime="{{ page.date }}" itemprop="dateModified">
-                            {{ page.date | date(format="%B %d, %Y") }}
+                        <time class="page-meta" datetime="{{ page.date }}" itemprop="dateModified">
+                            Updated {{ page.date | date(format="%B %d, %Y") }}
                         </time>
                         {% endif %}
                         {% if current_path == "/about/" %}

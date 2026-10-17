@@ -20,13 +20,13 @@ Archipelag.io is in Phase 2. Access is free and credits-only while the approved 
 - **Coordinator**: handles placement, dispatch, identity, accounting, and health.
 - **Job**: one unit of requested work.
 - **Cargo**: an approved signed package that performs Jobs. Code and API identifiers may still use `workload`.
-- **Karma**: a signal based on Island reliability, latency, and uptime.
+- **Karma**: an Island track record built from hours of successful compute and reduced by failures, timeouts, and disconnects.
 
 ## What can be tested
 
 - AI inference Jobs, including streaming chat and image generation where a compatible Cargo and Island are available.
 - An OpenAI-compatible chat-completions API.
-- Nearby-first placement using capability, availability, latency, regional policy, and Karma signals.
+- Region-first placement using capability fit, region, availability, current load, and optional regional policy.
 - Approved Cargo execution across container, WASM, GGUF, ONNX, CoreML, and related runtime formats.
 - Virtual supply-and-demand accounting in the Compute Exchange.
 

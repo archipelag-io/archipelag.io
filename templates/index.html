@@ -181,7 +181,7 @@
                         "@type": "HowToStep",
                         "position": 3,
                         "name": "Get streaming results",
-                        "text": "Responses arrive token-by-token from the nearest available Island."
+                        "text": "Responses stream token by token from a capable Island, preferring your region."
                     }
                 ]
             },
@@ -404,7 +404,7 @@ stream = client.chat.completions.create(
                         <ul class="preview-list" role="list" aria-label="What Island operators get">
                             <li>{{ check_icon | safe }}<span><strong>Only approved code.</strong> Islands run signed, reviewed Cargos in a sandbox with resource limits.</span></li>
                             <li>{{ check_icon | safe }}<span><strong>Your rules.</strong> Set availability hours and a per-Cargo asking price; change them anytime.</span></li>
-                            <li>{{ check_icon | safe }}<span><strong>Reputation from day one.</strong> Reliable Islands build Karma, which the network uses when placing Jobs.</span></li>
+                            <li>{{ check_icon | safe }}<span><strong>Reputation from day one.</strong> Hours of successful compute build Karma, your Island&rsquo;s public track record.</span></li>
                         </ul>
 
                         <p class="phase-note">
@@ -437,7 +437,7 @@ stream = client.chat.completions.create(
                         <ul class="capability-list" role="list">
                             <li><strong>Streaming chat API</strong><span>OpenAI-compatible <code>/v1/chat/completions</code>, token-by-token.</span></li>
                             <li><strong>Web chat &amp; playground</strong><span>Try models and API parameters in the browser.</span></li>
-                            <li><strong>Proximity-aware placement</strong><span>Measured latency, capability, availability, and Karma decide the Island.</span></li>
+                            <li><strong>Region-aware placement</strong><span>Jobs go to a capable Island in your region first, then neighbouring regions.</span></li>
                             <li><strong>Regional placement policies</strong><span>Restrict where a Job may run and see which Island ran it.</span></li>
                             <li><strong>Signed, sandboxed Cargos</strong><span>Signature checks, registry allowlist, seccomp profiles, resource caps.</span></li>
                             <li><strong>Cargo Registry</strong><span>Browse the approved catalog and its hardware requirements.</span></li>
