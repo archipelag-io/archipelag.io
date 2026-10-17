@@ -47,7 +47,8 @@ example_model = "gguf-qwen3.5-9b"
 # Navigation
 nav_items = [
     { name = "Use AI", url = "/use" },
-    { name = "Operate an Island", url = "/earn" },
+    { name = "Run an Island", url = "/earn" },
+    { name = "Pricing", url = "/pricing" },
 ]
 
 # Social links

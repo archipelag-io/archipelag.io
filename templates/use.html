@@ -195,9 +195,7 @@
         </section>
         </div>
 
-        <div class="container maturity-key-wrap">
-            {% include "partials/maturity-key.html" %}
-        </div>
+        {% include "partials/page-nav.html" %}
 
         <!-- What's a Cargo? -->
         <section class="section-sm" style="padding-top: var(--space-12); padding-bottom: var(--space-4);">
@@ -249,10 +247,10 @@
         </section>
 
         <!-- Getting started -->
-        <section class="section" aria-labelledby="getting-started-title">
+        <section id="getting-started" class="section" aria-labelledby="getting-started-title" data-toc="Get started">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Getting Started</span>
+                    <span class="section-eyebrow">Getting Started</span>
                     <h2 id="getting-started-title" class="section-title">Three steps to your first inference</h2>
                 </div>
 
@@ -279,10 +277,10 @@
         </section>
 
         <!-- What's available -->
-        <section id="capabilities" class="section section-alt-flat" aria-labelledby="capabilities-title">
+        <section id="capabilities" class="section section-alt-flat" aria-labelledby="capabilities-title" data-toc="Models">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Cargos</span>
+                    <span class="section-eyebrow">Cargos</span>
                     <h2 id="capabilities-title" class="section-title">What you can run today</h2>
                     <p class="section-subtitle">Streaming language-model inference is the launch path. Image and other Cargo availability depends on approved artifacts and compatible online Islands.</p>
                 </div>
@@ -360,24 +358,24 @@
         </section>
 
         <!-- API section -->
-        <section id="api" class="section" aria-labelledby="api-title">
+        <section id="api" class="section" aria-labelledby="api-title" data-toc="API">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Integration</span>
+                    <span class="section-eyebrow">Integration</span>
                     <h2 id="api-title" class="section-title">OpenAI-compatible API</h2>
                     <p class="section-subtitle">Use the OpenAI-compatible chat-completions path with supported request and streaming options. Change the base URL, then validate the options your integration relies on.</p>
                 </div>
 
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
-                        <div class="antigrid-card">
-                            <figure class="code-block w-full" role="figure" aria-label="Python streaming example">
+                        <figure class="code-window" aria-label="Python streaming example">
+                                <div class="code-window-bar" aria-hidden="true"><span class="code-window-dots"><i></i><i></i><i></i></span><span class="code-window-title">stream.py</span></div>
                                 <pre><code><span class="code-comment"># Python &mdash; streaming chat</span>
 <span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
 
 client = OpenAI(
     base_url=<span class="code-string">"https://app.archipelag.io/api/v1"</span>,
-    api_key=<span class="code-string">"your-key"</span>
+    api_key=<span class="code-string">"YOUR_API_KEY"</span>
 )
 
 stream = client.chat.completions.create(
@@ -388,17 +386,16 @@ stream = client.chat.completions.create(
 
 <span class="code-keyword">for</span> chunk <span class="code-keyword">in</span> stream:
     print(chunk.choices[0].delta.content, end=<span class="code-string">""</span>)</code></pre>
-                            </figure>
-                        </div>
+                        </figure>
 
-                        <div class="antigrid-card">
-                            <figure class="code-block w-full" role="figure" aria-label="JavaScript streaming example">
+                        <figure class="code-window" aria-label="JavaScript streaming example">
+                                <div class="code-window-bar" aria-hidden="true"><span class="code-window-dots"><i></i><i></i><i></i></span><span class="code-window-title">stream.mjs</span></div>
                                 <pre><code><span class="code-comment">// JavaScript &mdash; streaming chat</span>
 <span class="code-keyword">import</span> OpenAI <span class="code-keyword">from</span> <span class="code-string">'openai'</span>;
 
 <span class="code-keyword">const</span> client = <span class="code-keyword">new</span> OpenAI({
   baseURL: <span class="code-string">'https://app.archipelag.io/api/v1'</span>,
-  apiKey: <span class="code-string">'your-key'</span>
+  apiKey: <span class="code-string">'YOUR_API_KEY'</span>
 });
 
 <span class="code-keyword">const</span> stream = <span class="code-keyword">await</span> client.chat.completions.create({
@@ -410,8 +407,7 @@ stream = client.chat.completions.create(
 <span class="code-keyword">for await</span> (<span class="code-keyword">const</span> chunk <span class="code-keyword">of</span> stream) {
   process.stdout.write(chunk.choices[0]?.delta?.content ?? <span class="code-string">''</span>);
 }</code></pre>
-                            </figure>
-                        </div>
+                        </figure>
                     </div>
                 </div>
 
@@ -438,10 +434,10 @@ stream = client.chat.completions.create(
         </section>
 
         <!-- Beyond the API -->
-        <section class="section section-alt-flat" aria-labelledby="platform-title">
+        <section id="platform" class="section section-alt-flat" aria-labelledby="platform-title" data-toc="Platform">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Platform</span>
+                    <span class="section-eyebrow">Platform</span>
                     <h2 id="platform-title" class="section-title">More than an API</h2>
                     <p class="section-subtitle">Use the full web platform or build your own integration.</p>
                 </div>
@@ -504,10 +500,10 @@ stream = client.chat.completions.create(
         </section>
 
         <!-- How pricing works -->
-        <section class="section" aria-labelledby="pricing-title">
+        <section id="pricing" class="section" aria-labelledby="pricing-title" data-toc="Pricing">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Pricing</span>
+                    <span class="section-eyebrow">Pricing</span>
                     <h2 id="pricing-title" class="section-title">Test the market before money moves</h2>
                     <p class="section-subtitle">Phase 2 simulates asks, budgets, and clearing amounts using virtual credits.</p>
                 </div>
@@ -557,10 +553,10 @@ stream = client.chat.completions.create(
         </div>
 
         <!-- Multi-Island Compute -->
-        <section class="section section-alt-flat" aria-labelledby="multi-island-title">
+        <section id="scale-beyond-one-island" class="section section-alt-flat" aria-labelledby="multi-island-title" data-toc="Multi-Island">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Scale Beyond One Island</span>
+                    <span class="section-eyebrow">Scale Beyond One Island</span>
                     <h2 id="multi-island-title" class="section-title">Multi-Island compute <span class="feature-badge-experimental">Experimental</span></h2>
                     <p class="section-subtitle">Experimental pipeline and fan-out modes explore how compatible Islands can share work that does not fit one device.</p>
                 </div>
@@ -647,12 +643,12 @@ stream = client.chat.completions.create(
         </section>
 
         <!-- Workflow Orchestration -->
-        <section class="section" aria-labelledby="workflows-title">
+        <section id="workflows" class="section" aria-labelledby="workflows-title" data-toc="Workflows">
             <div class="container">
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Workflows</span>
+                            <span class="section-eyebrow">Workflows</span>
                             <h2 id="workflows-title" class="preview-title">Chain models into pipelines <span class="feature-badge-experimental">Experimental</span></h2>
                             <p class="preview-desc">
                                 Experimental workflow definitions use DAGs. The Coordinator resolves dependencies,
@@ -739,10 +735,10 @@ stream = client.chat.completions.create(
         </section>
 
         <!-- Advanced Capabilities -->
-        <section id="advanced" class="section section-alt-flat" aria-labelledby="advanced-title">
+        <section id="advanced" class="section section-alt-flat" aria-labelledby="advanced-title" data-toc="Advanced">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Advanced Capabilities</span>
+                    <span class="section-eyebrow">Advanced Capabilities</span>
                     <h2 id="advanced-title" class="section-title">Beyond inference</h2>
                     <p class="section-subtitle">Experimental capabilities under active validation. Interfaces and guarantees may change during Phase 2.</p>
                 </div>

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Operate an Island | {{ config.title }}{% endblock title %}
+{% block title %}Run an Island | {{ config.title }}{% endblock title %}
 
 {% block head_meta %}
     <meta name="description" content="Turn compatible hardware into an Archipelag.io Island and test AI Job execution with virtual Phase 2 credit accounting.">
@@ -12,12 +12,12 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config.base_url }}/earn/">
-    <meta property="og:title" content="Become an Island | {{ config.title }}">
+    <meta property="og:title" content="Run an Island | {{ config.title }}">
     <meta property="og:description" content="Contribute compatible hardware, set a virtual asking price, and test AI Job execution during Phase 2.">
     <meta property="og:image" content="{{ config.base_url }}/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Archipelag.io - Operate an Island">
+    <meta property="og:image:alt" content="Archipelag.io - Run an Island">
     <meta property="og:site_name" content="{{ config.title }}">
     <meta property="og:locale" content="en_US">
 
@@ -25,10 +25,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{{ config.extra.twitter }}">
     <meta name="twitter:creator" content="{{ config.extra.twitter }}">
-    <meta name="twitter:title" content="Become an Island | {{ config.title }}">
+    <meta name="twitter:title" content="Run an Island | {{ config.title }}">
     <meta name="twitter:description" content="Contribute compatible hardware and test virtual-credit Job execution during Archipelag.io Phase 2.">
     <meta name="twitter:image" content="{{ config.base_url }}/og-image.png">
-    <meta name="twitter:image:alt" content="Archipelag.io - Operate an Island">
+    <meta name="twitter:image:alt" content="Archipelag.io - Run an Island">
 {% endblock head_meta %}
 
 {% block head_extra %}
@@ -67,7 +67,7 @@
                         {
                             "@type": "ListItem",
                             "position": 2,
-                            "name": "Operate an Island",
+                            "name": "Run an Island",
                             "item": "{{ config.base_url }}/earn/"
                         }
                     ]
@@ -176,9 +176,7 @@
         </section>
         </div>
 
-        <div class="container maturity-key-wrap">
-            {% include "partials/maturity-key.html" %}
-        </div>
+        {% include "partials/page-nav.html" %}
 
         <!-- What's a Cargo? -->
         <section class="section-sm" style="padding-top: var(--space-12); padding-bottom: var(--space-4);">
@@ -230,10 +228,10 @@
         </section>
 
         <!-- Why now -->
-        <section id="why" class="section" aria-labelledby="why-title">
+        <section id="why" class="section" aria-labelledby="why-title" data-toc="Why now">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Why now</span>
+                    <span class="section-eyebrow">Why now</span>
                     <h2 id="why-title" class="section-title">What you get today, and what you don&rsquo;t</h2>
                     <p class="section-subtitle">Phase 2 is about proving the network works before money moves. Here is the honest deal for early Island operators.</p>
                 </div>
@@ -261,10 +259,10 @@
         </section>
 
         <!-- Requirements -->
-        <section id="requirements" class="section section-alt-flat" aria-labelledby="requirements-title">
+        <section id="requirements" class="section section-alt-flat" aria-labelledby="requirements-title" data-toc="Requirements">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Requirements</span>
+                    <span class="section-eyebrow">Requirements</span>
                     <h2 id="requirements-title" class="section-title">What you need</h2>
                 </div>
 
@@ -297,10 +295,10 @@
         </section>
 
         <!-- Install -->
-        <section id="install" class="section" aria-labelledby="install-title">
+        <section id="install" class="section" aria-labelledby="install-title" data-toc="Install">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Install</span>
+                    <span class="section-eyebrow">Install</span>
                     <h2 id="install-title" class="section-title">One command to get started</h2>
                 </div>
 
@@ -334,10 +332,10 @@
         </section>
 
         <!-- How it works -->
-        <section id="how-it-works" class="section section-alt-flat" aria-labelledby="how-it-works-title">
+        <section id="how-it-works" class="section section-alt-flat" aria-labelledby="how-it-works-title" data-toc="How it works">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; The Flow</span>
+                    <span class="section-eyebrow">The Flow</span>
                     <h2 id="how-it-works-title" class="section-title">What happens when a Job arrives</h2>
                 </div>
 
@@ -446,10 +444,10 @@
         </section>
 
         <!-- Security -->
-        <section class="section" aria-labelledby="security-title">
+        <section id="security" class="section" aria-labelledby="security-title" data-toc="Security">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Security</span>
+                    <span class="section-eyebrow">Security</span>
                     <h2 id="security-title" class="section-title">Your machine stays safe</h2>
                     <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
                 </div>
@@ -503,10 +501,10 @@
         </section>
 
         <!-- Pricing mechanism -->
-        <section class="section section-alt-flat" aria-labelledby="pricing-title">
+        <section id="virtual-exchange" class="section section-alt-flat" aria-labelledby="pricing-title" data-toc="Pricing">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Virtual exchange</span>
+                    <span class="section-eyebrow">Virtual exchange</span>
                     <h2 id="pricing-title" class="section-title">Set a virtual ask</h2>
                     <p class="section-subtitle">The Phase 2 simulation exercises supply, demand, and matching behavior without real-money pricing.</p>
                 </div>
@@ -539,12 +537,12 @@
         </section>
 
         <!-- Karma System -->
-        <section class="section" aria-labelledby="karma-title">
+        <section id="reputation" class="section" aria-labelledby="karma-title" data-toc="Karma">
             <div class="container">
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Reputation</span>
+                            <span class="section-eyebrow">Reputation</span>
                             <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
                             <p class="preview-desc">
                                 Every Island has a Karma score tracked by the Coordinator. It rewards
@@ -589,10 +587,10 @@
         </section>
 
         <!-- Virtual Attribution Simulator -->
-        <section class="section section-alt-flat" id="calculator" aria-labelledby="calculator-title">
+        <section class="section section-alt-flat" id="calculator" aria-labelledby="calculator-title" data-toc="Simulator">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Simulation</span>
+                    <span class="section-eyebrow">Simulation</span>
                     <h2 id="calculator-title" class="section-title">Simulate virtual attribution</h2>
                     <p class="section-subtitle">Select hardware and online hours to explore the Phase 2 credit model. This is not an income forecast.</p>
                 </div>
@@ -649,10 +647,10 @@
         </section>
 
         <!-- All GPUs Compared -->
-        <section class="section" id="gpu-comparison" aria-labelledby="comparison-title">
+        <section class="section" id="gpu-comparison" aria-labelledby="comparison-title" data-toc="GPU comparison">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Compare</span>
+                    <span class="section-eyebrow">Compare</span>
                     <h2 id="comparison-title" class="section-title">All GPUs compared</h2>
                     <p class="section-subtitle">Synthetic Phase 2 credit attribution at <span id="comp-hours">8</span>h/day and 15% utilization.</p>
                 </div>
@@ -685,12 +683,12 @@
         </section>
 
         <!-- Mobile Islands -->
-        <section id="mobile" class="section section-alt-flat" aria-labelledby="mobile-title">
+        <section id="mobile" class="section section-alt-flat" aria-labelledby="mobile-title" data-toc="Mobile">
             <div class="container">
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">10</span> &mdash; Mobile Compute</span>
+                            <span class="section-eyebrow">Mobile Compute</span>
                             <h2 id="mobile-title" class="preview-title">Contribute from your phone <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h2>
                             <p class="preview-desc">
                                 Got a recent iPhone or iPad? The early Archipelag.io iOS app runs small language models
@@ -738,12 +736,12 @@
         </section>
 
         <!-- Multi-Island Compute -->
-        <section class="section" aria-labelledby="multi-island-title">
+        <section id="multi-island-compute" class="section" aria-labelledby="multi-island-title" data-toc="Multi-Island">
             <div class="container">
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">11</span> &mdash; Multi-Island Compute</span>
+                            <span class="section-eyebrow">Multi-Island Compute</span>
                             <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger <span class="feature-badge-experimental">Experimental</span></h2>
                             <p class="preview-desc">
                                 Experimental pipeline placement explores how a model can be divided across compatible
@@ -830,10 +828,10 @@
         </section>
 
         <!-- Developer Track -->
-        <section class="section section-alt-flat" aria-labelledby="developer-title">
+        <section id="developer-track" class="section section-alt-flat" aria-labelledby="developer-title" data-toc="Publish Cargos">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">12</span> &mdash; Developer Track</span>
+                    <span class="section-eyebrow">Developer Track</span>
                     <h2 id="developer-title" class="section-title">Build Cargos, validate real usage</h2>
                     <p class="section-subtitle">Submit models and runtimes for review, then track approved execution and virtual Phase 2 credit attribution.</p>
                 </div>
