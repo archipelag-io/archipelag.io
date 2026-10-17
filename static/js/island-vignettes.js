@@ -327,7 +327,7 @@
 
   function pointOnGridRoute(path, progress, ox, oy) {
     var segments = Math.max(1, path.length - 1);
-    var scaled = Math.min(segments - 0.0001, progress * segments);
+    var scaled = Math.min(segments - 0.0001, Math.max(0, progress) * segments);
     var index = Math.floor(scaled);
     var local = scaled - index;
     var a = toScreen(path[index].c, path[index].r, ox, oy);
@@ -975,7 +975,8 @@
   states.forEach(function(state) { visibilityObserver.observe(state.canvas); });
 
   function frame(now) {
-    var time = reduceMotion ? 0 : (now - startTime) / 1000;
+    // rAF timestamps can precede startTime on the first frame; never go negative
+    var time = reduceMotion ? 0 : Math.max(0, now - startTime) / 1000;
     states.forEach(function(state) {
       if (state.visible) renderState(state, time);
     });

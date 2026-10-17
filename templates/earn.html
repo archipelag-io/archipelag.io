@@ -79,9 +79,10 @@
                 "description": "Register compatible hardware as an Island on the Archipelag.io network.",
                 "totalTime": "PT15M",
                 "tool": [
-                    "NVIDIA GPU with 8GB+ VRAM",
+                    "Linux, macOS, or Windows computer",
+                    "Docker (the installer can set it up)",
                     "Stable internet connection",
-                    "Docker installed"
+                    "Optional: NVIDIA GPU for larger models"
                 ],
                 "step": [
                     {
@@ -93,8 +94,8 @@
                     {
                         "@type": "HowToStep",
                         "position": 2,
-                        "name": "Verify your identity",
-                        "text": "Complete identity verification via Stripe. This is required before you can receive jobs."
+                        "name": "Sign in and pair the Island",
+                        "text": "Create a free account and link the Island to it from the dashboard."
                     },
                     {
                         "@type": "HowToStep",
@@ -142,7 +143,7 @@
                         "name": "What hardware do I need?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "An NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended), a stable internet connection, and Docker. Archipelag.io Island runs on Linux, macOS, and Windows."
+                            "text": "A Linux, macOS, or Windows computer with Docker and a stable internet connection. An NVIDIA GPU is optional and lets the Island accept larger GPU Cargos; without one, the Island runs CPU-compatible Cargos."
                         }
                     }
                 ]
@@ -157,17 +158,18 @@
         <div class="hero-wrapper" id="hero-wrapper">
         <section class="hero-section" aria-labelledby="hero-title" style="overflow:hidden;">
             <canvas id="archipelago-map" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
-            <div class="container" style="position:relative;z-index:1;">
+            <div class="container" style="position:relative;z-index:3;">
                 <div class="hero-glass">
                     <span class="section-eyebrow">For Island Operators</span>
-                    <h1 id="hero-title" class="hero-title">Your hardware, your price</h1>
+                    <h1 id="hero-title" class="hero-title">Put idle hardware <span class="accent">to work.</span></h1>
                     <p class="hero-subtitle">
-                        Turn compatible desktop, server, or mobile hardware into an Island. Set a virtual asking price,
-                        and let the Coordinator match nearby Consumers during Phase 2.
+                        Turn a desktop, server, or Mac into an Island: a node that runs approved AI models for
+                        people nearby. You decide when it&rsquo;s available. During Phase 2, completed Jobs earn
+                        virtual credits &mdash; real payouts aren&rsquo;t enabled yet.
                     </p>
                     <div class="hero-cta">
-                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join Phase 2</a>
-                        <a href="#how-it-works" class="btn btn-secondary btn-lg">How it works</a>
+                        <a href="#install" class="btn btn-tropical btn-lg">Install the Island <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                        <a href="#requirements" class="btn btn-secondary btn-lg">Check requirements</a>
                     </div>
                 </div>
             </div>
@@ -227,12 +229,116 @@
             </div>
         </section>
 
+        <!-- Why now -->
+        <section id="why" class="section" aria-labelledby="why-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; Why now</span>
+                    <h2 id="why-title" class="section-title">What you get today, and what you don&rsquo;t</h2>
+                    <p class="section-subtitle">Phase 2 is about proving the network works before money moves. Here is the honest deal for early Island operators.</p>
+                </div>
+
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <div class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">Karma from day one</h3>
+                            <p class="principle-desc">Every completed Job builds your Island&rsquo;s public track record. The network uses Karma when choosing where to place future Jobs.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">Shape the network</h3>
+                            <p class="principle-desc">Early operators surface real hardware quirks, placement issues, and pricing behavior. Tell us what you see on <a href="https://discord.gg/vwUGXjXmsq">Discord</a>.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">No payouts yet</h3>
+                            <p class="principle-desc">Completed Jobs earn virtual credits with no cash value. Real-money payouts are not enabled; the <a href="/status/">status page</a> is the source of truth for when that changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements -->
+        <section id="requirements" class="section section-alt-flat" aria-labelledby="requirements-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Requirements</span>
+                    <h2 id="requirements-title" class="section-title">What you need</h2>
+                </div>
+
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-3">
+                        <article id="desktop" class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="compute" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">A computer with Docker</h3>
+                            <p class="principle-desc">Linux, macOS (Intel or Apple Silicon), or Windows, with Docker. An NVIDIA GPU is optional; 8&nbsp;GB+ VRAM unlocks larger GPU Cargos. Without one, your Island takes CPU-compatible Cargos.</p>
+                        </article>
+
+                        <article class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="mobile" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">Or a phone</h3>
+                            <p class="principle-desc">An iPhone or iPad on iOS 16+ for small on-device models (some Cargos need iOS 17). Mobile Islands are experimental.</p>
+                        </article>
+
+                        <article class="antigrid-card antigrid-principle">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="principle-title">Network</h3>
+                            <p class="principle-desc">Stable internet connection. Lower latency can help with nearby Consumers; the Coordinator measures RTT directly.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="section" aria-labelledby="install-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Install</span>
+                    <h2 id="install-title" class="section-title">One command to get started</h2>
+                </div>
+
+                <div class="install-tabs" style="max-width: 640px; margin: 0 auto;">
+                    <div class="install-tab-buttons" role="tablist" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
+                        <button role="tab" class="btn btn-sm install-tab-btn active" id="install-tab-unix" aria-selected="true" aria-controls="install-panel-unix" data-install-tab="unix">Linux / macOS</button>
+                        <button role="tab" class="btn btn-sm install-tab-btn" id="install-tab-windows" aria-selected="false" aria-controls="install-panel-windows" data-install-tab="windows">Windows</button>
+                    </div>
+
+                    <div class="install-tab-panel" id="install-panel-unix" role="tabpanel" aria-labelledby="install-tab-unix" data-install-panel="unix">
+                        <pre class="install-code"><code>curl -fsSL https://archipelag.io/install.sh | sh</code></pre>
+                        <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
+                            Downloads the binary, creates a config, and sets up your PATH. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>
+                        </p>
+                    </div>
+
+                    <div class="install-tab-panel" id="install-panel-windows" role="tabpanel" aria-labelledby="install-tab-windows" data-install-panel="windows" hidden>
+                        <pre class="install-code"><code>irm https://archipelag.io/install.ps1 | iex</code></pre>
+                        <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
+                            Run in PowerShell. Or for the best experience, <a href="https://docs.archipelag.io/getting-started/for-hosts/#windows-wsl--recommended">use WSL</a> and run the Linux installer inside it. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>
+                        </p>
+                    </div>
+
+                    <ol class="install-next" role="list">
+                        <li><strong>Start the Island:</strong> <code>island --agent --config ~/.island/config.toml</code></li>
+                        <li><strong>Sign in</strong> at <a href="https://app.archipelag.io/host">app.archipelag.io/host</a> to see your Island, set availability, and choose asking prices.</li>
+                        <li><strong>Leave it running.</strong> Jobs arrive whenever a nearby Consumer needs a Cargo your hardware can run.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
         <!-- How it works -->
         <section id="how-it-works" class="section section-alt-flat" aria-labelledby="how-it-works-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; The Flow</span>
-                    <h2 id="how-it-works-title" class="section-title">From idle GPU to earning credits</h2>
+                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; The Flow</span>
+                    <h2 id="how-it-works-title" class="section-title">What happens when a Job arrives</h2>
                 </div>
 
                 <div class="antigrid-wrapper">
@@ -339,11 +445,68 @@
             </div>
         </section>
 
-        <!-- Pricing mechanism -->
-        <section class="section" aria-labelledby="pricing-title">
+        <!-- Security -->
+        <section class="section" aria-labelledby="security-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; Virtual exchange</span>
+                    <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Security</span>
+                    <h2 id="security-title" class="section-title">Your machine stays safe</h2>
+                    <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
+                </div>
+
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card">
+                            <ul class="preview-list" aria-label="Security layers" style="margin-bottom:0;">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Signed images only</strong> &mdash; Cargo containers are cosign-verified before execution</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Registry allowlist</strong> &mdash; images can only be pulled from approved registries</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Seccomp profiles</strong> &mdash; syscall filtering matched to Cargo sandbox tier</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>No filesystem access</strong> &mdash; containers are isolated from your local filesystem</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Resource limits</strong> &mdash; CPU, memory, and GPU time are capped per Job</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span><strong>Network-approved only</strong> &mdash; no user-submitted containers in v1</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card preview-content">
+                            <h3 class="preview-title">Defense in depth</h3>
+                            <p class="preview-desc">
+                                The security model assumes mutual distrust. Consumers don't trust Islands with their data.
+                                Islands don't trust the code they run. The Coordinator is the authority on what's allowed.
+                            </p>
+                            <p class="preview-desc">
+                                In v1, the network only runs Cargos that we've reviewed, signed, and published.
+                                There is no path for arbitrary user code to reach your machine.
+                            </p>
+                            <a href="/security" class="btn btn-secondary" style="margin-top:var(--space-4);">Read the security model</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing mechanism -->
+        <section class="section section-alt-flat" aria-labelledby="pricing-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Virtual exchange</span>
                     <h2 id="pricing-title" class="section-title">Set a virtual ask</h2>
                     <p class="section-subtitle">The Phase 2 simulation exercises supply, demand, and matching behavior without real-money pricing.</p>
                 </div>
@@ -367,8 +530,58 @@
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Early mover advantage</h3>
+                            <h3 class="principle-title">Build Karma early</h3>
                             <p class="principle-desc">Phase 2 lets early Islands build Karma from completed Jobs, latency, and uptime while the network's placement behavior is validated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Karma System -->
+        <section class="section" aria-labelledby="karma-title">
+            <div class="container">
+                <div class="antigrid-wrapper">
+                    <div class="antigrid antigrid-2">
+                        <div class="antigrid-card preview-content">
+                            <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Reputation</span>
+                            <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
+                            <p class="preview-desc">
+                                Every Island has a Karma score tracked by the Coordinator.
+                                It is calculated from Job success rate, response latency, and uptime consistency.
+                            </p>
+
+                            <ul class="preview-list" aria-label="Karma system details">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Starts at 50, maxes at 100</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Goes up with completed Jobs, down with failures or timeouts</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Higher Karma can improve future Job placement</span>
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Coordinator factors karma into Island selection alongside latency</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="antigrid-card flex items-center justify-center">
+                            <figure class="w-full text-center" style="padding: var(--space-8);">
+                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example karma score">85</div>
+                                <figcaption>
+                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Karma Score</div>
+                                    <p class="text-sm text-secondary">
+                                        142 completed Jobs<br>
+                                        99.3% success rate &middot; 38ms avg. latency
+                                    </p>
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                 </div>
@@ -379,7 +592,7 @@
         <section class="section section-alt-flat" id="calculator" aria-labelledby="calculator-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; Simulation</span>
+                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Simulation</span>
                     <h2 id="calculator-title" class="section-title">Simulate virtual attribution</h2>
                     <p class="section-subtitle">Select hardware and online hours to explore the Phase 2 credit model. This is not an income forecast.</p>
                 </div>
@@ -439,7 +652,7 @@
         <section class="section" id="gpu-comparison" aria-labelledby="comparison-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Compare</span>
+                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Compare</span>
                     <h2 id="comparison-title" class="section-title">All GPUs compared</h2>
                     <p class="section-subtitle">Synthetic Phase 2 credit attribution at <span id="comp-hours">8</span>h/day and 15% utilization.</p>
                 </div>
@@ -471,48 +684,51 @@
             </div>
         </section>
 
-        <!-- Karma System -->
-        <section class="section" aria-labelledby="karma-title">
+        <!-- Mobile Islands -->
+        <section id="mobile" class="section section-alt-flat" aria-labelledby="mobile-title">
             <div class="container">
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; Reputation</span>
-                            <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
+                            <span class="section-eyebrow-numbered"><span class="number">10</span> &mdash; Mobile Compute</span>
+                            <h2 id="mobile-title" class="preview-title">Contribute from your phone <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h2>
                             <p class="preview-desc">
-                                Every Island has a Karma score tracked by the Coordinator.
-                                It is calculated from Job success rate, response latency, and uptime consistency.
+                                Got a recent iPhone or iPad? The early Archipelag.io iOS app runs small language models
+                                on-device with llama.cpp and CoreML &mdash; no GPU workstation needed.
+                            </p>
+                            <p class="preview-desc">
+                                Pair your device with a QR code, and it becomes an Island on the network.
+                                Mobile Islands participate in the same Karma and virtual-credit accounting model, with device-specific safety limits.
                             </p>
 
-                            <ul class="preview-list" aria-label="Karma system details">
+                            <ul class="preview-list" aria-label="Mobile Island features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Starts at 50, maxes at 100</span>
+                                    <span>On-device execution via llama.cpp and CoreML, with Coordinator-mediated dispatch</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Goes up with completed Jobs, down with failures or timeouts</span>
+                                    <span>Pair via QR code from the web dashboard</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Higher Karma can improve future Job placement</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Coordinator factors karma into Island selection alongside latency</span>
+                                    <span>Small models built for phones, such as Qwen 3.5 0.8B and Gemma E2B</span>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="antigrid-card flex items-center justify-center">
-                            <figure class="w-full text-center" style="padding: var(--space-8);">
-                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example karma score">85</div>
+                            <figure class="card w-full p-8 text-center">
+                                <div class="icon icon-xl text-accent mx-auto mb-4" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                                        <line x1="12" y1="18" x2="12.01" y2="18"/>
+                                    </svg>
+                                </div>
                                 <figcaption>
-                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Karma Score</div>
-                                    <p class="text-sm text-secondary">
-                                        142 completed Jobs<br>
-                                        99.3% success rate &middot; 38ms avg. latency
-                                    </p>
+                                    <div class="font-brand text-xl mb-2">Mobile Islands</div>
+                                    <p class="text-sm text-secondary">iOS: language models; Android: ONNX Cargos only for now</p>
+                                    <p class="text-sm text-tertiary mt-2">Early beta &mdash; device support varies</p>
                                 </figcaption>
                             </figure>
                         </div>
@@ -527,7 +743,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; Multi-Island Compute</span>
+                            <span class="section-eyebrow-numbered"><span class="number">11</span> &mdash; Multi-Island Compute</span>
                             <h2 id="multi-island-title" class="preview-title">Your Island, part of something bigger <span class="feature-badge-experimental">Experimental</span></h2>
                             <p class="preview-desc">
                                 Experimental pipeline placement explores how a model can be divided across compatible
@@ -613,121 +829,11 @@
             </div>
         </section>
 
-        <!-- Security -->
-        <section class="section section-alt-flat" aria-labelledby="security-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Security</span>
-                    <h2 id="security-title" class="section-title">Your machine stays safe</h2>
-                    <p class="section-subtitle">You never run arbitrary user code. Here's what enforces that.</p>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <div class="antigrid-card">
-                            <ul class="preview-list" aria-label="Security layers" style="margin-bottom:0;">
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Signed images only</strong> &mdash; Cargo containers are cosign-verified before execution</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Registry allowlist</strong> &mdash; images can only be pulled from approved registries</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Seccomp profiles</strong> &mdash; syscall filtering matched to Cargo sandbox tier</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>No filesystem access</strong> &mdash; containers are isolated from your local filesystem</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Resource limits</strong> &mdash; CPU, memory, and GPU time are capped per Job</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span><strong>Network-approved only</strong> &mdash; no user-submitted containers in v1</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="antigrid-card preview-content">
-                            <h3 class="preview-title">Defense in depth</h3>
-                            <p class="preview-desc">
-                                The security model assumes mutual distrust. Consumers don't trust Islands with their data.
-                                Islands don't trust the code they run. The Coordinator is the authority on what's allowed.
-                            </p>
-                            <p class="preview-desc">
-                                In v1, the network only runs Cargos that we've reviewed, signed, and published.
-                                There is no path for arbitrary user code to reach your machine.
-                            </p>
-                            <a href="/security" class="btn btn-secondary" style="margin-top:var(--space-4);">Read the security model</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mobile Islands -->
-        <section class="section section-alt-flat" aria-labelledby="mobile-title">
-            <div class="container">
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; Mobile Compute</span>
-                            <h2 id="mobile-title" class="preview-title">Contribute from your phone <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h2>
-                            <p class="preview-desc">
-                                Got an iPhone or iPad with an A-series or M-series chip? The Archipelag.io iOS agent runs
-                                lightweight LLMs on-device using CoreML &mdash; no GPU workstation needed.
-                            </p>
-                            <p class="preview-desc">
-                                Pair your device with a QR code, and it becomes an Island on the network.
-                                Mobile Islands participate in the same Karma and virtual-credit accounting model, with device-specific safety limits.
-                            </p>
-
-                            <ul class="preview-list" aria-label="Mobile Island features">
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>On-device execution via CoreML with Coordinator-mediated dispatch</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Pair via QR code from the web dashboard</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Lightweight models (TinyLlama, Qwen 0.8B) designed for mobile</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="antigrid-card flex items-center justify-center">
-                            <figure class="card w-full p-8 text-center">
-                                <div class="icon icon-xl text-accent mx-auto mb-4" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
-                                        <line x1="12" y1="18" x2="12.01" y2="18"/>
-                                    </svg>
-                                </div>
-                                <figcaption>
-                                    <div class="font-brand text-xl mb-2">Mobile Islands</div>
-                                    <p class="text-sm text-secondary">iOS via CoreML; Android via ONNX</p>
-                                    <p class="text-sm text-tertiary mt-2">Early beta &mdash; device support varies</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Developer Track -->
-        <section class="section" aria-labelledby="developer-title">
+        <section class="section section-alt-flat" aria-labelledby="developer-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Developer Track</span>
+                    <span class="section-eyebrow-numbered"><span class="number">12</span> &mdash; Developer Track</span>
                     <h2 id="developer-title" class="section-title">Build Cargos, validate real usage</h2>
                     <p class="section-subtitle">Submit models and runtimes for review, then track approved execution and virtual Phase 2 credit attribution.</p>
                 </div>
@@ -770,107 +876,13 @@
             </div>
         </section>
 
-        <!-- Requirements -->
-        <section class="section section-alt-flat" aria-labelledby="requirements-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">10</span> &mdash; Requirements</span>
-                    <h2 id="requirements-title" class="section-title">What you need</h2>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-3">
-                        <article class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="compute" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Desktop GPU</h3>
-                            <p class="principle-desc">NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better recommended) for full model support. More VRAM lets you run larger models.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="mobile" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Or a phone</h3>
-                            <p class="principle-desc">iPhone or iPad with A14+ or M-series chip for lightweight mobile models. No GPU workstation required.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-principle">
-                            <div class="principle-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="principle-title">Network</h3>
-                            <p class="principle-desc">Stable internet connection. Lower latency can help with nearby Consumers; the Coordinator measures RTT directly.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Install -->
-        <section id="install" class="section" aria-labelledby="install-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">11</span> &mdash; Install</span>
-                    <h2 id="install-title" class="section-title">One command to get started</h2>
-                </div>
-
-                <div class="install-tabs" style="max-width: 640px; margin: 0 auto;">
-                    <div class="install-tab-buttons" role="tablist" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
-                        <button role="tab" class="btn btn-sm install-tab-btn active" id="install-tab-unix" aria-selected="true" aria-controls="install-panel-unix" data-install-tab="unix">Linux / macOS</button>
-                        <button role="tab" class="btn btn-sm install-tab-btn" id="install-tab-windows" aria-selected="false" aria-controls="install-panel-windows" data-install-tab="windows">Windows</button>
-                    </div>
-
-                    <div class="install-tab-panel" id="install-panel-unix" role="tabpanel" aria-labelledby="install-tab-unix" data-install-panel="unix">
-                        <pre class="install-code"><code>curl -fsSL https://archipelag.io/install.sh | sh</code></pre>
-                        <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
-                            Downloads the binary, creates a config, and sets up your PATH. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>
-                        </p>
-                    </div>
-
-                    <div class="install-tab-panel" id="install-panel-windows" role="tabpanel" aria-labelledby="install-tab-windows" data-install-panel="windows" hidden>
-                        <pre class="install-code"><code>irm https://archipelag.io/install.ps1 | iex</code></pre>
-                        <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
-                            Run in PowerShell. Or for the best experience, <a href="https://docs.archipelag.io/getting-started/for-hosts/#windows-wsl--recommended">use WSL</a> and run the Linux installer inside it. <a href="https://docs.archipelag.io/getting-started/for-hosts/">Full guide</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Phase 2 accounting -->
-        <section class="section section-alt-flat" aria-labelledby="payouts-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">12</span> &mdash; Phase 2 Accounting</span>
-                    <h2 id="payouts-title" class="section-title">Virtual credits, clearly labeled</h2>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-3">
-                        <div class="antigrid-card" style="text-align:center;">
-                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">No payout</div>
-                            <p class="text-sm text-secondary">Real-money billing and Island payouts are not enabled during Phase 2.</p>
-                        </div>
-                        <div class="antigrid-card" style="text-align:center;">
-                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Credits</div>
-                            <p class="text-sm text-secondary">Completed Jobs accrue virtual credits for testing placement and market behavior.</p>
-                        </div>
-                        <div class="antigrid-card" style="text-align:center;">
-                            <div class="font-brand text-2xl mb-2" style="color:var(--accent);">Transparent</div>
-                            <p class="text-sm text-secondary">Every Job records its virtual clearing amount and updates the Island's Phase 2 total.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA -->
         <section class="section section-alt-flat section-aurora cta-section" aria-labelledby="cta-title">
             <div class="container text-center">
                 <h2 id="cta-title" class="cta-title">The archipelago needs more Islands</h2>
-                <p class="cta-subtitle">Early Islands build karma and reputation before the network scales. Join now.</p>
+                <p class="cta-subtitle">Early Islands build Karma and help shape how the network places and rewards work. Payouts are not enabled during Phase 2.</p>
                 <div class="btn-group justify-center">
-                    <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Join Phase 2</a>
+                    <a href="#install" class="btn btn-tropical btn-lg">Install the Island</a>
                     <a href="mailto:hey@archipelag.io" class="btn btn-secondary btn-lg">Talk to us</a>
                 </div>
             </div>
