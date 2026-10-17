@@ -81,7 +81,7 @@
                     ]
                 },
                 "datePublished": "2024-01-01",
-                "dateModified": "2026-08-15"
+                "dateModified": "2026-10-17"
             },
             {
                 "@type": "SoftwareApplication",
@@ -112,34 +112,50 @@
                 "mainEntity": [
                     {
                         "@type": "Question",
-                        "name": "What is Archipelag.io?",
+                        "name": "Is it really free?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Archipelag.io (pronounced 'archipelago') is a distributed compute fabric. Consumers submit Jobs, the Coordinator places them on compatible independently operated Islands, and approved signed Cargos perform the work. Phase 2 uses virtual credits while reliability and market behavior are tested."
+                            "text": "Yes, during Phase 2. Every account gets virtual credits with no cash value, and no payment method is needed. Balances may be refilled or reset while we validate metering."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "How does it work?",
+                        "name": "Can I earn money by running an Island?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Consumers submit AI Jobs through the web app or API. The Coordinator selects a compatible Island using availability, capability, latency, policy, and Karma signals. A signed Cargo executes the Job and streams results back. Islands receive virtual credits during Phase 2."
+                            "text": "Not yet. Islands earn virtual credits for completed Jobs so we can test matching and accounting. Real-money payouts are not enabled; the status page is the source of truth for when that changes."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Is it safe to be an Island?",
+                        "name": "Is it safe to run an Island on my computer?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "The standard Island software accepts only approved, signed Cargos and applies container isolation, resource limits, and network controls. Island operators must still keep their systems patched and follow the security guidance."
+                            "text": "The Island software only runs approved, signed Cargos, inside containers with seccomp profiles, resource limits, and network controls. It never runs code submitted by Consumers. You are still responsible for keeping the machine itself patched and secure."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Does my data stay local?",
+                        "name": "Who can see my prompts?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Jobs favor nearby compatible Islands by default. Consumers can attach a regional placement policy, and the Coordinator records the selected Island. These technical controls can support a data-residency program but are not a legal compliance guarantee."
+                            "text": "Your request is processed by the Island that runs it, and passes through the Coordinator. Treat Phase 2 like any shared beta: don’t send sensitive, regulated, or confidential data. Confidential inference is a research prototype, not a guarantee."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does my data stay in my region?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Jobs prefer nearby Islands by default, and you can attach a regional placement policy that limits where a Job may run. The Coordinator records which Island ran it. These controls support data-residency programs but are not a legal compliance guarantee on their own."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Do I need to change my code?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Usually only the base URL and API key. The chat endpoint follows the OpenAI format, including streaming. Check the API reference for the parameters your integration relies on."
                         }
                     }
                 ]
@@ -153,7 +169,7 @@
                         "@type": "HowToStep",
                         "position": 1,
                         "name": "Create an account",
-                        "text": "Sign up with email or GitHub in seconds."
+                        "text": "Sign up with email or GitHub. Phase 2 accounts receive free virtual credits."
                     },
                     {
                         "@type": "HowToStep",
@@ -177,14 +193,14 @@
                     {
                         "@type": "HowToStep",
                         "position": 1,
-                        "name": "Download the agent",
-                        "text": "Available for Windows, Mac, and Linux."
+                        "name": "Install the Island software",
+                        "text": "One command on Linux or macOS, or PowerShell on Windows. Docker is required; an NVIDIA GPU is optional."
                     },
                     {
                         "@type": "HowToStep",
                         "position": 2,
-                        "name": "Verify and configure",
-                        "text": "Complete identity verification. Set your schedule and asking price."
+                        "name": "Configure availability",
+                        "text": "Choose when your machine is available and set a virtual asking price per Cargo."
                     },
                     {
                         "@type": "HowToStep",
@@ -202,7 +218,8 @@
 {% block body_attrs %} itemscope itemtype="https://schema.org/WebPage"{% endblock body_attrs %}
 
 {% block content %}
-        <!-- SECTION 1: Hero -->
+        {% set check_icon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>' %}
+        <!-- Hero -->
         <div class="hero-wrapper" id="hero-wrapper">
         <section class="hero-section" aria-labelledby="hero-title">
             <canvas id="archipelago-map" class="hero-map" tabindex="0" role="application" aria-label="Interactive Archipelag.io network simulation. Consumer Islands request AI inference from available producer Islands. Click an Island to change its availability, or use arrow keys and Enter."></canvas>
@@ -211,525 +228,289 @@
             <div class="hero-network-legend" aria-hidden="true">
                 <span class="legend-state"><i class="legend-state-pulse"></i><b id="network-sim-status">Consumer requesting inference</b></span>
                 <span><i class="legend-node legend-node-consumer">?</i> Consumer request</span>
-                <span><i class="legend-node legend-node-producer">!</i> Producer compute</span>
+                <span><i class="legend-node legend-node-producer">!</i> Island compute</span>
                 <span class="legend-interaction">Click an Island to change availability</span>
             </div>
             <div class="container">
                 <div class="hero-glass">
-                    <span class="section-eyebrow-numbered"><span class="number">01</span> &mdash; The Network</span>
-
-                    <!-- Trust Badges -->
-                    <div class="trust-badges" role="group" aria-label="Network highlights">
-                        <span class="trust-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Community Powered
-                        </span>
-                        <span class="trust-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Local-First
-                        </span>
-                        <span class="trust-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Approved Cargos
-                        </span>
-                    </div>
+                    <a href="/status/" class="hero-kicker">
+                        <span class="hero-kicker-dot" aria-hidden="true"></span>
+                        Open beta &middot; free to use
+                        <span class="hero-kicker-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
 
                     <h1 id="hero-title" class="hero-title" itemprop="headline">Compute, <span class="accent">closer to you.</span></h1>
                     <p class="hero-subtitle" itemprop="description">
-                        Run AI Jobs on a distributed network of independently operated Islands.
-                        The Coordinator finds a nearby compatible match and streams the result back.
+                        Archipelag.io runs open AI models on independently operated computers near you,
+                        instead of in a distant data center. Call it like any OpenAI-compatible API,
+                        or turn your idle hardware into part of the network.
                     </p>
                     <div class="hero-cta" role="group" aria-label="Get started options">
-                        <a href="https://app.archipelag.io/playground" class="btn btn-tropical btn-lg">Run a Job</a>
-                        <a href="/earn" class="btn btn-secondary btn-lg">Operate an Island</a>
+                        <a href="https://app.archipelag.io/playground" class="btn btn-tropical btn-lg">Try it free <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                        <a href="/earn" class="btn btn-secondary btn-lg">Run an Island</a>
                     </div>
+                    <p class="hero-note">No credit card &middot; OpenAI-compatible &middot; Open source</p>
                 </div>
             </div>
         </section>
         </div>
 
-        <div class="container maturity-key-wrap">
-            {% include "partials/maturity-key.html" %}
-        </div>
-
-        <!-- NETWORK STATUS STRIP -->
+        <!-- Live network status (shown only when the API responds) -->
         <section id="network-status" class="section-status" aria-label="Live network status" hidden>
             <div class="container">
                 <div class="status-strip">
                     <div class="status-item">
+                        <span class="status-pulse" aria-hidden="true"></span>
+                        <span class="status-label">Live network</span>
+                    </div>
+                    <div class="status-divider" aria-hidden="true"></div>
+                    <div class="status-item">
                         <span class="status-value" id="stat-islands">&mdash;</span>
-                        <span class="status-label">Islands Online</span>
+                        <span class="status-label" data-one="Island online" data-many="Islands online">Islands online</span>
                     </div>
                     <div class="status-divider" aria-hidden="true"></div>
                     <div class="status-item">
                         <span class="status-value" id="stat-regions">&mdash;</span>
-                        <span class="status-label">Regions</span>
+                        <span class="status-label" data-one="Region" data-many="Regions">Regions</span>
                     </div>
                     <div class="status-divider" aria-hidden="true"></div>
                     <div class="status-item">
                         <span class="status-value" id="stat-jobs">&mdash;</span>
-                        <span class="status-label">Jobs Completed</span>
-                    </div>
-                    <div class="status-divider" aria-hidden="true"></div>
-                    <div class="status-item">
-                        <span class="status-pulse" aria-hidden="true"></span>
-                        <span class="status-label">Network Live</span>
+                        <span class="status-label" data-one="Job completed" data-many="Jobs completed">Jobs completed</span>
                     </div>
                 </div>
             </div>
         </section>
         <script src="{{ get_url(path='js/network-status.js', cachebust=true) }}" defer></script>
 
-        <!-- SECTION 2: Core Principles -->
-        <section class="section-sm" aria-labelledby="principles-title">
+        <!-- The idea, in plain language -->
+        <section class="section" aria-labelledby="idea-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">02</span> &mdash; The Idea</span>
-                    <h2 id="principles-title" class="sr-only">Core principles</h2>
+                    <span class="section-eyebrow">The idea</span>
+                    <h2 id="idea-title" class="section-title">AI inference, without the faraway data center</h2>
+                    <p class="section-subtitle">Lots of capable hardware sits idle in homes, offices, and labs. Archipelag.io connects it into one network and sends each request to a good match nearby.</p>
                 </div>
+
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Route locally</h3>
-                            <p class="principle-desc">Jobs run on Islands near you, not in a distant data center. Less distance, faster responses.</p>
-                        </div>
-                        <div class="antigrid-card antigrid-principle">
-                            <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Settle with Islands directly</h3>
-                            <p class="principle-desc">Islands publish asking prices and Consumers set budgets. Phase 2 simulates settlement with virtual credits; real-money payments are not enabled.</p>
+                            <h3 class="principle-title">Nearby, not far away</h3>
+                            <p class="principle-desc">Each request goes to a capable machine close to you, so answers start streaming sooner and your data travels a shorter path.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="security" aria-hidden="true"></canvas>
-                            <h3 class="principle-title">Trust nothing</h3>
-                            <p class="principle-desc">Approved Cargos use signed artifacts, registry controls, sandboxing, and resource policies. Operators still secure the underlying machine.</p>
+                            <h3 class="principle-title">Safe for both sides</h3>
+                            <p class="principle-desc">Islands only run reviewed, signed model packages inside a sandbox &mdash; never arbitrary code. You can limit which regions your requests may run in.</p>
+                        </div>
+                        <div class="antigrid-card antigrid-principle">
+                            <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
+                            <h3 class="principle-title">A fair market, tested first</h3>
+                            <p class="principle-desc">Island operators set an asking price and Consumers set a budget. During Phase 2 that market runs on free virtual credits, so it can be tuned before real money is involved.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- SECTION 3: How It Works (Split) -->
-        <section id="how-it-works" class="section section-alt-flat split-section" aria-labelledby="how-it-works-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">03</span> &mdash; How It Works</span>
-                    <h2 id="how-it-works-title" class="section-title">Two sides of the same network</h2>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <!-- For AI Users -->
-                        <article class="antigrid-card split-content" aria-labelledby="users-title">
-                            <h3 id="users-title" class="split-title">Use AI</h3>
-                            <p class="split-desc">Run language models and image generators through approved Cargos. The Coordinator finds an eligible Island for each Job.</p>
-
-                            <ol class="split-steps" role="list" aria-label="Steps for users">
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">1</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Create an account</h4>
-                                        <p class="step-desc">Email or GitHub. Phase 2 provides a virtual test balance with no cash value.</p>
-                                    </div>
-                                </li>
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">2</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Submit a job</h4>
-                                        <p class="step-desc">Chat with an LLM, generate an image, or call the API from your code.</p>
-                                    </div>
-                                </li>
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">3</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Get streaming results</h4>
-                                        <p class="step-desc">Responses arrive token-by-token from the nearest available Island.</p>
-                                    </div>
-                                </li>
-                            </ol>
-
-                            <a href="/use" class="btn btn-tropical">Start using AI</a>
-                        </article>
-
-                        <!-- For Hosts -->
-                        <article class="antigrid-card split-content" aria-labelledby="hosts-title">
-                            <h3 id="hosts-title" class="split-title">Contribute compute</h3>
-                            <p class="split-desc">Got compatible hardware sitting idle? Turn it into an Island and help test how the network attributes useful compute.</p>
-
-                            <ol class="split-steps" role="list" aria-label="Steps for Islands">
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">1</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Install Archipelag.io Island</h4>
-                                        <p class="step-desc">A lightweight Rust binary. Linux, Mac, or Windows.</p>
-                                    </div>
-                                </li>
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">2</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Verify &amp; configure</h4>
-                                        <p class="step-desc">Complete identity verification. Set your schedule and asking price.</p>
-                                    </div>
-                                </li>
-                                <li class="step-card">
-                                    <span class="step-number" aria-hidden="true">3</span>
-                                    <div class="step-content">
-                                        <h4 class="step-title">Receive jobs</h4>
-                                        <p class="step-desc">The Coordinator matches eligible Jobs to your Island. Phase 2 records virtual credits for completed work.</p>
-                                    </div>
-                                </li>
-                            </ol>
-
-                            <a href="/earn" class="btn btn-tropical">Become an Island</a>
-                        </article>
+                <dl class="glossary-strip" aria-label="Three terms you will see on this site">
+                    <div class="glossary-item">
+                        <dt>Island</dt>
+                        <dd>A computer that contributes compute to the network.</dd>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: Features -->
-        <section class="section section-gradient section-aurora features-section" aria-labelledby="features-title">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">04</span> &mdash; Why Archipelag.io</span>
-                    <h2 id="features-title" class="section-title">Why distribute the work</h2>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-6" role="list" aria-label="Platform features">
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Proximity routing</h3>
-                            <p class="feature-desc">The Coordinator measures RTT and favors a nearby eligible Island while still considering capability, availability, policy, and Karma.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
-                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Compute exchange</h3>
-                            <p class="feature-desc">Islands publish virtual asks and Consumers set budgets. During Phase 2, the Coordinator simulates a clearing amount for each Cargo type with no real-money settlement.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
-                                    <path d="M7 11V7a5 5 0 0110 0v4" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Data residency</h3>
-                            <p class="feature-desc">Jobs favor nearby Islands. Regional placement policies restrict eligible matches and record the selected Island; they support governance without acting as a legal guarantee.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Streaming-first</h3>
-                            <p class="feature-desc">LLM responses stream token-by-token over WebSocket or SSE. Image generation reports progress. No polling, no waiting for a full response.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Zero-trust Islands</h3>
-                            <p class="feature-desc">The standard Island software accepts approved, signed Cargos and applies registry controls, resource limits, and seccomp profiles. Operators still secure the underlying machine.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Karma &amp; reputation</h3>
-                            <p class="feature-desc">Success, latency, and uptime contribute to Karma. The Coordinator uses that operational history as one signal when placing future Jobs.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <circle cx="6" cy="12" r="3"/>
-                                    <circle cx="18" cy="12" r="3"/>
-                                    <line x1="9" y1="12" x2="15" y2="12" stroke-linecap="round"/>
-                                    <circle cx="12" cy="5" r="3"/>
-                                    <line x1="12" y1="8" x2="12" y2="9.5" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Multi-Island compute <span class="feature-badge-experimental">Experimental</span></h3>
-                            <p class="feature-desc">Experimental pipeline and fan-out modes explore how a Job can span multiple compatible Islands when one device is not enough.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="1" y="3" width="22" height="18" rx="3"/>
-                                    <line x1="1" y1="9" x2="23" y2="9"/>
-                                    <line x1="8" y1="9" x2="8" y2="21"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Cargo Registry</h3>
-                            <p class="feature-desc">Browse catalog entries across container, WASM, GGUF, ONNX, and mobile formats. Execution still depends on an approved artifact and a compatible online Island.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="5" y="2" width="14" height="20" rx="2"/>
-                                    <line x1="12" y1="18" x2="12.01" y2="18"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Mobile compute <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h3>
-                            <p class="feature-desc">The early iOS and Android Island apps explore on-device inference with hardware-aware safety limits and mobile runtimes.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="2" y="3" width="7" height="7" rx="1"/>
-                                    <rect x="15" y="3" width="7" height="7" rx="1"/>
-                                    <rect x="2" y="14" width="7" height="7" rx="1"/>
-                                    <rect x="15" y="14" width="7" height="7" rx="1"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Batch processing <a class="feature-badge-experimental" href="https://docs.archipelag.io/reference/feature-maturity/">Experimental</a></h3>
-                            <p class="feature-desc">Eligible inputs can fan out across available Islands, with progress tracked and results collected through one Job flow.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <circle cx="12" cy="5" r="3"/>
-                                    <circle cx="6" cy="19" r="3"/>
-                                    <circle cx="18" cy="19" r="3"/>
-                                    <line x1="12" y1="8" x2="6" y2="16" stroke-linecap="round"/>
-                                    <line x1="12" y1="8" x2="18" y2="16" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Workflow orchestration <span class="feature-badge-experimental">Experimental</span></h3>
-                            <p class="feature-desc">Experimental DAG orchestration coordinates dependent Cargo steps and explores parallel execution across compatible Islands.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Inference caching <span class="feature-badge-experimental">Experimental</span></h3>
-                            <p class="feature-desc">Experimental semantic matching can reuse eligible results for repetitive Jobs, reducing latency and duplicated compute.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M16 3h5v5M4 20L21 3" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M21 16v5h-5M4 4l17 17" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">A/B testing <span class="feature-badge-experimental">Experimental</span></h3>
-                            <p class="feature-desc">Experimental traffic splitting records latency and result-quality signals across multiple Cargo or model variants.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Federated fine-tuning <span class="feature-badge-experimental">Experimental</span></h3>
-                            <p class="feature-desc">Experimental coordination lets participating Islands train locally and aggregate model updates without collecting each Island's source dataset.</p>
-                        </article>
-
-                        <article class="antigrid-card antigrid-feature" role="listitem">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
-                                    <path d="M7 11V7a5 5 0 0110 0v4" stroke-linecap="round"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Confidential inference <a class="feature-badge-prototype" href="https://docs.archipelag.io/reference/feature-maturity/">Security prototype</a></h3>
-                            <p class="feature-desc">Experimental TEE-backed modes aim to keep Job payloads encrypted outside an attested execution boundary on supported hardware.</p>
-                        </article>
+                    <div class="glossary-item">
+                        <dt>Cargo</dt>
+                        <dd>An approved, signed package that runs a specific AI model.</dd>
                     </div>
-                </div>
+                    <div class="glossary-item">
+                        <dt>Job</dt>
+                        <dd>One request you send, such as a chat completion.</dd>
+                    </div>
+                    <a class="glossary-link" href="https://docs.archipelag.io/glossary/">Full glossary <span aria-hidden="true">&rarr;</span></a>
+                </dl>
             </div>
         </section>
 
-        <!-- SECTION 5: For Developers -->
-        <section class="section section-alt-flat preview-section" aria-labelledby="users-preview-title">
+        <!-- For Consumers / developers -->
+        <section id="use-ai" class="section section-alt-flat preview-section audience-section" aria-labelledby="use-title">
             <div class="container">
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">05</span> &mdash; For Developers</span>
-                            <h2 id="users-preview-title" class="preview-title">Drop-in API, distributed backend</h2>
-                            <p class="preview-desc">
-                                OpenAI-compatible chat endpoint. Switch your base URL and your existing code
-                                runs on community GPUs instead of a single cloud provider.
-                            </p>
+                <div class="audience-grid">
+                    <div class="preview-content">
+                        <span class="audience-tag audience-tag-use">For developers &amp; AI users</span>
+                        <h2 id="use-title" class="preview-title">Keep your code. Change one URL.</h2>
+                        <p class="preview-desc">
+                            The chat API speaks the OpenAI format, so existing clients and SDKs work after
+                            you swap the base URL. Prefer clicking to coding? Use the web chat and playground.
+                        </p>
 
-                            <ul class="preview-list" role="list" aria-label="Developer features">
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>OpenAI-compatible <code>/v1/chat/completions</code></span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Python and JavaScript/React SDKs</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Web chat, image generation, and API playground</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Real-time streaming; experimental batch API paths</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Regional placement policies and execution records</span>
-                                </li>
-                            </ul>
+                        <ol class="audience-steps" role="list">
+                            <li><span class="audience-step-n" aria-hidden="true">1</span><div><strong>Create a free account</strong><span>Email or GitHub. You start with a virtual test balance; no card required.</span></div></li>
+                            <li><span class="audience-step-n" aria-hidden="true">2</span><div><strong>Send a Job</strong><span>From the web chat, the playground, or your own code via the API.</span></div></li>
+                            <li><span class="audience-step-n" aria-hidden="true">3</span><div><strong>Watch it stream</strong><span>Tokens arrive as they are generated, from a nearby available Island.</span></div></li>
+                        </ol>
 
-                            <a href="https://app.archipelag.io/api/v1/docs" class="btn btn-tropical">View API docs</a>
+                        <div class="audience-cta">
+                            <a href="https://app.archipelag.io/playground" class="btn btn-tropical">Open the playground <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                            <a href="/use" class="btn btn-ghost">How it works for Consumers</a>
                         </div>
+                    </div>
 
-                        <div class="antigrid-card flex items-center justify-center">
-                            <figure class="code-block w-full" role="figure" aria-label="Streaming API example">
-                                <pre><code><span class="code-comment"># Works with any OpenAI-compatible client</span>
+                    <figure class="code-window" aria-label="Streaming API example in Python">
+                        <div class="code-window-bar" aria-hidden="true">
+                            <span class="code-window-dots"><i></i><i></i><i></i></span>
+                            <span class="code-window-title">stream.py</span>
+                        </div>
+                        <pre><code><span class="code-comment"># Any OpenAI-compatible client works</span>
 <span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
 
 client = OpenAI(
     base_url=<span class="code-string">"https://app.archipelag.io/api/v1"</span>,
-    api_key=<span class="code-string">"your-key"</span>
+    api_key=<span class="code-string">"YOUR_API_KEY"</span>,
 )
 
 stream = client.chat.completions.create(
-    model=<span class="code-string">"mistral-7b"</span>,
+    model=<span class="code-string">"{{ config.extra.example_model }}"</span>,
     messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: <span class="code-string">"Hello!"</span>}],
-    stream=<span class="code-keyword">True</span>
+    stream=<span class="code-keyword">True</span>,
 )
 
 <span class="code-keyword">for</span> chunk <span class="code-keyword">in</span> stream:
-    print(chunk.choices[0].delta.content, end=<span class="code-string">""</span>)</code></pre>
-                            </figure>
-                        </div>
-                    </div>
+    print(chunk.choices[0].delta.content <span class="code-keyword">or</span> <span class="code-string">""</span>, end=<span class="code-string">""</span>)</code></pre>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 6: For Hosts Preview -->
-        <section class="section section-ocean preview-section" aria-labelledby="hosts-preview-title">
+        <!-- For Island operators -->
+        <section id="run-an-island" class="section section-ocean preview-section audience-section" aria-labelledby="island-title">
             <div class="container">
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <div class="antigrid-card flex items-center justify-center">
-                            <div class="island-earning-visual w-full">
-                                <canvas class="island-vignette island-vignette-earning" data-island-scene="earning" aria-hidden="true"></canvas>
-                                <div class="island-earning-caption" aria-hidden="true">
-                                    <span>Job arrives</span>
-                                    <span>Compute runs</span>
-                                    <span>Credits accrue</span>
-                                </div>
-                            </div>
+                <div class="audience-grid audience-grid-reverse">
+                    <div class="island-earning-visual">
+                        <canvas class="island-vignette island-vignette-earning" data-island-scene="earning" aria-hidden="true"></canvas>
+                        <div class="island-earning-caption" aria-hidden="true">
+                            <span>Job arrives</span>
+                            <span>Cargo runs</span>
+                            <span>Credits recorded</span>
                         </div>
+                    </div>
 
-                        <div class="antigrid-card preview-content">
-                            <span class="section-eyebrow-numbered"><span class="number">06</span> &mdash; For Islands</span>
-                            <h2 id="hosts-preview-title" class="preview-title">Your hardware, your virtual ask</h2>
-                            <p class="preview-desc">
-                                Turn compatible hardware into an Island. Set an availability schedule and a virtual ask.
-                                The Coordinator matches eligible Jobs from nearby Consumers during Phase 2.
-                            </p>
+                    <div class="preview-content">
+                        <span class="audience-tag audience-tag-island">For Island operators</span>
+                        <h2 id="island-title" class="preview-title">Put idle hardware to work</h2>
+                        <p class="preview-desc">
+                            Install the Island software, choose when your machine is available, and the network
+                            sends it Jobs it can handle. You stay in control of your schedule and your asking price.
+                        </p>
 
-                            <ul class="preview-list" role="list" aria-label="Island features">
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Desktop GPU or mobile device &mdash; iPhones work too</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Set a virtual ask and test how it affects matching</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Controlled Cargos &mdash; signed artifacts and seccomp profiles</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Karma score &mdash; good uptime means more jobs</span>
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    <span>Publish Cargos &mdash; track virtual execution attribution</span>
-                                </li>
-                            </ul>
+                        <ul class="preview-list" role="list" aria-label="What Island operators get">
+                            <li>{{ check_icon | safe }}<span><strong>Only approved code.</strong> Islands run signed, reviewed Cargos in a sandbox with resource limits.</span></li>
+                            <li>{{ check_icon | safe }}<span><strong>Your rules.</strong> Set availability hours and a per-Cargo asking price; change them anytime.</span></li>
+                            <li>{{ check_icon | safe }}<span><strong>Reputation from day one.</strong> Reliable Islands build Karma, which the network uses when placing Jobs.</span></li>
+                        </ul>
 
-                            <a href="/earn" class="btn btn-tropical">Become an Island</a>
+                        <p class="phase-note">
+                            <span class="phase-note-label">Phase 2</span>
+                            Completed Jobs earn <em>virtual</em> credits only. Island payouts are not enabled yet;
+                            early operators help shape how they will work.
+                        </p>
+
+                        <div class="audience-cta">
+                            <a href="/earn" class="btn btn-tropical">Become an Island <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                            <a href="/earn#requirements" class="btn btn-ghost">Check requirements</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 7: Architecture -->
-        <section class="section section-gradient" aria-labelledby="architecture-title">
+        <!-- What works today vs. what is in the lab -->
+        <section class="section" aria-labelledby="today-title">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Under the Hood</span>
+                    <span class="section-eyebrow">Where things stand</span>
+                    <h2 id="today-title" class="section-title">What works today, and what&rsquo;s in the lab</h2>
+                    <p class="section-subtitle">We label every capability by maturity so you know what to rely on.</p>
+                </div>
+
+                <div class="maturity-board">
+                    <div class="maturity-col maturity-col-live">
+                        <h3 class="maturity-col-title"><span class="feature-badge-current">Current path</span> Ready to try</h3>
+                        <ul class="capability-list" role="list">
+                            <li><strong>Streaming chat API</strong><span>OpenAI-compatible <code>/v1/chat/completions</code>, token-by-token.</span></li>
+                            <li><strong>Web chat &amp; playground</strong><span>Try models and API parameters in the browser.</span></li>
+                            <li><strong>Proximity-aware placement</strong><span>Measured latency, capability, availability, and Karma decide the Island.</span></li>
+                            <li><strong>Regional placement policies</strong><span>Restrict where a Job may run and see which Island ran it.</span></li>
+                            <li><strong>Signed, sandboxed Cargos</strong><span>Signature checks, registry allowlist, seccomp profiles, resource caps.</span></li>
+                            <li><strong>Cargo Registry</strong><span>Browse the approved catalog and its hardware requirements.</span></li>
+                        </ul>
+                    </div>
+                    <div class="maturity-col maturity-col-lab">
+                        <h3 class="maturity-col-title"><span class="feature-badge-experimental">Experimental</span> In the lab</h3>
+                        <ul class="lab-chips" role="list">
+                            <li>Multi-Island model sharding</li>
+                            <li>Batch fan-out</li>
+                            <li>Workflow pipelines</li>
+                            <li>Inference caching</li>
+                            <li>A/B testing</li>
+                            <li>Federated fine-tuning</li>
+                            <li>Phone &amp; tablet Islands</li>
+                            <li class="lab-chip-prototype">Confidential inference</li>
+                        </ul>
+                        <p class="maturity-col-note">Experimental features may change or break. Don&rsquo;t send sensitive or regulated data while the network is in Phase 2.</p>
+                        <div class="maturity-links">
+                            <a href="/use#advanced">Explore experimental features <span aria-hidden="true">&rarr;</span></a>
+                            <a href="https://docs.archipelag.io/reference/feature-maturity/">What the labels mean <span aria-hidden="true">&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section section-alt-flat" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="faq-layout">
+                    <div class="faq-intro">
+                        <span class="section-eyebrow">Questions</span>
+                        <h2 id="faq-title" class="section-title">The honest answers</h2>
+                        <p class="section-subtitle">Still curious? Read the <a href="/status/">current status</a> page or <a href="mailto:hey@archipelag.io">email us</a>.</p>
+                    </div>
+                    <div class="faq-list">
+                        <details class="faq-item" open>
+                            <summary>Is it really free?</summary>
+                            <p>Yes, during Phase 2. Every account gets virtual credits with no cash value, and no payment method is needed. Balances may be refilled or reset while we validate metering.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Can I earn money by running an Island?</summary>
+                            <p>Not yet. Islands earn virtual credits for completed Jobs so we can test matching and accounting. Real-money payouts are not enabled; the <a href="/status/">status page</a> is the source of truth for when that changes.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Is it safe to run an Island on my computer?</summary>
+                            <p>The Island software only runs approved, signed Cargos, inside containers with seccomp profiles, resource limits, and network controls. It never runs code submitted by Consumers. You are still responsible for keeping the machine itself patched and secure.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Who can see my prompts?</summary>
+                            <p>Your request is processed by the Island that runs it, and passes through the Coordinator. Treat Phase 2 like any shared beta: don&rsquo;t send sensitive, regulated, or confidential data. Confidential inference is a research prototype, not a guarantee.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Does my data stay in my region?</summary>
+                            <p>Jobs prefer nearby Islands by default, and you can attach a regional placement policy that limits where a Job may run. The Coordinator records which Island ran it. These controls support data-residency programs but are not a legal compliance guarantee on their own.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Do I need to change my code?</summary>
+                            <p>Usually only the base URL and API key. The chat endpoint follows the OpenAI format, including streaming. Check the <a href="https://app.archipelag.io/api/v1/docs">API reference</a> for the parameters your integration relies on.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Under the hood -->
+        <section class="section" aria-labelledby="architecture-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Under the hood</span>
                     <h2 id="architecture-title" class="section-title">Built on boring, reliable technology</h2>
-                    <p class="section-subtitle">No blockchain, no token. Just battle-tested infrastructure.</p>
+                    <p class="section-subtitle">No blockchain, no token. Open-source software you can read.</p>
                 </div>
 
                 <div class="architecture-archipelago">
@@ -755,20 +536,23 @@ stream = client.chat.completions.create(
                             <span class="tech-index" aria-hidden="true">03</span>
                             <span class="tech-label">Island software</span>
                             <span class="tech-name">Rust / Tokio</span>
-                            <p class="tech-desc">A lightweight binary that manages containers via Bollard, reports heartbeats, and streams output. Compiles to a single static binary.</p>
+                            <p class="tech-desc">A lightweight binary that manages Cargo runtimes, reports heartbeats, and streams output back to the Coordinator.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 8: Latest from the blog -->
+        <!-- Latest from the newsroom -->
         {% set news = get_section(path="news/_index.md") %}
         <section class="section section-alt-flat" aria-labelledby="news-title">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">08</span> &mdash; News</span>
-                    <h2 id="news-title" class="section-title">From the newsroom</h2>
+                <div class="section-header-row">
+                    <div>
+                        <span class="section-eyebrow">Newsroom</span>
+                        <h2 id="news-title" class="section-title">What we&rsquo;re building</h2>
+                    </div>
+                    <a href="/news" class="btn btn-secondary">All posts <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="news-preview-grid">
@@ -783,37 +567,19 @@ stream = client.chat.completions.create(
                     </a>
                     {% endfor %}
                 </div>
-
-                <div style="text-align: center; margin-top: var(--space-10);">
-                    <a href="/news" class="btn btn-secondary btn-lg">All posts</a>
-                </div>
             </div>
         </section>
 
-        <!-- SECTION 9: Get Started + Design Partner -->
-        <section id="get-started" class="section section-alt-flat section-aurora" aria-labelledby="getstarted-title">
+        <!-- Final call to action -->
+        <section id="get-started" class="section final-cta" aria-labelledby="getstarted-title">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-eyebrow-numbered"><span class="number">09</span> &mdash; Join the Beta</span>
-                    <h2 id="getstarted-title" class="section-title">The network is live. Come build with us.</h2>
-                </div>
-
-                <div class="antigrid-wrapper">
-                    <div class="antigrid antigrid-2">
-                        <div class="antigrid-card cta-card">
-                            <h3 class="cta-card-title">Try it out</h3>
-                            <p class="cta-card-desc">Create an account and run your first inference Job on compatible community hardware. Phase 2 uses virtual credits and requires no credit card.</p>
-                            <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create account</a>
-                        </div>
-
-                        <div class="antigrid-card cta-card">
-                            <h3 class="cta-card-title">Design partner program</h3>
-                            <p class="cta-card-desc">
-                                Building something that needs distributed inference? Work directly with our team
-                                on integration, custom Cargos, and priority access.
-                            </p>
-                            <a href="mailto:hey@archipelag.io" class="btn btn-primary btn-lg">hey@archipelag.io</a>
-                        </div>
+                <div class="final-cta-panel">
+                    <span class="section-eyebrow">Join the beta</span>
+                    <h2 id="getstarted-title" class="final-cta-title">The network is live.<br>Come build it with us.</h2>
+                    <p class="final-cta-desc">Run your first Job in a minute, or bring an Island online. Building something that needs distributed inference? Our design partners work directly with the team on integration and custom Cargos.</p>
+                    <div class="hero-cta">
+                        <a href="https://app.archipelag.io/auth/login" class="btn btn-tropical btn-lg">Create a free account <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+                        <a href="mailto:{{ config.extra.design_partner_email }}?subject=Design%20partner%20program" class="btn btn-secondary btn-lg">Become a design partner</a>
                     </div>
                 </div>
             </div>

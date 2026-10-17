@@ -12,6 +12,13 @@
     return String(n);
   }
 
+  // Labels carry data-one / data-many so "1 Island online" reads correctly.
+  function setLabel(valueEl, n) {
+    var label = valueEl && valueEl.nextElementSibling;
+    if (!label || !label.dataset.one) return;
+    label.textContent = n === 1 ? label.dataset.one : label.dataset.many;
+  }
+
   function update(data) {
     var islands = document.getElementById('stat-islands');
     var regions = document.getElementById('stat-regions');
@@ -20,6 +27,9 @@
     if (islands) islands.textContent = formatNumber(data.online_islands);
     if (regions) regions.textContent = data.regions || '—';
     if (jobs) jobs.textContent = formatNumber(data.jobs_completed);
+    setLabel(islands, data.online_islands);
+    setLabel(regions, data.regions);
+    setLabel(jobs, data.jobs_completed);
 
     // Show the strip once we have data
     var strip = document.getElementById('network-status');

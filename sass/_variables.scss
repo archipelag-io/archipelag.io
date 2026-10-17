@@ -113,6 +113,7 @@
   --accent-light: #55ffe8;
   --accent-muted: rgba(0, 255, 221, 0.15);
   --accent-dark: #00dbbe;
+  --accent-glow: rgba(0, 255, 221, 0.45);
 
   // Tropical triad — neon
   --accent-yellow: #fff033;
@@ -155,6 +156,7 @@
   --space-4: #{$aui-space-4};
   --space-5: #{$aui-space-5};
   --space-6: #{$aui-space-6};
+  --space-7: #{$aui-space-7};
   --space-8: #{$aui-space-8};
   --space-10: #{$aui-space-10};
   --space-12: #{$aui-space-12};
@@ -214,10 +216,12 @@ html.light {
   --text-tertiary: #a3a3a3;
   --border: #e5e5e5;
   --border-subtle: #f0f0f0;
-  --accent: #00c9b0;
-  --accent-light: #00e5c8;
-  --accent-dark: #00a896;
-  --accent-muted: rgba(0, 201, 176, 0.15);
+  // Darker teal in light mode so accent text keeps WCAG AA contrast on white
+  --accent: #0d9488;
+  --accent-light: #0f9f92;
+  --accent-dark: #0f766e;
+  --accent-muted: rgba(13, 148, 136, 0.12);
+  --accent-glow: rgba(13, 148, 136, 0.35);
 
   --accent-yellow: #ffee33;
   --accent-yellow-light: #fff577;
