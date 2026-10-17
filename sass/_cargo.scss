@@ -618,3 +618,26 @@ html.light {
     text-align: center;
   }
 }
+
+// Formats added when the catalog moved to data/cargos.json
+.dot-webgpu { background: #f97316; }
+.dot-exo { background: #e879f9; }
+.icon-webgpu { background: rgba(249, 115, 22, 0.12); color: #fb923c; }
+.icon-exo { background: rgba(232, 121, 249, 0.12); color: #f0abfc; }
+html.light {
+  .icon-webgpu { background: rgba(249, 115, 22, 0.08); color: #c2410c; }
+  .icon-exo { background: rgba(232, 121, 249, 0.08); color: #a21caf; }
+}
+
+.cargo-tag-slug {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+.cargo-sidebar-note {
+  margin-top: var(--space-6);
+  font-family: var(--font-subline);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
