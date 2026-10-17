@@ -24,7 +24,7 @@ Archipelag.io is in **Phase 2**. Access is free and credits-only while the appro
 | Coordinator | Control plane for placement, dispatch, identity, accounting, and health. |
 | Job | One unit of requested work. |
 | Cargo | An approved signed package that performs Jobs. Code and API identifiers may still use `workload`. |
-| Karma | A signal based on Island completion rate, latency, and uptime. |
+| Karma | An Island track record: +1 per hour of successful compute, reduced by failures, timeouts, and disconnects. Islands need a minimum Karma before Jobs are credited. |
 
 ## Job flow
 
@@ -34,7 +34,7 @@ Consumer → Coordinator → NATS JetStream → Island → Cargo → Coordinator
 
 1. A Consumer submits a Job through the web app or API.
 2. The Coordinator filters Islands by availability, capabilities, optional regional policy, and Cargo requirements.
-3. Placement considers latency, fit, and Karma signals.
+3. Placement considers capability fit, region (same, then adjacent, then any), warm containers, and current load.
 4. The selected Island receives the Job through the message fabric.
 5. An approved Cargo performs the work under the applicable isolation and resource policies.
 6. Results stream back through the Coordinator.

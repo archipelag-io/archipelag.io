@@ -236,8 +236,9 @@ html.light .btn-tropical { color: #ffffff; }
   &.featured {
     border-color: var(--accent);
 
-    &::before {
-      content: 'Popular';
+    // Badge text comes from data-badge, so a lone plan isn't labelled "Popular"
+    &[data-badge]::before {
+      content: attr(data-badge);
       position: absolute;
       top: 0;
       left: 50%;

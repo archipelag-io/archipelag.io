@@ -72,7 +72,7 @@
                         "name": "How does pricing work on Archipelag.io?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "During Phase 2, Islands set virtual asks per Cargo type and Consumers set virtual budgets. The Coordinator selects an eligible match using price alongside capability, availability, latency, placement policy, and Karma. No real money changes hands."
+                            "text": "During Phase 2, Islands set virtual asks per Cargo type and Consumers set virtual budgets. The Coordinator selects an eligible match using price alongside capability, region, availability, and current load. No real money changes hands."
                         }
                     },
                     {
@@ -144,7 +144,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Consumers set bid ceilings</h3>
-                            <p class="principle-desc">Set a maximum price per Cargo type. The coordinator only matches you with Islands at or below your budget. You can also bid per-job.</p>
+                            <p class="principle-desc">Set a maximum price per Cargo type. The Coordinator only matches you with Islands at or below your budget. You can also bid per-job.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="exchange" aria-hidden="true"></canvas>
@@ -209,8 +209,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <span class="host-diagram-label">3. Current virtual rate</span>
-                                        <span class="host-diagram-detail">Average clearing amount from recent Jobs in the test exchange</span>
+                                        <span class="host-diagram-label">3. Suggested budget</span>
+                                        <span class="host-diagram-detail">The recent average clearing amount plus 5%</span>
                                     </div>
                                 </div>
                                 <div class="host-diagram-arrow" aria-hidden="true">
@@ -236,13 +236,13 @@
                         <div class="antigrid-card preview-content">
                             <h3 class="preview-title">Set it once, forget it</h3>
                             <p class="preview-desc">
-                                Most consumers set a bid preference per Cargo type and leave it. The coordinator uses your
+                                Most Consumers set a bid preference per Cargo type and leave it. The Coordinator uses your
                                 preference for every Job, finds an eligible Island willing to accept it, and records
                                 that Island's virtual asking amount &mdash; not the Consumer's maximum.
                             </p>
                             <p class="preview-desc">
                                 A Consumer can override the budget on an individual Job. Placement also considers
-                                compatibility, region, latency, availability, and Karma—not price alone.
+                                compatibility, region, availability, and current load&mdash;not price alone.
                             </p>
                         </div>
                     </div>
@@ -369,7 +369,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Demand spikes</h3>
-                            <p class="principle-desc">When queued Jobs exceed available capacity, the Phase 2 model can raise its virtual multiplier. The exchange exposes the change so the behavior can be evaluated.</p>
+                            <p class="principle-desc">When queued Jobs exceed available capacity, the Phase 2 model can raise its virtual multiplier for Jobs that have no market clearing amount.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <div class="principle-icon" aria-hidden="true">
@@ -378,8 +378,8 @@
                                     <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 class="principle-title">Karma gating</h3>
-                            <p class="principle-desc">Karma from successful Jobs, latency, and uptime influences placement. Phase 2 does not enable cash payouts.</p>
+                            <h3 class="principle-title">Karma threshold</h3>
+                            <p class="principle-desc">Islands need a minimum Karma (10 by default) before completed Jobs are credited. Phase 2 does not enable cash payouts.</p>
                         </div>
                     </div>
                 </div>
@@ -396,7 +396,7 @@
                             <h2 id="surge-title" class="preview-title">When demand exceeds supply</h2>
                             <p class="preview-desc">
                                 The Phase 2 model can apply a simulated 25% multiplier when queued Jobs exceed twice
-                                the configured available Island capacity. The exchange UI shows when the rule is active.
+                                the number of online Islands with spare capacity. It applies only when a Job has no market clearing amount.
                             </p>
                             <p class="preview-desc">
                                 The rule lets the team observe how supply might respond to demand and how Consumers
@@ -418,7 +418,7 @@
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Visible on the exchange dashboard</span>
+                                    <span>Applies only when no market clearing amount exists</span>
                                 </li>
                             </ul>
                         </div>
@@ -537,7 +537,7 @@
                                     <circle cx="12" cy="7" r="4"/>
                                 </svg>
                             </div>
-                            <h3 class="principle-title">For consumers</h3>
+                            <h3 class="principle-title">For Consumers</h3>
                             <p class="principle-desc">Suggested bid = current market rate &times; 1.05. A 5% premium over average ensures your job matches quickly without overpaying. You can always go lower and wait for a cheaper Island.</p>
                         </article>
                         <article class="antigrid-card antigrid-principle">
@@ -549,7 +549,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">For Islands</h3>
-                            <p class="principle-desc">A suggested virtual ask combines the current test rate with a hardware-tier multiplier. Operators can adjust it to explore how price affects simulated placement.</p>
+                            <p class="principle-desc">A suggested virtual ask combines the current market rate with a hardware-tier multiplier. Operators can adjust it to explore how price affects simulated placement.</p>
                         </article>
                     </div>
                 </div>

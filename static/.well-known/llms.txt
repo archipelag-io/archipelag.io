@@ -31,7 +31,7 @@ The platform is currently in open beta (until June 2026). All credits and earnin
 - Download the Island software for Windows, macOS, or Linux
 - All workloads are network-approved and cryptographically signed (cosign)
 - Sandboxed Docker containers with seccomp profiles — no access to files or network
-- Karma reputation system: higher Island score = more jobs + better rates
+- Karma track record: built from hours of successful compute; Islands need a minimum Karma before completed Jobs are credited
 - Payouts via Stripe, available in 40+ countries
 
 ## Pricing

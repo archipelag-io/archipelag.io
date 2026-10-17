@@ -14,7 +14,7 @@ The launch use case is AI inference, but the fabric is designed for approved, si
 ## How the Network Works
 
 1. A **Consumer** submits a Job through the web app or API.
-2. The **Coordinator** matches it to a compatible, available Island using capability, latency, region, asking price, and Karma.
+2. The **Coordinator** matches it to a compatible, available Island using capability, region, current load, and asking price.
 3. The **Island** runs the approved Cargo in a constrained sandbox.
 4. Results stream back through the Coordinator to the Consumer.
 

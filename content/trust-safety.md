@@ -22,7 +22,7 @@ A Cargo Registry entry is a catalog record; it does not promise that a compatibl
 
 ## Island accountability
 
-Islands register their capabilities and send health information to the Coordinator. Successful execution, latency, uptime, and failures contribute to Karma and placement decisions. An Island may be made ineligible when it is unhealthy, incompatible, suspended, or outside a Consumer's placement policy.
+Islands register their capabilities and send health information to the Coordinator. Successful compute time builds Karma; failures, timeouts, and disconnects reduce it. An Island may be made ineligible when it is unhealthy, incompatible, suspended, or outside a Consumer's placement policy.
 
 The standard trust model still matters: Job data is available to the Island's execution environment while a Cargo runs. See [Security](/security) for the boundary and for the status of experimental confidential execution.
 

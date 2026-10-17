@@ -243,7 +243,7 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Karma from day one</h3>
-                            <p class="principle-desc">Every completed Job builds your Island&rsquo;s public track record. The network uses Karma when choosing where to place future Jobs.</p>
+                            <p class="principle-desc">Hours of successful compute build your Island&rsquo;s public track record. Islands need 10 Karma before completed Jobs are credited, so starting early matters.</p>
                         </div>
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="routing" aria-hidden="true"></canvas>
@@ -289,7 +289,7 @@
                                 </svg>
                             </div>
                             <h3 class="principle-title">Network</h3>
-                            <p class="principle-desc">Stable internet connection. Lower latency can help with nearby Consumers; the Coordinator measures RTT directly.</p>
+                            <p class="principle-desc">A stable internet connection. Placement prefers Islands in the Consumer&rsquo;s region, so where you are matters more than raw bandwidth.</p>
                         </article>
                     </div>
                 </div>
@@ -371,7 +371,7 @@
                                     </div>
                                     <div>
                                         <span class="host-diagram-label">Heartbeats &amp; health checks</span>
-                                        <span class="host-diagram-detail">Coordinator tracks your latency, uptime, and availability</span>
+                                        <span class="host-diagram-detail">The Coordinator tracks whether your Island is online and how loaded it is</span>
                                     </div>
                                 </div>
                                 <div class="host-diagram-arrow" aria-hidden="true">
@@ -531,7 +531,7 @@
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
                             <h3 class="principle-title">Build Karma early</h3>
-                            <p class="principle-desc">Phase 2 lets early Islands build Karma from completed Jobs, latency, and uptime while the network's placement behavior is validated.</p>
+                            <p class="principle-desc">Karma grows with hours of successful compute and drops on failures, timeouts, and disconnects. Early Islands get a head start on their track record.</p>
                         </div>
                     </div>
                 </div>
@@ -547,38 +547,38 @@
                             <span class="section-eyebrow-numbered"><span class="number">07</span> &mdash; Reputation</span>
                             <h2 id="karma-title" class="preview-title">Karma: your public track record</h2>
                             <p class="preview-desc">
-                                Every Island has a Karma score tracked by the Coordinator.
-                                It is calculated from Job success rate, response latency, and uptime consistency.
+                                Every Island has a Karma score tracked by the Coordinator. It rewards
+                                sustained, reliable compute and penalizes Jobs your Island drops.
                             </p>
 
                             <ul class="preview-list" aria-label="Karma system details">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Starts at 50, maxes at 100</span>
+                                    <span>Starts at 0; +1 for every hour of successful compute</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Goes up with completed Jobs, down with failures or timeouts</span>
+                                    <span>&minus;5 for a failed Job, &minus;3 for a timeout, &minus;20 for a disconnect mid-Job</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Higher Karma can improve future Job placement</span>
+                                    <span>Islands need 10 Karma before completed Jobs are credited; new Islands earn Karma 1.5&times; faster until then</span>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>Coordinator factors karma into Island selection alongside latency</span>
+                                    <span>Karma ranks Islands on the public leaderboard</span>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="antigrid-card flex items-center justify-center">
                             <figure class="w-full text-center" style="padding: var(--space-8);">
-                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example karma score">85</div>
+                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example Karma score">26</div>
                                 <figcaption>
-                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Karma Score</div>
+                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Example Karma</div>
                                     <p class="text-sm text-secondary">
-                                        142 completed Jobs<br>
-                                        99.3% success rate &middot; 38ms avg. latency
+                                        About 26 hours of successful compute<br>
+                                        One timeout &middot; above the 10-Karma threshold
                                     </p>
                                 </figcaption>
                             </figure>
