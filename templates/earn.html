@@ -342,7 +342,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card">
-                            <div class="host-diagram">
+                            <div class="host-diagram" data-sequence=".host-diagram-step">
                                 <div class="host-diagram-step">
                                     <div class="host-diagram-icon" aria-hidden="true">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -569,22 +569,44 @@
                             </ul>
                         </div>
 
-                        <div class="antigrid-card flex items-center justify-center">
-                            <figure class="w-full text-center" style="padding: var(--space-8);">
-                                <div class="font-brand" style="font-size: var(--text-6xl); font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: var(--space-4);" aria-label="Example Karma score">26</div>
-                                <figcaption>
-                                    <div class="font-brand text-lg mb-2" style="font-weight:500;">Example Karma</div>
-                                    <p class="text-sm text-secondary">
-                                        About 26 hours of successful compute<br>
-                                        One timeout &middot; above the 10-Karma threshold
-                                    </p>
-                                </figcaption>
-                            </figure>
+                        <div class="antigrid-card km-card">
+                            <div class="km" data-karma-meter>
+                                <div class="km-top">
+                                    <div>
+                                        <span class="km-score" data-km-score>0</span>
+                                        <span class="km-score-label">Karma after <span data-km-hours>0</span> hours of Jobs</span>
+                                    </div>
+                                    <span class="km-status" data-km-status>Jobs not credited yet</span>
+                                </div>
+                                <div>
+                                    <div class="km-track" aria-hidden="true">
+                                        <div class="km-fill" data-km-fill></div>
+                                        <div class="km-threshold" style="left: 33.333%;"><span>10 &middot; credits unlock</span></div>
+                                    </div>
+                                    <div class="km-scale" aria-hidden="true"><span>0</span><span>15</span><span>30+</span></div>
+                                </div>
+                                <div class="km-actions">
+                                    <button type="button" class="xp-btn" data-km="hour">+1 hour of Jobs</button>
+                                    <button type="button" class="xp-btn km-penalty" data-km="timeout">Timeout &minus;3</button>
+                                    <button type="button" class="xp-btn km-penalty" data-km="failed">Failed Job &minus;5</button>
+                                    <button type="button" class="xp-btn km-penalty" data-km="disconnect">Disconnect &minus;20</button>
+                                </div>
+                                <ol class="km-log" role="log" aria-live="polite" aria-label="Karma changes" data-km-log></ol>
+                                <div class="km-foot">
+                                    <span class="xp-note">Try it: run a few hours, then drop a Job.</span>
+                                    <span>
+                                        <button type="button" class="xp-btn xp-btn-primary" data-km="play">Play a day</button>
+                                        <button type="button" class="xp-btn" data-km="reset">Reset</button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <script src="{{ get_url(path='js/karma-meter.js', cachebust=true) }}" defer></script>
 
         <!-- Virtual Attribution Simulator -->
         <section class="section section-alt-flat" id="calculator" aria-labelledby="calculator-title" data-toc="Simulator">
@@ -770,7 +792,7 @@
 
                         <div class="antigrid-card flex items-center justify-center">
                             <figure class="w-full" style="padding: var(--space-6);">
-                                <div class="host-diagram">
+                                <div class="host-diagram" data-sequence=".host-diagram-step">
                                     <div class="host-diagram-step">
                                         <div class="host-diagram-icon" aria-hidden="true">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

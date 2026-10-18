@@ -129,10 +129,35 @@
                 <div class="section-header">
                     <span class="section-eyebrow">The Model</span>
                     <h2 id="model-title" class="section-title">Ask-price auction</h2>
-                    <p class="section-subtitle">Each simulated match uses the selected Island's ask without exceeding the Consumer's virtual budget.</p>
+                    <p class="section-subtitle">Islands post asking prices. You set a budget. Drag it and watch which Island gets the Job and what you pay.</p>
                 </div>
 
-                <div class="antigrid-wrapper">
+                <div class="bm" data-budget-match>
+                    <div class="bm-chart" aria-hidden="true">
+                        <div class="bm-bar" data-ask="12" data-name="Berlin"><span class="bm-ask">12</span></div>
+                        <div class="bm-bar" data-ask="15" data-name="Munich" data-best><span class="bm-badge">Best fit</span><span class="bm-ask">15</span></div>
+                        <div class="bm-bar" data-ask="8" data-name="Bonn"><span class="bm-ask">8</span></div>
+                        <div class="bm-bar" data-ask="18" data-name="Lisbon"><span class="bm-ask">18</span></div>
+                        <div class="bm-bar" data-ask="10" data-name="Vienna"><span class="bm-ask">10</span></div>
+                        <div class="bm-line" data-bm-line><span>Your budget</span></div>
+                    </div>
+                    <div class="bm-labels" aria-hidden="true">
+                        <div><span class="bm-name">Berlin</span><span class="bm-hw">RTX 3090</span></div>
+                        <div><span class="bm-name">Munich</span><span class="bm-hw">RTX 4080</span></div>
+                        <div><span class="bm-name">Bonn</span><span class="bm-hw">RTX 3060</span></div>
+                        <div><span class="bm-name">Lisbon</span><span class="bm-hw">RTX 4090</span></div>
+                        <div><span class="bm-name">Vienna</span><span class="bm-hw">RTX 3080</span></div>
+                    </div>
+                    <div class="bm-control">
+                        <label for="bm-budget">Your budget per Job <output data-bm-out for="bm-budget">16 credits</output></label>
+                        <input id="bm-budget" class="bm-range" type="range" min="8" max="20" step="1" value="16" data-bm-range>
+                    </div>
+                    <p class="bm-result" aria-live="polite" data-bm-result></p>
+                    <p class="xp-note mt-4">Example asks in virtual credits. &ldquo;Best fit&rdquo; is the Island placement ranks first for this Job, based on hardware, region, and current load.</p>
+                </div>
+                <script src="{{ get_url(path='js/budget-match.js', cachebust=true) }}" defer></script>
+
+                <div class="antigrid-wrapper mt-8">
                     <div class="antigrid antigrid-3">
                         <div class="antigrid-card antigrid-principle">
                             <canvas class="island-vignette" data-island-scene="earning" aria-hidden="true"></canvas>
@@ -171,7 +196,7 @@
                 <div class="antigrid-wrapper">
                     <div class="antigrid antigrid-2">
                         <div class="antigrid-card">
-                            <div class="host-diagram">
+                            <div class="host-diagram" data-sequence=".host-diagram-step">
                                 <div class="host-diagram-step">
                                     <div class="host-diagram-icon" aria-hidden="true">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -429,7 +454,7 @@
                         <div class="antigrid-card flex items-center justify-center">
                             <figure class="w-full text-center" style="padding: var(--space-8);">
                                 <div style="font-family:var(--font-brand); font-size:var(--text-sm); color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-4);">Example: Peak Demand</div>
-                                <div class="host-diagram">
+                                <div class="host-diagram" data-sequence=".host-diagram-step">
                                     <div class="host-diagram-step">
                                         <div class="host-diagram-icon" aria-hidden="true">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

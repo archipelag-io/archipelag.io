@@ -1,0 +1,35 @@
+<figure class="swap-figure" data-url-swap data-provider="b">
+    <div class="swap-toggle" role="group" aria-label="Show the code for">
+        <button type="button" data-swap-to="a" aria-pressed="false">OpenAI</button>
+        <button type="button" data-swap-to="b" aria-pressed="true">Archipelag.io</button>
+    </div>
+    <div class="code-window">
+        <div class="code-window-bar" aria-hidden="true">
+            <span class="code-window-dots"><i></i><i></i><i></i></span>
+            <span class="code-window-title">stream.py</span>
+        </div>
+        <pre><code><span class="code-comment"># Any OpenAI-compatible client works</span>
+<span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
+
+client = OpenAI(
+<span class="swap-line">    base_url=<span class="code-string swap-a">"https://api.openai.com/v1"</span><span class="code-string swap-b">"https://app.archipelag.io/api/v1"</span>,</span>
+    api_key=<span class="code-string">"YOUR_API_KEY"</span>,
+)
+
+stream = client.chat.completions.create(
+<span class="swap-line">    model=<span class="code-string swap-a">"gpt-4o-mini"</span><span class="code-string swap-b">"{{ config.extra.example_model }}"</span>,</span>
+    messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: <span class="code-string">"Hello!"</span>}],
+    stream=<span class="code-keyword">True</span>,
+)
+
+<span class="code-keyword">for</span> chunk <span class="code-keyword">in</span> stream:
+    print(chunk.choices[0].delta.content <span class="code-keyword">or</span> <span class="code-string">""</span>, end=<span class="code-string">""</span>)</code></pre>
+    </div>
+    <div class="swap-output" aria-hidden="true">
+        <div class="swap-output-cmd">$ python stream.py</div>
+        <div class="swap-output-text" data-swap-output>Hello! How can I help you today?</div>
+        <div class="swap-output-meta"><span class="swap-a">Answered from a large cloud data center</span><span class="swap-b">Answered by an Island near you</span></div>
+    </div>
+    <figcaption class="swap-caption xp-note">Only the two highlighted lines change: the base URL and the model name. Same SDK, same streaming loop.</figcaption>
+</figure>
+<script src="{{ get_url(path='js/url-swap.js', cachebust=true) }}" defer></script>
