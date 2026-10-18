@@ -330,16 +330,28 @@
             </div>
         </section>
 
+        <!-- One Job, end to end -->
+        <section id="how-it-works" class="section section-alt-flat" aria-labelledby="journey-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">How it works</span>
+                    <h2 id="journey-title" class="section-title">Follow one Job across the network</h2>
+                    <p class="section-subtitle">What happens between pressing Enter and seeing the answer. Try the next scenario to see what changes when an Island is busy or offline.</p>
+                </div>
+                {% include "partials/job-journey.html" %}
+            </div>
+        </section>
+
         <!-- For Consumers / developers -->
-        <section id="use-ai" class="section section-alt-flat preview-section audience-section" aria-labelledby="use-title">
+        <section id="use-ai" class="section preview-section audience-section" aria-labelledby="use-title">
             <div class="container">
                 <div class="audience-grid">
                     <div class="preview-content">
                         <span class="audience-tag audience-tag-use">For developers &amp; AI users</span>
-                        <h2 id="use-title" class="preview-title">Keep your code. Change one URL.</h2>
+                        <h2 id="use-title" class="preview-title">Keep your code. Swap the URL.</h2>
                         <p class="preview-desc">
-                            The chat API speaks the OpenAI format, so existing clients and SDKs work after
-                            you swap the base URL. Prefer clicking to coding? Use the web chat and playground.
+                            The chat API speaks the OpenAI format, so existing clients and SDKs keep working.
+                            Flip the switch to see what changes. Prefer clicking to coding? Use the web chat and playground.
                         </p>
 
                         <ol class="audience-steps" role="list">
@@ -354,28 +366,7 @@
                         </div>
                     </div>
 
-                    <figure class="code-window" aria-label="Streaming API example in Python">
-                        <div class="code-window-bar" aria-hidden="true">
-                            <span class="code-window-dots"><i></i><i></i><i></i></span>
-                            <span class="code-window-title">stream.py</span>
-                        </div>
-                        <pre><code><span class="code-comment"># Any OpenAI-compatible client works</span>
-<span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
-
-client = OpenAI(
-    base_url=<span class="code-string">"https://app.archipelag.io/api/v1"</span>,
-    api_key=<span class="code-string">"YOUR_API_KEY"</span>,
-)
-
-stream = client.chat.completions.create(
-    model=<span class="code-string">"{{ config.extra.example_model }}"</span>,
-    messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: <span class="code-string">"Hello!"</span>}],
-    stream=<span class="code-keyword">True</span>,
-)
-
-<span class="code-keyword">for</span> chunk <span class="code-keyword">in</span> stream:
-    print(chunk.choices[0].delta.content <span class="code-keyword">or</span> <span class="code-string">""</span>, end=<span class="code-string">""</span>)</code></pre>
-                    </figure>
+                    {% include "partials/url-swap.html" %}
                 </div>
             </div>
         </section>

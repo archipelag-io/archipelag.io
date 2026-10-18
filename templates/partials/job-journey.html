@@ -1,0 +1,51 @@
+<div class="jj" data-job-journey>
+    <div class="jj-stage">
+        <svg class="jj-wires" aria-hidden="true"></svg>
+
+        <div class="jj-node jj-you" data-node="you">
+            <span class="jj-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20" stroke-linecap="round"/></svg>
+            </span>
+            <span class="jj-node-name">You</span>
+            <span class="jj-node-sub">Berlin</span>
+        </div>
+
+        <div class="jj-node jj-coord" data-node="coord">
+            <span class="jj-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg>
+            </span>
+            <span class="jj-node-name">Coordinator</span>
+            <span class="jj-node-sub jj-coord-status">Waiting for a Job</span>
+        </div>
+
+        <ul class="jj-islands" role="list" aria-label="Islands on the network">
+            <li class="jj-island" data-island="berlin"><span class="jj-dot" aria-hidden="true"></span><span class="jj-island-text"><span class="jj-island-name">Berlin</span><span class="jj-island-hw">RTX 3090 &middot; your region</span></span><span class="jj-verdict"></span></li>
+            <li class="jj-island" data-island="munich"><span class="jj-dot" aria-hidden="true"></span><span class="jj-island-text"><span class="jj-island-name">Munich</span><span class="jj-island-hw">RTX 4080 &middot; your region</span></span><span class="jj-verdict"></span></li>
+            <li class="jj-island" data-island="hamburg"><span class="jj-dot" aria-hidden="true"></span><span class="jj-island-text"><span class="jj-island-name">Hamburg</span><span class="jj-island-hw">8&nbsp;GB laptop &middot; your region</span></span><span class="jj-verdict"></span></li>
+            <li class="jj-island" data-island="lisbon"><span class="jj-dot" aria-hidden="true"></span><span class="jj-island-text"><span class="jj-island-name">Lisbon</span><span class="jj-island-hw">RTX 4090 &middot; next region</span></span><span class="jj-verdict"></span></li>
+            <li class="jj-island" data-island="oregon"><span class="jj-dot" aria-hidden="true"></span><span class="jj-island-text"><span class="jj-island-name">Oregon</span><span class="jj-island-hw">A100 &middot; other continent</span></span><span class="jj-verdict"></span></li>
+        </ul>
+    </div>
+
+    <div class="jj-bottom">
+        <ol class="jj-steps" role="list">
+            <li data-step="1"><strong>You send a Job</strong><span>A chat message from the web chat or any OpenAI-compatible client.</span></li>
+            <li data-step="2"><strong>The Coordinator picks an Island</strong><span>Can it run the model? Is it free? Is it close to you?</span></li>
+            <li data-step="3"><strong>A signed Cargo runs</strong><span>The Island runs the approved model package inside a sandbox.</span></li>
+            <li data-step="4"><strong>The answer streams back</strong><span>Tokens arrive as they are generated, and the Island&rsquo;s work is recorded.</span></li>
+        </ol>
+
+        <div class="jj-side">
+            <div class="jj-chat" aria-label="Example conversation">
+                <p class="jj-msg jj-msg-you"><span class="jj-msg-label">You</span><span class="jj-msg-text" data-jj-prompt></span></p>
+                <p class="jj-msg jj-msg-island"><span class="jj-msg-label" data-jj-answer-label>Island</span><span class="jj-msg-text" data-jj-answer></span></p>
+            </div>
+            <div class="jj-controls">
+                <span class="jj-scenario" data-jj-scenario></span>
+                <button type="button" class="jj-btn" data-jj-pause aria-pressed="false">Pause</button>
+                <button type="button" class="jj-btn jj-btn-primary" data-jj-next>Next scenario <span aria-hidden="true">&rarr;</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ get_url(path='js/job-journey.js', cachebust=true) }}" defer></script>
