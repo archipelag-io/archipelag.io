@@ -61,7 +61,7 @@ The Island software is written in Rust and is available for review in the [publi
 
 ## Placement and compliance
 
-Regional placement policies can restrict which reported Island locations are eligible for a Job, and execution records identify the selected Island. These are technical controls that may support a Consumer's governance or data-residency program. They do not, by themselves, establish GDPR, EU AI Act, SOC 2, ISO 27001, or industry-specific compliance.
+A Job can name a preferred region: the Coordinator tries Islands reporting a location in that region first, then neighbouring regions, and execution records identify the selected Island. Strict regional enforcement, where a Job never runs outside its region, is in development. These are technical controls that may support a Consumer's governance or data-residency program. They do not, by themselves, establish GDPR, EU AI Act, SOC 2, ISO 27001, or industry-specific compliance.
 
 Archipelag.io is not currently SOC 2 or ISO 27001 certified. Consumers remain responsible for assessing their own legal, security, and contractual requirements.
 

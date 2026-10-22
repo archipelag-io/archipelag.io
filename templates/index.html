@@ -99,7 +99,7 @@
                     "Proximity-based job routing",
                     "Virtual compute exchange for Phase 2 testing",
                     "Real-time token streaming",
-                    "Regional placement policies and execution records",
+                    "Preferred-region placement and execution records",
                     "Karma-based Island reputation system",
                     "Experimental Multi-Island pipeline research",
                     "Experimental batch fan-out"
@@ -147,7 +147,7 @@
                         "name": "Does my data stay in my region?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Jobs prefer nearby Islands by default, and you can attach a regional placement policy that limits where a Job may run. The Coordinator records which Island ran it. These controls support data-residency programs but are not a legal compliance guarantee on their own."
+                            "text": "Jobs prefer nearby Islands by default, and you can name a preferred region for a Job. The Coordinator records which Island ran it, and strict regional enforcement is in development. These controls support data-residency programs but are not a legal compliance guarantee on their own."
                         }
                     },
                     {
@@ -429,7 +429,7 @@
                             <li><strong>Streaming chat API</strong><span>OpenAI-compatible <code>/v1/chat/completions</code>, token-by-token.</span></li>
                             <li><strong>Web chat &amp; playground</strong><span>Try models and API parameters in the browser.</span></li>
                             <li><strong>Region-aware placement</strong><span>Jobs go to a capable Island in your region first, then neighbouring regions.</span></li>
-                            <li><strong>Regional placement policies</strong><span>Restrict where a Job may run and see which Island ran it.</span></li>
+                            <li><strong>Preferred regions</strong><span>Say where a Job should run, and see which Island ran it.</span></li>
                             <li><strong>Signed, sandboxed Cargos</strong><span>Signature checks, registry allowlist, seccomp profiles, resource caps.</span></li>
                             <li><strong>Cargo Registry</strong><span>Browse the approved catalog and its hardware requirements.</span></li>
                         </ul>
@@ -484,7 +484,7 @@
                         </details>
                         <details class="faq-item">
                             <summary>Does my data stay in my region?</summary>
-                            <p>Jobs prefer nearby Islands by default, and you can attach a regional placement policy that limits where a Job may run. The Coordinator records which Island ran it. These controls support data-residency programs but are not a legal compliance guarantee on their own.</p>
+                            <p>Jobs prefer nearby Islands by default, and you can name a preferred region for a Job. The Coordinator records which Island ran it, and strict regional enforcement is in development. These controls support data-residency programs but are not a legal compliance guarantee on their own.</p>
                         </details>
                         <details class="faq-item">
                             <summary>Do I need to change my code?</summary>

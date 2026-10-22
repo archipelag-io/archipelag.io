@@ -43,7 +43,7 @@ These labels are shared by the marketing site, application, and documentation. S
 - Job submission through supported web and API paths
 - Streaming AI inference where an approved Cargo and compatible Island are available
 - Island registration, heartbeats, capability reporting, placement, and Karma tracking
-- Nearby-first placement and configured regional restrictions
+- Nearby-first placement with a preferred region (strict regional enforcement is in development)
 - The public Cargo Registry and virtual Compute Exchange
 
 Availability changes with the online Island pool. A Cargo catalog entry does not guarantee that a compatible Island is currently online.

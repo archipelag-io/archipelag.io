@@ -26,7 +26,7 @@ Archipelag.io is in Phase 2. Access is free and credits-only while the approved 
 
 - AI inference Jobs, including streaming chat and image generation where a compatible Cargo and Island are available.
 - An OpenAI-compatible chat-completions API.
-- Region-first placement using capability fit, region, availability, current load, and optional regional policy.
+- Region-first placement using capability fit, region, availability, current load, and an optional preferred region.
 - Approved Cargo execution across container, WASM, GGUF, ONNX, CoreML, and related runtime formats.
 - Virtual supply-and-demand accounting in the Compute Exchange.
 
@@ -36,7 +36,7 @@ Execution depends on an approved artifact and a compatible online Island. Multi-
 
 Archipelag.io reduces risk through approved signed Cargos, registry controls, sandboxing, resource policies, authentication, and execution records. Those controls do not eliminate all operator or platform risk.
 
-Jobs favor nearby compatible Islands. Optional regional placement policies can restrict eligible placement and support a Consumer's governance program. They are not, by themselves, a legal compliance or data-residency guarantee.
+Jobs favor nearby compatible Islands. An optional preferred region is tried first, then neighbouring regions (strict enforcement is in development); this can support a Consumer's governance program. They are not, by themselves, a legal compliance or data-residency guarantee.
 
 ## Links
 

@@ -87,7 +87,7 @@
                     "OpenAI-compatible /v1/chat/completions endpoint",
                     "Real-time streaming over WebSocket and SSE",
                     "Python and JavaScript SDKs",
-                    "Regional placement policies and execution records",
+                    "Preferred-region placement and execution records",
                     "Virtual compute exchange for Phase 2 testing",
                     "Approved AI Cargos when compatible Islands are online",
                     "Experimental Multi-Island pipeline parallelism",
@@ -162,7 +162,7 @@
                         "name": "Does my data stay in my region?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "By default, Jobs favor nearby compatible Islands. Optional regional policies restrict eligible placement to configured regions. These controls can support a compliance program but are not, by themselves, a legal guarantee."
+                            "text": "By default, Jobs favor nearby compatible Islands. An optional preferred region is tried first, then neighbouring regions; strict regional enforcement is in development. These controls can support a compliance program but are not, by themselves, a legal guarantee."
                         }
                     }
                 ]
@@ -407,8 +407,8 @@
                         </div>
                         <div class="antigrid-card tech-card">
                             <span class="tech-label">Data residency</span>
-                            <span class="tech-name" style="font-size: var(--text-base);">Jurisdiction routing</span>
-                            <p class="tech-desc">Optional policy parameter restricts job placement to Islands in specific regions (EU, Switzerland, custom). For teams with compliance requirements.</p>
+                            <span class="tech-name" style="font-size: var(--text-base);">Preferred regions</span>
+                            <p class="tech-desc">Optional preferred region (EU, Switzerland, custom): placement tries Islands there first, and every Job records where it ran. Strict enforcement for compliance teams is in development.</p>
                         </div>
                     </div>
                 </div>

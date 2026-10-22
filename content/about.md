@@ -24,13 +24,13 @@ Archipelag.io is not a blockchain. The Coordinator is the control-plane authorit
 
 - **Lower distance** — real round-trip-time measurements favor responsive nearby Islands.
 - **Independent supply** — compatible desktops, servers, and mobile devices can contribute capacity.
-- **Transparent placement** — Consumers can see which Island handled a Job and apply regional policies.
+- **Transparent placement** — Consumers can see which Island handled a Job and name a preferred region.
 - **Failure-aware routing** — if an Island goes offline, the Coordinator can requeue the Job and select another match.
-- **Open integration** — the chat API follows the OpenAI-compatible interface, and the core components are open source.
+- **Open integration** — the chat API follows the OpenAI-compatible interface, and the Island host agent, the CLI, and the SDKs are open source.
 
 ## Swiss and European Roots
 
-Archipelag.io is built in Switzerland with European data-protection requirements in mind. Regional placement and execution records can support a Consumer's data-residency and governance program. They do not, by themselves, make a Job or organization legally compliant; each organization remains responsible for its own obligations.
+Archipelag.io is built in Switzerland with European data-protection requirements in mind. Preferred-region placement and execution records can support a Consumer's data-residency and governance program. They do not, by themselves, make a Job or organization legally compliant; each organization remains responsible for its own obligations.
 
 ## Boring Technology, Clear Responsibilities
 

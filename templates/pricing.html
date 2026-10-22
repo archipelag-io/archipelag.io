@@ -68,10 +68,10 @@
                 "mainEntity": [
                     {
                         "@type": "Question",
-                        "name": "How does jurisdiction routing work?",
+                        "name": "How does regional placement work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "A Consumer can attach a regional placement policy to a Job. The Coordinator limits eligible matches to Islands reporting a location inside that policy and records the selected Island. This control supports data-residency planning but is not a legal guarantee."
+                            "text": "A Consumer can name a preferred region for a Job. The Coordinator tries Islands reporting a location in that region first, then neighbouring regions, and records the selected Island. Strict regional enforcement is in development. This control supports data-residency planning but is not a legal guarantee."
                         }
                     },
                     {
@@ -304,11 +304,11 @@
                     </article>
                     <article class="card p-6">
                         <h3 class="font-brand text-lg mb-3">Compliance Support</h3>
-                        <p class="text-sm text-secondary">Regional placement controls are available for testing. Archipelag.io is not currently SOC 2 certified and does not provide a compliance guarantee.</p>
+                        <p class="text-sm text-secondary">Preferred-region placement is available for testing; strict regional enforcement is in development. Archipelag.io is not currently SOC 2 certified and does not provide a compliance guarantee.</p>
                     </article>
                     <article class="card p-6">
                         <h3 class="font-brand text-lg mb-3">Custom Jurisdictions</h3>
-                        <p class="text-sm text-secondary">Evaluate custom regional placement zones where Island location data and capacity permit. This remains a technical control.</p>
+                        <p class="text-sm text-secondary">Evaluate custom preferred regions where Island location data and capacity permit. This remains a technical control.</p>
                     </article>
                     <article class="card p-6">
                         <h3 class="font-brand text-lg mb-3">Direct Engineering Access</h3>
@@ -336,9 +336,9 @@
 
                 <div class="max-w-2xl mx-auto" itemscope itemtype="https://schema.org/FAQPage">
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 class="font-brand text-lg mb-2" itemprop="name">How does jurisdiction routing work?</h3>
+                        <h3 class="font-brand text-lg mb-2" itemprop="name">How does regional placement work?</h3>
                         <p class="text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <span itemprop="text">Attach a regional policy to a Job and the Coordinator restricts eligible placement to Islands reporting a location within that policy. The selected Island is recorded. This is a technical placement control, not a legal guarantee.</span>
+                            <span itemprop="text">Name a preferred region for a Job and the Coordinator tries Islands reporting a location in that region first, then neighbouring regions. The selected Island is recorded. Strict regional enforcement is in development. This is a technical placement control, not a legal guarantee.</span>
                         </p>
                     </article>
                     <article class="card mb-4 p-6" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
